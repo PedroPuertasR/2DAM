@@ -197,4 +197,7 @@ SELECT (e.cod_em, d.nomb_de, e.nomb_em, e.salario_em)
 FROM empleados e, departamentos d, centros c
 WHERE e.dept_em = d.cod_de AND c.cod_ce = d.centro_de
 	  AND c.poblac_ce LIKE 'MURCIA';
-	  
+
+-- Ejercicio 25
+
+UPDATE habiempl 
