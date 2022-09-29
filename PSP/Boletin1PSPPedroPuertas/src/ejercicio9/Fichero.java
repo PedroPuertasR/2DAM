@@ -20,20 +20,33 @@ public class Fichero {
     
      public void copiarCarpeta(File dOrigen, File dDestino) throws IOException{
          
-         //Con esta condición comprobamos si existe el directorio de origen
+         /*Creamos un array de Strings para almacenar más tarde la lista de 
+         archivos que hay en el origen*/
+         String[] lista;
+         
+         //Con esta condición comprobamos si el archivo de origen es una carpeta
           if(dOrigen.isDirectory()){
-                // Si la carpeta no existe la genera
+                // Si no existe la carpeta de destino la genera
                 if(!dDestino.exists()){
                      dDestino.mkdir();
                 }
-                                              
-                String[] hijos = dOrigen.list();
-                                              
-                for(int i = 0; i < hijos.length; i++){
-                     copiarCarpeta(new File(dOrigen, hijos[i]), new File(dDestino, hijos[i]));
-                     System.out.println("Copiado " + hijos[i]);
+                
+                //Instanciamos la lista
+                lista = dOrigen.list();
+                
+                /* En este for indicamos que mientras dure la lista haremos una copia
+                * de cada archivo del origen en el destino, es decir dOrigen (archivo de origen)
+                * de lista[0] (primera posición de la carpeta de origen) en la lista [0]
+                * (primera posición de la carpeta de destino)
+                */
+                for(int i = 0; i < lista.length; i++){
+                     copiarCarpeta(new File(dOrigen, lista[i]), new File(dDestino, lista[i]));
+                     System.out.println("Copiado " + lista[i]);
                 }
           }
+          /*En el caso de que el origen no sea una carpeta rescataremos todos 
+          * los archivos del origen y los copiaremos en el destino
+          */
           else{
                 copiarFichero(dOrigen, dDestino);
           }
@@ -41,16 +54,15 @@ public class Fichero {
     
      public void copiarFichero(File fOrigen, File fDestino) throws IOException{
          
+         //Instanciamos el reader y el writer
           InputStream in = new FileInputStream(fOrigen);
           OutputStream out = new FileOutputStream(fDestino);
-          byte[] buffer = new byte[1024];
           
-          int cap;
-
-          while ((cap = in.read(buffer)) > 0){
-                out.write(buffer, 0, cap);
-          }
+          /*Le indicamos al writer que escriba en la ruta deseada todos 
+          los bytes que contiene la lectura*/
+          out.write(in.readAllBytes());
          
+          //Cerramos los flujos
           in.close();
           out.close();
          

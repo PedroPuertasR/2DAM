@@ -20,13 +20,15 @@ public class Principal {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        //Indicamos las rutas tanto de origen como de destino
+        //Indicamos las rutas tanto de origen como de destino de los archivos
         File origen = new File("/home/alumno/Descargas/Boletin1PSPPedroPuertas/recursos/origen");
         File destino = new File("/home/alumno/Descargas/Boletin1PSPPedroPuertas/recursos/destino");
+        //Instanciamos un archivo auxiliar que nos ayudará a copiar todo
         Fichero archivo = new Fichero();
          
-          // Código
         try{
+            /*Utilizamos el método para copiar los archivos e 
+            indicamos que se ha realizado correctamente*/
             archivo.copiarCarpeta(origen, destino);
             System.out.println("Copia realizada");
         }
