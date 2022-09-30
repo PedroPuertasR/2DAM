@@ -6,7 +6,6 @@
 package vista;
 
 import controlador.Lista;
-import java.util.GregorianCalendar;
 import modelo.Cuenta;
 
 /**
@@ -15,27 +14,12 @@ import modelo.Cuenta;
  */
 public class Interfaz extends javax.swing.JFrame {
     
-    Lista <Cuenta> lista;
+    public static Lista <Cuenta> lista = new Lista <Cuenta>();
     
     /**
      * Creates new form Interfaz
      */
     public Interfaz() {
-        lista = new Lista<Cuenta>();
-        
-        lista.insertar(new Cuenta());
-        lista.insertar(new Cuenta(2, 1321, "Alberto Domínguez"));
-        lista.insertar(new Cuenta(3, new GregorianCalendar(), 2312, "Carlos Álvarez"));
-        
-        numeroField.setText(""+lista.getInicio().getDato());
-        fechaField.setText(""+lista.getInicio().getDato());
-        saldoField.setText(""+lista.getInicio().getDato());
-        propietarioField.setText(""+lista.getInicio().getDato());
-        
-        botonAnterior.setEnabled(false);
-        botonAceptar.setVisible(false);
-        botonCancelar.setVisible(false);
-        
         initComponents();
     }
 
@@ -65,6 +49,11 @@ public class Interfaz extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         numeroField.setText("jTextField1");
+        numeroField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numeroFieldActionPerformed(evt);
+            }
+        });
 
         labelNumero.setText("Número:");
 
@@ -80,6 +69,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         propietarioField.setText("jTextField4");
 
+        botonAnterior.setEnabled(false);
         botonAnterior.setText("Anterior");
         botonAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,6 +91,7 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        botonAceptar.setVisible(false);
         botonAceptar.setText("Aceptar");
         botonAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,6 +99,7 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        botonCancelar.setVisible(false);
         botonCancelar.setText("Cancelar");
         botonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,37 +112,36 @@ public class Interfaz extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(148, 148, 148)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(propietarioLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(saldoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(fechaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelNumero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(labelNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(84, 84, 84)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(numeroField, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                            .addComponent(numeroField)
                             .addComponent(propietarioField)
                             .addComponent(saldoField)
-                            .addComponent(fechaField)))
+                            .addComponent(fechaField, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(botonAnterior)
-                                .addGap(90, 90, 90)
-                                .addComponent(botonNuevo))
-                            .addComponent(botonAceptar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(botonAnterior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(97, 97, 97)
+                        .addComponent(botonNuevo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonCancelar)
                             .addComponent(botonSiguiente))))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numeroField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelNumero))
@@ -175,7 +166,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonAceptar)
                     .addComponent(botonCancelar))
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -238,6 +229,10 @@ public class Interfaz extends javax.swing.JFrame {
         //lista.insertar(new Cuenta(saldoField.getText(), propietarioField.getText()));
         
     }//GEN-LAST:event_botonAceptarActionPerformed
+
+    private void numeroFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numeroFieldActionPerformed
 
     /**
      * @param args the command line arguments

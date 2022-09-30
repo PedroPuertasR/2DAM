@@ -21,3 +21,5 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/PMDM/Practica3PedroPuertas/nbproject/private/
+/PMDM/Practica3PedroPuertas/build/
