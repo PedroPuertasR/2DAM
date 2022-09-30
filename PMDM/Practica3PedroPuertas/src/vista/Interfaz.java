@@ -20,6 +20,8 @@ public class Interfaz extends javax.swing.JFrame {
      * Creates new form Interfaz
      */
     public Interfaz() {
+        iniciarLista();
+        //ini
         initComponents();
     }
 
@@ -172,6 +174,17 @@ public class Interfaz extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void iniciarLista(){
+        Lista <Cuenta> listado = new Lista<Cuenta>();
+        
+        listado.insertar(new Cuenta());
+        listado.insertar(new Cuenta(2, 2300, "Alberto García"));
+    }
+    
+    public void inicioFields(){
+        numeroField.setText(""+);
+    }
+    
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         // TODO add your handling code here:
         
