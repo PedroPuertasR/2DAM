@@ -264,6 +264,13 @@ public class Interfaz extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                Lista <Cuenta> listado = new Lista <Cuenta>();
+                
+                listado.insertar(new Cuenta());
+                listado.insertar(new Cuenta(1, 2300, "Alberto González"));
+                
+                //numeroField.setText(""+ lista.getInicio().getDato());
+                
                 new Interfaz().setVisible(true);
             }
         });
