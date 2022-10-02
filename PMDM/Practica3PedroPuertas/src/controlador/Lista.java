@@ -11,30 +11,47 @@ package controlador;
  */
 public class Lista <T>{
     
-    private Nodo inicial;
+    private Nodo inicio;
+    private Nodo fin;
 
     public Lista() {
-        this.inicial = null;
+        //this.inicial = null;
+        inicio = fin = null;
     }
 
     public Nodo getInicio() {
-        return inicial;
+        return inicio;
     }
 
     public void setInicio(Nodo inicio) {
-        this.inicial = inicio;
+        this.inicio = inicio;
     }
     
     //Métodos
     
+    public boolean esVacio(){
+        if(inicio == null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
     public void insertar (T objeto){
-        Nodo n = new Nodo(objeto);
+        
+        if(!esVacio()){
+            fin = new Nodo(objeto, null, fin);
+            fin.getAnterior().setSiguiente(fin);
+        }else{
+            inicio = fin = new Nodo(objeto);
+        }
+        /*Nodo n = new Nodo(objeto);
         Nodo aux;
         
-        if(inicial == null){
-            inicial = n;
+        if(inicio == null){
+            inicio = n;
         }else{
-            aux = inicial;
+            aux = inicio;
             
             while(aux.getSiguiente() == null){
                 aux = aux.getSiguiente();
@@ -42,8 +59,8 @@ public class Lista <T>{
             
             n.setAnterior(aux);
             aux.setSiguiente(n);
-            
         }
-    }    
+        */
+    }
     
 }

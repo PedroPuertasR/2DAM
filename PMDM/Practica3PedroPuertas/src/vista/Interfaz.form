@@ -46,9 +46,9 @@
                           <Component id="botonAnterior" max="32767" attributes="0"/>
                           <Component id="botonAceptar" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
-                      <Component id="botonNuevo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="botonNuevo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="botonCancelar" min="-2" max="-2" attributes="0"/>
                           <Component id="botonSiguiente" min="-2" max="-2" attributes="0"/>
@@ -86,7 +86,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="botonAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botonSiguiente" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="botonNuevo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonNuevo" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -100,9 +100,6 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="numeroField">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="numeroFieldActionPerformed"/>
       </Events>
@@ -128,19 +125,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="fechaField">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField2"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="saldoField">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField3"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="propietarioField">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField4"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="botonAnterior">
       <Properties>

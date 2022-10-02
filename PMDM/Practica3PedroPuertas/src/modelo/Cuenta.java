@@ -7,7 +7,6 @@ package modelo;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Random;
 
 /**
  *
@@ -21,16 +20,11 @@ public class Cuenta {
     private String propietario;
 
     public Cuenta() {
-        this(1, 2030, "Pedro Puertas");
+        this(new GregorianCalendar(), 2030, "Pedro Puertas");
     }
-
-    public Cuenta(int numero, double saldo, String propietario) {
-        this(numero, new GregorianCalendar(), saldo, propietario);
-    }
-
-    public Cuenta(int numero, Calendar fecha, double saldo, String propietario) {
-        int contador = 1;
-        this.numero = contador++;
+    
+    public Cuenta(Calendar fecha, double saldo, String propietario) {
+        this.numero = contador();
         this.fecha = fecha;
         this.saldo = saldo;
         this.propietario = propietario;
@@ -73,11 +67,10 @@ public class Cuenta {
         return "Cuenta{" + "numero=" + numero + ", fecha=" + fecha + ", saldo=" + saldo + ", propietario=" + propietario + '}';
     }
     
-    public int generarAleatorio(int max, int min){
-        Random aleatorio = new Random();
-        int num;
+    public static int contador(){
+        int num = 1;
         
-        num = aleatorio.nextInt(((max - min) - 1) + min);
+        num++;
         
         return num;
     }

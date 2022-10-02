@@ -16,11 +16,20 @@ public class Nodo <T> {
     private Nodo anterior;
 
     public Nodo(T dato) {
-        this.dato = dato;
+        /*this.dato = dato;
         this.siguiente = null;
-        this.anterior = null;
+        this.anterior = null;*/
+        
+        this(dato, null, null);
+        
     }
-
+    
+    public Nodo(T dato, Nodo siguiente, Nodo anterior){
+        this.dato = dato;
+        this.siguiente = siguiente;
+        this.anterior = anterior;
+    }
+    
     public T getDato() {
         return dato;
     }

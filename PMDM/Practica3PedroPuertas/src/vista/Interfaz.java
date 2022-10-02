@@ -6,6 +6,7 @@
 package vista;
 
 import controlador.Lista;
+import java.util.GregorianCalendar;
 import modelo.Cuenta;
 
 /**
@@ -14,14 +15,13 @@ import modelo.Cuenta;
  */
 public class Interfaz extends javax.swing.JFrame {
     
-    public static Lista <Cuenta> lista = new Lista <Cuenta>();
+    public Lista <Cuenta> listado = new Lista<Cuenta>();
     
     /**
      * Creates new form Interfaz
      */
     public Interfaz() {
         iniciarLista();
-        //ini
         initComponents();
     }
 
@@ -50,7 +50,6 @@ public class Interfaz extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        numeroField.setText("jTextField1");
         numeroField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 numeroFieldActionPerformed(evt);
@@ -64,12 +63,6 @@ public class Interfaz extends javax.swing.JFrame {
         saldoLabel.setText("Saldo:");
 
         propietarioLabel.setText("Propietario:");
-
-        fechaField.setText("jTextField2");
-
-        saldoField.setText("jTextField3");
-
-        propietarioField.setText("jTextField4");
 
         botonAnterior.setEnabled(false);
         botonAnterior.setText("Anterior");
@@ -132,9 +125,9 @@ public class Interfaz extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(botonAnterior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(botonAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(97, 97, 97)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonNuevo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                        .addGap(110, 110, 110)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonCancelar)
                             .addComponent(botonSiguiente))))
@@ -163,7 +156,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonAnterior)
                     .addComponent(botonSiguiente)
-                    .addComponent(botonNuevo))
+                    .addComponent(botonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonAceptar)
@@ -175,16 +168,12 @@ public class Interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void iniciarLista(){
-        Lista <Cuenta> listado = new Lista<Cuenta>();
-        
+
         listado.insertar(new Cuenta());
-        listado.insertar(new Cuenta(2, 2300, "Alberto García"));
+        listado.insertar(new Cuenta(new GregorianCalendar(), 2300, "Alberto García"));
+        
     }
-    
-    public void inicioFields(){
-        numeroField.setText(""+);
-    }
-    
+
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         // TODO add your handling code here:
         
@@ -239,7 +228,9 @@ public class Interfaz extends javax.swing.JFrame {
         botonAnterior.setEnabled(false);
         botonSiguiente.setEnabled(true);
         
-        //lista.insertar(new Cuenta(saldoField.getText(), propietarioField.getText()));
+        double s = Double.parseDouble(saldoField.getText());
+        
+        listado.insertar(new Cuenta(new GregorianCalendar(), s, propietarioField.getText()));
         
     }//GEN-LAST:event_botonAceptarActionPerformed
 
@@ -273,18 +264,17 @@ public class Interfaz extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Lista <Cuenta> listado = new Lista <Cuenta>();
+            public void run() {     
+                new Interfaz().setVisible(true);
+                
+                Lista <Cuenta> listado = new Lista<Cuenta>();
                 
                 listado.insertar(new Cuenta());
-                listado.insertar(new Cuenta(1, 2300, "Alberto González"));
+                listado.insertar(new Cuenta(new GregorianCalendar(), 2030, "Alberto Vázquez"));
                 
-                //numeroField.setText(""+ lista.getInicio().getDato());
-                
-                new Interfaz().setVisible(true);
+                //numeroField.setText("" + listado.getInicio().getDato());
             }
         });
     }
