@@ -68,7 +68,7 @@ public class Cuenta {
     }
     
     public static int contador(){
-        int num = 1;
+        int num = 0;
         
         num++;
         

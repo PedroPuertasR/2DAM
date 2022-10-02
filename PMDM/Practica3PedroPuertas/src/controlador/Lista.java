@@ -26,6 +26,14 @@ public class Lista <T>{
     public void setInicio(Nodo inicio) {
         this.inicio = inicio;
     }
+
+    public Nodo getFin() {
+        return fin;
+    }
+
+    public void setFin(Nodo fin) {
+        this.fin = fin;
+    }
     
     //Métodos
     

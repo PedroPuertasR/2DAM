@@ -6,6 +6,7 @@
 package vista;
 
 import controlador.Lista;
+import controlador.Nodo;
 import java.util.GregorianCalendar;
 import modelo.Cuenta;
 
@@ -15,13 +16,15 @@ import modelo.Cuenta;
  */
 public class Interfaz extends javax.swing.JFrame {
     
-    public Lista <Cuenta> listado = new Lista<Cuenta>();
+    private Lista <Cuenta> listado;
+    private static Nodo actual;
     
     /**
      * Creates new form Interfaz
      */
     public Interfaz() {
         iniciarLista();
+        actual = listado.getInicio();
         initComponents();
     }
 
@@ -49,12 +52,6 @@ public class Interfaz extends javax.swing.JFrame {
         botonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        numeroField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numeroFieldActionPerformed(evt);
-            }
-        });
 
         labelNumero.setText("Número:");
 
@@ -153,10 +150,11 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(propietarioLabel)
                     .addComponent(propietarioField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonAnterior)
-                    .addComponent(botonSiguiente)
-                    .addComponent(botonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(botonAnterior)
+                        .addComponent(botonSiguiente)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonAceptar)
@@ -181,19 +179,66 @@ public class Interfaz extends javax.swing.JFrame {
         botonAnterior.setVisible(true);
         botonNuevo.setVisible(true);
         botonCancelar.setVisible(false);
-        botonAceptar.setVisible(false);  
+        botonAceptar.setVisible(false);
+        saldoField.setEditable(false);
+        propietarioField.setEditable(false);
+        
+        if(actual.getSiguiente() == null){
+            botonSiguiente.setEnabled(false);
+            botonAnterior.setEnabled(true);
+        }else if(actual.getAnterior() == null){
+            botonAnterior.setEnabled(false);
+            botonSiguiente.setEnabled(true);
+        }else{
+            botonAnterior.setEnabled(true);
+            botonSiguiente.setEnabled(true);
+        }
+        
+        numeroField.setText("");
+        fechaField.setText("");
+        saldoField.setText("");
+        propietarioField.setText("");
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnteriorActionPerformed
         // TODO add your handling code here:
-        botonSiguiente.setEnabled(true);
+        
+        if(actual.getAnterior() == null){
+            botonAnterior.setEnabled(false);
+        }else{
+            actual = actual.getAnterior();
+            if(!botonSiguiente.isEnabled()){
+                botonSiguiente.setEnabled(true);
+            }else if(actual.getAnterior() == null){
+                botonAnterior.setEnabled(false);
+            }
+        }
+        
+        numeroField.setText("");
+        fechaField.setText("");
+        saldoField.setText("");
+        propietarioField.setText("");
         
     }//GEN-LAST:event_botonAnteriorActionPerformed
 
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
         // TODO add your handling code here:
         
-        botonAnterior.setEnabled(true);
+        if(actual.getSiguiente() == null){
+            botonSiguiente.setEnabled(false);
+        }else{
+            actual = actual.getSiguiente();
+            if(!botonAnterior.isEnabled()){
+                botonAnterior.setEnabled(true);
+            }else if(actual.getSiguiente() == null){
+                botonSiguiente.setEnabled(false);
+            }
+        }
+        
+        numeroField.setText("");
+        fechaField.setText("");
+        saldoField.setText("");
+        propietarioField.setText("");
         
     }//GEN-LAST:event_botonSiguienteActionPerformed
 
@@ -228,15 +273,20 @@ public class Interfaz extends javax.swing.JFrame {
         botonAnterior.setEnabled(false);
         botonSiguiente.setEnabled(true);
         
+        saldoField.setEditable(false);
+        propietarioField.setEditable(false);
+        
         double s = Double.parseDouble(saldoField.getText());
         
         listado.insertar(new Cuenta(new GregorianCalendar(), s, propietarioField.getText()));
         
+        actual = listado.getFin();
+        
+        numeroField.setText("");
+        fechaField.setText("");
+        saldoField.setText("");
+        propietarioField.setText("");
     }//GEN-LAST:event_botonAceptarActionPerformed
-
-    private void numeroFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numeroFieldActionPerformed
 
     /**
      * @param args the command line arguments
