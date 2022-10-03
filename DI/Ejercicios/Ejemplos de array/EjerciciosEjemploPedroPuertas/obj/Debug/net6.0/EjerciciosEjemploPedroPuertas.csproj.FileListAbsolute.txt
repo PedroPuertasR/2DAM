@@ -1,0 +1,15 @@
+C:\Users\Administrador\source\repos\EjerciciosEjemploPedroPuertas\EjerciciosEjemploPedroPuertas\bin\Debug\net6.0\EjerciciosEjemploPedroPuertas.exe
+C:\Users\Administrador\source\repos\EjerciciosEjemploPedroPuertas\EjerciciosEjemploPedroPuertas\bin\Debug\net6.0\EjerciciosEjemploPedroPuertas.deps.json
+C:\Users\Administrador\source\repos\EjerciciosEjemploPedroPuertas\EjerciciosEjemploPedroPuertas\bin\Debug\net6.0\EjerciciosEjemploPedroPuertas.runtimeconfig.json
+C:\Users\Administrador\source\repos\EjerciciosEjemploPedroPuertas\EjerciciosEjemploPedroPuertas\bin\Debug\net6.0\EjerciciosEjemploPedroPuertas.dll
+C:\Users\Administrador\source\repos\EjerciciosEjemploPedroPuertas\EjerciciosEjemploPedroPuertas\bin\Debug\net6.0\EjerciciosEjemploPedroPuertas.pdb
+C:\Users\Administrador\source\repos\EjerciciosEjemploPedroPuertas\EjerciciosEjemploPedroPuertas\obj\Debug\net6.0\EjerciciosEjemploPedroPuertas.csproj.AssemblyReference.cache
+C:\Users\Administrador\source\repos\EjerciciosEjemploPedroPuertas\EjerciciosEjemploPedroPuertas\obj\Debug\net6.0\EjerciciosEjemploPedroPuertas.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrador\source\repos\EjerciciosEjemploPedroPuertas\EjerciciosEjemploPedroPuertas\obj\Debug\net6.0\EjerciciosEjemploPedroPuertas.AssemblyInfoInputs.cache
+C:\Users\Administrador\source\repos\EjerciciosEjemploPedroPuertas\EjerciciosEjemploPedroPuertas\obj\Debug\net6.0\EjerciciosEjemploPedroPuertas.AssemblyInfo.cs
+C:\Users\Administrador\source\repos\EjerciciosEjemploPedroPuertas\EjerciciosEjemploPedroPuertas\obj\Debug\net6.0\EjerciciosEjemploPedroPuertas.csproj.CoreCompileInputs.cache
+C:\Users\Administrador\source\repos\EjerciciosEjemploPedroPuertas\EjerciciosEjemploPedroPuertas\obj\Debug\net6.0\EjerciciosEjemploPedroPuertas.dll
+C:\Users\Administrador\source\repos\EjerciciosEjemploPedroPuertas\EjerciciosEjemploPedroPuertas\obj\Debug\net6.0\refint\EjerciciosEjemploPedroPuertas.dll
+C:\Users\Administrador\source\repos\EjerciciosEjemploPedroPuertas\EjerciciosEjemploPedroPuertas\obj\Debug\net6.0\EjerciciosEjemploPedroPuertas.pdb
+C:\Users\Administrador\source\repos\EjerciciosEjemploPedroPuertas\EjerciciosEjemploPedroPuertas\obj\Debug\net6.0\EjerciciosEjemploPedroPuertas.genruntimeconfig.cache
+C:\Users\Administrador\source\repos\EjerciciosEjemploPedroPuertas\EjerciciosEjemploPedroPuertas\obj\Debug\net6.0\ref\EjerciciosEjemploPedroPuertas.dll
