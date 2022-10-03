@@ -20,11 +20,11 @@ public class Cuenta {
     private String propietario;
 
     public Cuenta() {
-        this(new GregorianCalendar(), 2030, "Pedro Puertas");
+        this(1, new GregorianCalendar(), 2030, "Pedro Puertas");
     }
     
-    public Cuenta(Calendar fecha, double saldo, String propietario) {
-        this.numero = contador();
+    public Cuenta(int numero, Calendar fecha, double saldo, String propietario) {
+        this.numero = numero;
         this.fecha = fecha;
         this.saldo = saldo;
         this.propietario = propietario;
@@ -65,14 +65,6 @@ public class Cuenta {
     @Override
     public String toString() {
         return "Cuenta{" + "numero=" + numero + ", fecha=" + fecha + ", saldo=" + saldo + ", propietario=" + propietario + '}';
-    }
-    
-    public static int contador(){
-        int num = 0;
-        
-        num++;
-        
-        return num;
     }
     
 }

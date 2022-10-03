@@ -17,14 +17,15 @@ import modelo.Cuenta;
 public class Interfaz extends javax.swing.JFrame {
     
     private Lista <Cuenta> listado;
-    private static Nodo actual;
+    private Cuenta actual;
+    private Nodo aux;
+    private static int contador = 2;
     
     /**
      * Creates new form Interfaz
      */
     public Interfaz() {
         iniciarLista();
-        actual = listado.getInicio();
         initComponents();
     }
 
@@ -53,6 +54,9 @@ public class Interfaz extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        numeroField.setText("" + actual.getNumero());
+        numeroField.setEnabled(false);
+
         labelNumero.setText("Número:");
 
         fechaLabel.setText("Fecha:");
@@ -60,6 +64,15 @@ public class Interfaz extends javax.swing.JFrame {
         saldoLabel.setText("Saldo:");
 
         propietarioLabel.setText("Propietario:");
+
+        fechaField.setText("" + actual.getFecha().toInstant());
+        fechaField.setEnabled(false);
+
+        saldoField.setText("" + actual.getSaldo() + " €");
+        saldoField.setEnabled(false);
+
+        propietarioField.setText("" + actual.getPropietario());
+        propietarioField.setEnabled(false);
 
         botonAnterior.setEnabled(false);
         botonAnterior.setText("Anterior");
@@ -165,13 +178,19 @@ public class Interfaz extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     public void iniciarLista(){
-
-        listado.insertar(new Cuenta());
-        listado.insertar(new Cuenta(new GregorianCalendar(), 2300, "Alberto García"));
+        listado = new Lista<Cuenta>();
         
+        listado.insertar(new Cuenta());
+        listado.insertar(new Cuenta(contador++, new GregorianCalendar(), 2300, "Alberto García"));
+        listado.insertar(new Cuenta(contador++, new GregorianCalendar(), 21130, "Roberto Brasero"));
+        
+        aux = listado.getInicio();
+        
+        actual = (Cuenta) aux.getDato();
     }
-
+    
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         // TODO add your handling code here:
         
@@ -182,11 +201,13 @@ public class Interfaz extends javax.swing.JFrame {
         botonAceptar.setVisible(false);
         saldoField.setEditable(false);
         propietarioField.setEditable(false);
+        saldoField.setEnabled(false);
+        propietarioField.setEnabled(false);
         
-        if(actual.getSiguiente() == null){
+        if(aux.getSiguiente() == null){
             botonSiguiente.setEnabled(false);
             botonAnterior.setEnabled(true);
-        }else if(actual.getAnterior() == null){
+        }else if(aux.getAnterior() == null){
             botonAnterior.setEnabled(false);
             botonSiguiente.setEnabled(true);
         }else{
@@ -194,51 +215,53 @@ public class Interfaz extends javax.swing.JFrame {
             botonSiguiente.setEnabled(true);
         }
         
-        numeroField.setText("");
-        fechaField.setText("");
-        saldoField.setText("");
-        propietarioField.setText("");
+        numeroField.setText("" + actual.getNumero());
+        fechaField.setText("" + actual.getFecha().toInstant());
+        saldoField.setText("" + actual.getSaldo() + " €");
+        propietarioField.setText("" + actual.getPropietario());
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnteriorActionPerformed
         // TODO add your handling code here:
         
-        if(actual.getAnterior() == null){
+        if(aux.getAnterior() == null){
             botonAnterior.setEnabled(false);
         }else{
-            actual = actual.getAnterior();
+            aux = aux.getAnterior();
+            actual = (Cuenta) aux.getDato();
             if(!botonSiguiente.isEnabled()){
                 botonSiguiente.setEnabled(true);
-            }else if(actual.getAnterior() == null){
+            }else if(aux.getAnterior() == null){
                 botonAnterior.setEnabled(false);
             }
         }
         
-        numeroField.setText("");
-        fechaField.setText("");
-        saldoField.setText("");
-        propietarioField.setText("");
+        numeroField.setText("" + actual.getNumero());
+        fechaField.setText("" + actual.getFecha().toInstant());
+        saldoField.setText("" + actual.getSaldo() + " €");
+        propietarioField.setText("" + actual.getPropietario());
         
     }//GEN-LAST:event_botonAnteriorActionPerformed
 
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
         // TODO add your handling code here:
         
-        if(actual.getSiguiente() == null){
+        if(aux.getSiguiente() == null){
             botonSiguiente.setEnabled(false);
         }else{
-            actual = actual.getSiguiente();
+            aux = aux.getSiguiente();
+            actual = (Cuenta) aux.getDato();
             if(!botonAnterior.isEnabled()){
                 botonAnterior.setEnabled(true);
-            }else if(actual.getSiguiente() == null){
+            }else if(aux.getSiguiente() == null){
                 botonSiguiente.setEnabled(false);
             }
         }
         
-        numeroField.setText("");
-        fechaField.setText("");
-        saldoField.setText("");
-        propietarioField.setText("");
+        numeroField.setText("" + actual.getNumero());
+        fechaField.setText("" + actual.getFecha().toInstant());
+        saldoField.setText("" + actual.getSaldo() + " €");
+        propietarioField.setText("" + actual.getPropietario());
         
     }//GEN-LAST:event_botonSiguienteActionPerformed
 
@@ -251,14 +274,15 @@ public class Interfaz extends javax.swing.JFrame {
         botonAceptar.setVisible(true);
         botonCancelar.setVisible(true);
         
+        saldoField.setEditable(true);
+        propietarioField.setEditable(true);
+        saldoField.setEnabled(true);
+        propietarioField.setEnabled(true);
+        
         numeroField.setText("");
         fechaField.setText("");
         saldoField.setText("");
-        propietarioField.setText("");
-        
-        saldoField.setEditable(true);
-        propietarioField.setEditable(true);
-        
+        propietarioField.setText("");   
     }//GEN-LAST:event_botonNuevoActionPerformed
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
@@ -270,22 +294,30 @@ public class Interfaz extends javax.swing.JFrame {
         botonCancelar.setVisible(false);
         botonAceptar.setVisible(false);
         
-        botonAnterior.setEnabled(false);
-        botonSiguiente.setEnabled(true);
+        botonAnterior.setEnabled(true);
+        botonSiguiente.setEnabled(false);
         
         saldoField.setEditable(false);
         propietarioField.setEditable(false);
+        saldoField.setEnabled(false);
+        propietarioField.setEnabled(false);
         
-        double s = Double.parseDouble(saldoField.getText());
+        try {
+            double s = Double.parseDouble(saldoField.getText());
+            listado.insertar(new Cuenta(contador++, new GregorianCalendar(), s, propietarioField.getText()));
+
+        } catch (NumberFormatException nf) {
+            System.out.println(saldoField.getText() + ", no es un número.");
+        }
         
-        listado.insertar(new Cuenta(new GregorianCalendar(), s, propietarioField.getText()));
+        aux = listado.getFin();
         
-        actual = listado.getFin();
+        actual = (Cuenta) aux.getDato();
         
-        numeroField.setText("");
-        fechaField.setText("");
-        saldoField.setText("");
-        propietarioField.setText("");
+        numeroField.setText("" + actual.getNumero());
+        fechaField.setText("" + actual.getFecha().toInstant());
+        saldoField.setText("" + actual.getSaldo() + " €");
+        propietarioField.setText("" + actual.getPropietario());
     }//GEN-LAST:event_botonAceptarActionPerformed
 
     /**
@@ -318,13 +350,6 @@ public class Interfaz extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {     
                 new Interfaz().setVisible(true);
-                
-                Lista <Cuenta> listado = new Lista<Cuenta>();
-                
-                listado.insertar(new Cuenta());
-                listado.insertar(new Cuenta(new GregorianCalendar(), 2030, "Alberto Vázquez"));
-                
-                //numeroField.setText("" + listado.getInicio().getDato());
             }
         });
     }

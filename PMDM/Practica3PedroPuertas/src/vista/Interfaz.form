@@ -102,6 +102,9 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="numeroField">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="numeroField.setText(&quot;&quot; + actual.getNumero());&#xa;numeroField.setEnabled(false);&#xa;"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="labelNumero">
       <Properties>
@@ -124,10 +127,19 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="fechaField">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="fechaField.setText(&quot;&quot; + actual.getFecha().toInstant());&#xa;fechaField.setEnabled(false);&#xa;"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="saldoField">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="saldoField.setText(&quot;&quot; + actual.getSaldo() + &quot; &#x20ac;&quot;);&#xa;saldoField.setEnabled(false);&#xa;"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="propietarioField">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="propietarioField.setText(&quot;&quot; + actual.getPropietario());&#xa;propietarioField.setEnabled(false);&#xa;"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="botonAnterior">
       <Properties>
