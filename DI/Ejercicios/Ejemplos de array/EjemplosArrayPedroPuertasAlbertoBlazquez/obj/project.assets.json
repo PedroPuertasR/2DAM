@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrador\\source\\repos\\EjerciciosEjemploPedroPuertas\\EjerciciosEjemploPedroPuertas\\EjerciciosEjemploPedroPuertas.csproj",
-      "projectName": "EjerciciosEjemploPedroPuertas",
-      "projectPath": "C:\\Users\\Administrador\\source\\repos\\EjerciciosEjemploPedroPuertas\\EjerciciosEjemploPedroPuertas\\EjerciciosEjemploPedroPuertas.csproj",
+      "projectUniqueName": "C:\\Users\\Administrador\\Desktop\\EjemplosArrayPedroPuertasAlbertoBlazquez\\EjemplosArrayPedroPuertasAlbertoBlazquez\\EjemplosArrayPedroPuertasAlbertoBlazquez.csproj",
+      "projectName": "EjemplosArrayPedroPuertasAlbertoBlazquez",
+      "projectPath": "C:\\Users\\Administrador\\Desktop\\EjemplosArrayPedroPuertasAlbertoBlazquez\\EjemplosArrayPedroPuertasAlbertoBlazquez\\EjemplosArrayPedroPuertasAlbertoBlazquez.csproj",
       "packagesPath": "C:\\Users\\Administrador\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrador\\source\\repos\\EjerciciosEjemploPedroPuertas\\EjerciciosEjemploPedroPuertas\\obj\\",
+      "outputPath": "C:\\Users\\Administrador\\Desktop\\EjemplosArrayPedroPuertasAlbertoBlazquez\\EjemplosArrayPedroPuertasAlbertoBlazquez\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Administrador\\AppData\\Roaming\\NuGet\\NuGet.Config",

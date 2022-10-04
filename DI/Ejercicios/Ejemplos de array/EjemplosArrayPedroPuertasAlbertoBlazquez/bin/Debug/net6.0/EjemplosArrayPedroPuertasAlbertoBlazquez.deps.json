@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "EjerciciosEjemploPedroPuertas/1.0.0": {
+      "EjemplosArrayPedroPuertasAlbertoBlazquez/1.0.0": {
         "runtime": {
-          "EjerciciosEjemploPedroPuertas.dll": {}
+          "EjemplosArrayPedroPuertasAlbertoBlazquez.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "EjerciciosEjemploPedroPuertas/1.0.0": {
+    "EjemplosArrayPedroPuertasAlbertoBlazquez/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
