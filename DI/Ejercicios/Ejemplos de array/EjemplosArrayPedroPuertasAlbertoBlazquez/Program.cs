@@ -175,7 +175,7 @@ namespace EjemplosArrayPedroPuertasAlbertoBlazquez
             }
 
             //Mostramos los números del array
-            for (int i = 0; i < numeros.Length; i++)
+            for (int i = 0; i < cantidad; i++)
             {
                 if (numeros[i] != 0)
                 {
