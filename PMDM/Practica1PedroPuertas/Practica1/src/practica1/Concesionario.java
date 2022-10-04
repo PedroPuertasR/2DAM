@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.ejemplo1;
+package practica1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +14,8 @@ import java.util.List;
  */
 public class Concesionario {
     
-    public Automovil auto1;
-    public Automovil auto2;
+    private Automovil auto1;
+    private Automovil auto2;
 
     public Concesionario() {
     }
@@ -72,17 +72,33 @@ public class Concesionario {
         }
     }
     
-    public String cambiarModelo (Automovil a, String nuevo){
-        a.setModelo(nuevo);
-        return a.getModelo();
+    public String cambiarModelo (int i, String nuevo){
+        if(i == 1){
+            auto1.setModelo(nuevo);
+            return auto1.getModelo();
+        }else{
+            auto2.setModelo(nuevo);
+            return auto2.getModelo();
+        }
     }
     
-    public int cambiarPrecio (Automovil a, int nuevo){
-        if(nuevo < a.getPrecio()){
-            return a.getPrecio();
+    public String cambiarMarca (int i, String nuevo){
+        if(i == 1){
+            auto1.setMarca(nuevo);
+            return auto1.getMarca();
         }else{
-            a.setPrecio(nuevo);
-            return a.getPrecio();
+            auto2.setMarca(nuevo);
+            return auto2.getMarca();
+        }
+    }
+    
+    public int cambiarPrecio (int i, int nuevo){
+        if(i == 1){
+            auto1.setPrecio(nuevo);
+            return auto1.getPrecio();
+        }else{
+            auto2.setPrecio(nuevo);
+            return auto2.getPrecio();
         }
     }
     
@@ -97,12 +113,8 @@ public class Concesionario {
         System.out.println("7. Cambiar precio.");
     }
     
-    public void verCoches (){
-        
-        List <Automovil> lista = new ArrayList<Automovil>();
-        lista.add(auto1);
-        lista.add(auto2);
-        
+    public void verCoches (List lista){
+
         for (int i = 0; i < lista.size(); i++) {
             System.out.printf("Coche Nº%d: " + lista.get(i) + "\n", i + 1);
         }
