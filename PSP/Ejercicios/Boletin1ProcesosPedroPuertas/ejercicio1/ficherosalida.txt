@@ -1,0 +1,3 @@
+ficherosalida.txt
+proceso1
+proceso1.c
