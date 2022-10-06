@@ -1,3 +1,4 @@
 ficherosalida.txt
 proceso1
 proceso1.c
+proceso1.png
