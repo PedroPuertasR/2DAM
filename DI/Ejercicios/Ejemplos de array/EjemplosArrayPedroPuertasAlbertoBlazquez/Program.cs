@@ -13,7 +13,7 @@ namespace EjemplosArrayPedroPuertasAlbertoBlazquez
             //////////////////////////////////////
 
             //Declaramos un array de string con algunos números ya introducidos
-            //string[] nombres = {7, 2, 5, 12, 25};
+            //string[] numeros = {7, 2, 5, 12, 25};
 
             /*También podemos declarar el array con un tamaño para después añadirle 
              * los números que queramos.
@@ -46,7 +46,7 @@ namespace EjemplosArrayPedroPuertasAlbertoBlazquez
             {
                 if (numeros[i] != 0)
                 {
-                    System.Console.WriteLine("Nº: {0}!", numeros[i]);
+                    System.Console.WriteLine("Nº {0}: {1}", i + 1, numeros[i]);
                 }
             }
             System.Console.WriteLine("-----------------------------------");
@@ -136,6 +136,7 @@ namespace EjemplosArrayPedroPuertasAlbertoBlazquez
              * el control del índice de este.
              */
             numeros[cantidad++] = lectura;
+            System.Console.WriteLine("Número insertado.");
 
             //////////////////////////////
             ///BORRAR UN VALOR///
@@ -160,7 +161,7 @@ namespace EjemplosArrayPedroPuertasAlbertoBlazquez
                      * almacenada y recorremos el array hasta la penúltima posición
                      * para poder reemplazar las posiciones antiguas con las nuevas
                     */
-                    for (int j = posicionBorrar; i < cantidad - 1; i++)
+                    for (int j = posicionBorrar; j < cantidad; j++)
                     {
                         /*Una vez dentro del bucle intercambiamos las posiciones
                          * con la siguiente para que todas queden sin partes vacias
@@ -175,11 +176,11 @@ namespace EjemplosArrayPedroPuertasAlbertoBlazquez
             }
 
             //Mostramos los números del array
-            for (int i = 0; i < cantidad; i++)
+            for (int i = 0; i < numeros.Length; i++)
             {
                 if (numeros[i] != 0)
                 {
-                    System.Console.WriteLine("Nº {0}: {1}", i, numeros[i]);
+                    System.Console.WriteLine("Nº {0}: {1}", i+1, numeros[i]);
                 }
             }
         }
