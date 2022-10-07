@@ -13,6 +13,39 @@ begin
   dbms_output.put_line('Hola');
 end;
 
+/*Ejercicio 2*/
+
+declare
+    i binary_integer;
+    palabra varchar2(10);
+begin
+    i := length('hola');
+    loop
+        palabra := palabra || SUBSTR('hola', i, 1);
+        i := i - 1;
+        exit when i <= 0;
+    end loop;
+    dbms_output.put_line(palabra);
+end;
+
+/*Ejercicio 3*/
+
+create or replace procedure cambiar_dept(emple_num number, dept_num number)
+as
+    v_dept_ant emple.dept_no%type;
+begin
+    select dept_no into v_dept_ant
+    from emple
+    where emp_no = emple_num;
+
+    update emple set dept_no = dept_num where emp_no = emple_num;
+    dbms_output.put_line('Anterior dept: ' || v_dept_ant || '. Nuevo dept: ' || dept_num);
+end;
+
+/*Ejercicio 4*/
+
+-- crear_depart(50, 'COMPRAS', 'VALENCIA');
+
 /*Ejercicio práctico 1*/
 
 declare
@@ -95,21 +128,6 @@ begin
     dbms_output.put_line(palabra);
 end;
 
-/*Ejercicio 2*/
-
-declare
-    i binary_integer;
-    palabra varchar2(10);
-begin
-    i := length('hola');
-    loop
-        palabra := palabra || SUBSTR('hola', i, 1);
-        i := i - 1;
-        exit when i <= 0;
-    end loop;
-    dbms_output.put_line(palabra);
-end;
-
 /*Ejercicio práctico 4*/
 
 create or replace procedure cambiar_oficio(emple_num number, ofi varchar2)
@@ -124,31 +142,66 @@ begin
     dbms_output.put_line('Anterior oficio: ' || v_oficio_ant || '. Nuevo oficio: ' || ofi);
 end;
 
-/*Ejercicio 3*/
-
-create or replace procedure cambiar_dept(emple_num number, dept_num number)
-as
-    v_dept_ant emple.dept_no%type;
-begin
-    select dept_no into v_dept_ant
-    from emple
-    where emp_no = emple_num;
-
-    update emple set dept_no = dept_num where emp_no = emple_num;
-    dbms_output.put_line('Anterior dept: ' || v_dept_ant || '. Nuevo dept: ' || dept_num);
-end;
-
-/*Ejercicio 4*/
-
--- crear_depart(50, 'COMPRAS', 'VALENCIA');
-
 /*Ejercicio práctico 5*/
 
-create or replace function cambiar_divisas(cant_euros in number, cant_cambio in number, 
+create or replace procedure cambiar_divisas(cant_euros in number, cant_cambio in number, 
                                            cant_comision in out number, cant_final out number)
 as
     pct_comision constant number(3, 2) := 0.2;
     comision_min constant number(6) DEFAULT 3;
 begin
-    
+    if cant_comision IS NULL then
+        cant_comision := greatest(cant_euros/100 * pct_comision, comision_min);
+    end if;
+    cant_final := (cant_euros - cant_comision) * cant_cambio;
 end;
+
+create or replace procedure mostrar_cambio_divisas(cant_euros number, cant_cambio number)
+as
+    v_comision number(9);
+    v_divisas number(9);
+begin
+    cambiar_divisas(cant_euros, cant_cambio, v_comision, v_divisas);
+    dbms_output.put_line('Euros: ' || to_char(cant_euros, '999,999,999.999'));
+    dbms_output.put_line('Divisas x 1 euro: ' || to_char(cant_cambio, '999,999,999.999'));
+    dbms_output.put_line('Euros de comisión: ' || to_char(v_comision, '999,999,999.999'));
+    dbms_output.put_line('Euros de divisas: ' || to_char(v_divisas, '999,999,999.999'));
+end;
+
+/*Actividades complementarias*/
+
+/*Actividad 1*/
+
+create or replace procedure sumar(num1 number, num2 number)
+as
+    total number(6);
+begin
+    total := num1 + num2;
+    dbms_output.put_line('Total de la suma: ' || total);
+end;
+
+/*Actividad 2*/
+
+create or replace procedure alreves(palabra varchar2)
+as
+    i binary_integer;
+    cadena varchar2 (10);
+begin
+    i := LENGTH(palabra);
+    while i >= 1 loop
+        cadena := cadena || SUBSTR(palabra, i, 1);
+        i := i - 1;
+    end loop;
+    dbms_output.put_line('Al reves es: ' || cadena);
+end;
+
+/*Actividad 3*/
+
+create or replace function sumarFunc(num1 number, num2 number)
+return number
+as
+    total number(6);
+begin
+    total := num1 + num2;
+    return total;
+end sumarFunc;
