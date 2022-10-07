@@ -205,3 +205,17 @@ begin
     total := num1 + num2;
     return total;
 end sumarFunc;
+
+create or replace function alrevesFunc(palabra varchar2)
+return varchar2
+as
+    i binary_integer;
+    cadena varchar2(10)
+begin
+    i := LENGTH(palabra);
+    while i >= 1 loop
+        cadena := cadena || SUBSTR(palabra, i, 1);
+        i := i - 1;
+    end loop;
+    return cadena;
+end;
