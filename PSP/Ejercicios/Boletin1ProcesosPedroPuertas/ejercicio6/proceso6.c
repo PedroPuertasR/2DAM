@@ -29,7 +29,6 @@ void main(){
                 printf("Mi hijo %d terminó.\n", hijo_pid);
         }
     }else{
-        printf("No encontramos al abuelo.\n");
         id_actual = wait(NULL);
         printf("Yo soy el abuelo de las dos criaturas anteriores.\n");
         printf("Mi PID es %d, el de mi padre (Sistema operativo) es %d.\n", getpid(), getppid());
