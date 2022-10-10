@@ -50,6 +50,10 @@ namespace EjemploHerencia
 
             /* Esta es nuestra clase madre, de la que heredaran las siguientes subclases. Tanto
              * sus atributos como sus métodos podrán ser utilizados en ellas.
+             * 
+             * Los atributos de la clase pueden ser private, public o protected. Estos son los
+             * mas utilizados y dependiendo del tipo de privacidad que elijamos 
+             * nuestros métodos y subclases posteriores podrán visibilizarlos o no
              */
 
             private string nombre;
@@ -63,41 +67,23 @@ namespace EjemploHerencia
                 this.dni = dni;
             }
 
+            //Getters y setters
             public string Nombre 
-            { get 
-                { 
-                    return nombre; 
-                }
-              set
-                {
-                    this.nombre = value;
-                }
+            { 
+              get;
+              set;
             }
 
             public string Apellidos
             {
-                get 
-                {
-                    return apellidos; 
-                }
-
-                set 
-                {
-                    this.apellidos = value; 
-                }
+                get;
+                set;
             }
 
             public string Dni
             {
-                get
-                {
-                    return dni;
-                }
-
-                set
-                {
-                    this.dni = value;
-                }
+                get;
+                set;
             }
 
             //Con este método mostraremos los atributos de la clase
@@ -123,18 +109,37 @@ namespace EjemploHerencia
             private double notaUno;
             private double notaDos;
             private string curso;
-            
+
             /* Para conseguir que el constructor de la subclase incluya los atributos de la madre
              * deberemos pasarlos como parámetros y más tarde poner : base(), entre el paréntesis
              * de este deberemos indicar cuales son los atributos heredados, en este caso nombre,
              * apell y dni
              */
-            public Alumno(double notaUno, double notaDos, string curso, string nombre, 
+            public Alumno(double notaUno, double notaDos, string curso, string nombre,
                 string apell, string dni) : base(nombre, apell, dni)
             {
                 this.notaUno = notaUno;
                 this.notaDos = notaDos;
                 this.curso = curso;
+            }
+
+            //Getters y setters
+            public double NotaUno
+            {
+                get;
+                set;
+            }
+
+            public double NotaDos
+            {
+                get;
+                set;
+            }
+
+            public string Curso
+            {
+                get;
+                set;
             }
 
             //Como ya veremos más adelante se pueden reescribir los métodos de la clase madre
@@ -179,6 +184,26 @@ namespace EjemploHerencia
                 this.horas = horas;
                 this.salario = salario;
                 this.tutor = tutor;
+            }
+
+            //Getters y setters
+
+            public int Horas
+            {
+                get;
+                set;
+            }
+
+            public double Salario
+            {
+                get;
+                set;
+            }
+
+            public Boolean Tutor
+            {
+                get;
+                set;
             }
 
             //Método heredado de Persona
