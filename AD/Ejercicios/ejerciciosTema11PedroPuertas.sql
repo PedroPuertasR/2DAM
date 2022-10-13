@@ -198,7 +198,7 @@ end;
 /*Actividad 3*/
 
 create or replace function sumarFunc(num1 number, num2 number)
-return number
+    return number
 as
     total number(6);
 begin
@@ -219,3 +219,114 @@ begin
     end loop;
     return cadena;
 end;
+
+/*Actividad 4*/
+
+create or replace function sacarAnio(fecha date)
+return integer
+as
+    num integer;
+begin
+    num := extract(year from fecha);
+    return num;
+end;
+
+/*Actividad 5*/
+
+declare
+    fecha date := '27/10/2013';
+    num integer;
+    actual integer;
+    total integer;
+begin
+    select sacarAnio(fecha) into num
+    from dual;
+    actual := extract(year from sysdate);
+    total := actual - num;
+    dbms_output.put_line('La diferencia de años es de: ' || total);
+end;
+
+/*Actividad 6*/
+
+create or replace function difFechas(fecha date, fecha2 date)
+return integer
+as
+    total integer;
+    num integer;
+    num2 integer;
+begin
+    num := extract(year from fecha);
+    num2 := extract(year from fecha2);
+    total := num - num2;
+    if total < 0 then
+        total := total * -1;
+    end if;
+    return total;
+end;
+
+/*Actividad 7*/
+
+create or replace function trienios(fecha date, fecha2 date)
+return integer
+as
+    total integer;
+    num integer;
+begin
+    select difFechas(fecha, fecha2) into num
+    from dual;
+    total := num / 3;
+    return total;
+end;
+
+/*Actividad 8*/
+
+create or replace procedure sumarNumeros(num number, num2 number, num3 number, num4 number, num5 number)
+as
+    total number;
+begin
+    total := num + num2 + num3 + num4 + num5;
+    dbms_output.put_line('Suma total: ' || total);
+end;
+
+/*Actividad 9*/
+
+create or replace function sustituirLetras(palabra varchar2)
+return varchar2
+as
+    nueva varchar2(25);
+    letra char;
+begin
+    for i in 1..LENGTH(palabra) loop
+        letra := SUBSTR(palabra, i, 1);
+        if letra between 'A' and 'Z' or letra between 'a' and 'z' then
+            letra := ' ';
+        end if;
+        nueva := nueva || letra;
+    end loop;
+    return nueva;
+end;
+
+/*Actividad 10*/
+
+create or replace procedure borrarEmpl(num number)
+as
+begin
+    delete from emple where emp_no = num;
+end;
+
+/*Actividad 11*/
+
+create or replace procedure modLocalidad(lugar varchar2, num number)
+as
+begin
+    update depart set loc = lugar where dept_no = num;
+end;
+
+/*Actividad 12*/
+
+create or replace function mostrarFuncs
+return table
+
+SELECT * 
+FROM all_objects
+WHERE object_type IN ('FUNCTION','PROCEDURE');
