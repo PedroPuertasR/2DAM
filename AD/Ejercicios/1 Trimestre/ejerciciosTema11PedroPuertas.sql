@@ -324,9 +324,6 @@ end;
 
 /*Actividad 12*/
 
-create or replace function mostrarFuncs
-return table
-
 SELECT * 
 FROM all_objects
 WHERE object_type IN ('FUNCTION','PROCEDURE');
