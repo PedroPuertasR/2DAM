@@ -3,14 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
+package controlador;
 
 /**
  *
  * @author alumno
  */
-public class CuentaInversion extends Cuenta{
-    
-    private int beneficio;
+public class ESaldoNoValido extends Exception{
+
+    public ESaldoNoValido() {
+    }
+
+    public ESaldoNoValido(String message) {
+        super(message);
+    }
     
 }
