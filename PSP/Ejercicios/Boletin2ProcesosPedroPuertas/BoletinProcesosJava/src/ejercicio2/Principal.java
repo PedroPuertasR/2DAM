@@ -26,6 +26,7 @@ public class Principal {
         ProcessBuilder pb = new ProcessBuilder(comandos);
         Process p;
         BufferedReader br;
+        InputStream is;
         String linea;
         
         try{
@@ -34,7 +35,7 @@ public class Principal {
                     + "Boletin2ProcesosPedroPuertas/BoletinProcesosJava/src/Jars"));
             
             p = pb.start();
-            InputStream is = p.getInputStream();
+            is = p.getInputStream();
             br = new BufferedReader(new InputStreamReader(is));
             
             while((linea = br.readLine()) != null){

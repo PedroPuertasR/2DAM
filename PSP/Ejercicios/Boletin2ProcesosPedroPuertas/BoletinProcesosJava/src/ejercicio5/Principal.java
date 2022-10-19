@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ejercicio3;
+package ejercicio5;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import static java.lang.Runtime.getRuntime;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -22,52 +22,56 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        // TODO code application logic here
         
-        Runtime r = getRuntime();
+        String comando, linea;
+        ProcessBuilder pb;
+        BufferedReader br;
         Process p;
-        String comando;
-        BufferedReader br, brError;
-        OutputStream os;
-        InputStream isError, is;
-        String linea, lineaError;
+        InputStream is;
+        Map entorno;
+        List lista;
         
         if(System.getProperty("os.name").equalsIgnoreCase("linux")){
 
-            comando = "DATE";
+            comando = "ls";
             
         }else{
-            comando = "cmd /c date";
+            comando = "cmd /c dir";
         }
         
+        pb = new ProcessBuilder(comando);
+        
         try{
-            p = r.exec(comando);
+            
+            p = pb.start();
             
             is = p.getInputStream();
-            isError = p.getErrorStream();
-            os = p.getOutputStream();
             
             br = new BufferedReader(new InputStreamReader(is));
-            brError = new BufferedReader(new InputStreamReader(isError));
-            
-            os.write("21/12/1995".getBytes());
-            os.flush();
-            os.close();
             
             while((linea = br.readLine()) != null){
                 System.out.println(linea);
             }
             
-            while((lineaError = brError.readLine()) != null){
-                System.out.println(lineaError);
-            }
+            entorno = pb.environment();
             
-            br.close();
-            brError.close();
+            System.out.println("\nDatos del entorno:");
+            System.out.println(entorno);
+            
+            lista = pb.command();
+            
+            System.out.println("\nComandos usados:");
+            
+            for(int i = 0; i < lista.size(); i++){
+                System.out.println(lista.get(i));
+            }
             
         }catch(IOException e){
             System.out.println("Error");
             e.printStackTrace();
         }
+        
         
     }
     

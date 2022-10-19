@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ejercicio3;
+package ejercicio4;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import static java.lang.Runtime.getRuntime;
 
 /**
@@ -22,47 +21,38 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        // TODO code application logic here
         
         Runtime r = getRuntime();
+        String cadena, comando;
+        BufferedReader br, brTeclado;
+        InputStream is;
         Process p;
-        String comando;
-        BufferedReader br, brError;
-        OutputStream os;
-        InputStream isError, is;
-        String linea, lineaError;
+        
+        
         
         if(System.getProperty("os.name").equalsIgnoreCase("linux")){
 
-            comando = "DATE";
+            comando = "echo escriba una cadena:";
             
         }else{
-            comando = "cmd /c date";
+            comando = "cmd /c echo escriba una cadena:";
         }
         
         try{
+            
             p = r.exec(comando);
             
-            is = p.getInputStream();
-            isError = p.getErrorStream();
-            os = p.getOutputStream();
+            br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            brTeclado = new BufferedReader(new InputStreamReader(System.in));
             
-            br = new BufferedReader(new InputStreamReader(is));
-            brError = new BufferedReader(new InputStreamReader(isError));
+            System.out.println(br.readLine());
+            cadena = brTeclado.readLine();
             
-            os.write("21/12/1995".getBytes());
-            os.flush();
-            os.close();
-            
-            while((linea = br.readLine()) != null){
-                System.out.println(linea);
-            }
-            
-            while((lineaError = brError.readLine()) != null){
-                System.out.println(lineaError);
-            }
+            System.out.println("Cadena: " + cadena);
             
             br.close();
-            brError.close();
+            brTeclado.close();
             
         }catch(IOException e){
             System.out.println("Error");
