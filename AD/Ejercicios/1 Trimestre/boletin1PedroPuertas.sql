@@ -4,13 +4,18 @@ create or replace procedure mostrarDatos(num_empl number)
 as
     apell emple.apellido%type;
     dinero emple.salario%type;
+    nomb_dept depart.dnombre%type;
     num_dept emple.dept_no%type;
 begin
     select apellido, salario, dept_no into apell, dinero, num_dept
     from emple
     where emp_no = num_empl;
 
-    dbms_output.put_line('Nº ' || num_empl || '. Apellido: ' || apell || '. Salario: ' || dinero || '€. Nº departamento: ' || num_dept);
+    select dnombre into nomb_dept
+    from depart
+    where dept_no = num_dept;
+
+    dbms_output.put_line('Nº ' || num_empl || '. Apellido: ' || apell || '. Salario: ' || dinero || '€. Departamento: ' || nomb_dept);
 
     exception
         when no_data_found then
@@ -133,47 +138,124 @@ end;
 
 create or replace procedure cambiarDeptProc(num_empl number, num_dept number)
 as
-    bandera number;
-    dept_e number;
-    empl_e number;
+    bandera number := 0;
+    dept_e number := 0;
+    empl_e number := 0;
     v_dept_ant number;
 begin
     select dept_no into dept_e
     from depart
     where dept_no = num_dept;
 
-    select emp_no into empl_e
+    bandera := 1;
+
+    select emp_no, dept_no into empl_e, v_dept_ant
     from emple
     where emp_no = num_empl;
 
-    select dept_no into v_dept_ant
-    from emple
-    where emp_no = num_empl;
+    bandera := 2;
 
-    if dept_e != num_dept then
-        bandera := 0;
-    elsif empl_e != num_empl then 
-        bandera := 1;
-    elsif empl_e != num_empl and dept_e != num_dept then
-        bandera := 2;
-    else
-        bandera := 3;
-    end if;
-
-    if bandera = 3 then
+    if bandera = 2 then
         update emple set dept_no = num_dept where emp_no = num_empl;
     end if;
 
+    dbms_output.put_line('Empleado: ' || empl_e || '. Nº Dept: ' || dept_e || '.');
+
     exception
         when no_data_found then
-            case bandera
-                when 0 then
-                    dbms_output.put_line('No se ha encontrado el nuevo departamento.');
-                when 1 then
-                    dbms_output.put_line('No se ha encontrado el empleado.');
-                when 2 then
-                    dbms_output.put_line('No se ha encontrado ni el empleado ni el departamento.');
-                else
-                    dbms_output.put_line('No se ha podido cambiar el departamento.');
-            end case;
+            if bandera = 0 then
+                dbms_output.put_line('No se ha encontrado el nuevo departamento.');
+            elsif bandera = 1 then
+                dbms_output.put_line('No se ha encontrado el empleado.');
+            else
+                dbms_output.put_line('No se ha podido cambiar el departamento.');
+            end if;
+end;
+
+/*Ejercicio 6*/
+
+create or replace function busca_departamento(num_dept number)
+return number
+as
+    dept_e depart.dept_no%type;
+begin
+    select dept_no into dept_e
+    from depart
+    where dept_no = num_dept;
+
+    return dept_e;
+
+    exception
+        when no_data_found then
+            return -1;
+end;
+
+-------------
+
+create or replace function busca_empleado(empl number)
+return number
+as
+    empl_e emple.emp_no%type;
+begin
+    select emp_no into empl_e
+    from emple
+    where emp_no = empl;
+
+    return empl_e;
+
+    exception
+        when no_data_found then
+            return -1;
+end;
+
+-------------
+
+create or replace procedure cambiarDepartProc(num_empl number, num_dept number)
+as
+    ver emple.dept_no%type;
+    ver2 emple.emp_no%type;
+    bandera integer := 0;
+    v_dept_ant emple.dept_no%type;
+begin
+
+    begin
+        select busca_departamento(num_dept) into ver
+        from dual;
+
+        exception
+            when no_data_found then
+                if bandera = 0 then
+                    dbms_output.put_line('No se ha encontrado el departamento.');
+                end if;
+    end;
+
+    bandera := 1;
+
+    begin
+        select busca_empleado(num_empl) into ver2
+        from dual;
+
+        exception
+            when no_data_found then
+                if bandera = 1 then
+                    dbms_output.put_line('No se ha encontrado el departamento.');
+                end if;
+    end;
+
+    bandera := 2;
+
+    begin
+    
+        select dept_no into v_dept_ant
+        from emple
+        where emp_no = num_empl;
+
+        update emple set dept_no = num_dept where emp_no = num_empl;
+        dbms_output.put_line('Anterior dept: ' || v_dept_ant || '. Nuevo dept: ' || num_dept);
+
+        exception
+            when no_data_found then
+                dbms_output.put_line('No se ha podido cambiar el departamento.');
+    end;
+
 end;
