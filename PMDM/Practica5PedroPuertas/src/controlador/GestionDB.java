@@ -9,13 +9,13 @@ package controlador;
  *
  * @author alumno
  */
-public static class GestionDB {
+public class GestionDB {
     
-    private static String usuario = "admin";
-    private static String contrasenia = "admin";
+    private static String usuario = "usuario";
+    private static String contrasenia = "usuario";
     
-    public static String abrir(){
-        
-    }
+//    public static String abrir(){
+//        
+//    }
     
 }
