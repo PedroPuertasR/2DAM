@@ -5,6 +5,8 @@
  */
 package ejercicio10;
 
+import java.util.Scanner;
+
 /**
  *
  * @author alumno
@@ -16,6 +18,30 @@ public class Principal {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        
+        
     }
     
+}
+
+class Aleatorio{
+    public Aleatorio(){
+    
+        Scanner sc = new Scanner(System.in);
+        String lectura = sc.nextLine();
+        Process p;
+        
+        while(!lectura.equals("")){
+            System.out.println(lectura);
+            System.out.println(alea());
+        }
+        
+    }
+    
+    public int alea(){
+        int aleat = (int)Math.random() * 10;
+        
+        return aleat;
+    }
 }
