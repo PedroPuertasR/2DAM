@@ -1,21 +1,21 @@
 CREATE TABLE profesor(
     codProfesor INTEGER NOT NULL PRIMARY KEY,
-    nombre VARCHAR2(100) NOT NULL,
-    horas NUMERIC(2,2) NOT NULL CHECK (horas >= 25 AND horas <= 35),
+    nombre VARCHAR(100) NOT NULL,
+    horas DECIMAL(5,2) NOT NULL CHECK (horas >= 25 AND horas <= 35),
     fechaContrato DATE NOT NULL,
-    notaCorteMedia NUMERIC(2,2) NOT NULL,
-    foto VARCHAR2(30)
+    notaCorteMedia DECIMAL(5,2) NOT NULL,
+    foto VARCHAR(30)
 );
 
 CREATE TABLE asignatura(
     codAsignatura INTEGER NOT NULL PRIMARY KEY,
-    nombre VARCHAR2(20) NOT NULL,
+    nombre VARCHAR(20) NOT NULL,
     codProfesor INTEGER NOT NULL,
-    notaCorte NUMERIC (2,2) NOT NULL,
-    CONSTRAINT fk_asignatura_profesor FOREIGN KEY codProfesor REFERENCES profesor(codProfesor)
+    notaCorte DECIMAL (5,2) NOT NULL,
+    CONSTRAINT fk_asignatura_profesor FOREIGN KEY (codProfesor) REFERENCES profesor(codProfesor)
 );
 
-INSERT INTO profesor VALUES(1, 'Rocio Rodríguez López', 30.5, '01/09/2012', 0, '/p05_bds/fotos1005.jpg');
+INSERT INTO profesor VALUES(1, 'Rocio Rodríguez López', 30.5, '09/01/2012', 0, '/p05_bds/fotos1005.jpg');
 INSERT INTO profesor VALUES(2, 'Alvaro Gómez López', 28.0, '03/09/2020', 0, '/p05_bds/fotos1004.jpg');
 INSERT INTO profesor VALUES(3, 'David González Puertos', 32.5, '10/09/2008', 0, '/p05_bds/fotos1001.jpg');
 
