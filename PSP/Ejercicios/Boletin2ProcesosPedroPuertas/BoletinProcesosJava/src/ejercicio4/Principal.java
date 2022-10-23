@@ -26,7 +26,6 @@ public class Principal {
         Runtime r = getRuntime();
         String cadena, comando;
         BufferedReader br, brTeclado;
-        InputStream is;
         Process p;
         
         
@@ -53,6 +52,8 @@ public class Principal {
             
             br.close();
             brTeclado.close();
+            
+            p.destroy();
             
         }catch(IOException e){
             System.out.println("Error");

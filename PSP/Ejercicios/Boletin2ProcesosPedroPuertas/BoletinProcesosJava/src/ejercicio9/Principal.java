@@ -64,6 +64,9 @@ class Ejecuta{
                 System.out.println(linea);
             }
             
+            br.close();
+            p.destroy();
+            
         }catch(IOException e){
             System.out.println("Error al crear el proceso.");
             e.printStackTrace();
