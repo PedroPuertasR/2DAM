@@ -4,7 +4,9 @@ CREATE TABLE profesor(
     horas DECIMAL(5,2) NOT NULL CHECK (horas >= 25 AND horas <= 35),
     fechaContrato DATE NOT NULL,
     notaCorteMedia DECIMAL(5,2) NOT NULL,
-    foto VARCHAR(30)
+    foto VARCHAR(30),
+    usuario VARCHAR(20),
+    pass VARCHAR(20)
 );
 
 CREATE TABLE asignatura(
@@ -15,9 +17,9 @@ CREATE TABLE asignatura(
     CONSTRAINT fk_asignatura_profesor FOREIGN KEY (codProfesor) REFERENCES profesor(codProfesor)
 );
 
-INSERT INTO profesor VALUES(1, 'Rocio Rodríguez López', 30.5, '09/01/2012', 0, '/p05_bds/fotos1005.jpg');
-INSERT INTO profesor VALUES(2, 'Alvaro Gómez López', 28.0, '03/09/2020', 0, '/p05_bds/fotos1004.jpg');
-INSERT INTO profesor VALUES(3, 'David González Puertos', 32.5, '10/09/2008', 0, '/p05_bds/fotos1001.jpg');
+INSERT INTO profesor VALUES(1, 'Rocio Rodríguez López', 30.5, '09/01/2012', 0, '/p05_bds/fotos1005.jpg', 'rorolo', 'rodri2012');
+INSERT INTO profesor VALUES(2, 'Alvaro Gómez López', 28.0, '03/09/2020', 0, '/p05_bds/fotos1004.jpg', 'algolo', 'gomez2020');
+INSERT INTO profesor VALUES(3, 'David González Puertos', 32.5, '10/09/2008', 0, '/p05_bds/fotos1001.jpg', 'dagopu', 'gonza2008');
 
 INSERT INTO asignatura VALUES(1, 'PSP', 1, 7.3);
 INSERT INTO asignatura VALUES(2, 'PMDM', 1, 5);
