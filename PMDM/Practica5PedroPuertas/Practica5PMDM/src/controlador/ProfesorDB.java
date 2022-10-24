@@ -50,4 +50,34 @@ public class ProfesorDB {
         return lista;
     }
     
+    public static ArrayList getListaPass(String usuario, String pass){
+        ArrayList<Profesor> lista = new ArrayList<Profesor>();
+        
+        try{
+            st = GestionDB.getConnection().createStatement();
+            rs = st.executeQuery("SELECT * FROM profesor WHERE usuario = " + usuario 
+                                  + " AND pass = " + pass);
+            
+            while(rs.next()){
+                       
+                Profesor aux = new Profesor( rs.getInt(1),
+                                        rs.getString(2),
+                                        rs.getFloat(3),
+                                        Herramienta.dateToGregorianCalendar(rs.getDate(4)),
+                                        AsignaturaDB.getNotas(rs.getInt(0)),
+                                        rs.getString(6),
+                                        rs.getString(7),
+                                        rs.getString(8)
+                );
+                
+                lista.add(aux);
+            }
+            rs.close();
+            st.close();
+        }catch(SQLException e){
+            System.out.println("Error consulta");
+        }        
+        return lista;
+    }
+    
 }

@@ -113,7 +113,5 @@ public class Profesor {
     public String toString() {
         return "Profesor{" + "codProfesor=" + codProfesor + ", nombre=" + nombre + ", horas=" + horas + ", fechaContrato=" + fechaContrato + ", notaCorteMedia=" + notaCorteMedia + ", foto=" + foto + ", usuario=" + usuario + ", pass=" + pass + '}';
     }
-
-    
     
 }
