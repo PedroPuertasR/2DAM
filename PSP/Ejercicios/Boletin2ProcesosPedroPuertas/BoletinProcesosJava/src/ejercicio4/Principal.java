@@ -7,7 +7,6 @@ package ejercicio4;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import static java.lang.Runtime.getRuntime;
 
@@ -23,12 +22,10 @@ public class Principal {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Runtime r = getRuntime();
+        Runtime r = Runtime.getRuntime();
         String cadena, comando;
         BufferedReader br, brTeclado;
         Process p;
-        
-        
         
         if(System.getProperty("os.name").equalsIgnoreCase("linux")){
 
