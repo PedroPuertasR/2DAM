@@ -44,25 +44,33 @@ public class Principal {
         
         try{
             
+            //Iniciamos el proceso con el ProcessBuilder
             p = pb.start();
             
+            //Cogemos el inputStream del proceso
             is = p.getInputStream();
             
+            //Instanciamos el BufferedReader
             br = new BufferedReader(new InputStreamReader(is));
             
+            //Leemos la salida del BufferedReader hasta que sea nulo
             while((linea = br.readLine()) != null){
                 System.out.println(linea);
             }
             
+            //Instanciamos la variable entorno que es tipo Map (Como el resultado de pb.environment())
             entorno = pb.environment();
             
+            //Mostramos el entorno por la salida estándar
             System.out.println("\nDatos del entorno:");
             System.out.println(entorno);
             
+            //Instanciamos la variable lista (tipo List) con los comandos del ProcessBuilder
             lista = pb.command();
             
             System.out.println("\nComandos usados:");
             
+            //Mostramos los comandos por la salida estándar
             for(int i = 0; i < lista.size(); i++){
                 System.out.println(lista.get(i));
             }

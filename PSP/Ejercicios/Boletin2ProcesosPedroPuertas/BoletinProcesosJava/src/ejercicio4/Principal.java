@@ -36,17 +36,21 @@ public class Principal {
         }
         
         try{
-            
+            //Iniciamos el proceso
             p = r.exec(comando);
             
+            //Instanciamos los BufferedReader, tanto el de lectura como el del InputStream del proceso
             br = new BufferedReader(new InputStreamReader(p.getInputStream()));
             brTeclado = new BufferedReader(new InputStreamReader(System.in));
             
+            //Mostramos la lectura e instanciamos la variable cadena con la lectura por teclado
             System.out.println(br.readLine());
             cadena = brTeclado.readLine();
             
+            //Mostramos la lectura por teclado
             System.out.println("Cadena: " + cadena);
             
+            //Cerramos los BufferedReader
             br.close();
             brTeclado.close();
             

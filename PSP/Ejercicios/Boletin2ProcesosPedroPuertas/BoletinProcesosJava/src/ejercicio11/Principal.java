@@ -26,6 +26,7 @@ public class Principal {
     public static void main(String[] args) {
         // TODO code application logic here
         
+        //Ejecutamos la clase MayusculasPadre para realizar todos los procesos
         MayusculasPadre mp = new MayusculasPadre();
         
     }
@@ -37,10 +38,12 @@ class Mayusculas{
     public Mayusculas(){
         String entrada;
         InputStreamReader isr = new InputStreamReader(System.in);
+        //Instanciamos el BufferedReader con el input de la lectura por teclado
         BufferedReader br = new BufferedReader (isr);
        
         try
         {   
+            //Pasamos cada linea a mayúsculas con el método toUpperCase()
             entrada=br.readLine();
             System.out.println(entrada.toUpperCase());       
         }
@@ -54,16 +57,18 @@ class Mayusculas{
 class MayusculasPadre{
     public MayusculasPadre(){
         try
-        {       
+        {   
             Scanner entrada = new Scanner(System.in);                           
             String lectura;
             System.out.println("Introducir linea:");           
                        
             do
             {
+                //Realizamos lecturas hasta que esta sea nula
                 lectura = entrada.nextLine();   
                
                 if( lectura != null){
+                    //Con este método llamamos a la clase Mayusculas
                     llamada(lectura);
                 }
             }
@@ -80,19 +85,25 @@ class MayusculasPadre{
     private static void llamada(String lectura){
         
         try {
+            /*En este proceso ejecutamos un .jar de la clase Mayusculas
+             para realizar la conversión de la lectura*/
             Process p = Runtime.getRuntime().exec("java -jar mayusculas.jar");
             OutputStream os = p.getOutputStream ();
             InputStream is = p.getInputStream ();
             
             BufferedReader reader = new BufferedReader (new InputStreamReader(is));
+            //Con el PrintWriter formateamos la salida del outputStream
             PrintWriter pw = new PrintWriter(new OutputStreamWriter(os));
             
+            //Mostramos la salida
             pw.println(lectura);
+            //Vaciamos con el método flush por si necesitamos volver a utilizarlo más tarde
             pw.flush();
             
-            // Se lee la primera linea
+            //Instanciamos la variable linea con la lectura del buffer
             String linea = reader.readLine();
             
+            //Indicamos que mientras la lectura no este vacia continuamos leyendo
             if(!linea.isBlank()){
                 System.out.println(linea);
             }

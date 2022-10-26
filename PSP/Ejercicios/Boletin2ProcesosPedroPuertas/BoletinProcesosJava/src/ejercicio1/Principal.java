@@ -28,6 +28,8 @@ public class Principal {
         Process p;
         BufferedReader br;
         
+
+        //Comprobamos que sistema operativo estamos usando
         if(System.getProperty("os.name").equalsIgnoreCase("linux")){
 
             comando = "ls";
@@ -37,14 +39,20 @@ public class Principal {
         }
         
         try{
-            
+
+            //Ejecutamos el comando e iniciamos el proceso
             p = r.exec(comando);
+
+            //Cogemos el inputStream y lo guardamos en una variable
             InputStream is = p.getInputStream();
+            //Instanciamos el BufferedReader pasandole el InputStream
             br = new BufferedReader(new InputStreamReader(is));
+            //Creamos un bucle while por el cual seguimos leyendo hasta que no quede nada
             while((linea = br.readLine()) != null){
                 System.out.println(linea);
             }
             
+            //Cerramos el BufferedReader
             br.close();
         }catch(IOException e){
             System.out.println("Error en: " + e);

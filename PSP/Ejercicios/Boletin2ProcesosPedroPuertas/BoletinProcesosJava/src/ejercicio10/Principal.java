@@ -24,6 +24,7 @@ public class Principal {
     public static void main(String[] args) {
         // TODO code application logic here
         
+        //Ejecutamos la clase Aleatorio para que realice el proceso
         Aleatorio a = new Aleatorio();
         
     }
@@ -49,20 +50,27 @@ class Aleatorio{
         }
         
         try {
+            //Iniciamos el proceso
             p = r.exec(comando);
             
+            //Instanciamos los Buffer con el input del proceso y otro para la lectura por teclado
             br = new BufferedReader(new InputStreamReader(p.getInputStream()));
             brTeclado = new BufferedReader(new InputStreamReader(System.in));
             
+            //Leemos el buffer del proceso e instanciamos la variable lectura guardando la lectura por teclado
             System.out.println(br.readLine());
             lectura = brTeclado.readLine();
             
+            /*Con este bucle leemos por teclado hasta que no le pasemos nada. Cada vez que escribamos 
+            algo nos devolvera un numero aleatorio
+            */
             while(!lectura.equalsIgnoreCase("")){
                 System.out.println(lectura);
                 System.out.println(alea(10, 0));
                 lectura = brTeclado.readLine();
             }
             
+            //Cerramos los Buffer y destruimos el proceso
             br.close();
             brTeclado.close();
             p.destroy();
@@ -72,6 +80,7 @@ class Aleatorio{
         
     }
     
+    //Método para generar el aleatorio
     public int alea(int max, int min) {
         Random aleatorio = new Random();
         int num;

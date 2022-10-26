@@ -35,12 +35,15 @@ public class Principal {
             comando = "cmd /c dir";
         }
         
+        //Instanciamos el ProcessBuilder con el comando
         pb = new ProcessBuilder(comando);
         
+        //Redireccionamos la salida y el error del ProcessBuilder, guardándolos en dos archivos diferentes
         pb.redirectOutput(log);
         pb.redirectError(error);
         
         try{
+            //Iniciamos el proceso para que se guarden los archivos
             p = pb.start();
         }catch(IOException e){
             System.out.println("Error");

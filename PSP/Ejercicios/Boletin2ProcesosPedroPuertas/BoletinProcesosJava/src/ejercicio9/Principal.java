@@ -31,10 +31,12 @@ public class Principal {
             comando = "cmd /c dir";
         }
         
+        //Concatenamos el comando con los argumentos pasados
         for (int i = 0; i < args.length; i++) {
             comando += args[i];
         }
         
+        //Iniciamos la clase Ejecuta para que realice el proceso con los argumentos pasados
         Ejecuta e = new Ejecuta(comando);
         
     }
@@ -53,17 +55,22 @@ class Ejecuta{
         
         try{
             
+            //Ejecutamos los comandos y esperamos a que termine el proceso para que empiece el siguiente
             p = r.exec(comando);
             p.waitFor();
             
+            //Cogemos el inputStream del proceso
             is = p.getInputStream();
             
+            //Instanciamos el BufferedReader con el inputStream del proceso
             br = new BufferedReader(new InputStreamReader(is));
             
+            //Leemos lo que contiene el Buffer hasta que sea nulo
             while((linea = br.readLine()) != null){
                 System.out.println(linea);
             }
             
+            //Cerramos el flujo del Buffer y destruimos el proceso
             br.close();
             p.destroy();
             

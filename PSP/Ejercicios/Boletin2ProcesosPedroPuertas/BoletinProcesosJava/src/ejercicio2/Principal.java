@@ -21,6 +21,7 @@ public class Principal {
      */
     public static void main(String[] args) {
         
+        //Metemos en un array de String los comandos a ejecutar
         String[] comandos = {"java", "-jar", "Ejercicio1.jar"};
         
         ProcessBuilder pb = new ProcessBuilder(comandos);
@@ -31,17 +32,25 @@ public class Principal {
         
         try{
             
+            /*A través del método directory de ProcessBuilder indicamos cual es la carpeta
+            * en la que se encuentra nuestro Jar para poder ejecutarlo
+            */
             pb.directory(new File("/home/alumno/Documentos/Pedro Puertas/2DAM/PSP/Ejercicios/"
                     + "Boletin2ProcesosPedroPuertas/BoletinProcesosJava/src/Jars"));
             
+            //Iniciamos el proceso
             p = pb.start();
+            
+            //Como en el anterior ejercicio cogemos el InputStream e instanciamos el BufferedReader
             is = p.getInputStream();
             br = new BufferedReader(new InputStreamReader(is));
             
+            //Con el bucle while leemos hasta que esté vacio el BufferedReader
             while((linea = br.readLine()) != null){
                 System.out.println(linea);
             }
             
+            //Cerramos el BufferedReader
             br.close();
         }catch(Exception e){
             System.out.println("Error en " + e);

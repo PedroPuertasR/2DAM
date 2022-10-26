@@ -37,16 +37,22 @@ public class Principal {
         }
         
         try{
+            /*Instanciamos el FileWriter que nos guardará lo que escribamos en un archivo .bat
+             utilizamos el false para que no sobreescriba el archivo, sino que lo sustituya*/
             esc = new FileWriter("/home/alumno/Documentos/ordenes.bat", false);
+            //Escribimos el comando y cerramos la escritura
             esc.write(comando);
             esc.close();
             
+            //Instanciamos el ProcessBuilder con el comando especificado
             pb = new ProcessBuilder(comando);
         
+            //Redireccionamos el input, output y error a sus respectivos archivos
             pb.redirectInput(bat);
             pb.redirectOutput(log);
             pb.redirectError(error);
             
+            //Iniciamos el proceso para que realice todas estas escrituras
             pb.start();
             
         }catch(IOException e){

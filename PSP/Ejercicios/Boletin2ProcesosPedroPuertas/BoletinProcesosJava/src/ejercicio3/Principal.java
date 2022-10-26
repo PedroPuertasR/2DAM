@@ -40,19 +40,26 @@ public class Principal {
         }
         
         try{
+            //Iniciamos el proceso
             p = r.exec(comando);
             
+            //Cogemos el inputStream, el outputStream y el errorStream
             is = p.getInputStream();
             isError = p.getErrorStream();
             os = p.getOutputStream();
             
+            //Instanciamos el BufferedReader con el inputStream y también otro para el error
             br = new BufferedReader(new InputStreamReader(is));
             brError = new BufferedReader(new InputStreamReader(isError));
             
+            //Escribimos con el outputStream la fecha cogiendo los bytes para que no haya problema
             os.write("21/12/1995".getBytes());
+            //Vaciamos el outputStream para que esté limpio para la próxima vez
             os.flush();
+            //Cerramos el flujo
             os.close();
             
+            //Con los siguientes bucles while leemos tanto la salida como el error hasta que sea nulo
             while((linea = br.readLine()) != null){
                 System.out.println(linea);
             }
@@ -61,6 +68,7 @@ public class Principal {
                 System.out.println(lineaError);
             }
             
+            //Cerramos los dos BufferedReader
             br.close();
             brError.close();
             

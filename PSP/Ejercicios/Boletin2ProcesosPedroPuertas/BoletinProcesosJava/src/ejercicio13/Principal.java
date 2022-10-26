@@ -29,15 +29,20 @@ public class Principal {
             carpeta = System.getProperty("user.dir") + "\"\"Jars";
         }
         
+        //Instanciamos el ProcessBuilder pasandole los comandos
         ProcessBuilder pb = new ProcessBuilder("java", "-jar",  "ejercicio12.jar", "Pedro");
         
+        //Le indicamos al ProcessBuilder la carpeta en la que se encuentra el .jar
         pb.directory(new File(carpeta));
         
         try{
+            //Iniciamos el proceso
             p = pb.start();
             
+            //Instanciamos el BufferedReader con el inputStream del proceso
             BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
             
+            //Leemos con el buffer hasta que sea nulo
             while((linea = br.readLine()) != null){
                 System.out.println(linea);
             }
