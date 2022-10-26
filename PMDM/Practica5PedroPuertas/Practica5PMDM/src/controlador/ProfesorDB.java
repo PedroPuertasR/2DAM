@@ -55,7 +55,7 @@ public class ProfesorDB {
         
         try{
             st = GestionDB.getConnection().createStatement();
-            rs = st.executeQuery("SELECT * FROM profesor WHERE usuario = " + usuario 
+            rs = st.executeQuery("SELECT * FROM profesor WHERE usuario = " + usuario
                                   + " AND pass = " + pass);
             
             while(rs.next()){
@@ -76,7 +76,11 @@ public class ProfesorDB {
             st.close();
         }catch(SQLException e){
             System.out.println("Error consulta");
-        }        
+            return null;
+        }catch(NullPointerException np){
+            System.out.println("Error lista");
+            return null;
+        }
         return lista;
     }
     
