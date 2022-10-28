@@ -30,10 +30,11 @@ public class AsignaturaDB {
             
             while(rs.next()){
                        
-                Asignatura aux = new Asignatura(rs.getInt(0),
-                                                    rs.getString(1),
-                                                    rs.getInt(2),
-                                                    rs.getFloat(3)
+                Asignatura aux = new Asignatura(rs.getInt(1),
+                                                    rs.getString(2),
+                                                    rs.getInt(3),
+                                                    rs.getFloat(4),
+                                                    Herramienta.dateToGregorianCalendar(rs.getDate(5))
                 );
                 
                 lista.add(aux);
@@ -41,7 +42,8 @@ public class AsignaturaDB {
             rs.close();
             st.close();
         }catch(SQLException e){
-            System.out.println("Error consulta 1");
+            System.out.println("Error consulta lista");
+            return null;
         }        
         return lista;
     }
@@ -49,14 +51,13 @@ public class AsignaturaDB {
     public static float getNotas(int cod){
         float total = 0;
         int contador = 0;
-        String query = String.valueOf(cod);
         
         try{
             st = GestionDB.getConnection().createStatement();
-            rs = st.executeQuery("SELECT notaCorte FROM asignatura WHERE codProfesor = " + query);
+            rs = st.executeQuery("SELECT * FROM ASIGNATURA WHERE CODPROFESOR = " + cod);
             
             while(rs.next()){
-                total += rs.getFloat(0);
+                total += rs.getFloat(4);
                 contador++;
             }
             
@@ -64,11 +65,12 @@ public class AsignaturaDB {
             
             rs.close();
             st.close();
+            
+            return total;
         }catch(SQLException e){
-            System.out.println("Error consulta 1");
+            System.out.println("Error consulta notas");
+            return 0;
         }        
-        
-        return total;
     }
     
 }

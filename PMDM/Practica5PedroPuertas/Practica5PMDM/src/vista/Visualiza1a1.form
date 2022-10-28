@@ -34,6 +34,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="labelFechaCorte" min="-2" max="-2" attributes="0"/>
                       <Component id="labelNotaCorte" min="-2" max="-2" attributes="0"/>
                       <Component id="labelCodProf" min="-2" max="-2" attributes="0"/>
                       <Component id="labelNomAsig" min="-2" max="-2" attributes="0"/>
@@ -51,8 +52,9 @@
                               <Component id="tfNomAsig" pref="151" max="32767" attributes="0"/>
                               <Component id="tfCodProf" max="32767" attributes="0"/>
                               <Component id="tfNotaCorte" max="32767" attributes="0"/>
+                              <Component id="tfFechaCorte" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="85" max="32767" attributes="0"/>
+                          <EmptySpace pref="62" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -62,23 +64,26 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="labelNomAsig" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfNomAsig" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="labelCodProf" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfCodProf" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="tfFechaCorte" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelFechaCorte" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="labelNomAsig" min="-2" max="-2" attributes="0"/>
-                              <Component id="tfNomAsig" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="labelCodProf" min="-2" max="-2" attributes="0"/>
-                              <Component id="tfCodProf" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                          <Component id="labelNotaCorte" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="labelNotaCorte" min="-2" max="-2" attributes="0"/>
                       <Component id="tfNotaCorte" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="66" max="32767" attributes="0"/>
+                  <EmptySpace pref="50" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="botonSiguiente" min="-2" max="-2" attributes="0"/>
                       <Component id="botonAnterior" min="-2" max="-2" attributes="0"/>
@@ -91,27 +96,40 @@
       <SubComponents>
         <Component class="java.awt.Button" name="botonAnterior">
           <Properties>
-            <Property name="label" type="java.lang.String" value="button1"/>
+            <Property name="label" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="&quot;Anterior&quot;" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="java.awt.Button" name="botonSiguiente">
           <Properties>
-            <Property name="label" type="java.lang.String" value="button2"/>
+            <Property name="label" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="&quot;Siguiente&quot;" type="code"/>
+            </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonSiguienteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="java.awt.Label" name="labelNomAsig">
           <Properties>
-            <Property name="text" type="java.lang.String" value="label1"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="&quot;Nombre:&quot;" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="java.awt.Label" name="labelCodProf">
           <Properties>
-            <Property name="text" type="java.lang.String" value="label1"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="&quot;C&#xf3;digo profesor:&quot;" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="java.awt.Label" name="labelNotaCorte">
           <Properties>
-            <Property name="text" type="java.lang.String" value="label1"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="&quot;Nota corte:&quot;" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="java.awt.TextField" name="tfNomAsig">
@@ -125,6 +143,18 @@
           </Properties>
         </Component>
         <Component class="java.awt.TextField" name="tfNotaCorte">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="textField1"/>
+          </Properties>
+        </Component>
+        <Component class="java.awt.Label" name="labelFechaCorte">
+          <Properties>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="&quot;Fecha corte:&quot;" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="java.awt.TextField" name="tfFechaCorte">
           <Properties>
             <Property name="text" type="java.lang.String" value="textField1"/>
           </Properties>

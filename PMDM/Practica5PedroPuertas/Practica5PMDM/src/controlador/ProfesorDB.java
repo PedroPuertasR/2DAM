@@ -50,30 +50,32 @@ public class ProfesorDB {
         return lista;
     }
     
-    public static ArrayList getListaPass(String usuario, String pass){
-        ArrayList<Profesor> lista = new ArrayList<Profesor>();
+    public static Profesor getListaPass(String usuario, String pass){
+        
+        Profesor aux;
         
         try{
             st = GestionDB.getConnection().createStatement();
-            rs = st.executeQuery("SELECT * FROM profesor WHERE usuario = " + usuario
-                                  + " AND pass = " + pass);
+            rs = st.executeQuery("SELECT * FROM PROFESOR WHERE USUARIO = '" + usuario
+                                  + "' AND PASS = '" + pass + "'");
             
-            while(rs.next()){
-                       
-                Profesor aux = new Profesor( rs.getInt(1),
-                                        rs.getString(2),
-                                        rs.getFloat(3),
-                                        Herramienta.dateToGregorianCalendar(rs.getDate(4)),
-                                        AsignaturaDB.getNotas(rs.getInt(0)),
-                                        rs.getString(6),
-                                        rs.getString(7),
-                                        rs.getString(8)
-                );
+            rs.next();
+                      
+            aux = new Profesor( rs.getInt(1),
+                                    rs.getString(2),
+                                    rs.getFloat(3),
+                                    Herramienta.dateToGregorianCalendar(rs.getDate(4)),
+                                    AsignaturaDB.getNotas(rs.getInt(1)),
+                                    rs.getString(6),
+                                    rs.getString(7),
+                                    rs.getString(8)
+            );
                 
-                lista.add(aux);
-            }
             rs.close();
             st.close();
+            
+            return aux;
+            
         }catch(SQLException e){
             System.out.println("Error consulta");
             return null;
@@ -81,7 +83,6 @@ public class ProfesorDB {
             System.out.println("Error lista");
             return null;
         }
-        return lista;
     }
     
 }

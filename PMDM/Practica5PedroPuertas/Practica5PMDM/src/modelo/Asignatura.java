@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.util.Calendar;
+
 /**
  *
  * @author alumno
@@ -22,15 +24,17 @@ public class Asignatura {
     private String nombre;
     private int codProfesor;
     private float notaCorte;
+    private Calendar fechaCorte;
 
     public Asignatura() {
     }
 
-    public Asignatura(int codAsignatura, String nombre, int codProfesor, float notaCorte) {
+    public Asignatura(int codAsignatura, String nombre, int codProfesor, float notaCorte, Calendar fechaCorte) {
         this.codAsignatura = codAsignatura;
         this.nombre = nombre;
         this.codProfesor = codProfesor;
         this.notaCorte = notaCorte;
+        this.fechaCorte = fechaCorte;
     }
 
     public int getCodAsignatura() {
@@ -65,11 +69,17 @@ public class Asignatura {
         this.notaCorte = notaCorte;
     }
 
+    public Calendar getFechaCorte() {
+        return fechaCorte;
+    }
+
+    public void setFechaCorte(Calendar fechaCorte) {
+        this.fechaCorte = fechaCorte;
+    }
+
     @Override
     public String toString() {
-        return "Asignatura{" + "codAsignatura=" + codAsignatura + ", nombre=" + nombre + ", codProfesor=" + codProfesor + ", notaCorte=" + notaCorte + '}';
+        return "Asignatura{" + "codAsignatura=" + codAsignatura + ", nombre=" + nombre + ", codProfesor=" + codProfesor + ", notaCorte=" + notaCorte + ", fechaCorte=" + fechaCorte + '}';
     }
-    
-    //Métodos
     
 }

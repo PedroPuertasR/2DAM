@@ -5,18 +5,18 @@
  */
 package vista;
 
-import controlador.GestionDB;
-import controlador.ProfesorDB;
-import java.util.List;
+import controlador.Visualizar;
+import java.awt.CardLayout;
+import java.awt.Color;
 import javax.swing.JPanel;
-import modelo.Profesor;
 
 /**
  *
  * @author alumno
  */
 public class Gestor extends javax.swing.JFrame {
-
+    
+    public static int codProfesor = 0;
     private VisualizaJList panelJList;
     private Visualiza1a1 panelUno;
     private Login panelLogin;
@@ -26,6 +26,7 @@ public class Gestor extends javax.swing.JFrame {
      */
     public Gestor() {
         panelLogin = new Login();
+        panelJList = new VisualizaJList();
         initComponents();
     }
 
@@ -39,6 +40,7 @@ public class Gestor extends javax.swing.JFrame {
     private void initComponents() {
 
         panelGeneral = new javax.swing.JPanel();
+        labelConectado = new java.awt.Label();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuConexion = new javax.swing.JMenu();
         itemAbrir = new javax.swing.JMenuItem();
@@ -46,18 +48,29 @@ public class Gestor extends javax.swing.JFrame {
         menuVisualizar = new javax.swing.JMenu();
         item1a1 = new javax.swing.JMenuItem();
         itemDetalle = new javax.swing.JMenuItem();
+        menuAcerca = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        labelConectado.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        labelConectado.setForeground(Color.RED);
+        labelConectado.setText("Desconectado");
 
         javax.swing.GroupLayout panelGeneralLayout = new javax.swing.GroupLayout(panelGeneral);
         panelGeneral.setLayout(panelGeneralLayout);
         panelGeneralLayout.setHorizontalGroup(
             panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGeneralLayout.createSequentialGroup()
+                .addContainerGap(303, Short.MAX_VALUE)
+                .addComponent(labelConectado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
         panelGeneralLayout.setVerticalGroup(
             panelGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(panelGeneralLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelConectado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(250, Short.MAX_VALUE))
         );
 
         menuConexion.setText("Conexion");
@@ -71,19 +84,40 @@ public class Gestor extends javax.swing.JFrame {
         menuConexion.add(itemAbrir);
 
         itemCerrar.setText("Cerrar");
+        itemCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCerrarActionPerformed(evt);
+            }
+        });
         menuConexion.add(itemCerrar);
+        itemCerrar.setEnabled(false);
 
         jMenuBar1.add(menuConexion);
 
         menuVisualizar.setText("Visualizar");
 
         item1a1.setText("1 a 1");
+        item1a1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                item1a1ActionPerformed(evt);
+            }
+        });
         menuVisualizar.add(item1a1);
 
         itemDetalle.setText("Detalle");
         menuVisualizar.add(itemDetalle);
 
         jMenuBar1.add(menuVisualizar);
+        menuVisualizar.setEnabled(false);
+
+        menuAcerca.setText("Acerca de");
+        menuAcerca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAcercaActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(menuAcerca);
+        menuAcerca.setEnabled(false);
 
         setJMenuBar(jMenuBar1);
 
@@ -103,11 +137,46 @@ public class Gestor extends javax.swing.JFrame {
 
     private void itemAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAbrirActionPerformed
         // TODO add your handling code here:
-        this.setContentPane(panelLogin);
+        visualizar(panelLogin);
+        pack();
     }//GEN-LAST:event_itemAbrirActionPerformed
+
+    private void menuAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAcercaActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_menuAcercaActionPerformed
+
+    private void itemCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCerrarActionPerformed
+        // TODO add your handling code here:
+        cerrarConexion();
+    }//GEN-LAST:event_itemCerrarActionPerformed
+
+    private void item1a1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item1a1ActionPerformed
+        // TODO add your handling code here:
+        panelUno = new Visualiza1a1(codProfesor);
+        visualizar(panelUno);
+    }//GEN-LAST:event_item1a1ActionPerformed
 
     public void visualizar(JPanel panel){
         this.setContentPane(panel);
+    }
+    
+    public void comprobarConexion(){
+        labelConectado.setForeground(new Color(33, 100, 0));
+        labelConectado.setText("Conectado");
+        menuVisualizar.setEnabled(true);
+        menuAcerca.setEnabled(true);
+        itemAbrir.setEnabled(false);
+        itemCerrar.setEnabled(true);
+    }
+    
+    public void cerrarConexion(){
+        labelConectado.setForeground(Color.red);
+        labelConectado.setText("Desconectado");
+        menuVisualizar.setEnabled(false);
+        menuAcerca.setEnabled(false);
+        itemAbrir.setEnabled(true);
+        itemCerrar.setEnabled(false);
     }
     
     /**
@@ -152,6 +221,8 @@ public class Gestor extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemCerrar;
     private javax.swing.JMenuItem itemDetalle;
     private javax.swing.JMenuBar jMenuBar1;
+    private java.awt.Label labelConectado;
+    private javax.swing.JMenu menuAcerca;
     private javax.swing.JMenu menuConexion;
     private javax.swing.JMenu menuVisualizar;
     private javax.swing.JPanel panelGeneral;
