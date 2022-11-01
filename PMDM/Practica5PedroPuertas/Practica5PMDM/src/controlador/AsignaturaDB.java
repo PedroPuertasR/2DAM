@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import modelo.Asignatura;
-import modelo.Profesor;
 
 /**
  *
@@ -71,6 +70,24 @@ public class AsignaturaDB {
             System.out.println("Error consulta notas");
             return 0;
         }        
+    }
+    
+    public static boolean nextAsig(){
+        try {
+            return rs.next();
+        } catch (SQLException ex) {
+            System.out.println("Error al mostrar el siguiente.");
+        }
+        return false;
+    }
+    
+    public static boolean prevAsig(){
+        try {
+            return rs.previous();
+        } catch (SQLException ex) {
+            System.out.println("Error al mostrar el anterior.");
+        }
+        return false;
     }
     
 }

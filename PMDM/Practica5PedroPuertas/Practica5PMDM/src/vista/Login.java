@@ -6,8 +6,10 @@
 package vista;
 
 import controlador.GestionDB;
-import controlador.ProfesorDB;
-import controlador.Visualizar;
+import controlador.LoginController;
+import java.awt.Color;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import modelo.Profesor;
 
 /**
@@ -16,15 +18,19 @@ import modelo.Profesor;
  */
 public class Login extends javax.swing.JPanel {
 
-    public static boolean pulsado = false;
-    private Profesor logProf;
-    private Gestor principal;
+    private JMenu acerca;
+    private JMenuItem abrir;
+    private JMenuItem cerrar;
+    private JMenu visual;
     
     /**
      * Creates new form Abrir
      */
-    public Login() {
-        
+    public Login(JMenu acercaDe, JMenu visual, JMenuItem abrir, JMenuItem cerrar) {
+        this.acerca = acercaDe;
+        this.visual = visual;
+        this.abrir = abrir;
+        this.cerrar = cerrar;
         initComponents();
     }
 
@@ -37,22 +43,18 @@ public class Login extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelLogin = new java.awt.Panel();
-        passField = new java.awt.TextField();
-        passLabel = new java.awt.Label();
-        usuarioLabel = new java.awt.Label();
-        usuarioField = new java.awt.TextField();
-        botonLogin = new java.awt.Button();
+        panelLogin = new javax.swing.JPanel();
+        labelUsuario = new javax.swing.JLabel();
+        labelPass = new javax.swing.JLabel();
+        fieldUsuario = new javax.swing.JTextField();
+        fieldPass = new javax.swing.JTextField();
+        botonLogin = new javax.swing.JButton();
 
-        passField.setText("");
+        labelUsuario.setText("Usuario:");
 
-        passLabel.setText("Contraseña:");
+        labelPass.setText("Contraseña:");
 
-        usuarioLabel.setText("Usuario:");
-
-        usuarioField.setText("");
-
-        botonLogin.setLabel("Login");
+        botonLogin.setText("Login");
         botonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonLoginActionPerformed(evt);
@@ -63,35 +65,36 @@ public class Login extends javax.swing.JPanel {
         panelLogin.setLayout(panelLoginLayout);
         panelLoginLayout.setHorizontalGroup(
             panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLoginLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(passLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(usuarioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(usuarioField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(passField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(75, 75, 75))
             .addGroup(panelLoginLayout.createSequentialGroup()
-                .addGap(179, 179, 179)
-                .addComponent(botonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLoginLayout.createSequentialGroup()
+                        .addGap(139, 139, 139)
+                        .addComponent(botonLogin))
+                    .addGroup(panelLoginLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelPass)
+                            .addComponent(labelUsuario))
+                        .addGap(58, 58, 58)
+                        .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(fieldUsuario)
+                            .addComponent(fieldPass, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         panelLoginLayout.setVerticalGroup(
             panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLoginLayout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(usuarioField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(usuarioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(passLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addComponent(botonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addGap(89, 89, 89)
+                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelUsuario)
+                    .addComponent(fieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPass)
+                    .addComponent(fieldPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(botonLogin)
+                .addGap(48, 48, 48))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -107,39 +110,38 @@ public class Login extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLoginActionPerformed
-        // TODO add your handling code here:
         GestionDB.open();
 
-        String usuario = usuarioField.getText();
-        String pass =  passField.getText();
+        String usuario = fieldUsuario.getText();
+        String pass =  fieldPass.getText();
         
-        logProf = ProfesorDB.getListaPass(usuario, pass);
+        LoginController.getConexion(usuario, pass);
 
-        if(logProf == null){
-            System.out.println("Acceso denegado");
-        }else{
-            if(principal == null){
-                principal = new Gestor();
-                principal.setVisible(true);
-                principal.comprobarConexion();
-                Gestor.codProfesor = logProf.getCodProfesor();
-                
-            }else{
-                principal.setVisible(true);
-                principal.comprobarConexion();
-                Gestor.codProfesor = logProf.getCodProfesor();
-            }
-
-        }
+        comprobarConexion(LoginController.getProf());
     }//GEN-LAST:event_botonLoginActionPerformed
 
+    public void comprobarConexion(Profesor logProf){
+        if(logProf != null){
+            this.setVisible(false);
+            visual.setEnabled(true);
+            acerca.setEnabled(true);
+            abrir.setEnabled(false);
+            cerrar.setEnabled(true);
+        }else{
+            System.out.println("Acceso denegado.");
+            visual.setEnabled(false);
+            acerca.setEnabled(false);
+            abrir.setEnabled(true);
+            cerrar.setEnabled(false);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button botonLogin;
-    private java.awt.Panel panelLogin;
-    private java.awt.TextField passField;
-    private java.awt.Label passLabel;
-    private java.awt.TextField usuarioField;
-    private java.awt.Label usuarioLabel;
+    private javax.swing.JButton botonLogin;
+    private javax.swing.JTextField fieldPass;
+    private javax.swing.JTextField fieldUsuario;
+    private javax.swing.JLabel labelPass;
+    private javax.swing.JLabel labelUsuario;
+    private javax.swing.JPanel panelLogin;
     // End of variables declaration//GEN-END:variables
 }
