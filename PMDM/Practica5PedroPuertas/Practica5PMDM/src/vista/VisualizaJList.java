@@ -5,6 +5,12 @@
  */
 package vista;
 
+import controlador.LoginController;
+import controlador.ResumenController;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import modelo.Asignatura;
+
 /**
  *
  * @author alumno
@@ -15,6 +21,9 @@ public class VisualizaJList extends javax.swing.JPanel {
      * Creates new form VisualizaJList
      */
     public VisualizaJList() {
+        
+        rellenarDatosProf();
+        rellenarJList();
         initComponents();
     }
 
@@ -27,50 +36,65 @@ public class VisualizaJList extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panel1 = new java.awt.Panel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jListPrincipal = new javax.swing.JList<>();
+        panelResumen = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jListAsig = new javax.swing.JList<>();
 
-        jListPrincipal.setModel(new javax.swing.AbstractListModel<String>() {
+        jListAsig.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jListPrincipal);
+        jScrollPane2.setViewportView(jListAsig);
 
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+        javax.swing.GroupLayout panelResumenLayout = new javax.swing.GroupLayout(panelResumen);
+        panelResumen.setLayout(panelResumenLayout);
+        panelResumenLayout.setHorizontalGroup(
+            panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelResumenLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(169, Short.MAX_VALUE))
+        panelResumenLayout.setVerticalGroup(
+            panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
+                .addContainerGap(132, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelResumen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelResumen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
+    public void rellenarJList(){
+        ArrayList<Asignatura> lista = ResumenController.getLista("SELECT * FROM ASIGNATURA WHERE CODPROFESOR = " + LoginController.getProf().getCodProfesor());
+         
+        DefaultListModel model = new DefaultListModel();
+         
+        for (int i = 0; i < lista.size(); i++) {
+            model.addElement(lista.get(i).infoAsig());
+        }
+        this.jListAsig.setModel(model);
+    }
+    
+    public void rellenarDatosProf(){
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> jListPrincipal;
-    private javax.swing.JScrollPane jScrollPane1;
-    private java.awt.Panel panel1;
+    private javax.swing.JList<String> jListAsig;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel panelResumen;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,10 +5,8 @@
  */
 package vista;
 
-import controlador.AsignaturaDB;
+import controlador.DetalleController;
 import controlador.GestionDB;
-import java.util.List;
-import modelo.Asignatura;
 
 /**
  *
@@ -17,7 +15,6 @@ import modelo.Asignatura;
 public class Visualiza1a1 extends javax.swing.JPanel {
 
     private int codProfesor;
-    private List <Asignatura> lista;
     
     /**
      * Creates new form Visualiza1a1
@@ -27,13 +24,6 @@ public class Visualiza1a1 extends javax.swing.JPanel {
         GestionDB.open();
         
         this.codProfesor = codProfesor;
-        
-        lista = AsignaturaDB.getLista("SELECT * FROM ASIGNATURA WHERE CODPROFESOR = " + Gestor.codProfesor);
-        
-        tfNomAsig.setText("" + lista.get(0).getNombre());
-        tfCodProf.setText("" + lista.get(0).getFechaCorte());
-        tfFechaCorte.setText("" + lista.get(0).getFechaCorte());
-        tfNotaCorte.setText("" + lista.get(0).getNotaCorte());
         
         initComponents();
     }
@@ -48,123 +38,148 @@ public class Visualiza1a1 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panel1 = new java.awt.Panel();
-        botonAnterior = new java.awt.Button();
-        botonSiguiente = new java.awt.Button();
-        labelNomAsig = new java.awt.Label();
-        labelCodProf = new java.awt.Label();
-        labelNotaCorte = new java.awt.Label();
-        tfNomAsig = new java.awt.TextField();
-        tfCodProf = new java.awt.TextField();
-        tfNotaCorte = new java.awt.TextField();
-        labelFechaCorte = new java.awt.Label();
-        tfFechaCorte = new java.awt.TextField();
+        panelDetalle = new javax.swing.JPanel();
+        labelCodigo = new javax.swing.JLabel();
+        labelProfesor = new javax.swing.JLabel();
+        labelFecha = new javax.swing.JLabel();
+        labelNota = new javax.swing.JLabel();
+        labelNombre = new javax.swing.JLabel();
+        tfCodigo = new javax.swing.JTextField();
+        tfNombre = new javax.swing.JTextField();
+        tfProfesor = new javax.swing.JTextField();
+        tfNota = new javax.swing.JTextField();
+        botonAnterior = new javax.swing.JButton();
+        botonSiguiente = new javax.swing.JButton();
+        dcFecha = new com.toedter.calendar.JDateChooser();
 
-        botonAnterior.setLabel("Anterior");
+        labelCodigo.setText("Código:");
 
-        botonSiguiente.setLabel("Siguiente");
+        labelProfesor.setText("Profesor:");
+
+        labelFecha.setText("Fecha:");
+
+        labelNota.setText("Nota corte:");
+
+        labelNombre.setText("Nombre:");
+
+        botonAnterior.setText("Anterior");
+        botonAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAnteriorActionPerformed(evt);
+            }
+        });
+
+        botonSiguiente.setText("Siguiente");
         botonSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonSiguienteActionPerformed(evt);
             }
         });
 
-        labelNomAsig.setText("Nombre:");
-
-        labelCodProf.setText("Código profesor:");
-
-        labelNotaCorte.setText("Nota corte:");
-
-        tfNomAsig.setText("textField1");
-
-        tfCodProf.setText("textField1");
-
-        tfNotaCorte.setText("textField1");
-
-        labelFechaCorte.setText("Fecha corte:");
-
-        tfFechaCorte.setText("textField1");
-
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelFechaCorte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelNotaCorte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelCodProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelNomAsig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfNomAsig, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                            .addComponent(tfCodProf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfNotaCorte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfFechaCorte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(62, Short.MAX_VALUE))))
+        javax.swing.GroupLayout panelDetalleLayout = new javax.swing.GroupLayout(panelDetalle);
+        panelDetalle.setLayout(panelDetalleLayout);
+        panelDetalleLayout.setHorizontalGroup(
+            panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDetalleLayout.createSequentialGroup()
+                .addContainerGap(78, Short.MAX_VALUE)
+                .addGroup(panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelCodigo)
+                    .addComponent(labelNombre)
+                    .addComponent(labelProfesor)
+                    .addComponent(labelFecha)
+                    .addComponent(labelNota))
+                .addGap(37, 37, 37)
+                .addGroup(panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tfCodigo)
+                    .addComponent(tfNombre)
+                    .addComponent(tfProfesor)
+                    .addComponent(tfNota)
+                    .addComponent(dcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
+                .addGap(72, 72, 72))
+            .addGroup(panelDetalleLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(botonAnterior)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonSiguiente)
+                .addGap(38, 38, 38))
         );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelNomAsig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfNomAsig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelCodProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfCodProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfFechaCorte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelFechaCorte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelNotaCorte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfNotaCorte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botonSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31))
+        panelDetalleLayout.setVerticalGroup(
+            panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDetalleLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelCodigo)
+                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNombre)
+                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelProfesor)
+                    .addComponent(tfProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelFecha)
+                    .addComponent(dcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNota)
+                    .addComponent(tfNota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonAnterior)
+                    .addComponent(botonSiguiente))
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelDetalle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelDetalle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnteriorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAnteriorActionPerformed
 
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonSiguienteActionPerformed
 
-
+    public void updateBotones(){
+        if(DetalleController.primero()){
+            botonAnterior.setEnabled(false);
+        }else{
+            botonAnterior.setEnabled(true);
+        }
+        
+        if(DetalleController.ultimo()){
+            botonSiguiente.setEnabled(false);
+        }else{
+            botonSiguiente.setEnabled(true);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button botonAnterior;
-    private java.awt.Button botonSiguiente;
-    private java.awt.Label labelCodProf;
-    private java.awt.Label labelFechaCorte;
-    private java.awt.Label labelNomAsig;
-    private java.awt.Label labelNotaCorte;
-    private java.awt.Panel panel1;
-    private java.awt.TextField tfCodProf;
-    private java.awt.TextField tfFechaCorte;
-    private java.awt.TextField tfNomAsig;
-    private java.awt.TextField tfNotaCorte;
+    private javax.swing.JButton botonAnterior;
+    private javax.swing.JButton botonSiguiente;
+    private com.toedter.calendar.JDateChooser dcFecha;
+    private javax.swing.JLabel labelCodigo;
+    private javax.swing.JLabel labelFecha;
+    private javax.swing.JLabel labelNombre;
+    private javax.swing.JLabel labelNota;
+    private javax.swing.JLabel labelProfesor;
+    private javax.swing.JPanel panelDetalle;
+    private javax.swing.JTextField tfCodigo;
+    private javax.swing.JTextField tfNombre;
+    private javax.swing.JTextField tfNota;
+    private javax.swing.JTextField tfProfesor;
     // End of variables declaration//GEN-END:variables
 }

@@ -13,14 +13,13 @@ import modelo.Asignatura;
 
 /**
  *
- * @author alumno
+ * @author pedro
  */
-public class AsignaturaDB {
+public class ResumenController {
     
     private static Statement st = null;
     private static ResultSet rs = null;
     
-     
     public static ArrayList getLista(String query){
         ArrayList<Asignatura> lista = new ArrayList<Asignatura>();
         try{
@@ -45,49 +44,6 @@ public class AsignaturaDB {
             return null;
         }        
         return lista;
-    }
-    
-    public static float getNotas(int cod){
-        float total = 0;
-        int contador = 0;
-        
-        try{
-            st = GestionDB.getConnection().createStatement();
-            rs = st.executeQuery("SELECT * FROM ASIGNATURA WHERE CODPROFESOR = " + cod);
-            
-            while(rs.next()){
-                total += rs.getFloat(4);
-                contador++;
-            }
-            
-            total = total / contador;
-            
-            rs.close();
-            st.close();
-            
-            return total;
-        }catch(SQLException e){
-            System.out.println("Error consulta notas");
-            return 0;
-        }        
-    }
-    
-    public static boolean nextAsig(){
-        try {
-            return rs.next();
-        } catch (SQLException ex) {
-            System.out.println("Error al mostrar el siguiente.");
-        }
-        return false;
-    }
-    
-    public static boolean prevAsig(){
-        try {
-            return rs.previous();
-        } catch (SQLException ex) {
-            System.out.println("Error al mostrar el anterior.");
-        }
-        return false;
     }
     
 }

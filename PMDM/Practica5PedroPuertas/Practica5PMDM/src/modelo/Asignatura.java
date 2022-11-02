@@ -82,4 +82,8 @@ public class Asignatura {
         return "Asignatura{" + "codAsignatura=" + codAsignatura + ", nombre=" + nombre + ", codProfesor=" + codProfesor + ", notaCorte=" + notaCorte + ", fechaCorte=" + fechaCorte + '}';
     }
     
+    public String infoAsig(){
+        return "Nombre: " + nombre + ". Código: " + codAsignatura + ". Nota corte: " + notaCorte;
+    }
+    
 }
