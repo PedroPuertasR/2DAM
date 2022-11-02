@@ -9,9 +9,9 @@ CREATE TABLE profesor(
     pass VARCHAR(20)
 );
 
-INSERT INTO profesor VALUES(1, 'Rocio Rodríguez López', 30.5, '09/01/2012', 0, '/05_bds/fotos/fotos1005.jpg', 'rorolo', 'rodri2012');
-INSERT INTO profesor VALUES(2, 'Alvaro Gómez López', 28.0, '03/09/2020', 0, '/p05_bds/fotos/fotos1004.jpg', 'algolo', 'gomez2020');
-INSERT INTO profesor VALUES(3, 'David González Puertos', 32.5, '10/09/2008', 0, '/p05_bds/fotos/fotos1001.jpg', 'dagopu', 'gonza2008');
+INSERT INTO profesor VALUES(1, 'Rocio Rodríguez López', 30.5, '09/01/2012', 0, 'fotos1005.jpg', 'rorolo', 'rodri2012');
+INSERT INTO profesor VALUES(2, 'Alvaro Gómez López', 28.0, '03/09/2020', 0, 'fotos1004.jpg', 'algolo', 'gomez2020');
+INSERT INTO profesor VALUES(3, 'David González Puertos', 32.5, '10/09/2008', 0, 'fotos1001.jpg', 'dagopu', 'gonza2008');
 
 CREATE TABLE asignatura(
     codAsignatura INTEGER NOT NULL PRIMARY KEY,

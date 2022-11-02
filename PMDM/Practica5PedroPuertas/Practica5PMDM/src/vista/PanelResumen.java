@@ -163,7 +163,7 @@ public class PanelResumen extends javax.swing.JPanel {
         tfCodigo.setText("" + ResumenController.getProf().getCodProfesor());
         tfNota.setText("" + ResumenController.getProf().getNotaCorteMedia());
         labelFoto.setIcon(new ImageIcon(System.getProperty("user.dir") 
-                + ResumenController.getProf().getFoto()));
+                + "\\p05_bds\\fotos\\" + ResumenController.getProf().getFoto()));
         tfNombre.setEnabled(false);
         tfCodigo.setEnabled(false);
         tfNota.setEnabled(false);
