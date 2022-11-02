@@ -42,11 +42,11 @@
                   </Group>
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="tfCodigo" max="32767" attributes="0"/>
+                      <Component id="tfCodigo" pref="143" max="32767" attributes="0"/>
                       <Component id="tfNombre" max="32767" attributes="0"/>
                       <Component id="tfProfesor" max="32767" attributes="0"/>
                       <Component id="tfNota" max="32767" attributes="0"/>
-                      <Component id="dcFecha" pref="143" max="32767" attributes="0"/>
+                      <Component id="dcFecha" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
               </Group>
@@ -77,7 +77,7 @@
                       <Component id="labelProfesor" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfProfesor" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="labelFecha" min="-2" max="-2" attributes="0"/>
                       <Component id="dcFecha" min="-2" max="-2" attributes="0"/>

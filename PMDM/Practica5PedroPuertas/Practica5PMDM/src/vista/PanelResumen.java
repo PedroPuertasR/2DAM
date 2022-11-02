@@ -15,12 +15,12 @@ import modelo.Asignatura;
  *
  * @author alumno
  */
-public class VisualizaJList extends javax.swing.JPanel {
+public class PanelResumen extends javax.swing.JPanel {
 
     /**
      * Creates new form VisualizaJList
      */
-    public VisualizaJList() {
+    public PanelResumen() {
         
         rellenarDatosProf();
         rellenarJList();
@@ -39,6 +39,10 @@ public class VisualizaJList extends javax.swing.JPanel {
         panelResumen = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jListAsig = new javax.swing.JList<>();
+        labelFoto = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         jListAsig.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -47,19 +51,44 @@ public class VisualizaJList extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jListAsig);
 
+        jLabel1.setText("Nombre:");
+
+        jLabel2.setText("Código:");
+
+        jLabel3.setText("Nota media:");
+
         javax.swing.GroupLayout panelResumenLayout = new javax.swing.GroupLayout(panelResumen);
         panelResumen.setLayout(panelResumenLayout);
         panelResumenLayout.setHorizontalGroup(
             panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelResumenLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelResumenLayout.createSequentialGroup()
+                        .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         panelResumenLayout.setVerticalGroup(
             panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
-                .addContainerGap(132, Short.MAX_VALUE)
+                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelResumenLayout.createSequentialGroup()
+                        .addContainerGap(38, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3))
+                    .addGroup(panelResumenLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(labelFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
         );
@@ -93,8 +122,12 @@ public class VisualizaJList extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JList<String> jListAsig;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelFoto;
     private javax.swing.JPanel panelResumen;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,24 +6,24 @@
 package vista;
 
 import controlador.DetalleController;
-import controlador.GestionDB;
+import controlador.LoginController;
+import modelo.Asignatura;
 
 /**
  *
  * @author alumno
  */
-public class Visualiza1a1 extends javax.swing.JPanel {
-
-    private int codProfesor;
+public class PanelDetalle extends javax.swing.JPanel {
     
     /**
      * Creates new form Visualiza1a1
      */
-    public Visualiza1a1(int codProfesor) {
+    public PanelDetalle() {
+
+        DetalleController.cargarDatos("SELECT * FROM ASIGNATURA WHERE CODPROFESOR = " 
+                + LoginController.getProf().getCodProfesor());
         
-        GestionDB.open();
-        
-        this.codProfesor = codProfesor;
+        cargarDatos();
         
         initComponents();
     }
@@ -90,11 +90,11 @@ public class Visualiza1a1 extends javax.swing.JPanel {
                     .addComponent(labelNota))
                 .addGap(37, 37, 37)
                 .addGroup(panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfCodigo)
+                    .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                     .addComponent(tfNombre)
                     .addComponent(tfProfesor)
                     .addComponent(tfNota)
-                    .addComponent(dcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
+                    .addComponent(dcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(72, 72, 72))
             .addGroup(panelDetalleLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
@@ -118,7 +118,7 @@ public class Visualiza1a1 extends javax.swing.JPanel {
                 .addGroup(panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelProfesor)
                     .addComponent(tfProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addGroup(panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(labelFecha)
                     .addComponent(dcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -146,13 +146,22 @@ public class Visualiza1a1 extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnteriorActionPerformed
-        // TODO add your handling code here:
+        mostrarAsig(DetalleController.getAsignatura());
+        updateBotones();
     }//GEN-LAST:event_botonAnteriorActionPerformed
 
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonSiguienteActionPerformed
 
+    public void mostrarAsig(Asignatura a){
+        tfCodigo.setText("" + a.getCodAsignatura());
+        tfProfesor.setText("" );
+        tfNombre.setText("" + a.getNombre());
+        tfNota.setText("" + a.getNotaCorte());
+        dcFecha.setCalendar(a.getFechaCorte());
+    }
+    
     public void updateBotones(){
         if(DetalleController.primero()){
             botonAnterior.setEnabled(false);
@@ -165,6 +174,11 @@ public class Visualiza1a1 extends javax.swing.JPanel {
         }else{
             botonSiguiente.setEnabled(true);
         }
+    }
+    
+    public void cargarDatos(){
+        mostrarAsig(DetalleController.getAsignatura());
+        updateBotones();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

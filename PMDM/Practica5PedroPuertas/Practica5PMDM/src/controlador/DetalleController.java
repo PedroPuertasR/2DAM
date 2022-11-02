@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.Asignatura;
 
 /**
@@ -70,6 +71,34 @@ public class DetalleController {
             System.out.println("Error consulta notas");
             return 0;
         }        
+    }
+    
+    public static Asignatura getAsignatura(){
+        Asignatura aux = null;
+        try{
+            aux = new Asignatura(rs.getInt(1),
+                                 rs.getString(2),
+                                 rs.getInt(3),
+                                 rs.getFloat(4),
+                                 Herramienta.dateToGregorianCalendar(rs.getDate(5)));
+        }catch(SQLException e){
+            System.out.println("Fallo BBDD.");
+        }
+        return null;
+    }
+    
+    public static void cargarDatos(String query){
+        try {
+            st = GestionDB.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                  ResultSet.CONCUR_READ_ONLY);
+            rs = st.executeQuery(query);
+            
+            if (rs.next()) {
+                rs.first();
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }
     
     public static boolean nextAsig(){

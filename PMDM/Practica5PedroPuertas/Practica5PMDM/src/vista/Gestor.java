@@ -16,8 +16,8 @@ import javax.swing.JPanel;
 public class Gestor extends javax.swing.JFrame {
     
     public static int codProfesor = 0;
-    private VisualizaJList panelJList;
-    private Visualiza1a1 panelUno;
+    private PanelResumen panelJList;
+    private PanelDetalle panelUno;
     private Login panelLogin;
     private AcercaDe dialogAcerca;
     
@@ -158,7 +158,7 @@ public class Gestor extends javax.swing.JFrame {
 
     private void itemDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDetalleActionPerformed
         // TODO add your handling code here:
-        panelUno = new Visualiza1a1(LoginController.getProf().getCodProfesor());
+        panelUno = new PanelDetalle();
         visualizar(panelUno);
         pack();
     }//GEN-LAST:event_itemDetalleActionPerformed
