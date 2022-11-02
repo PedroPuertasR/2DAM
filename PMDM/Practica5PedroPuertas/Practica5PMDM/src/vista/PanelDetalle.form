@@ -31,31 +31,36 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="78" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="labelCodigo" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelNombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelProfesor" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelFecha" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelNota" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="labelCodigo" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelNombre" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelProfesor" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelFecha" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelNota" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="tfCodigo" pref="143" max="32767" attributes="0"/>
+                              <Component id="tfNombre" max="32767" attributes="0"/>
+                              <Component id="tfProfesor" max="32767" attributes="0"/>
+                              <Component id="tfNota" max="32767" attributes="0"/>
+                              <Component id="dcFecha" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="botonAnterior" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          <Component id="botonGuardar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="botonSiguiente" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="tfCodigo" pref="143" max="32767" attributes="0"/>
-                      <Component id="tfNombre" max="32767" attributes="0"/>
-                      <Component id="tfProfesor" max="32767" attributes="0"/>
-                      <Component id="tfNota" max="32767" attributes="0"/>
-                      <Component id="dcFecha" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                  <Component id="botonAnterior" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="botonSiguiente" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -91,6 +96,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="botonAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="botonSiguiente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="botonGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
@@ -148,6 +154,14 @@
           </Events>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="dcFecha">
+        </Component>
+        <Component class="javax.swing.JButton" name="botonGuardar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Guardar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonGuardarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

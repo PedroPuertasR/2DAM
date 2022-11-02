@@ -7,6 +7,8 @@ package vista;
 
 import controlador.DetalleController;
 import controlador.LoginController;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import modelo.Asignatura;
 
 /**
@@ -19,13 +21,14 @@ public class PanelDetalle extends javax.swing.JPanel {
      * Creates new form Visualiza1a1
      */
     public PanelDetalle() {
-
+        
+        initComponents();
+        
         DetalleController.cargarDatos("SELECT * FROM ASIGNATURA WHERE CODPROFESOR = " 
                 + LoginController.getProf().getCodProfesor());
         
         cargarDatos();
-        
-        initComponents();
+        updateBotones();
     }
 
     /**
@@ -51,6 +54,7 @@ public class PanelDetalle extends javax.swing.JPanel {
         botonAnterior = new javax.swing.JButton();
         botonSiguiente = new javax.swing.JButton();
         dcFecha = new com.toedter.calendar.JDateChooser();
+        botonGuardar = new javax.swing.JButton();
 
         labelCodigo.setText("Código:");
 
@@ -76,32 +80,42 @@ public class PanelDetalle extends javax.swing.JPanel {
             }
         });
 
+        botonGuardar.setText("Guardar");
+        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelDetalleLayout = new javax.swing.GroupLayout(panelDetalle);
         panelDetalle.setLayout(panelDetalleLayout);
         panelDetalleLayout.setHorizontalGroup(
             panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDetalleLayout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
-                .addGroup(panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelCodigo)
-                    .addComponent(labelNombre)
-                    .addComponent(labelProfesor)
-                    .addComponent(labelFecha)
-                    .addComponent(labelNota))
-                .addGap(37, 37, 37)
-                .addGroup(panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                    .addComponent(tfNombre)
-                    .addComponent(tfProfesor)
-                    .addComponent(tfNota)
-                    .addComponent(dcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(72, 72, 72))
             .addGroup(panelDetalleLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(botonAnterior)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonSiguiente)
-                .addGap(38, 38, 38))
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addGroup(panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDetalleLayout.createSequentialGroup()
+                        .addGroup(panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelCodigo)
+                            .addComponent(labelNombre)
+                            .addComponent(labelProfesor)
+                            .addComponent(labelFecha)
+                            .addComponent(labelNota))
+                        .addGap(37, 37, 37)
+                        .addGroup(panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                            .addComponent(tfNombre)
+                            .addComponent(tfProfesor)
+                            .addComponent(tfNota)
+                            .addComponent(dcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(72, 72, 72))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDetalleLayout.createSequentialGroup()
+                        .addComponent(botonAnterior)
+                        .addGap(29, 29, 29)
+                        .addComponent(botonGuardar)
+                        .addGap(26, 26, 26)
+                        .addComponent(botonSiguiente)
+                        .addGap(30, 30, 30))))
         );
         panelDetalleLayout.setVerticalGroup(
             panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,7 +143,8 @@ public class PanelDetalle extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(panelDetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonAnterior)
-                    .addComponent(botonSiguiente))
+                    .addComponent(botonSiguiente)
+                    .addComponent(botonGuardar))
                 .addGap(30, 30, 30))
         );
 
@@ -146,17 +161,36 @@ public class PanelDetalle extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnteriorActionPerformed
+        DetalleController.prevAsig();
         mostrarAsig(DetalleController.getAsignatura());
         updateBotones();
     }//GEN-LAST:event_botonAnteriorActionPerformed
 
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
-        // TODO add your handling code here:
+        DetalleController.nextAsig();
+        mostrarAsig(DetalleController.getAsignatura());
+        updateBotones();
     }//GEN-LAST:event_botonSiguienteActionPerformed
+
+    private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
+        Date nFecha = dcFecha.getDate();
+        float nNota = Float.parseFloat(tfNota.getText());
+        SimpleDateFormat sd = new SimpleDateFormat("MM/dd/yyyy");
+        
+        DetalleController.updateAsig("UPDATE ASIGNATURA SET FECHACORTE = '" + sd.format(nFecha)
+                + "', NOTACORTE = " + nNota + " WHERE CODASIGNATURA = " 
+                + DetalleController.getAsignatura().getCodAsignatura());
+        
+        DetalleController.cargarDatos("SELECT * FROM ASIGNATURA WHERE CODPROFESOR = " 
+                + LoginController.getProf().getCodProfesor());
+        
+        cargarDatos();
+        updateBotones();
+    }//GEN-LAST:event_botonGuardarActionPerformed
 
     public void mostrarAsig(Asignatura a){
         tfCodigo.setText("" + a.getCodAsignatura());
-        tfProfesor.setText("" );
+        tfProfesor.setText("" + a.getCodProfesor());
         tfNombre.setText("" + a.getNombre());
         tfNota.setText("" + a.getNotaCorte());
         dcFecha.setCalendar(a.getFechaCorte());
@@ -179,10 +213,14 @@ public class PanelDetalle extends javax.swing.JPanel {
     public void cargarDatos(){
         mostrarAsig(DetalleController.getAsignatura());
         updateBotones();
+        tfProfesor.setEnabled(false);
+        tfCodigo.setEnabled(false);
+        tfNombre.setEnabled(false);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAnterior;
+    private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonSiguiente;
     private com.toedter.calendar.JDateChooser dcFecha;
     private javax.swing.JLabel labelCodigo;

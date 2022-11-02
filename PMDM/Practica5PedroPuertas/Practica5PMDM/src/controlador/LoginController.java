@@ -33,7 +33,7 @@ public class LoginController {
                                     rs.getString(2),
                                     rs.getFloat(3),
                                     Herramienta.dateToGregorianCalendar(rs.getDate(4)),
-                                    DetalleController.getNotas(rs.getInt(1)),
+                                    rs.getFloat(5),
                                     rs.getString(6),
                                     rs.getString(7),
                                     rs.getString(8)

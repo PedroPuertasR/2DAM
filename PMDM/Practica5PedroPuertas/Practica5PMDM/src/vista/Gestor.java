@@ -5,8 +5,6 @@
  */
 package vista;
 
-import controlador.LoginController;
-import java.awt.Color;
 import javax.swing.JPanel;
 
 /**
@@ -169,7 +167,7 @@ public class Gestor extends javax.swing.JFrame {
     }//GEN-LAST:event_itemVerActionPerformed
 
     private void itemResumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemResumenActionPerformed
-        // TODO add your handling code here:
+        panelJList = new PanelResumen();
         visualizar(panelJList);
         pack();
     }//GEN-LAST:event_itemResumenActionPerformed

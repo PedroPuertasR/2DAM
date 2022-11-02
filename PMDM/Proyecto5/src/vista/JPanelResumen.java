@@ -22,6 +22,7 @@ public class JPanelResumen extends javax.swing.JPanel {
      */
     public JPanelResumen() {
         initComponents();
+        
         rellenarDatosProveedor();
         rellenarJlist();
         

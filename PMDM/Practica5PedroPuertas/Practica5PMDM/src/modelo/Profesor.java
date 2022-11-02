@@ -5,7 +5,7 @@
  */
 package modelo;
 
-import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -13,19 +13,10 @@ import java.util.Calendar;
  */
 public class Profesor {
     
-    /*
-    codProfesor INTEGER NOT NULL PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    horas DECIMAL(5,2) NOT NULL CHECK (horas >= 25 AND horas <= 35),
-    fechaContrato DATE NOT NULL,
-    notaCorteMedia DECIMAL(5,2) NOT NULL,
-    foto VARCHAR(30)
-    */
-    
     private int codProfesor;
     private String nombre;
     private float horas;
-    private Calendar fechaContrato;
+    private GregorianCalendar fechaContrato;
     private float notaCorteMedia;
     private String foto;
     private String usuario;
@@ -34,7 +25,7 @@ public class Profesor {
     public Profesor() {
     }
     
-    public Profesor(int codProfesor, String nombre, float horas, Calendar fechaContrato, float notaCorteMedia, String foto, String usuario, String pass) {
+    public Profesor(int codProfesor, String nombre, float horas, GregorianCalendar fechaContrato, float notaCorteMedia, String foto, String usuario, String pass) {
         this.codProfesor = codProfesor;
         this.nombre = nombre;
         this.horas = horas;
@@ -69,11 +60,11 @@ public class Profesor {
         this.horas = horas;
     }
 
-    public Calendar getFechaContrato() {
+    public GregorianCalendar getFechaContrato() {
         return fechaContrato;
     }
 
-    public void setFechaContrato(Calendar fechaContrato) {
+    public void setFechaContrato(GregorianCalendar fechaContrato) {
         this.fechaContrato = fechaContrato;
     }
 

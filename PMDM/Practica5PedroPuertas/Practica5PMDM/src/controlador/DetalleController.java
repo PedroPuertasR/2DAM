@@ -8,7 +8,6 @@ package controlador;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.Asignatura;
 
@@ -22,56 +21,31 @@ public class DetalleController {
     private static ResultSet rs = null;
     
      
-    public static ArrayList getLista(String query){
-        ArrayList<Asignatura> lista = new ArrayList<Asignatura>();
-        try{
-            st = GestionDB.getConnection().createStatement();
-            rs = st.executeQuery(query);
-            
-            while(rs.next()){
-                       
-                Asignatura aux = new Asignatura(rs.getInt(1),
-                                                    rs.getString(2),
-                                                    rs.getInt(3),
-                                                    rs.getFloat(4),
-                                                    Herramienta.dateToGregorianCalendar(rs.getDate(5))
-                );
-                
-                lista.add(aux);
-            }
-            rs.close();
-            st.close();
-        }catch(SQLException e){
-            System.out.println("Error consulta lista");
-            return null;
-        }        
-        return lista;
-    }
-    
-    public static float getNotas(int cod){
-        float total = 0;
-        int contador = 0;
-        
-        try{
-            st = GestionDB.getConnection().createStatement();
-            rs = st.executeQuery("SELECT * FROM ASIGNATURA WHERE CODPROFESOR = " + cod);
-            
-            while(rs.next()){
-                total += rs.getFloat(4);
-                contador++;
-            }
-            
-            total = total / contador;
-            
-            rs.close();
-            st.close();
-            
-            return total;
-        }catch(SQLException e){
-            System.out.println("Error consulta notas");
-            return 0;
-        }        
-    }
+//    public static ArrayList getLista(String query){
+//        ArrayList<Asignatura> lista = new ArrayList<Asignatura>();
+//        try{
+//            st = GestionDB.getConnection().createStatement();
+//            rs = st.executeQuery(query);
+//            
+//            while(rs.next()){
+//                       
+//                Asignatura aux = new Asignatura(rs.getInt(1),
+//                                                    rs.getString(2),
+//                                                    rs.getInt(3),
+//                                                    rs.getFloat(4),
+//                                                    Herramienta.dateToGregorianCalendar(rs.getDate(5))
+//                );
+//                
+//                lista.add(aux);
+//            }
+//            rs.close();
+//            st.close();
+//        }catch(SQLException e){
+//            System.out.println("Error consulta lista");
+//            return null;
+//        }        
+//        return lista;
+//    }
     
     public static Asignatura getAsignatura(){
         Asignatura aux = null;
@@ -84,7 +58,7 @@ public class DetalleController {
         }catch(SQLException e){
             System.out.println("Fallo BBDD.");
         }
-        return null;
+        return aux;
     }
     
     public static void cargarDatos(String query){
@@ -98,6 +72,17 @@ public class DetalleController {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+    
+    public static void updateAsig(String query){
+        try{
+            st = GestionDB.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                  ResultSet.CONCUR_READ_ONLY);
+            st.executeUpdate(query);
+            JOptionPane.showMessageDialog(null, "Se ha actualizado la asignatura.");
+        }catch(SQLException ex){
+            System.out.println("Error en el update.");
         }
     }
     
@@ -121,7 +106,7 @@ public class DetalleController {
     
     public static boolean primero(){
         try{
-            rs.isFirst();
+            return rs.isFirst();
         }catch(SQLException ex){
             System.out.println("No hay primero.");
         }
@@ -130,7 +115,7 @@ public class DetalleController {
     
     public static boolean ultimo(){
         try{
-            rs.isLast();
+            return rs.isLast();
         }catch(SQLException ex){
             System.out.println("No hay último.");
         }

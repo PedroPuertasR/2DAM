@@ -5,7 +5,7 @@
  */
 package modelo;
 
-import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -24,12 +24,12 @@ public class Asignatura {
     private String nombre;
     private int codProfesor;
     private float notaCorte;
-    private Calendar fechaCorte;
+    private GregorianCalendar fechaCorte;
 
     public Asignatura() {
     }
 
-    public Asignatura(int codAsignatura, String nombre, int codProfesor, float notaCorte, Calendar fechaCorte) {
+    public Asignatura(int codAsignatura, String nombre, int codProfesor, float notaCorte, GregorianCalendar fechaCorte) {
         this.codAsignatura = codAsignatura;
         this.nombre = nombre;
         this.codProfesor = codProfesor;
@@ -69,11 +69,11 @@ public class Asignatura {
         this.notaCorte = notaCorte;
     }
 
-    public Calendar getFechaCorte() {
+    public GregorianCalendar getFechaCorte() {
         return fechaCorte;
     }
 
-    public void setFechaCorte(Calendar fechaCorte) {
+    public void setFechaCorte(GregorianCalendar fechaCorte) {
         this.fechaCorte = fechaCorte;
     }
 

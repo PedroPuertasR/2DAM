@@ -9,6 +9,7 @@ import controlador.LoginController;
 import controlador.ResumenController;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import modelo.Asignatura;
 
 /**
@@ -21,10 +22,10 @@ public class PanelResumen extends javax.swing.JPanel {
      * Creates new form VisualizaJList
      */
     public PanelResumen() {
+        initComponents();
         
         rellenarDatosProf();
         rellenarJList();
-        initComponents();
     }
 
     /**
@@ -43,6 +44,10 @@ public class PanelResumen extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        tfNombre = new javax.swing.JTextField();
+        tfCodigo = new javax.swing.JTextField();
+        tfNota = new javax.swing.JTextField();
+        botonCalcular = new javax.swing.JButton();
 
         jListAsig.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -57,21 +62,38 @@ public class PanelResumen extends javax.swing.JPanel {
 
         jLabel3.setText("Nota media:");
 
+        botonCalcular.setText("Calcular Media");
+        botonCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCalcularActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelResumenLayout = new javax.swing.GroupLayout(panelResumen);
         panelResumen.setLayout(panelResumenLayout);
         panelResumenLayout.setHorizontalGroup(
             panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelResumenLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelResumenLayout.createSequentialGroup()
-                        .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panelResumenLayout.createSequentialGroup()
+                                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tfNota)
+                                    .addComponent(tfNombre)
+                                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(42, 42, 42)
+                                .addComponent(labelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelResumenLayout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(botonCalcular)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         panelResumenLayout.setVerticalGroup(
@@ -79,18 +101,26 @@ public class PanelResumen extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
                 .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelResumenLayout.createSequentialGroup()
-                        .addContainerGap(38, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3))
-                    .addGroup(panelResumenLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(labelFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(27, 27, 27)
+                        .addComponent(labelFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
+                        .addContainerGap(30, Short.MAX_VALUE)
+                        .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(tfNota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(23, 23, 23)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+                .addGap(15, 15, 15)
+                .addComponent(botonCalcular)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -105,9 +135,20 @@ public class PanelResumen extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCalcularActionPerformed
+        
+        float media = ResumenController.getNotas(LoginController.getProf().getCodProfesor());
+        
+        ResumenController.updateMedia("UPDATE PROFESOR SET NOTACORTEMEDIA = " + media 
+                + " WHERE CODPROFESOR = " + LoginController.getProf().getCodProfesor());
+        
+        rellenarDatosProf();
+    }//GEN-LAST:event_botonCalcularActionPerformed
+
 
     public void rellenarJList(){
-        ArrayList<Asignatura> lista = ResumenController.getLista("SELECT * FROM ASIGNATURA WHERE CODPROFESOR = " + LoginController.getProf().getCodProfesor());
+        ArrayList<Asignatura> lista = ResumenController.getLista("SELECT * FROM ASIGNATURA "
+                + "WHERE CODPROFESOR = " + LoginController.getProf().getCodProfesor());
          
         DefaultListModel model = new DefaultListModel();
          
@@ -118,10 +159,18 @@ public class PanelResumen extends javax.swing.JPanel {
     }
     
     public void rellenarDatosProf(){
-        
+        tfNombre.setText("" + ResumenController.getProf().getNombre());
+        tfCodigo.setText("" + ResumenController.getProf().getCodProfesor());
+        tfNota.setText("" + ResumenController.getProf().getNotaCorteMedia());
+        labelFoto.setIcon(new ImageIcon(System.getProperty("user.dir") 
+                + ResumenController.getProf().getFoto()));
+        tfNombre.setEnabled(false);
+        tfCodigo.setEnabled(false);
+        tfNota.setEnabled(false);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonCalcular;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -129,5 +178,8 @@ public class PanelResumen extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelFoto;
     private javax.swing.JPanel panelResumen;
+    private javax.swing.JTextField tfCodigo;
+    private javax.swing.JTextField tfNombre;
+    private javax.swing.JTextField tfNota;
     // End of variables declaration//GEN-END:variables
 }
