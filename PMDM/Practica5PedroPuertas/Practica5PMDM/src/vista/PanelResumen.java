@@ -41,13 +41,17 @@ public class PanelResumen extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jListAsig = new javax.swing.JList<>();
         labelFoto = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        labelNombre = new javax.swing.JLabel();
+        labelCodigo = new javax.swing.JLabel();
+        labelNota = new javax.swing.JLabel();
         tfNombre = new javax.swing.JTextField();
         tfCodigo = new javax.swing.JTextField();
         tfNota = new javax.swing.JTextField();
         botonCalcular = new javax.swing.JButton();
+        labelHoras = new javax.swing.JLabel();
+        tfHoras = new javax.swing.JTextField();
+        labelFecha = new javax.swing.JLabel();
+        dcFecha = new com.toedter.calendar.JDateChooser();
 
         jListAsig.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -56,11 +60,11 @@ public class PanelResumen extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jListAsig);
 
-        jLabel1.setText("Nombre:");
+        labelNombre.setText("Nombre:");
 
-        jLabel2.setText("Código:");
+        labelCodigo.setText("Código:");
 
-        jLabel3.setText("Nota media:");
+        labelNota.setText("Nota media:");
 
         botonCalcular.setText("Calcular Media");
         botonCalcular.addActionListener(new java.awt.event.ActionListener() {
@@ -69,54 +73,67 @@ public class PanelResumen extends javax.swing.JPanel {
             }
         });
 
+        labelHoras.setText("Horas trabajadas:");
+
+        labelFecha.setText("Fecha contrato:");
+
         javax.swing.GroupLayout panelResumenLayout = new javax.swing.GroupLayout(panelResumen);
         panelResumen.setLayout(panelResumenLayout);
         panelResumenLayout.setHorizontalGroup(
             panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelResumenLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
                 .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelResumenLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                        .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelNota)
+                            .addComponent(labelNombre)
+                            .addComponent(labelCodigo)
+                            .addComponent(labelHoras)
+                            .addComponent(labelFecha))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(panelResumenLayout.createSequentialGroup()
-                                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tfNota)
-                                    .addComponent(tfNombre)
-                                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(42, 42, 42)
-                                .addComponent(labelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelResumenLayout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(botonCalcular)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                            .addComponent(tfNota)
+                            .addComponent(tfNombre)
+                            .addComponent(tfCodigo)
+                            .addComponent(tfHoras)
+                            .addComponent(dcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
+                        .addGap(84, 84, 84)
+                        .addComponent(labelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+            .addGroup(panelResumenLayout.createSequentialGroup()
+                .addGap(122, 122, 122)
+                .addComponent(botonCalcular)
+                .addGap(48, 48, 48))
         );
         panelResumenLayout.setVerticalGroup(
             panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelResumenLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(labelFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelResumenLayout.createSequentialGroup()
-                        .addContainerGap(30, Short.MAX_VALUE)
                         .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
+                            .addComponent(labelNombre)
                             .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
+                            .addComponent(labelCodigo)
                             .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(tfNota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(23, 23, 23)
+                            .addComponent(labelNota)
+                            .addComponent(tfNota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelHoras)
+                            .addComponent(tfHoras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(dcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelFecha)))
+                    .addComponent(labelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(botonCalcular)
@@ -127,11 +144,15 @@ public class PanelResumen extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelResumen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelResumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelResumen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelResumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -162,23 +183,31 @@ public class PanelResumen extends javax.swing.JPanel {
         tfNombre.setText("" + ResumenController.getProf().getNombre());
         tfCodigo.setText("" + ResumenController.getProf().getCodProfesor());
         tfNota.setText("" + ResumenController.getProf().getNotaCorteMedia());
+        tfHoras.setText("" + ResumenController.getProf().getHoras());
+        dcFecha.setCalendar(ResumenController.getProf().getFechaContrato());
         labelFoto.setIcon(new ImageIcon(System.getProperty("user.dir") 
-                + "\\p05_bds\\fotos\\" + ResumenController.getProf().getFoto()));
+                + "\\src\\fotos\\" + ResumenController.getProf().getFoto()));
         tfNombre.setEnabled(false);
         tfCodigo.setEnabled(false);
         tfNota.setEnabled(false);
+        tfHoras.setEnabled(false);
+        dcFecha.setEnabled(false);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCalcular;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private com.toedter.calendar.JDateChooser dcFecha;
     private javax.swing.JList<String> jListAsig;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelCodigo;
+    private javax.swing.JLabel labelFecha;
     private javax.swing.JLabel labelFoto;
+    private javax.swing.JLabel labelHoras;
+    private javax.swing.JLabel labelNombre;
+    private javax.swing.JLabel labelNota;
     private javax.swing.JPanel panelResumen;
     private javax.swing.JTextField tfCodigo;
+    private javax.swing.JTextField tfHoras;
     private javax.swing.JTextField tfNombre;
     private javax.swing.JTextField tfNota;
     // End of variables declaration//GEN-END:variables

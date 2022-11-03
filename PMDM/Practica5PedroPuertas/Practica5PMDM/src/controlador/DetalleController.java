@@ -20,33 +20,6 @@ public class DetalleController {
     private static Statement st = null;
     private static ResultSet rs = null;
     
-     
-//    public static ArrayList getLista(String query){
-//        ArrayList<Asignatura> lista = new ArrayList<Asignatura>();
-//        try{
-//            st = GestionDB.getConnection().createStatement();
-//            rs = st.executeQuery(query);
-//            
-//            while(rs.next()){
-//                       
-//                Asignatura aux = new Asignatura(rs.getInt(1),
-//                                                    rs.getString(2),
-//                                                    rs.getInt(3),
-//                                                    rs.getFloat(4),
-//                                                    Herramienta.dateToGregorianCalendar(rs.getDate(5))
-//                );
-//                
-//                lista.add(aux);
-//            }
-//            rs.close();
-//            st.close();
-//        }catch(SQLException e){
-//            System.out.println("Error consulta lista");
-//            return null;
-//        }        
-//        return lista;
-//    }
-    
     public static Asignatura getAsignatura(){
         Asignatura aux = null;
         try{
