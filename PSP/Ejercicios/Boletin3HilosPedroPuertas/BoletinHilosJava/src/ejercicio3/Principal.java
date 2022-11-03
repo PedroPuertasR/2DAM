@@ -42,6 +42,7 @@ class MiHilo extends Thread{
         super(nombre);
     }
 
+    @Override
     public void run(){
         System.out.println(getName()+" iniciando.");
     
