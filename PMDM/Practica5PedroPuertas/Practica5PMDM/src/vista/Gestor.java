@@ -146,19 +146,18 @@ public class Gestor extends javax.swing.JFrame {
         // TODO add your handling code here:
         panelLogin = new Login(menuAcerca, menuVisualizar, itemAbrir, itemCerrar);
         visualizar(panelLogin);
-        pack();
     }//GEN-LAST:event_itemAbrirActionPerformed
 
     private void itemCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCerrarActionPerformed
         // TODO add your handling code here:
         cerrarConexion();
+        visualizar(panelGeneral);
     }//GEN-LAST:event_itemCerrarActionPerformed
 
     private void itemDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDetalleActionPerformed
         // TODO add your handling code here:
         panelUno = new PanelDetalle();
         visualizar(panelUno);
-        pack();
     }//GEN-LAST:event_itemDetalleActionPerformed
 
     private void itemVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemVerActionPerformed
@@ -174,6 +173,7 @@ public class Gestor extends javax.swing.JFrame {
 
     public void visualizar(JPanel panel){
         this.setContentPane(panel);
+        pack();
     }
     
     public void comprobarConexion(){

@@ -37,11 +37,14 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" min="-2" pref="346" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jScrollPane2" min="-2" pref="467" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="labelNota" min="-2" max="-2" attributes="0"/>
                               <Component id="labelNombre" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -59,14 +62,14 @@
                           </Group>
                           <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
                           <Component id="labelFoto" min="-2" pref="162" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="194" max="-2" attributes="0"/>
                   <Component id="botonCalcular" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -105,9 +108,9 @@
                   </Group>
                   <EmptySpace pref="23" max="32767" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="116" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="botonCalcular" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
