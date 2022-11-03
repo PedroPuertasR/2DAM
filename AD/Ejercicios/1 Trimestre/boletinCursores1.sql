@@ -63,16 +63,79 @@ end;
 create or replace procedure ver_ape_num(ape varchar2)
 as
     vape varchar2 (10);
-    cursor c1 is select cod_empleado from emple where apellido = vape;
-    vcod number(5,2);
+    cursor c1 is select emp_no from emple where apellido like ape;
+    vcod c1%rowtype;
 begin
     vape := ape;
     open c1;
+
     fetch c1 into vcod;
 
     while c1%found loop
-        dbms_output.put_line('Cod: ' || vcod.cod_empleado || '. Apellido: ' || ape);
+        dbms_output.put_line('Cod: ' || vcod.emp_no || '. Apellido: ' || vape);
         fetch c1 into vcod;
     end loop;
+    close c1;
+end;
+
+/*Ejercicio 1 complementario*/
+
+create or replace procedure ver_ape_fecha
+as
+    cursor c1 is select apellido, fecha_alt from emple order by apellido;
+    vdat c1%rowtype;
+begin
+    open c1;
+
+    fetch c1 into vdat;
+
+    while c1%found loop
+        dbms_output.put_line('Apellido: ' || vdat.apellido || '. Fecha alta: ' || vdat.fecha_alt);
+        fetch c1 into vdat;
+    end loop;
+
+    close c1;
+end;
+
+/*Ejercicio 2 complementario*/
+
+create or replace procedure ver_dept_num
+as
+    cursor c1 is select d.dnombre as dnom, count(e.emp_no) as total 
+                from depart d, emple e
+                where d.dept_no = e.dept_no (+) 
+                group by d.dnombre 
+                order by d.dnombre;
+    vdat c1%rowtype;
+begin
+
+    open c1;
+
+    fetch c1 into vdat;
+
+    while c1%found loop
+        dbms_output.put_line('Departamento: ' || vdat.dnom || '. Empleados: ' || vdat.total);
+        fetch c1 into vdat;
+    end loop;
+
+    close c1;
+end;
+
+/*Ejercicio 3 complementario*/
+
+create or replace procedure ver_emp_sal
+as
+    cursor c1 is select * from (select apellido, salario from emple order by salario desc) where rownum <= 5;
+    vdat c1%rowtype;
+begin
+    open c1;
+
+    fetch c1 into vdat;
+
+    while c1%found loop
+        dbms_output.put_line('Apellido: ' || vdat.apellido || '. Salario: ' || vdat.salario || '€.');
+        fetch c1 into vdat;
+    end loop;
+
     close c1;
 end;
