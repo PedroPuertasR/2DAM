@@ -16,63 +16,87 @@ public class Principal {
      */
     public static void main(String[] args) {
         
-        PrioridadHilos ph1= new PrioridadHilos("Prioridad Alta h1");
-        PrioridadHilos ph2= new PrioridadHilos("Prioridad Baja h2");
-        PrioridadHilos ph3= new PrioridadHilos("Prioridad Normal h3");
-        PrioridadHilos ph4= new PrioridadHilos("Prioridad Normal h4");
-        PrioridadHilos ph5= new PrioridadHilos("Prioridad Normal h5");
+        //Instanciamos nuestros hilos
+        PrioridadHilos ph1 = new PrioridadHilos("Prioridad Alta");
+        PrioridadHilos ph2 = new PrioridadHilos("Prioridad Baja");
+        PrioridadHilos ph3 = new PrioridadHilos("Prioridad Normal 1");
+        PrioridadHilos ph4 = new PrioridadHilos("Prioridad Normal 2");
+        PrioridadHilos ph5 = new PrioridadHilos("Prioridad Normal 3");
 
-        ph1.hilo.setPriority(Thread.NORM_PRIORITY+2);
-        ph2.hilo.setPriority(Thread.NORM_PRIORITY-2);
+        /*Seteamos la prioridad máxima al de prioridad alta y la mínima al de
+        * prioridad baja. Los demás seguirán teniendo la normal
+        */
+        ph1.t.setPriority(Thread.MAX_PRIORITY);
+        ph2.t.setPriority(Thread.MIN_PRIORITY);
 
-        ph1.hilo.start();
-        ph2.hilo.start();
-        ph3.hilo.start();
-        ph4.hilo.start();
-        ph5.hilo.start();
+        //Iniciamos nuestros hilos
+        ph1.t.start();
+        ph2.t.start();
+        ph3.t.start();
+        ph4.t.start();
+        ph5.t.start();
+        
         try {
-            ph1.hilo.join();
-            ph2.hilo.join();
-            ph3.hilo.join();
-            ph4.hilo.join();
-            ph5.hilo.join();
+            
+            /* Realizamos los join de cada hilo para que vaya ejecutandose
+            * el siguiente cuando "muera" el anterior
+            */
+            ph1.t.join();
+            ph2.t.join();
+            ph3.t.join();
+            ph4.t.join();
+            ph5.t.join();
+            
         }catch (InterruptedException e){
             System.out.println("Hilo principal interrumpido.");
         }
-        System.out.println("\nHilo de alta prioridad h1 contó hasta "+ph1.contar);
-        System.out.println("Hilo de baja prioridad h2 contó hasta "+ph2.contar);
-        System.out.println("Hilo de normal prioridad h3 contó hasta "+ph3.contar);
-
-        System.out.println("Hilo de normal prioridad h4 contó hasta "+ph4.contar);
-        System.out.println("Hilo de normal prioridad h5 contó hasta "+ph5.contar);
+        
+        //Mostramos hasta donde han contado nuestros hilos
+        System.out.println("\nEl hilo de alta prioridad contó hasta: " + ph1.contador);
+        System.out.println("El hilo de baja prioridad contó hasta: " + ph2.contador);
+        System.out.println("El hilo de prioridad normal 1 contó hasta: " + ph3.contador);
+        System.out.println("El hilo de prioridad normal 2 contó hasta: " + ph4.contador);
+        System.out.println("El hilo de prioridad normal 3 contó hasta: " + ph5.contador);  
         
     }
-    
 }
 
 class PrioridadHilos implements Runnable {
-    int contar;
-    Thread hilo;
-    static boolean stop=false;
-    static String actualNombre;
     
+    int contador;
+    Thread t;
+    static boolean stop = false;
+    static String actual;
+    
+    /*Creamos un constructor para instanciar el Thread, iniciar el contador a 0
+    * e indicar el nombre actual del hilo
+    */
     public PrioridadHilos(String nombre){
-        hilo= new Thread(this,nombre);
-        contar=0;
-        actualNombre=nombre;
+        t = new Thread(this,nombre);
+        contador = 0;
+        actual = nombre;
     }
     
     public void run(){
-        System.out.println(hilo.getName()+" iniciando.");
-        do {
-            contar++;
-            if (actualNombre.compareTo(hilo.getName())!=0){
-                actualNombre=hilo.getName();
-                System.out.println("En "+actualNombre);
-            }
-        }while (stop==false&&contar<1000000);
         
-        stop=true;
-        System.out.println("\n"+ hilo.getName()+" terminado.");
+        System.out.println("Iniciamos el hilo " + t.getName());
+        
+        /*Con este bucle iremos mostrando en que hilo estamos actualmente
+        * mientras que stop no sea verdadero y el contador no llegue a 10
+        */
+        do {
+            //Sumamos uno al contador cada vez que empecemos el bucle
+            contador++;
+            
+            if (actual.compareTo(t.getName()) != 0){
+                actual = t.getName();
+                System.out.println("En el hilo: " + actual);
+            }
+        }while(stop == false && contador < 10);
+        
+        stop = true;
+        
+        System.out.println("Final del hilo: " + t.getName());
+        
     }
 }

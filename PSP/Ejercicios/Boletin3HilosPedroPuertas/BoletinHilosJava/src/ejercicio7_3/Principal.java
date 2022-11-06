@@ -16,31 +16,56 @@ public class Principal {
      */
     public static void main(String[] args) {
         
-        int a[]={1,2,3,4,5};
-        MiHilo mh1 = MiHilo.creaEInicia("#1",a);
-        MiHilo mh2 = MiHilo.creaEInicia("#2",a);
+        //Instanciamos el array y los hilos
+        int a[] = {1, 2, 3};
         
+        MiHilo mh1 = MiHilo.crearYComenzar("primero", a);
+        MiHilo mh2 = MiHilo.crearYComenzar("segundo", a);
+        
+        /*Realizamos el join para que vayan comenzando los hilos después de la
+        * finalización del anterior
+        */
         try {
-            mh1.hilo.join();
-            mh2.hilo.join();
-        }catch (InterruptedException exc){
-            System.out.println("Hilo principal interrumpido.");
+            mh1.t.join();
+            mh2.t.join();
+        }catch (InterruptedException e){
+            System.out.println("El hilo principal ha fallado.");
         } 
+        
+        //Mostramos el finald el hilo principal
+        System.out.println("El hilo principal ha finalizado.");
+        
     } 
 }
 
 class sumArray{
     private int sum;
    
-    public int sumArray( int nums []){
-        sum=0;
-        for (int i=0; i<nums.length;i++){
-            sum+=nums[i];
-            System.out.println("Total acumulado de "+Thread.currentThread().getName()+" es "+sum);
+    public sumArray(){
+        
+    }
+    
+    /*Mismo método del ejercicio anterior pero sin el synchronized, devuelve la
+    * suma del array
+    */
+    public int sumArray(int nums []){
+        
+        //Instanciamos sum a 0 para ir sumando cada número del array
+        sum = 0;
+        
+        //Bucle for en el que iremos sumando los números del array
+        for (int i = 0; i < nums.length; i++){
+            
+            sum = sum + nums[i];
+            
+            System.out.println("Suma actual del hilo " 
+                    + Thread.currentThread().getName()+ ":" + sum);
+            
             try {
-            Thread.sleep(10);
-            }catch (InterruptedException exc){
-            System.out.println("Hilo interrumpido");
+                //Esperaremos 1 segundo entre cada suma
+                Thread.sleep(1000);
+            }catch (InterruptedException e){
+                System.out.println("El hilo ha fallado.");
             }
         }
         return sum;
@@ -48,31 +73,41 @@ class sumArray{
 }
 
 class MiHilo implements Runnable{
-    Thread hilo;
-    static sumArray sumarray= new sumArray();
+    
+    Thread t;
+    static sumArray sumarray = new sumArray();
     int a[];
-    int resp;
+    int res;
 
+    //En este constructor inicializamos el hilo con el nombre y también el array
     public MiHilo(String nombre, int nums[]){
-        hilo= new Thread(this,nombre);
+        t= new Thread(this,nombre);
         a=nums;
     }
-
-    public static MiHilo creaEInicia (String nombre,int nums[]){
+    
+    //Método reutilizado para instanciar e iniciar el hilo
+    public static MiHilo crearYComenzar (String nombre,int nums[]){
         MiHilo miHilo=new MiHilo(nombre,nums);
-        miHilo.hilo.start(); //Inicia el hilo
+        miHilo.t.start();
         return miHilo;
     }
  
     public void run(){
-        int sum;
-        System.out.println(hilo.getName()+ " iniciando.");
+        //Mostramos el inicio del hilo
+        System.out.println("Iniciando el hilo " + t.getName());
 
-        synchronized (sumarray) {
-            resp = sumarray.sumArray(a);
+        /*Metemos la ejecución del método sumArray en un bloque synchronized
+        * para que bloquee el objeto mientras este termina de ejecutarse
+        */
+        synchronized(sumarray){
+            res = sumarray.sumArray(a);
         }
         
-        System.out.println("Suma para "+hilo.getName()+ " es "+resp);
-        System.out.println(hilo.getName()+ " terminado.");
+        //Mostramos por pantalla la suma del array
+        System.out.println("El total de la suma de "+ t.getName()+
+        " es: " + res);
+        
+        //Mostramos por pantalla la finalización del hilo
+        System.out.println("El hilo " + t.getName() + " ha terminado.");
     }
 }

@@ -15,58 +15,90 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int a[]={1,2,3,4,5};
-        MiHilo mh1 = MiHilo.creaEInicia("#1",a);
-        MiHilo mh2 = MiHilo.creaEInicia("#2",a);
+        
+        //Instanciamos el array a sumar y los hilos
+        int a [] = {1, 2, 3};
+        
+        MiHilo mh1 = MiHilo.crearYComenzar("primero", a);
+        MiHilo mh2 = MiHilo.crearYComenzar("segundo", a);
+        
         try {
-            mh1.hilo.join();
-            mh2.hilo.join();
+            /*Realizamos los join para que uno comienzo y el siguiente espere a
+            * que el primero muera para iniciarse
+            */
+            mh1.t.join();
+            mh2.t.join();
         }catch (InterruptedException e){
-            System.out.println("Hilo principal interrumpido.");
+            System.out.println("El hilo principal ha fallado.");
         }
+        System.out.println("El hilo principal ha finalizado.");
     }
     
 }
 
 class sumArray{
+    
     private int sum;
-    synchronized int sumArray( int nums []){
-        sum=0;
-        for (int i=0; i<nums.length;i++){
-            sum+=nums[i];
-            System.out.println("Total acumulado de "+Thread.currentThread().getName()+" es "+sum);
+    
+    public sumArray(){
+        
+    }
+    
+    //Este método bloqueará el objeto hilo hasta que termine de sumar el array
+    synchronized int sumArray(int nums []){
+        
+        //Instanciamos nuestro atributo sum a 0 para que vaya sumando el array
+        sum = 0;
+        
+        for (int i = 0; i < nums.length; i++){
+            sum = sum + nums[i];
+            System.out.println("Suma actual del hilo " 
+                    + Thread.currentThread().getName()+ ":" + sum);
             
+            //Esperaremos 1 segundo entre cada suma
             try {
-                Thread.sleep(10);
-            }catch (InterruptedException exc){
-                System.out.println("Hilo interrumpido");
+                Thread.sleep(1000);
+            }catch (InterruptedException e){
+                System.out.println("El hilo ha fallado");
             }
         }
+        
+        //Devolvemos el total
         return sum;
     }
 }
 class MiHilo implements Runnable{
-    Thread hilo;
-    static sumArray sumarray= new sumArray();
-    int a[];
-    int resp;
     
+    Thread t;
+    static sumArray sumarray = new sumArray();
+    int a[];
+    int res;
+    
+    //En este constructor inicializamos el hilo con el nombre y también el array
     public MiHilo(String nombre, int nums[]){
-        hilo= new Thread(this,nombre);
-        a=nums;
+        t = new Thread(this,nombre);
+        a = nums;
     }
 
-    public static MiHilo creaEInicia (String nombre,int nums[]){
-        MiHilo miHilo=new MiHilo(nombre,nums);
-        miHilo.hilo.start();
-        return miHilo;
+    //Método reutilizado para instanciar e iniciar el hilo
+    public static MiHilo crearYComenzar (String nombre, int nums[]){
+        MiHilo mh = new MiHilo(nombre,nums);
+        mh.t.start();
+        return mh;
     }
 
     public void run(){
-        int sum;
-        System.out.println(hilo.getName()+ " iniciando.");
-        resp=sumarray.sumArray(a);
-        System.out.println("Suma para "+hilo.getName()+ " es "+resp);
-        System.out.println(hilo.getName()+ " terminado.");
+        //Mostramos el inicio del hilo
+        System.out.println("Iniciando el hilo " + t.getName());
+        
+        //Guardamos el resultado de la suma del array
+        res = sumarray.sumArray(a);
+        
+        //Mostramos por pantalla la suma del array
+        System.out.println("El total de la suma de "+ t.getName()+
+                " es: " + res);
+        
+        //Mostramos por pantalla la finalización del hilo
+        System.out.println("El hilo " + t.getName() + " ha terminado.");
     }
 }

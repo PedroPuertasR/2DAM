@@ -15,51 +15,68 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Hilo principal iniciando.");
         
-        MiHilo miHilo1 = MiHilo.crearYComenzar("#1");
-        MiHilo miHilo2 = MiHilo.crearYComenzar("#2");
-        MiHilo miHilo3 = MiHilo.crearYComenzar("#3");
+        //Indiciamos el inicio del hilo principal
+        System.out.println("Iniciando el hilo principal.");
         
-        for (int i = 0; i < 50; i++) {
-            System.out.print(".");
+        /*Instanciamos los objetos MiHilo con el método estático crearYComenzar,
+        * por lo que directamente el hilo empezará a funcionar a través del
+        * método start()
+        */
+        MiHilo primero = MiHilo.crearYComenzar("primero");
+        MiHilo segundo = MiHilo.crearYComenzar("segundo");
+        MiHilo tercero = MiHilo.crearYComenzar("tercero");
+        
+        for (int i = 0; i < 10; i++) {
             try {
-            Thread.sleep(100);
-            } catch (InterruptedException exc) {
-            System.out.println("Hilo principal interrumpido.");
+            Thread.sleep(1000);
+            } catch (InterruptedException e) {
+            System.out.println("El hilo principal ha fallado.");
             }
         }
         
-        System.out.println("Hilo principal finalizado");
+        //Indicamos el fin del hilo
+        System.out.println("El hilo principal ha finalizado.");
     }
     
 }
 
 class MiHilo implements Runnable{
-    private Thread hilo;
+    
+    //Creamos el atributo Thread puesto que estamos utilizando la interfaz Runnable
+    private Thread t;
     
     public MiHilo(String nombre){
-        hilo= new Thread(this,nombre);
+        t = new Thread(this, nombre);
     }
     
+    /* Con este método estático instanciaremos el hilo con su nombre y 
+    * lo iniciaremos inmediatamente
+    */
     public static MiHilo crearYComenzar (String nombre){
         MiHilo miHilo=new MiHilo(nombre);
-        miHilo.hilo.start();
+        miHilo.t.start();
         return miHilo;
     }
     
     public void run(){
-        System.out.println(hilo.getName()+" iniciando.");
+        //Indicamos el inicio del hilo
+        System.out.println("Iniciamos el hilo " + t.getName());
+        
         try {
+            /*Como anteriormente iremos contando cada 1 segundo donde se
+            * encuentra el hilo
+            */
             for (int i = 0; i < 10; i++){
-                Thread.sleep(400);
-                System.out.println("En "+hilo.getName()+ ", el recuento es "+i);
+                Thread.sleep(1000);
+                System.out.println("En el hilo " + t.getName() + ", contador = " + i);
             }
         }catch (InterruptedException e){
-            System.out.println(hilo.getName()+ " interrumpudo.");
+            System.out.println("Fallo del hilo: " + t.getName());
         }
         
-        System.out.println(hilo.getName()+" terminado.");
+        //Indicamos el final del hilo
+        System.out.println("Final del hilo: " + t.getName());
         
     }
  }

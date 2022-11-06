@@ -15,45 +15,58 @@ public class Principal{
      */
     public static void main(String[] args) {
         
-        System.out.println("Iniciando hilo principal.");
+        System.out.println("Iniciando el hilo principal.");
         
         MiHilo primero = new MiHilo("primero");
         
-        Thread t = new Thread(primero);
+        /*Como esta vez extendemos de Thread podemos iniciar el hilo 
+        * directamente desde nuestro objeto MiHilo
+        */
+        primero.start();
         
-        t.start();
-        
-        for (int i=0;i < 50; i++){            
+        for (int i = 0; i < 10; i++){            
             try {
-                Thread.sleep(100);
-            }catch (InterruptedException exc) {
-                System.out.println("Hilo principal interrumpido");
+                Thread.sleep(1000);
+            }catch (InterruptedException e) {
+                System.out.println("El hilo principal ha fallado.");
             }
         }
         
-        System.out.println("Hilo principal finalizado");
+        System.out.println("El hilo principal ha finalizado.");
         
     }
 }
 
 class MiHilo extends Thread{
     
+    /* Esta vez utilizaremos la extenderemos de la clase Thread, por lo que
+    * no necesitamos crear atributos, puesto que están en la clase madre
+    */
     public MiHilo(String nombre){
         super(nombre);
     }
 
     @Override
     public void run(){
-        System.out.println(getName()+" iniciando.");
+        
+        /*Indicamos el inicio y mostramos el nombre del hilo 
+        *con el método getName()
+        */
+        System.out.println("Iniciamos el hilo " + getName());
     
     try {
-        for (int cont=0;cont<10;cont++){
-            Thread.sleep(400);
-            System.out.println("En " + getName() + ", el recuento es "+cont);
+        /* Realizamos de nuevo el contador con nuestro hilo pausándolo cada
+        * 1 segundo e indicando el número por el que vamos
+        */
+        for (int i = 0; i < 10; i++){
+            Thread.sleep(1000);
+            System.out.println("En el hilo " + getName() + ", contador = " + i);
         }
     }catch (InterruptedException e){
-        System.out.println(getName()+ "interrumpido.");
+        System.out.println("Fallo del hilo: " + getName());
     }
-        System.out.println(getName()+ "finalizando.");
+    
+        //Indicamos la finalización del hilo
+        System.out.println("Final del hilo: " + getName());
     }
 }

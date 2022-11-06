@@ -18,10 +18,13 @@ public class Principal{
 
         System.out.println("Comienzo del hilo principal.");
         
+        //Instanciamos una variable MiHilo con el nombre de este
         MiHilo primero = new MiHilo("primero");
         
+        //Instaciamos un objeto Thread e incluimos nuestra variable "primero"
         Thread t = new Thread(primero);
         
+        //Iniciamos el hilo
         t.start();
         
         try{
@@ -30,12 +33,14 @@ public class Principal{
             System.out.println("El hilo principal ha tenido un error.");
         }
         
+        //Indicamos la finalización del hilo principal
         System.out.println("El hilo principal ha terminado.");
     }
 }
 
 class MiHilo implements Runnable {
     
+    //Creamos un constructor con el nombre del hilo
     String nombre;
     
     public MiHilo(String nombre){
@@ -47,9 +52,14 @@ class MiHilo implements Runnable {
     @Override
     public void run(){
         
+        //Una vez se ejecute el run() comenzará el hilo
         System.out.println("Inicio del hilo "+ nombre);
         
         try {
+            /*En este bucle pararemos momentaneamente el hilo durante un segundo
+            * y cada vez que se reactive mostraremos el nombre del hilo y el
+            * contador
+            */
             for (int i = 0; i < 10; i++){
                 Thread.sleep(1000);
                 System.out.println("En el hilo " + nombre + ", contador = "+ i);
@@ -58,6 +68,7 @@ class MiHilo implements Runnable {
             System.out.println("Fallo del hilo: " + nombre);
         }
         
+        //Indicamos el final del hilo
         System.out.println("Final del hilo: " + nombre);
         
     }

@@ -9,90 +9,119 @@ package ejercicio8_2;
  *
  * @author pedro
  */
-public class Principal {
+class Principal {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
+
+        //Instanciamos el objeto TicTac y los hilos
+        TicTac tt = new TicTac();
         
-        TicTac tt=new TicTac();
-        MiNHilo mh1=MiNHilo.crearEIniciar("Tic",tt);
-        MiNHilo mh2=MiNHilo.crearEIniciar("Tac",tt);
+        MiHilo mh1 = MiHilo.crearYComenzar("Tic", tt);
+        MiHilo mh2 = MiHilo.crearYComenzar("Tac", tt);
         
+        /* Realizamos los join para que un hilo comience cuando "muera" el 
+        * anterior
+        */
         try {
-            mh1.hilo.join();
-            mh2.hilo.join();
-        }catch (InterruptedException exc){
+            mh1.t.join();
+            mh2.t.join();
+        } catch (InterruptedException exc) {
             System.out.println("Hilo principal interrumpido.");
         }
-    }  
+    }
 }
 
 class TicTac{
+
+    //En este atributo almacenaremos el estado del reloj
     String estado;
-    
-    synchronized void tic(boolean corriendo){
-        if (!corriendo){//Detiene el reloj
-            estado="ticmarcado";
+
+    /* Con este método synchronized bloquearemos el objeto hasta que termine de
+    * ejecutarse. En este caso hasta que no se nos devuelva un tac no continuará
+    */
+    synchronized void tic(boolean corriendo) {
+        //Detiene el reloj y cambia el estado a tichecho
+        if (!corriendo) {
+            estado = "tichecho";
+            //Se lo notifica a los demás hilos
+            notify();
             return;
         }
-
+        
         System.out.print("Tic ");
-        estado="ticmarcado";
-
+        //Marcaremos el tichecho y lo notificaremos a los demás hilos
+        estado = "tichecho";
+        notify();
+        
         try {
-            while (!estado.equals("tacmarcado")){
+            //Mientras que el tac no esté hecho este proceso esperará
+            while (!estado.equals("tachecho")) {
                 wait();
             }
-        }catch (InterruptedException exc){
+        } catch (InterruptedException e) {
             System.out.println("Hilo interrumpido.");
         }
     }
 
-    synchronized void tac(boolean corriendo){
-        if (!corriendo){
-            estado="tacmarcado";
+    /* Con este método synchronized bloquearemos el objeto hasta que termine de
+    * ejecutarse. En este caso hasta que no se nos devuelva un tic no continuará
+    */
+    synchronized void tac(boolean corriendo) {
+        //Detiene el reloj y cambia el estado a tachecho
+        if (!corriendo) {
+            estado = "tachecho";
+            //Se lo notifica a los demás hilos
             notify();
             return;
         }
         
         System.out.println("Tac");
-        estado="tacmarcado";
+        //Marcaremos el tachecho y lo notificaremos a los demás hilos
+        estado = "tachecho";
         notify();
         
         try {
-            while (!estado.equals("ticmarcado")){
+            //Mientras que el tic no esté hecho este proceso esperará
+            while (!estado.equals("tichecho")) {
                 wait();
             }
-        }catch (InterruptedException exc){
+        } catch (InterruptedException exc) {
             System.out.println("Hilo interrumpido.");
         }
     }
 }
 
-class MiNHilo implements Runnable{
-    Thread hilo;
-    TicTac ttob;
-    
-    public MiNHilo(String nombre, TicTac tt){
-        hilo=new Thread(this,nombre);
-        ttob=tt;
+class MiHilo implements Runnable {
+
+    Thread t;
+    TicTac ttA;
+
+    //Constructor en el que instanciamos el hilo y el objeto TicTac
+    MiHilo(String nombre, TicTac tt) {
+        t = new Thread(this, nombre);
+        ttA = tt;
     }
-    
-    public static MiNHilo crearEIniciar(String nombre, TicTac tt){
-        MiNHilo miNHilo=new MiNHilo(nombre,tt);
-        
-        miNHilo.hilo.start();
-        return miNHilo;
+
+    //Método reutilizado en el que instanciamos e inicializamos el hilo
+    public static MiHilo crearYComenzar(String nombre, TicTac tt) {
+        MiHilo mh = new MiHilo(nombre, tt);
+        mh.t.start();
+        return mh;
     }
-    public void run(){
-        if (hilo.getName().compareTo("Tic")==0){
-            for (int i=0; i<5; i++) ttob.tic(true);
-            ttob.tic(false);
-        }else {
-            for (int i=0; i<5;i++) ttob.tac(true);
-            ttob.tac(false);
+
+    public void run() {
+        //En caso de que el nombre del hilo sea Tic realizaremos un tic
+        if (t.getName().compareTo("Tic") == 0) {
+            for (int i = 0; i < 5; i++) {
+                ttA.tic(true);
+            }
+            ttA.tic(false);
+        //En caso contrario realizaremos un tac
+        } else {
+            for (int i = 0; i < 5; i++) {
+                ttA.tac(true);
+            }
+            ttA.tac(false);
         }
     }
 }
