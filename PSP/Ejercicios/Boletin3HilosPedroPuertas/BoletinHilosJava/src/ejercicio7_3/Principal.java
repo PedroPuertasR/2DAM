@@ -87,9 +87,9 @@ class MiHilo implements Runnable{
     
     //Método reutilizado para instanciar e iniciar el hilo
     public static MiHilo crearYComenzar (String nombre,int nums[]){
-        MiHilo miHilo=new MiHilo(nombre,nums);
-        miHilo.t.start();
-        return miHilo;
+        MiHilo mh = new MiHilo(nombre,nums);
+        mh.t.start();
+        return mh;
     }
  
     public void run(){

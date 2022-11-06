@@ -62,9 +62,9 @@ class MiHilo implements Runnable{
     * lo iniciaremos inmediatamente
     */
     public static MiHilo crearYComenzar (String nombre){
-        MiHilo miHilo = new MiHilo(nombre);
-        miHilo.t.start();
-        return miHilo;
+        MiHilo mh = new MiHilo(nombre);
+        mh.t.start();
+        return mh;
     }
     
     public void run(){

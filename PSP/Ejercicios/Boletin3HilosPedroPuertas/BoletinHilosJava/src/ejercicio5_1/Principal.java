@@ -57,9 +57,9 @@ class MiHilo extends Thread{
     */
     public static MiHilo crearYComenzar (String nombre){
         
-        MiHilo miHilo=new MiHilo(nombre);
-        miHilo.start();
-        return miHilo;
+        MiHilo mh = new MiHilo(nombre);
+        mh.start();
+        return mh;
     }
     
     public void run(){
