@@ -1,0 +1,27 @@
+Crear el usuario biblio/biblio y su BDs desde la consola MySQL
+
+			https://www.a2hosting.es/kb/developer-corner/mysql/managing-mysql-databases-and-users-from-the-command-line
+
+	mysql -u root -p		(pass Admin2015)
+	Creo usuario Adminsitrador
+	GRANT ALL PRIVILEGES ON *.* TO 'biblio'@'localhost' IDENTIFIED BY 'biblio';
+	GRANT SELECT ON *.* TO 'biblio'@'localhost';
+	\q
+
+En usuario "biblio" crea la BDs. Dos forma posibles:
+    a) Con un fichero sql (biblioteca.sql):
+        mysql -u biblio -p < biblioteca.sql         (pass biblio)
+        mysql -u biblio -p -A       (Entramos como "biblio")
+            use biblioteca;
+            select ....
+            ...
+            \q
+
+    b) Copiando y pegando el contenido del fichero sql (biblioteca.sql):
+        mysql -u biblio -p		(pass biblio)
+            "copy paste"
+            select ....
+            ...
+            \q
+
+Si está instalado PhpMyAdmin, ahora es accesible desde la Web para el usuario "biblio" y su base de datos "biblioteca".

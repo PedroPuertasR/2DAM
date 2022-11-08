@@ -1,0 +1,29 @@
+# Descargar:
+docker pull linode/lamp
+
+# Ver todas las imágenes:
+docker image ls -a
+docker images -a
+
+# Borrar imagen (una por nombre / una por ID / todas):
+docker rmi nombreImagen
+docker rmi agkw56233fx1
+docker rmi $(docker images -a -q)
+
+# Arrancar un contendor:
+docker run -p 80:80 -t -i linode/lamp /bin/bash
+
+# Ver contenedores (en ejecución / todos / solo el ID de todos) ;
+docker ps
+docker ps -a
+docker ps -a -q
+
+# Parar contenedores por ID:
+docker stop f8306b233fe1
+
+Borrar contenedores (uno por ID / todos):
+docker rm -f f8306b233fe1
+docker rm -f $(docker ps -a -q
+
+# Arrancar con un volumen:
+docker run -v $(pwd)/public_html:/var/www/example.com/public_html  -p 80:80 -t -i linode/lamp /bin/bash
