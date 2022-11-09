@@ -45,7 +45,7 @@ public class Principal {
             esc.close();
             
             //Instanciamos el ProcessBuilder con el comando especificado
-            pb = new ProcessBuilder(comando);
+            pb = new ProcessBuilder("bash");
         
             //Redireccionamos el input, output y error a sus respectivos archivos
             pb.redirectInput(bat);
