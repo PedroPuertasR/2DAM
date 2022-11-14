@@ -5,6 +5,8 @@
  */
 package vista;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author alumno
@@ -178,6 +180,11 @@ public class Gestor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_itemInfoActionPerformed
 
+    public void visualizar(JPanel panel){
+        this.setContentPane(panel);
+        pack();
+    }
+    
     /**
      * @param args the command line arguments
      */

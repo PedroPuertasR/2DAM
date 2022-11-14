@@ -43,7 +43,7 @@ INSERT INTO libro VALUES(1, 'Joe Abercrombie', 'Tierras Rojas', 1, '978849181068
 INSERT INTO libro VALUES(2, 'Kameron Hurley', 'Las estrellas son legion', 1, '9788491048411', '11/23/2017', 18.95, 2, 3);
 INSERT INTO libro VALUES(3, 'Brandon Sanderson', 'El imperio final', 2, '9788418037214', '08/07/2021', 29.90, 1, 3);
 INSERT INTO libro VALUES(4, 'Harold Sakuishi', 'Beck 1', 2, '9788419412430', '01/12/2022', 15.95, 3, 1);
-INSERT INTO libro VALUES(5, 'Todd McFarlane', 'Spawn Integral nº 10', 3, '9788411120227', ' 2022/06/22', 50.0, 3, 1);
+INSERT INTO libro VALUES(5, 'Todd McFarlane', 'Spawn Integral nº 10', 3, '9788411120227', '06/22/2022', 50.0, 3, 1);
 INSERT INTO libro VALUES(6, 'Villanelli', 'Star Wars Vader: Visiones Oscuras', 3, '9788413411811', '09/06/2020', 16.95, 3, 1);
 INSERT INTO libro VALUES(7, 'Joyce Carol Oates', 'Babysitter', 4, '9788420463087', '06/10/2022', 21.90, 2, 2);
 INSERT INTO libro VALUES(8, 'Javier Marias', 'Los dominios del lobo', 4, '9788420460338', '09/09/2021', 18.90, 4, 2);
