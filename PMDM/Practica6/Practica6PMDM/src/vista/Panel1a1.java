@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.MoverController;
 import javax.swing.JMenu;
 
 /**
@@ -18,8 +19,39 @@ public class Panel1a1 extends javax.swing.JPanel {
      */
     public Panel1a1() {
         initComponents();
+        
+        MoverController.iniciar("SELECT * FROM EDITORIAL");
+        //cargarDatos();
+        updateBotones();
+        
+    }
+    
+    public void updateBotones(){
+        if(MoverController.irPrimero()){
+            btnAnterior.setEnabled(false);
+            btnPrimero.setEnabled(true);
+        }else{
+            btnAnterior.setEnabled(true);
+            btnPrimero.setEnabled(true);
+        }
+        
+        if(MoverController.irUltimo()){
+            btnSiguiente.setEnabled(false);
+            btnUltimo.setEnabled(false);
+        }else{
+            btnSiguiente.setEnabled(true);
+            btnSiguiente.setEnabled(true);
+        }
     }
 
+//    public void cargarDatos(){
+//        mostrarAsig(MoverController.getAsignatura());
+//        updateBotones();
+//        tfProfesor.setEnabled(false);
+//        tfCodigo.setEnabled(false);
+//        tfNombre.setEnabled(false);
+//    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,19 +61,127 @@ public class Panel1a1 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnl1a1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList = new javax.swing.JList<>();
+        btnAnterior = new javax.swing.JButton();
+        btnSiguiente = new javax.swing.JButton();
+        btnPrimero = new javax.swing.JButton();
+        btnUltimo = new javax.swing.JButton();
+        lblId = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        lblCif = new javax.swing.JLabel();
+        tfId = new javax.swing.JTextField();
+        tfNombre = new javax.swing.JTextField();
+        tfCif = new javax.swing.JTextField();
+
+        jList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList);
+
+        btnAnterior.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        btnAnterior.setText("←");
+
+        btnSiguiente.setText("→");
+
+        btnPrimero.setText("|<");
+
+        btnUltimo.setText(">|");
+
+        lblId.setText("ID Editorial:");
+
+        lblNombre.setText("Nombre:");
+
+        lblCif.setText("CIF:");
+
+        javax.swing.GroupLayout pnl1a1Layout = new javax.swing.GroupLayout(pnl1a1);
+        pnl1a1.setLayout(pnl1a1Layout);
+        pnl1a1Layout.setHorizontalGroup(
+            pnl1a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl1a1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl1a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblCif)
+                    .addComponent(lblId)
+                    .addComponent(lblNombre)
+                    .addGroup(pnl1a1Layout.createSequentialGroup()
+                        .addComponent(btnPrimero)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAnterior)))
+                .addGroup(pnl1a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl1a1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSiguiente)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnUltimo)
+                        .addContainerGap())
+                    .addGroup(pnl1a1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(pnl1a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfId, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                            .addComponent(tfNombre)
+                            .addComponent(tfCif))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(pnl1a1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+        pnl1a1Layout.setVerticalGroup(
+            pnl1a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl1a1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addGroup(pnl1a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblId)
+                    .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(pnl1a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNombre)
+                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnl1a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCif)
+                    .addComponent(tfCif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(pnl1a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAnterior)
+                    .addComponent(btnSiguiente)
+                    .addComponent(btnPrimero)
+                    .addComponent(btnUltimo))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(pnl1a1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(pnl1a1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAnterior;
+    private javax.swing.JButton btnPrimero;
+    private javax.swing.JButton btnSiguiente;
+    private javax.swing.JButton btnUltimo;
+    private javax.swing.JList<String> jList;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCif;
+    private javax.swing.JLabel lblId;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JPanel pnl1a1;
+    private javax.swing.JTextField tfCif;
+    private javax.swing.JTextField tfId;
+    private javax.swing.JTextField tfNombre;
     // End of variables declaration//GEN-END:variables
 }
