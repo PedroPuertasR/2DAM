@@ -5,16 +5,34 @@
  */
 package vista;
 
+import controlador.LoginController;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import modelo.Trabajador;
+
 /**
  *
  * @author alumno
  */
 public class PanelLogin extends javax.swing.JPanel {
 
+    private JMenu vista;
+    private JMenu otro;
+    private JMenu acercaDe;
+    private JMenuItem abrir;
+    private JMenuItem cerrar;
+    
     /**
      * Creates new form PanelLogin
      */
-    public PanelLogin() {
+    public PanelLogin(JMenu vista, JMenu otro, JMenu acercaDe, JMenuItem abrir, JMenuItem cerrar) {
+        
+        this.vista = vista;
+        this.otro = otro;
+        this.acercaDe = acercaDe;
+        this.abrir = abrir;
+        this.cerrar = cerrar;
+        
         initComponents();
     }
 
@@ -93,9 +111,27 @@ public class PanelLogin extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void comprobarConexion(Trabajador aux) {
+        if(aux != null){
+            this.setVisible(false);
+            vista.setEnabled(true);
+            otro.setEnabled(true);
+            acercaDe.setEnabled(true);
+            abrir.setEnabled(false);
+            cerrar.setEnabled(true);
+        }else{
+            
+        }
+    }
+    
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         
+        String usuario = tfUsuario.getText();
+        String pass = tfPass.getText();
         
+        Trabajador aux = LoginController.getConexion(usuario, pass);
+        
+        comprobarConexion(aux);
         
     }//GEN-LAST:event_btnLoginActionPerformed
 

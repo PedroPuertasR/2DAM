@@ -16,6 +16,9 @@ public class Gestor extends javax.swing.JFrame {
     private Panel1a1 pnl1a1;
     private PanelLogin pnlAcceder;
     private PanelTable pnlTable;
+    private PanelAcercaDe pnlAcerca;
+    private PanelTienda pnlTienda;
+    private PanelLibro pnlLibro;
     
     /**
      * Creates new form Gestor
@@ -24,6 +27,9 @@ public class Gestor extends javax.swing.JFrame {
         pnl1a1 = null;
         pnlAcceder = null;
         pnlTable = null;
+        pnlAcerca = null;
+        pnlTienda = null;
+        pnlLibro = null;
         
         initComponents();
     }
@@ -42,15 +48,14 @@ public class Gestor extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jMenu = new javax.swing.JMenuBar();
         menuLogin = new javax.swing.JMenu();
+        itemAbrir = new javax.swing.JMenuItem();
         itemCerrar = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
         menuVista = new javax.swing.JMenu();
         item1a1 = new javax.swing.JMenuItem();
         itemTable = new javax.swing.JMenuItem();
         itemUsuario = new javax.swing.JMenuItem();
-        itemAltaLibro = new javax.swing.JMenuItem();
-        itemBajaLibro = new javax.swing.JMenuItem();
-        itemPresup = new javax.swing.JMenuItem();
+        itemLibro = new javax.swing.JMenuItem();
+        itemTienda = new javax.swing.JMenuItem();
         menuOtro = new javax.swing.JMenu();
         itemModPerfil = new javax.swing.JMenuItem();
         menuAcercaDe = new javax.swing.JMenu();
@@ -89,22 +94,33 @@ public class Gestor extends javax.swing.JFrame {
 
         menuLogin.setText("Login");
 
-        itemCerrar.setText("Abrir");
+        itemAbrir.setText("Abrir");
+        itemAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemAbrirActionPerformed(evt);
+            }
+        });
+        menuLogin.add(itemAbrir);
+
+        itemCerrar.setText("Cerrar");
         itemCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemCerrarActionPerformed(evt);
             }
         });
         menuLogin.add(itemCerrar);
-
-        jMenuItem1.setText("Cerrar");
-        menuLogin.add(jMenuItem1);
+        itemCerrar.setEnabled(false);
 
         jMenu.add(menuLogin);
 
         menuVista.setText("Vista");
 
         item1a1.setText("1 a 1");
+        item1a1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                item1a1ActionPerformed(evt);
+            }
+        });
         menuVista.add(item1a1);
 
         itemTable.setText("Table");
@@ -113,16 +129,14 @@ public class Gestor extends javax.swing.JFrame {
         itemUsuario.setText("Usuario");
         menuVista.add(itemUsuario);
 
-        itemAltaLibro.setText("Alta libro");
-        menuVista.add(itemAltaLibro);
+        itemLibro.setText("Libro");
+        menuVista.add(itemLibro);
 
-        itemBajaLibro.setText("Baja libro");
-        menuVista.add(itemBajaLibro);
-
-        itemPresup.setText("Tienda");
-        menuVista.add(itemPresup);
+        itemTienda.setText("Tienda");
+        menuVista.add(itemTienda);
 
         jMenu.add(menuVista);
+        menuVista.setEnabled(false);
 
         menuOtro.setText("Otro");
 
@@ -130,13 +144,9 @@ public class Gestor extends javax.swing.JFrame {
         menuOtro.add(itemModPerfil);
 
         jMenu.add(menuOtro);
+        menuOtro.setEnabled(false);
 
         menuAcercaDe.setText("Acerca de");
-        menuAcercaDe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuAcercaDeActionPerformed(evt);
-            }
-        });
 
         itemInfo.setText("Info");
         itemInfo.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +157,7 @@ public class Gestor extends javax.swing.JFrame {
         menuAcercaDe.add(itemInfo);
 
         jMenu.add(menuAcercaDe);
+        menuAcercaDe.setEnabled(false);
 
         setJMenuBar(jMenu);
 
@@ -164,21 +175,36 @@ public class Gestor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAcercaDeActionPerformed
+    private void itemAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAbrirActionPerformed
         
+        pnlAcceder = new PanelLogin(menuVista, menuOtro, menuAcercaDe, itemAbrir, itemCerrar);
+        visualizar(pnlAcceder);
         
-        
-    }//GEN-LAST:event_menuAcercaDeActionPerformed
-
-    private void itemCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCerrarActionPerformed
-        
-        
-        
-    }//GEN-LAST:event_itemCerrarActionPerformed
+    }//GEN-LAST:event_itemAbrirActionPerformed
 
     private void itemInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemInfoActionPerformed
-        // TODO add your handling code here:
+       
+        pnlAcerca = new PanelAcercaDe();
+        visualizar(pnlAcerca);
+        
     }//GEN-LAST:event_itemInfoActionPerformed
+
+    private void item1a1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item1a1ActionPerformed
+        
+        pnl1a1 = new Panel1a1();
+        visualizar(pnl1a1);
+        
+    }//GEN-LAST:event_item1a1ActionPerformed
+
+    private void itemCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCerrarActionPerformed
+        menuVista.setEnabled(false);
+        menuAcercaDe.setEnabled(false);
+        menuOtro.setEnabled(false);
+        itemCerrar.setEnabled(false);
+        itemAbrir.setEnabled(true);
+        
+        visualizar(jPanelPrincipal);
+    }//GEN-LAST:event_itemCerrarActionPerformed
 
     public void visualizar(JPanel panel){
         this.setContentPane(panel);
@@ -222,18 +248,17 @@ public class Gestor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem item1a1;
-    private javax.swing.JMenuItem itemAltaLibro;
-    private javax.swing.JMenuItem itemBajaLibro;
+    private javax.swing.JMenuItem itemAbrir;
     private javax.swing.JMenuItem itemCerrar;
     private javax.swing.JMenuItem itemInfo;
+    private javax.swing.JMenuItem itemLibro;
     private javax.swing.JMenuItem itemModPerfil;
-    private javax.swing.JMenuItem itemPresup;
     private javax.swing.JMenuItem itemTable;
+    private javax.swing.JMenuItem itemTienda;
     private javax.swing.JMenuItem itemUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenu;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanelPrincipal;
     private javax.swing.JMenu menuAcercaDe;
     private javax.swing.JMenu menuLogin;
