@@ -67,12 +67,12 @@ class MayusculasPadre{
                 //Realizamos lecturas hasta que esta sea nula
                 lectura = entrada.nextLine();   
                
-                if( lectura != null){
+                if(lectura != null){
                     //Con este método llamamos a la clase Mayusculas
                     llamada(lectura);
                 }
             }
-            while(!lectura.isBlank());
+            while(lectura != null);
            
             System.out.println("Proceso finalizado");       
         }
@@ -87,7 +87,7 @@ class MayusculasPadre{
         try {
             /*En este proceso ejecutamos un .jar de la clase Mayusculas
              para realizar la conversión de la lectura*/
-            Process p = Runtime.getRuntime().exec("java -jar mayusculas.jar");
+            Process p = Runtime.getRuntime().exec("java -jar Jars/mayusculas.jar");
             OutputStream os = p.getOutputStream ();
             InputStream is = p.getInputStream ();
             
@@ -104,7 +104,7 @@ class MayusculasPadre{
             String linea = reader.readLine();
             
             //Indicamos que mientras la lectura no este vacia continuamos leyendo
-            if(!linea.isBlank()){
+            if(linea != null){
                 System.out.println(linea);
             }
         } catch (IOException ex) {
