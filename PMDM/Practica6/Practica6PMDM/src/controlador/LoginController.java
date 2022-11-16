@@ -31,7 +31,7 @@ public class LoginController {
             con = GestionDB.getConnection();
             
             PreparedStatement ps = con.prepareStatement("SELECT * "
-            + "FROM TRABAJADOR WHERE USUARIO = '?' AND PASS = '?'");
+            + "FROM TRABAJADOR WHERE USUARIO = ? AND PASS = ?");
             
             ps.setString(1, usuario);
             ps.setString(2, pass);
@@ -40,16 +40,17 @@ public class LoginController {
             
             rs.next();
             
-            aux = new Trabajador(rs.getInt(0),
-                                 rs.getString(1),
-                                 rs.getString(2), rs.getString(3), 
-                                 Herramienta.dateToGregorianCalendar(rs.getDate(4)),
-                                 rs.getFloat(5), 
-                                 rs.getInt(6), 
+            aux = new Trabajador(rs.getInt(1),
+                                 rs.getString(2),
+                                 rs.getString(3), 
+                                 rs.getString(4), 
+                                 Herramienta.dateToGregorianCalendar(rs.getDate(5)),
+                                 rs.getFloat(6), 
                                  rs.getInt(7), 
-                                 rs.getString(8),
-                                 rs.getString(9), 
-                                 rs.getString(10));
+                                 rs.getInt(8), 
+                                 rs.getString(9),
+                                 rs.getString(10), 
+                                 rs.getString(11));
             
         }catch(SQLException sql){
             JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
@@ -60,6 +61,10 @@ public class LoginController {
         JOptionPane.showMessageDialog(null, "Logueado como " + aux.getNombre());
         return aux;
         
+    }
+    
+    public static Trabajador getTrabajador(){
+        return aux;
     }
     
 }

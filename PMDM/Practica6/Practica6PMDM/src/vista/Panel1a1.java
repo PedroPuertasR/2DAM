@@ -6,7 +6,11 @@
 package vista;
 
 import controlador.MoverController;
-import javax.swing.JMenu;
+import controlador.TablaController;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import modelo.Editorial;
+import modelo.Libro;
 
 /**
  *
@@ -21,7 +25,7 @@ public class Panel1a1 extends javax.swing.JPanel {
         initComponents();
         
         MoverController.iniciar("SELECT * FROM EDITORIAL");
-        //cargarDatos();
+        cargarDatos();
         updateBotones();
         
     }
@@ -44,13 +48,33 @@ public class Panel1a1 extends javax.swing.JPanel {
         }
     }
 
-//    public void cargarDatos(){
-//        mostrarAsig(MoverController.getAsignatura());
-//        updateBotones();
-//        tfProfesor.setEnabled(false);
-//        tfCodigo.setEnabled(false);
-//        tfNombre.setEnabled(false);
-//    }
+    public void cargarDatos(){
+        mostrarEdi(MoverController.getEdi());
+        rellenarJList();
+        updateBotones();
+        tfId.setEnabled(false);
+        tfNombre.setEnabled(false);
+        tfCif.setEnabled(false);
+    }
+    
+    public void mostrarEdi(Editorial e){
+        tfId.setText("" + e.getId());
+        tfNombre.setText(e.getNombre());
+        tfCif.setText(e.getCif());
+        rellenarJList();
+    }
+    
+    public void rellenarJList(){
+        ArrayList<Libro> lista = TablaController.getLista("SELECT * FROM LIBRO "
+                + "WHERE ID_EDITORIAL = " + MoverController.getEdi().getId());
+        
+        DefaultListModel model = new DefaultListModel();
+         
+        for (int i = 0; i < lista.size(); i++) {
+            model.addElement(lista.get(i).infoLibro());
+        }
+        this.jList.setModel(model);
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -84,12 +108,32 @@ public class Panel1a1 extends javax.swing.JPanel {
 
         btnAnterior.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnAnterior.setText("←");
+        btnAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnteriorActionPerformed(evt);
+            }
+        });
 
         btnSiguiente.setText("→");
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguienteActionPerformed(evt);
+            }
+        });
 
         btnPrimero.setText("|<");
+        btnPrimero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrimeroActionPerformed(evt);
+            }
+        });
 
         btnUltimo.setText(">|");
+        btnUltimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUltimoActionPerformed(evt);
+            }
+        });
 
         lblId.setText("ID Editorial:");
 
@@ -167,6 +211,38 @@ public class Panel1a1 extends javax.swing.JPanel {
             .addComponent(pnl1a1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        
+        MoverController.avanzar();
+        mostrarEdi(MoverController.getEdi());
+        updateBotones();
+        
+    }//GEN-LAST:event_btnSiguienteActionPerformed
+
+    private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
+        
+        MoverController.retroceder();
+        mostrarEdi(MoverController.getEdi());
+        updateBotones();
+        
+    }//GEN-LAST:event_btnAnteriorActionPerformed
+
+    private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
+        
+        MoverController.irUltimo();
+        mostrarEdi(MoverController.getEdi());
+        updateBotones();
+        
+    }//GEN-LAST:event_btnUltimoActionPerformed
+
+    private void btnPrimeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeroActionPerformed
+        
+        MoverController.irPrimero();
+        mostrarEdi(MoverController.getEdi());
+        updateBotones();
+        
+    }//GEN-LAST:event_btnPrimeroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

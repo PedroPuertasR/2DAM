@@ -115,4 +115,14 @@ public class Libro {
         return "Libro{" + "id=" + id + ", nombre=" + nombre + ", editorial=" + editorial + ", isbn=" + isbn + ", fechaPub=" + fechaPub + ", precio=" + precio + ", categoria=" + categoria + ", tienda=" + tienda + '}';
     }
     
+    public String infoLibro(){
+        return nombre + ", " + autor + ", " + isbn;
+    }
+    
+    public String [] getAtributos(){
+        String [] aux = {};
+        
+        return aux;
+    }
+    
 }

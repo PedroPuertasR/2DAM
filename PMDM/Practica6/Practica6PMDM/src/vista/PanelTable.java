@@ -5,6 +5,19 @@
  */
 package vista;
 
+import controlador.Herramienta;
+import controlador.LoginController;
+import controlador.TablaController;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
+import modelo.Categoria;
+import modelo.Editorial;
+import modelo.Libro;
+import modelo.Tienda;
+
 /**
  *
  * @author alumno
@@ -16,6 +29,9 @@ public class PanelTable extends javax.swing.JPanel {
      */
     public PanelTable() {
         initComponents();
+        
+        rellenarJTable(TablaController.getTienda("SELECT * FROM TIENDA WHERE ID = " 
+                                                 + LoginController.getTrabajador().getTienda()));
     }
 
     /**
@@ -27,19 +43,92 @@ public class PanelTable extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlTable = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable = new javax.swing.JTable();
+
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable);
+
+        javax.swing.GroupLayout pnlTableLayout = new javax.swing.GroupLayout(pnlTable);
+        pnlTable.setLayout(pnlTableLayout);
+        pnlTableLayout.setHorizontalGroup(
+            pnlTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTableLayout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        pnlTableLayout.setVerticalGroup(
+            pnlTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTableLayout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(113, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(pnlTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(pnlTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void rellenarJTable(Tienda t){
+        
+        String d, e, c;
+        ArrayList <Libro> lista = TablaController.getLista("SELECT * FROM LIBRO WHERE ID_TIENDA = " 
+                                                           + t.getId());
+        
+        DefaultTableModel model = new DefaultTableModel();
+        
+        model.addColumn("Nombre");
+        model.addColumn("Autor");
+        model.addColumn("Editorial");
+        model.addColumn("ISBN");
+        model.addColumn("Fecha pub.");
+        model.addColumn("Precio");
+        model.addColumn("Categoría");
+        
+        for (int i = 0; i < lista.size(); i++) {
+            d = Herramienta.gregorianCalendarToString(lista.get(i).getFechaPub());
+            e = TablaController.getNomEdi("SELECT NOMBRE FROM EDITORIAL WHERE ID = " 
+                                          + lista.get(i).getEditorial());
+            c = TablaController.getNomCate("SELECT NOMBRE FROM CATEGORIA WHERE ID = "
+                                          + lista.get(i).getCategoria());
+            
+            model.addRow(new Object[]{lista.get(i).getNombre(),
+                                      lista.get(i).getAutor(),
+                                      lista.get(i).getEditorial(),
+                                      lista.get(i).getIsbn(),
+                                      d,
+                                      lista.get(i).getPrecio(),
+                                      c});
+        }
+        
+        this.jTable.setModel(model);
+        
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable;
+    private javax.swing.JPanel pnlTable;
     // End of variables declaration//GEN-END:variables
 }

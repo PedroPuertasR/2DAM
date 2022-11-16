@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import modelo.Editorial;
 
 /**
  *
@@ -18,6 +19,18 @@ public class MoverController {
     
     private static Statement st = null;
     private static ResultSet rs = null;
+    
+    public static Editorial getEdi(){
+        Editorial aux = null;
+        try{
+            aux = new Editorial(rs.getInt(1),
+                                 rs.getString(2),
+                                 rs.getString(3));
+        }catch(SQLException e){
+            System.out.println("Fallo BBDD.");
+        }
+        return aux;
+    }
     
     public static void iniciar(String query){
         try {
