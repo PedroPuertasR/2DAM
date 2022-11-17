@@ -52,44 +52,19 @@ end;
 
 create or replace procedure menos_salario
 as
-    cursor c0 is select oficio from emple;
-
-    cursor c1 (vofi varchar2) is select *
+    cursor c0 is select oficio from emple group by oficio order by oficio;
+                            
+    cursor c1(vofi varchar2) is select *
                                 from (select apellido, oficio, salario
-                                    from emple
-                                    where oficio = vofi
-                                    order by oficio, salario)
+                                      from emple
+                                      where oficio = vofi
+                                      order by salario)
                                 where rownum <= 2;
-
-    vdat c1%rowtype;
-    voficio emple.oficio%type := '*';
-    cont number (4);
-
+                        
 begin
-
     for v0 in c0 loop
         for v1 in c1(v0.oficio) loop
-            
+            dbms_output.put_line('Oficio: ' || v1.oficio || ', Apellido: ' || v1.apellido || ', Salario: ' || v1.salario || '€');       
         end loop;
     end loop;
-
-    open c1;
-
-    fetch c1 into vdat;
-
-    while c1%found loop
-        if voficio <> vdat.oficio then
-            voficio := vdat.oficio;
-            cont := 0;
-        end if;
-
-        if cont < 2 then
-            dbms_output.put_line('Oficio: ' || vdat.oficio || '. Apellido: ' || vdat.apellido || '. Salario: '|| vdat.salario);
-            cont := cont + 1;  
-        end if;
-
-        fetch c1 into vdat;
-  
-    end loop;
-
 end;
