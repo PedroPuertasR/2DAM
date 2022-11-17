@@ -31,20 +31,20 @@ public class Panel1a1 extends javax.swing.JPanel {
     }
     
     public void updateBotones(){
-        if(MoverController.irPrimero()){
+        if(MoverController.primero()){
             btnAnterior.setEnabled(false);
-            btnPrimero.setEnabled(true);
+            btnPrimero.setEnabled(false);
         }else{
             btnAnterior.setEnabled(true);
             btnPrimero.setEnabled(true);
         }
         
-        if(MoverController.irUltimo()){
+        if(MoverController.ultimo()){
             btnSiguiente.setEnabled(false);
             btnUltimo.setEnabled(false);
         }else{
             btnSiguiente.setEnabled(true);
-            btnSiguiente.setEnabled(true);
+            btnUltimo.setEnabled(true);
         }
     }
 
@@ -165,9 +165,9 @@ public class Panel1a1 extends javax.swing.JPanel {
                     .addGroup(pnl1a1Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(pnl1a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfId, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                            .addComponent(tfNombre)
-                            .addComponent(tfCif))
+                            .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                            .addComponent(tfCif)
+                            .addComponent(tfId))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(pnl1a1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
@@ -178,8 +178,8 @@ public class Panel1a1 extends javax.swing.JPanel {
             pnl1a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl1a1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(pnl1a1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblId)
                     .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))

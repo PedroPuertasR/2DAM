@@ -64,43 +64,48 @@ public class PanelTable extends javax.swing.JPanel {
         pnlTable.setLayout(pnlTableLayout);
         pnlTableLayout.setHorizontalGroup(
             pnlTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTableLayout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
         );
         pnlTableLayout.setVerticalGroup(
             pnlTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTableLayout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     public void rellenarJTable(Tienda t){
         
         String d, e, c;
-        ArrayList <Libro> lista = TablaController.getLista("SELECT * FROM LIBRO WHERE ID_TIENDA = " 
-                                                           + t.getId());
+        ArrayList <Libro> lista;
+        
+        if(LoginController.getTrabajador().getIdJefe() == 0){
+            lista = TablaController.getLista("SELECT * FROM LIBRO");
+        }else{
+            lista = TablaController.getLista("SELECT * FROM LIBRO WHERE ID_TIENDA = " + t.getId());
+        }
         
         DefaultTableModel model = new DefaultTableModel();
         
         model.addColumn("Nombre");
         model.addColumn("Autor");
         model.addColumn("Editorial");
-        model.addColumn("ISBN");
         model.addColumn("Fecha pub.");
         model.addColumn("Precio");
         model.addColumn("Categoría");
@@ -114,8 +119,7 @@ public class PanelTable extends javax.swing.JPanel {
             
             model.addRow(new Object[]{lista.get(i).getNombre(),
                                       lista.get(i).getAutor(),
-                                      lista.get(i).getEditorial(),
-                                      lista.get(i).getIsbn(),
+                                      e,
                                       d,
                                       lista.get(i).getPrecio(),
                                       c});

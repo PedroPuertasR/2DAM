@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.GestionDB;
 import controlador.LoginController;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -125,6 +126,8 @@ public class PanelLogin extends javax.swing.JPanel {
     }
     
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        
+        GestionDB.open();
         
         String usuario = tfUsuario.getText();
         String pass = tfPass.getText();

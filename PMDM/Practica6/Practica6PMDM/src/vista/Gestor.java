@@ -19,6 +19,7 @@ public class Gestor extends javax.swing.JFrame {
     private PanelAcercaDe pnlAcerca;
     private PanelTienda pnlTienda;
     private PanelLibro pnlLibro;
+    private PanelTrabajador pnlUsuario;
     
     /**
      * Creates new form Gestor
@@ -30,6 +31,7 @@ public class Gestor extends javax.swing.JFrame {
         pnlAcerca = null;
         pnlTienda = null;
         pnlLibro = null;
+        pnlUsuario = null;
         
         initComponents();
     }
@@ -124,9 +126,19 @@ public class Gestor extends javax.swing.JFrame {
         menuVista.add(item1a1);
 
         itemTable.setText("Table");
+        itemTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemTableActionPerformed(evt);
+            }
+        });
         menuVista.add(itemTable);
 
         itemUsuario.setText("Usuario");
+        itemUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemUsuarioActionPerformed(evt);
+            }
+        });
         menuVista.add(itemUsuario);
 
         itemLibro.setText("Libro");
@@ -141,6 +153,11 @@ public class Gestor extends javax.swing.JFrame {
         menuOtro.setText("Otro");
 
         itemModPerfil.setText("Modificar perfil");
+        itemModPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemModPerfilActionPerformed(evt);
+            }
+        });
         menuOtro.add(itemModPerfil);
 
         jMenu.add(menuOtro);
@@ -205,6 +222,25 @@ public class Gestor extends javax.swing.JFrame {
         
         visualizar(jPanelPrincipal);
     }//GEN-LAST:event_itemCerrarActionPerformed
+
+    private void itemTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemTableActionPerformed
+        pnlTable = new PanelTable();
+        visualizar(pnlTable);
+    }//GEN-LAST:event_itemTableActionPerformed
+
+    private void itemUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemUsuarioActionPerformed
+        
+        pnlUsuario = new PanelTrabajador(false);
+        visualizar(pnlUsuario);
+        
+    }//GEN-LAST:event_itemUsuarioActionPerformed
+
+    private void itemModPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemModPerfilActionPerformed
+        
+        pnlUsuario = new PanelTrabajador(true);
+        visualizar(pnlUsuario);
+        
+    }//GEN-LAST:event_itemModPerfilActionPerformed
 
     public void visualizar(JPanel panel){
         this.setContentPane(panel);

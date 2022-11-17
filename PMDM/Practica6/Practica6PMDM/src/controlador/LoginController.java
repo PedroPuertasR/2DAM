@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import modelo.Trabajador;
 
@@ -18,21 +19,18 @@ import modelo.Trabajador;
  */
 public class LoginController {
     
-    private static Connection con = null;
     private static ResultSet rs = null;
     private static Trabajador aux = null;
+    private static Connection con = null;
+    private static PreparedStatement ps = null;
     
     public static Trabajador getConexion(String usuario, String pass){
         
         try{
-            
-            GestionDB.open();
-            
             con = GestionDB.getConnection();
             
-            PreparedStatement ps = con.prepareStatement("SELECT * "
-            + "FROM TRABAJADOR WHERE USUARIO = ? AND PASS = ?");
-            
+            ps = con.prepareStatement("SELECT * FROM TRABAJADOR "
+                                    + "WHERE USUARIO = ? AND PASS = ?");
             ps.setString(1, usuario);
             ps.setString(2, pass);
             
@@ -52,14 +50,19 @@ public class LoginController {
                                  rs.getString(10), 
                                  rs.getString(11));
             
+            rs.close();
+            ps.close();
+            
+            JOptionPane.showMessageDialog(null, "Logueado como " + aux.getNombre());
+            return aux;
+            
         }catch(SQLException sql){
             JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
+            return null;
         }catch(NullPointerException ne){
             JOptionPane.showMessageDialog(null, "Error lista");
+            return null;
         }
-        
-        JOptionPane.showMessageDialog(null, "Logueado como " + aux.getNombre());
-        return aux;
         
     }
     

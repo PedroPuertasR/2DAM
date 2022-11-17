@@ -66,7 +66,7 @@ public class MoverController {
     
     public static boolean irPrimero(){
         try{
-            return rs.isFirst();
+            return rs.first();
         }catch(SQLException ex){
             System.out.println("No hay primero.");
         }
@@ -75,9 +75,27 @@ public class MoverController {
     
     public static boolean irUltimo(){
         try{
-            return rs.isLast();
+            return rs.last();
         }catch(SQLException ex){
             System.out.println("No hay último.");
+        }
+        return false;
+    }
+    
+    public static boolean primero(){
+        try{
+            return rs.isFirst();
+        }catch(SQLException ex){
+            System.out.println("No hay primero.");
+        }
+        return false;
+    }
+    
+    public static boolean ultimo(){
+        try{
+            return rs.isLast();
+        }catch(SQLException ex){
+            System.out.println("No hay primero.");
         }
         return false;
     }
