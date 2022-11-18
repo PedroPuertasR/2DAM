@@ -142,9 +142,19 @@ public class Gestor extends javax.swing.JFrame {
         menuVista.add(itemUsuario);
 
         itemLibro.setText("Libro");
+        itemLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemLibroActionPerformed(evt);
+            }
+        });
         menuVista.add(itemLibro);
 
         itemTienda.setText("Tienda");
+        itemTienda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemTiendaActionPerformed(evt);
+            }
+        });
         menuVista.add(itemTienda);
 
         jMenu.add(menuVista);
@@ -241,6 +251,20 @@ public class Gestor extends javax.swing.JFrame {
         visualizar(pnlUsuario);
         
     }//GEN-LAST:event_itemModPerfilActionPerformed
+
+    private void itemLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemLibroActionPerformed
+        
+        pnlLibro = new PanelLibro();
+        visualizar(pnlLibro);
+        this.setMinimumSize(pnlLibro.getPreferredSize());
+    }//GEN-LAST:event_itemLibroActionPerformed
+
+    private void itemTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemTiendaActionPerformed
+        
+        pnlTienda = new PanelTienda();
+        visualizar(pnlTienda);
+        
+    }//GEN-LAST:event_itemTiendaActionPerformed
 
     public void visualizar(JPanel panel){
         this.setContentPane(panel);
