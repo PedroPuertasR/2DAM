@@ -97,6 +97,7 @@ as
     no_existe_departamento exception;
     no_existe_director exception;
     numero_empleado_duplicado exception;
+    cursor c1 is select emp_no from emple;
 begin
 
     if sal <= 0 then
@@ -120,16 +121,13 @@ begin
         raise no_existe_director;
     end if;
 
-    select emp_no into vempl
-    from emple
-    where emp_no = num_empl;
+    for v1 in c1 loop
+        if vempl = v1.emp_no then
+            raise numero_empleado_duplicado;
+        end if;
+    end loop;
 
-    if vempl = num_empl then
-        raise numero_empleado_duplicado;
-    elsif vempl is null then
-        dbms_output.put_line('emp');
-        insert into emple values (num_empl, ape, ofi, dire, fecha_cont, sal, comi, dept);
-    end if;
+    insert into emple values (num_empl, ape, ofi, dire, fecha_cont, sal, comi, dept);
 
     dbms_output.put_line('Se ha insertado el nuevo empleado.');
 
@@ -149,6 +147,45 @@ end;
 exec nuevo_emple(1234, 'Puertas', 'ANALISTA', 7782, '06/01/2022', 25000, null, 10);
 
 /*Actividad propuesta 7*/
+
+create table temp(
+    col1 varchar2(40) primary key
+);
+
+create or replace procedure prueba_savepoint(numfilas positive)
+as
+begin
+    savepoint ninguna;
+    insert into temp values ('Primera fila');
+    savepoint una;
+    insert into temp values ('Segunda fila');
+    savepoint dos;
+    if numfilas = 1 then
+        rollback to una;
+    elsif numfilas = 2 then
+        rollback to dos;
+    else
+        rollback to ninguna;
+    end if;
+
+    commit;
+
+    exception
+        when others then
+            rollback;
+end;
+
+/*
+    En el caso del 0 no me deja ejecutarlo, puesto que tiene que ser un número > 0.
+
+    Cuando lo ejecuto con el 1 solo inserta la 'primera fila'.
+
+    Cuando lo ejecuto con el 2 inserta las dos filas.
+
+    Y por último si lo ejecuto con un 3 o mayor no me insertará ninguna, 
+    puesto que se hace el rollback hasta ninguna
+
+*/
 
 /*Ejercicio complementario 7*/
 
@@ -369,3 +406,116 @@ end;
 
 /*Ejercicio complementario 10*/
 
+create or replace procedure insertar(pedido number, producto number, cliente number, 
+                                     uni number, fecha date, empl number, tot_pedido number)
+as
+begin
+    commit;
+
+    insert into pedidos08 values (pedido, producto, cliente, uni, fecha);
+
+    update clientes08 set debe = debe + tot_pedido where cliente_no = cliente;
+
+    update productos08 set stock_disponible = stock_disponible - uni where producto_no = producto;
+
+    update emple set comision = comision + (tot_pedido * 0.05) where emp_no = empl;
+
+    commit;
+
+    exception
+        when others then
+            dbms_output.put_line(sqlcode || sqlerrm);
+            rollback;
+end;
+
+create or replace procedure nuevo_pedido(pedido number, producto number, cliente number, uni number, fecha date)
+as
+    vprod number;
+    vcli number;
+    vuni number;
+    vfec number;
+    vlim number;
+    vempl number;
+    tot_pedido number := 0;
+    cursor c1 is select pedido_no from pedidos08;
+    cursor c2 is select producto_no from productos08;
+begin
+
+    commit;
+
+    for v1 in c1 loop
+        if v1.pedido_no = pedido then
+            raise_application_error(-20001, 'Número de pedido duplicado.');
+        end if;
+    end loop;
+
+    select producto_no into vprod
+    from productos08
+    where producto_no = producto;
+
+    if vprod is null then
+        raise_application_error(-20001, 'No existe el producto.');
+    end if;
+
+    select cliente_no into vcli
+    from clientes08
+    where cliente_no = cliente;
+
+    if vcli is null then
+        raise_application_error(-20001, 'El cliente no existe.');
+    end if;
+
+    select floor(months_between(sysdate, fecha)) into vfec
+    from dual;
+
+    if vfec < 0 then
+        raise_application_error(-20001, 'La fecha no puede ser futura.');
+    end if;
+
+    select stock_disponible into vuni
+    from productos08
+    where producto_no = producto;
+
+    if uni > vuni then
+        raise_application_error(-20001, 'No existen unidades suficientes para generar este pedido.');
+    end if;
+
+    select limite_credito into vlim
+    from clientes08
+    where cliente_no = cliente;
+
+    select precio_actual into tot_pedido
+    from productos08
+    where producto_no = producto;
+
+    tot_pedido := tot_pedido * uni;
+
+    if vlim < tot_pedido then
+        raise_application_error(-20001, 'No hay suficiente saldo para realizar el pedido.');
+    end if;
+
+    select vendedor_no into vempl
+    from clientes08
+    where cliente_no = cliente;
+
+    if vempl is null then
+        raise_application_error(-20001, 'El cliente no tiene vendedor.');
+    end if;
+
+    insertar(pedido, producto, cliente, uni, fecha, vempl, tot_pedido);
+
+    commit;
+
+    exception
+        when too_many_rows then
+            dbms_output.put_line('Demasiadas filas en una consulta.');
+            rollback;
+        when no_data_found then
+            dbms_output.put_line('Alguna consulta no ha dado resultado.');
+            rollback;
+        when others then
+            dbms_output.put_line(sqlcode || sqlerrm);
+            rollback;
+end;
+
+exec nuevo_pedido(1234, 10, 101, 1, sysdate);
