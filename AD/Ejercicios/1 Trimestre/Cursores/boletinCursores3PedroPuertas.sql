@@ -287,9 +287,9 @@ end;
 
 create table t_liquidacion(
     emp_no number primary key,
-    apellido varchar2,
+    apellido varchar2(10),
     departamento number,
-    oficio varchar2,
+    oficio varchar2(10),
     salario number, 
     trienios number,
     comp_responsabilidad number,
@@ -297,7 +297,7 @@ create table t_liquidacion(
     total number
 );
 
-create or replace procedure liquidacion_emple
+create or replace procedure liquidacion_emple_tabla
 as
     cursor c1 is select *
               from emple
@@ -309,6 +309,7 @@ as
     sum_resp number;
     comi number;
     contador number := 0;
+    filar number := 0;
 begin
 
     commit;
@@ -347,8 +348,12 @@ begin
         sum_resp := 0;
 
         insert into t_liquidacion values (v1.emp_no, v1.apellido, v1.dept_no, v1.oficio, v1.salario, trienio, sum_resp, comi, total);
+        
+        filas := filas + 1;
 
     end loop;
+
+    dbms_output.put_line('Filas insertadas: ' || filas);
 
     exception
         when too_many_rows then
