@@ -16,7 +16,7 @@ import java.util.GregorianCalendar;
 public class Herramienta {
     
     public static String gregorianCalendarToString(GregorianCalendar fecha){         
-        SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatDate = new SimpleDateFormat("MM/dd/yyyy");
         return formatDate.format(fecha.getTime());        
     }    
     

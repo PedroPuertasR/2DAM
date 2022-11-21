@@ -5,9 +5,13 @@
  */
 package vista;
 
+import controlador.LoginController;
 import controlador.MoverController;
 import controlador.TablaController;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import modelo.Editorial;
 import modelo.Libro;
@@ -65,15 +69,21 @@ public class Panel1a1 extends javax.swing.JPanel {
     }
     
     public void rellenarJList(){
-        ArrayList<Libro> lista = TablaController.getLista("SELECT * FROM LIBRO "
-                + "WHERE ID_EDITORIAL = " + MoverController.getEdi().getId());
         
-        DefaultListModel model = new DefaultListModel();
-         
-        for (int i = 0; i < lista.size(); i++) {
-            model.addElement(lista.get(i).infoLibro());
+        ArrayList <Libro> lista;
+        
+        try {
+            lista = TablaController.getListaLibros(LoginController.getTrabajador());
+            
+            DefaultListModel model = new DefaultListModel();
+            
+            for (int i = 0; i < lista.size(); i++) {
+                model.addElement(lista.get(i).infoLibro());
+            }
+            this.jList.setModel(model);
+        } catch (SQLException ex) {
+            Logger.getLogger(Panel1a1.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.jList.setModel(model);
     }
     
     /**

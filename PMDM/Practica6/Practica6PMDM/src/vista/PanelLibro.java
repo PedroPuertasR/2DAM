@@ -5,7 +5,16 @@
  */
 package vista;
 
+import controlador.LoginController;
+import controlador.TablaController;
 import java.awt.Dimension;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.Categoria;
+import modelo.Libro;
 
 /**
  *
@@ -13,6 +22,8 @@ import java.awt.Dimension;
  */
 public class PanelLibro extends javax.swing.JPanel {
 
+    private static boolean alta = false;
+    
     /**
      * Creates new form PanelLibro
      */
@@ -21,7 +32,7 @@ public class PanelLibro extends javax.swing.JPanel {
         initComponents();
         
         iniciarMenu();
-        this.setPreferredSize(new Dimension(519, 419));
+        //this.setPreferredSize(new Dimension(619, 519));
 
     }
 
@@ -53,6 +64,10 @@ public class PanelLibro extends javax.swing.JPanel {
         dcFecha = new com.toedter.calendar.JDateChooser();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList = new javax.swing.JList<>();
+
+        pnlLibro.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnBaja.setText("Bajas");
         btnBaja.addActionListener(new java.awt.event.ActionListener() {
@@ -60,6 +75,7 @@ public class PanelLibro extends javax.swing.JPanel {
                 btnBajaActionPerformed(evt);
             }
         });
+        pnlLibro.add(btnBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 325, -1, -1));
 
         btnAlta.setText("Altas");
         btnAlta.addActionListener(new java.awt.event.ActionListener() {
@@ -67,24 +83,39 @@ public class PanelLibro extends javax.swing.JPanel {
                 btnAltaActionPerformed(evt);
             }
         });
+        pnlLibro.add(btnAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 325, -1, -1));
 
         lblNombre.setText("Nombre:");
+        pnlLibro.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 56, -1, -1));
 
         lblAutor.setText("Autor:");
+        pnlLibro.add(lblAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 93, -1, -1));
 
         lblEditorial.setText("Editorial:");
+        pnlLibro.add(lblEditorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 133, -1, -1));
 
         lblIsbn.setText("ISBN:");
+        pnlLibro.add(lblIsbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 172, -1, -1));
 
         lblFecha.setText("Fecha publicación:");
+        pnlLibro.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 211, -1, -1));
 
         lblCateg.setText("Categoría:");
+        pnlLibro.add(lblCateg, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 249, -1, -1));
 
         lblPrecio.setText("Precio:");
+        pnlLibro.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 288, -1, -1));
+        pnlLibro.add(tfNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 54, 281, -1));
+        pnlLibro.add(tfAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 91, 281, -1));
 
         cbEditorial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pnlLibro.add(cbEditorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 128, 102, -1));
+        pnlLibro.add(tfIsbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 170, 281, -1));
+        pnlLibro.add(tfPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 286, 281, -1));
 
         cbCateg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pnlLibro.add(cbCateg, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 244, 101, -1));
+        pnlLibro.add(dcFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 207, 101, -1));
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -92,6 +123,7 @@ public class PanelLibro extends javax.swing.JPanel {
                 btnGuardarActionPerformed(evt);
             }
         });
+        pnlLibro.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 368, -1, -1));
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -99,87 +131,16 @@ public class PanelLibro extends javax.swing.JPanel {
                 btnCancelarActionPerformed(evt);
             }
         });
+        pnlLibro.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 368, -1, -1));
 
-        javax.swing.GroupLayout pnlLibroLayout = new javax.swing.GroupLayout(pnlLibro);
-        pnlLibro.setLayout(pnlLibroLayout);
-        pnlLibroLayout.setHorizontalGroup(
-            pnlLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLibroLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(pnlLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblCateg)
-                    .addComponent(lblNombre)
-                    .addComponent(lblAutor)
-                    .addComponent(lblIsbn)
-                    .addComponent(lblPrecio)
-                    .addComponent(lblEditorial)
-                    .addComponent(lblFecha)
-                    .addComponent(btnGuardar)
-                    .addComponent(btnAlta))
-                .addGroup(pnlLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlLibroLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(pnlLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfNombre)
-                            .addComponent(tfAutor)
-                            .addComponent(tfIsbn)
-                            .addComponent(tfPrecio)
-                            .addGroup(pnlLibroLayout.createSequentialGroup()
-                                .addGroup(pnlLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(dcFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                                        .addComponent(cbCateg, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(cbEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLibroLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
-                        .addGroup(pnlLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnBaja)
-                            .addComponent(btnCancelar))
-                        .addGap(61, 61, 61)))
-                .addGap(36, 36, 36))
-        );
-        pnlLibroLayout.setVerticalGroup(
-            pnlLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLibroLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addGroup(pnlLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombre)
-                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAutor)
-                    .addComponent(tfAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEditorial)
-                    .addComponent(cbEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblIsbn)
-                    .addComponent(tfIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblFecha)
-                    .addComponent(dcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCateg)
-                    .addComponent(cbCateg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPrecio)
-                    .addComponent(tfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(pnlLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAlta)
-                    .addComponent(btnBaja))
-                .addGap(18, 18, 18)
-                .addGroup(pnlLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar)
-                    .addComponent(btnCancelar))
-                .addGap(26, 26, 26))
-        );
+        jList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList);
+
+        pnlLibro.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 450, 270));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -195,31 +156,85 @@ public class PanelLibro extends javax.swing.JPanel {
 
     private void btnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaActionPerformed
         
-        cargarMenu();
+        cargarMenuAlta();
         
     }//GEN-LAST:event_btnAltaActionPerformed
 
     private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
         
-        
+        cargarMenuBaja();
         
     }//GEN-LAST:event_btnBajaActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        
+        iniciarMenu();
+        
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+        
+        if(alta){
+            Libro nuevo = 
+            cargarMenuAlta();
+        }else{
+            cargarMenuBaja();
+        }
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     public void cargarDatos(){
         
+        ArrayList <Libro> lista;
+        
+        try {
+            lista = TablaController.getListaLibros(LoginController.getTrabajador());
+        } catch (SQLException ex) {
+            Logger.getLogger(PanelLibro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         
         
     }
     
-    public void cargarMenu(){
+    public void cargarMenuBaja(){
+        
+        lblAutor.setVisible(false);
+        lblNombre.setVisible(false);
+        lblFecha.setVisible(false);
+        lblIsbn.setVisible(false);
+        lblPrecio.setVisible(false);
+        lblCateg.setVisible(false);
+        lblEditorial.setVisible(false);
+        tfAutor.setVisible(false);
+        tfIsbn.setVisible(false);
+        tfNombre.setVisible(false);
+        tfPrecio.setVisible(false);
+        dcFecha.setVisible(false);
+        cbCateg.setVisible(false);
+        cbEditorial.setVisible(false);
+        
+        jList.setVisible(true);
+        
+        btnCancelar.setVisible(true);
+        btnGuardar.setVisible(true);
+        
+        btnAlta.setVisible(false);
+        btnBaja.setVisible(false);
+        
+    }
+    
+    public void cargarMenuAlta(){
+        
+        ArrayList <Categoria> listaCate = new ArrayList <Categoria>();
+        
+        listaCate = TablaController.
+        
+        String [] cate = new String [(listaCate.size())];
+        
+        for (int i = 0; i < listaCate.size(); i++) {
+            
+        }
         
         lblAutor.setVisible(true);
         lblNombre.setVisible(true);
@@ -229,12 +244,18 @@ public class PanelLibro extends javax.swing.JPanel {
         lblCateg.setVisible(true);
         lblEditorial.setVisible(true);
         tfAutor.setVisible(true);
+        tfAutor.setText("");
         tfIsbn.setVisible(true);
+        tfIsbn.setText("");
         tfNombre.setVisible(true);
+        tfNombre.setText("");
         tfPrecio.setVisible(true);
+        tfPrecio.setText("");
         dcFecha.setVisible(true);
         cbCateg.setVisible(true);
         cbEditorial.setVisible(true);
+        
+        jList.setVisible(false);
         
         btnCancelar.setVisible(true);
         btnGuardar.setVisible(true);
@@ -261,6 +282,8 @@ public class PanelLibro extends javax.swing.JPanel {
         cbCateg.setVisible(false);
         cbEditorial.setVisible(false);
         
+        jList.setVisible(false);
+        
         btnCancelar.setVisible(false);
         btnGuardar.setVisible(false);
         
@@ -276,6 +299,8 @@ public class PanelLibro extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbCateg;
     private javax.swing.JComboBox<String> cbEditorial;
     private com.toedter.calendar.JDateChooser dcFecha;
+    private javax.swing.JList<String> jList;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAutor;
     private javax.swing.JLabel lblCateg;
     private javax.swing.JLabel lblEditorial;

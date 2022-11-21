@@ -8,13 +8,11 @@ package vista;
 import controlador.Herramienta;
 import controlador.LoginController;
 import controlador.TablaController;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import javax.swing.DefaultListModel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import modelo.Categoria;
-import modelo.Editorial;
 import modelo.Libro;
 import modelo.Tienda;
 
@@ -95,37 +93,39 @@ public class PanelTable extends javax.swing.JPanel {
         String d, e, c;
         ArrayList <Libro> lista;
         
-        if(LoginController.getTrabajador().getIdJefe() == 0){
-            lista = TablaController.getLista("SELECT * FROM LIBRO");
-        }else{
-            lista = TablaController.getLista("SELECT * FROM LIBRO WHERE ID_TIENDA = " + t.getId());
-        }
-        
-        DefaultTableModel model = new DefaultTableModel();
-        
-        model.addColumn("Nombre");
-        model.addColumn("Autor");
-        model.addColumn("Editorial");
-        model.addColumn("Fecha pub.");
-        model.addColumn("Precio");
-        model.addColumn("Categoría");
-        
-        for (int i = 0; i < lista.size(); i++) {
-            d = Herramienta.gregorianCalendarToString(lista.get(i).getFechaPub());
-            e = TablaController.getNomEdi("SELECT NOMBRE FROM EDITORIAL WHERE ID = " 
-                                          + lista.get(i).getEditorial());
-            c = TablaController.getNomCate("SELECT NOMBRE FROM CATEGORIA WHERE ID = "
-                                          + lista.get(i).getCategoria());
+        try {
             
-            model.addRow(new Object[]{lista.get(i).getNombre(),
-                                      lista.get(i).getAutor(),
-                                      e,
-                                      d,
-                                      lista.get(i).getPrecio(),
-                                      c});
+            lista = TablaController.getListaLibros(LoginController.getTrabajador());
+            
+            DefaultTableModel model = new DefaultTableModel();
+            
+            model.addColumn("Nombre");
+            model.addColumn("Autor");
+            model.addColumn("Editorial");
+            model.addColumn("Fecha pub.");
+            model.addColumn("Precio");
+            model.addColumn("Categoría");
+            
+            for (int i = 0; i < lista.size(); i++) {
+                d = Herramienta.gregorianCalendarToString(lista.get(i).getFechaPub());
+                e = TablaController.getNomEdi("SELECT NOMBRE FROM EDITORIAL WHERE ID = "
+                        + lista.get(i).getEditorial());
+                c = TablaController.getNomCate("SELECT NOMBRE FROM CATEGORIA WHERE ID = "
+                        + lista.get(i).getCategoria());
+                
+                model.addRow(new Object[]{lista.get(i).getNombre(),
+                                          lista.get(i).getAutor(),
+                                          e,
+                                          d,
+                                          lista.get(i).getPrecio(),
+                                          c});
+            }   
+            
+            this.jTable.setModel(model);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PanelTable.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        this.jTable.setModel(model);
         
     }
     
