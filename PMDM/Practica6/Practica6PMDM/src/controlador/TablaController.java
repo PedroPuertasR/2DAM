@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Categoria;
+import modelo.Editorial;
 import modelo.Libro;
 import modelo.Tienda;
 import modelo.Trabajador;
@@ -70,7 +71,7 @@ public class TablaController {
         return lista;
     }
     
-    public static ArrayList getCategorias(String query){
+    public static ArrayList getCategorias(){
         ArrayList <Categoria> lista = new ArrayList <Categoria>();
         
         try {
@@ -82,11 +83,74 @@ public class TablaController {
             
             while(rs.next()){
                 Categoria c = new Categoria(rs.getInt(1),
-                                            rs.getString(2),
-                                            );
+                                            rs.getString(2));
+                
+                lista.add(c);
             }
+            
+            ps.close();
+            rs.close();
+            
+            return lista;
         } catch (SQLException ex) {
             Logger.getLogger(TablaController.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public static ArrayList getEditoriales(){
+        ArrayList <Editorial> lista = new ArrayList <Editorial>();
+        
+        try {
+            con = GestionDB.getConnection();
+            
+            ps = con.prepareStatement("SELECT * FROM EDITORIAL");
+            
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Editorial e = new Editorial(rs.getInt(1),
+                                            rs.getString(2),
+                                            rs.getString(3));
+                
+                lista.add(e);
+            }
+            
+            ps.close();
+            rs.close();
+            
+            return lista;
+        } catch (SQLException ex) {
+            Logger.getLogger(TablaController.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public static ArrayList getTiendas(){
+        ArrayList <Tienda> lista = new ArrayList <Tienda>();
+        
+        try {
+            con = GestionDB.getConnection();
+            
+            ps = con.prepareStatement("SELECT * FROM TIENDA");
+            
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Tienda t = new Tienda(rs.getInt(1),
+                                      rs.getString(2),
+                                      rs.getFloat(3));
+                
+                lista.add(t);
+            }
+            
+            ps.close();
+            rs.close();
+            
+            return lista;
+        } catch (SQLException ex) {
+            Logger.getLogger(TablaController.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
     }
     
@@ -153,14 +217,16 @@ public class TablaController {
         
     }
     
-    public static int getIdLibro(String query){
+    public static int getIdLibro(){
         
         int aux;
         
         try{
             
-            st = GestionDB.getConnection().createStatement();
-            rs = st.executeQuery(query);
+            con = GestionDB.getConnection();
+            
+            ps = con.prepareStatement("SELECT ID FROM LIBRO ORDER BY ID DESC");
+            rs = ps.executeQuery();
             
             rs.next();
             

@@ -5,16 +5,20 @@
  */
 package vista;
 
+import controlador.Herramienta;
 import controlador.LoginController;
 import controlador.TablaController;
-import java.awt.Dimension;
-import java.sql.Date;
+import controlador.UpdateController;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import modelo.Categoria;
+import modelo.Editorial;
 import modelo.Libro;
+import modelo.Tienda;
 
 /**
  *
@@ -66,6 +70,8 @@ public class PanelLibro extends javax.swing.JPanel {
         btnCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList = new javax.swing.JList<>();
+        lblTienda = new javax.swing.JLabel();
+        cbTienda = new javax.swing.JComboBox<>();
 
         pnlLibro.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -83,7 +89,7 @@ public class PanelLibro extends javax.swing.JPanel {
                 btnAltaActionPerformed(evt);
             }
         });
-        pnlLibro.add(btnAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 325, -1, -1));
+        pnlLibro.add(btnAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, -1, -1));
 
         lblNombre.setText("Nombre:");
         pnlLibro.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 56, -1, -1));
@@ -142,6 +148,12 @@ public class PanelLibro extends javax.swing.JPanel {
 
         pnlLibro.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 450, 270));
 
+        lblTienda.setText("Tienda:");
+        pnlLibro.add(lblTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, -1, -1));
+
+        cbTienda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pnlLibro.add(cbTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 100, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,29 +187,49 @@ public class PanelLibro extends javax.swing.JPanel {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         
         if(alta){
-            Libro nuevo = 
+            int contador = TablaController.getIdLibro();
+            
+            Libro nuevo = new Libro(contador, 
+                                    tfAutor.getText(), 
+                                    tfNombre.getText(), 
+                                    cbEditorial.getSelectedIndex() + 1, 
+                                    tfIsbn.getText(), 
+                                    Herramienta.dateToGregorianCalendar(dcFecha.getDate()), 
+                                    Float.parseFloat(tfPrecio.getText()), 
+                                    cbCateg.getSelectedIndex(), 
+                                    cbTienda.getSelectedIndex());
+            
+            UpdateController.insertarLibro(nuevo);
+       
             cargarMenuAlta();
         }else{
+            int idLibro = jList.getSelectedValue().charAt(0);
+            jList.gets
             cargarMenuBaja();
         }
         
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    public void cargarDatos(){
+    public void rellenarJList(){
         
         ArrayList <Libro> lista;
         
         try {
             lista = TablaController.getListaLibros(LoginController.getTrabajador());
+            
+            DefaultListModel model = new DefaultListModel();
+            
+            for (int i = 0; i < lista.size(); i++) {
+                model.addElement(lista.get(i).infoLibro());
+            }
+            this.jList.setModel(model);
         } catch (SQLException ex) {
-            Logger.getLogger(PanelLibro.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Panel1a1.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        
-        
     }
     
     public void cargarMenuBaja(){
+        alta = false;
         
         lblAutor.setVisible(false);
         lblNombre.setVisible(false);
@@ -206,6 +238,7 @@ public class PanelLibro extends javax.swing.JPanel {
         lblPrecio.setVisible(false);
         lblCateg.setVisible(false);
         lblEditorial.setVisible(false);
+        lblTienda.setVisible(false);
         tfAutor.setVisible(false);
         tfIsbn.setVisible(false);
         tfNombre.setVisible(false);
@@ -213,28 +246,55 @@ public class PanelLibro extends javax.swing.JPanel {
         dcFecha.setVisible(false);
         cbCateg.setVisible(false);
         cbEditorial.setVisible(false);
+        cbTienda.setVisible(false);
         
         jList.setVisible(true);
         
         btnCancelar.setVisible(true);
         btnGuardar.setVisible(true);
+        btnGuardar.setText("Dar de baja");
         
         btnAlta.setVisible(false);
         btnBaja.setVisible(false);
         
+        rellenarJList();
+        
     }
     
     public void cargarMenuAlta(){
+        alta = true;
         
         ArrayList <Categoria> listaCate = new ArrayList <Categoria>();
+        ArrayList <Editorial> listaEdi = new ArrayList <Editorial>();
+        ArrayList <Tienda> listaTienda = new ArrayList <Tienda>();
         
-        listaCate = TablaController.
+        listaTienda = TablaController.getTiendas();
+        listaCate = TablaController.getCategorias();
+        listaEdi = TablaController.getEditoriales();
         
+        String [] edi = new String [(listaEdi.size())];
         String [] cate = new String [(listaCate.size())];
+        String [] tiendas = new String [(listaTienda.size())];
         
-        for (int i = 0; i < listaCate.size(); i++) {
-            
+        for (int i = 0; i < cate.length; i++) {
+            cate[i] = listaCate.get(i).getNombre();
         }
+        
+        for (int i = 0; i < edi.length; i++) {
+            edi[i] = listaEdi.get(i).getNombre();
+        }
+        
+        for (int i = 0; i < tiendas.length; i++) {
+            tiendas[i] = listaTienda.get(i).getDireccion();
+        }
+        
+        DefaultComboBoxModel <String> cb = new DefaultComboBoxModel(cate);
+        DefaultComboBoxModel <String> cbE = new DefaultComboBoxModel(edi);
+        DefaultComboBoxModel <String> cbT = new DefaultComboBoxModel(tiendas);
+        
+        cbCateg.setModel(cb);
+        cbEditorial.setModel(cbE);
+        cbTienda.setModel(cbT);
         
         lblAutor.setVisible(true);
         lblNombre.setVisible(true);
@@ -255,10 +315,19 @@ public class PanelLibro extends javax.swing.JPanel {
         cbCateg.setVisible(true);
         cbEditorial.setVisible(true);
         
+        if(LoginController.getTrabajador().getIdJefe() == 0){
+            cbTienda.setVisible(true);
+            lblTienda.setVisible(true);
+        }else{
+            cbTienda.setVisible(false);
+            lblTienda.setVisible(false);
+        }
+        
         jList.setVisible(false);
         
         btnCancelar.setVisible(true);
         btnGuardar.setVisible(true);
+        btnGuardar.setText("Guardar");
         
         btnAlta.setVisible(false);
         btnBaja.setVisible(false);
@@ -298,6 +367,7 @@ public class PanelLibro extends javax.swing.JPanel {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox<String> cbCateg;
     private javax.swing.JComboBox<String> cbEditorial;
+    private javax.swing.JComboBox<String> cbTienda;
     private com.toedter.calendar.JDateChooser dcFecha;
     private javax.swing.JList<String> jList;
     private javax.swing.JScrollPane jScrollPane1;
@@ -308,6 +378,7 @@ public class PanelLibro extends javax.swing.JPanel {
     private javax.swing.JLabel lblIsbn;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPrecio;
+    private javax.swing.JLabel lblTienda;
     private javax.swing.JPanel pnlLibro;
     private javax.swing.JTextField tfAutor;
     private javax.swing.JTextField tfIsbn;

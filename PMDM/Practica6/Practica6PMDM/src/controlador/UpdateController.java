@@ -8,7 +8,6 @@ package controlador;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -37,21 +36,11 @@ public class UpdateController {
     
     public static void insertarLibro(Libro l){
         
-        int contador = TablaController.getIdLibro("SELECT ID FROM LIBRO ORDER BY ID DESC");
-        
         try {
             st = GestionDB.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
 
-            st.executeUpdate("INSERT INTO LIBRO VALUES (" + (contador + 1) + ", " 
-                                                        + "'" + l.getNombre() + "', "
-                                                        + "'" + l.getAutor() + "', "
-                                                        + l.getEditorial()+ ", "
-                                                        + "'" + l.getIsbn() + "', "
-                                                        + "'" + Herramienta.gregorianCalendarToString(l.getFechaPub()) + "', " 
-                                                        + l.getPrecio() + ", " 
-                                                        + l.getCategoria() + ", " 
-                                                        + l.getTienda());
+            st.executeUpdate("INSERT INTO LIBRO VALUES (" + l.getAtributos() + ")");
         } catch (SQLException ex) {
             Logger.getLogger(UpdateController.class.getName()).log(Level.SEVERE, null, ex);
         }

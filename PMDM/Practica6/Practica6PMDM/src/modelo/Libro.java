@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import controlador.Herramienta;
 import java.util.GregorianCalendar;
 
 /**
@@ -116,11 +117,13 @@ public class Libro {
     }
     
     public String infoLibro(){
-        return nombre + ", " + autor + ", " + isbn;
+        return id + ", " + nombre + ", " + autor + ", " + isbn;
     }
     
-    public String [] getAtributos(){
-        String [] aux = {};
+    public String getAtributos(){
+        String aux = id + ", '" + autor + "', '" + nombre + "', " + editorial + ", '" 
+                + isbn + "', '" + Herramienta.gregorianCalendarToString(fechaPub) 
+                + "', " + precio + ", " + categoria + ", " + tienda;
         
         return aux;
     }
