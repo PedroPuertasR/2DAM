@@ -5,13 +5,14 @@
  */
 package controlador;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Libro;
+import modelo.Trabajador;
 
 /**
  *
@@ -20,32 +21,81 @@ import modelo.Libro;
 public class UpdateController {
     
     private static Statement st = null;
+    private static PreparedStatement ps = null;
+    private static Connection con = null;
     private static ResultSet rs = null;
     
-    public static void updatePresupuesto(String query){
+    public static int updatePresupuesto(float pres, int id){
         try{
-            st = GestionDB.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                                  ResultSet.CONCUR_READ_ONLY);
-            st.executeUpdate(query);
-            JOptionPane.showMessageDialog(null, "Se ha actualizado el presupuesto.");
+            
+            con = GestionDB.getConnection();
+            
+            ps = con.prepareStatement("UPDATE TIENDA SET PRESUPUESTO = PRESUPUESTO + " 
+                    + pres + " WHERE ID = " + id);
+            
+            int filas = ps.executeUpdate();
+            
+            return filas;
+            
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error. No se han encontrado datos.");
-            System.out.println("Error en el update.");
+            JOptionPane.showMessageDialog(null, "Error al actualizar el presupuesto");
+            return 0;
         }
     }
     
-    public static void insertarLibro(Libro l){
+    public static int updateFoto(String foto, Trabajador t){
+        try{
+            
+            con = GestionDB.getConnection();
+            
+            ps = con.prepareStatement("UPDATE TRABAJADOR SET FOTO = ? WHERE ID = ?");
+            
+            ps.setString(1, foto);
+            ps.setInt(2, t.getId());
+            
+            int filas = ps.executeUpdate();
+            
+            return filas;
+            
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al actualizar el presupuesto");
+            return 0;
+        }
+    }
+    
+    public static int insertarLibro(Libro l){
         
         try {
-            st = GestionDB.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY);
-
-            st.executeUpdate("INSERT INTO LIBRO VALUES (" + l.getAtributos() + ")");
+            con = GestionDB.getConnection();
+            
+            ps = con.prepareStatement("INSERT INTO LIBRO VALUES (" + l.getAtributos() + ")");
+            
+            int filas = ps.executeUpdate();
+            
+            return filas;
         } catch (SQLException ex) {
-            Logger.getLogger(UpdateController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al insertar el libro");
+            return 0;
         }
         
         
+    }
+    
+    public static int borrarLibro(char index){
+        try{
+            
+            con = GestionDB.getConnection();
+            
+            ps = con.prepareStatement("DELETE FROM LIBRO WHERE ID = " + index);
+            
+            int filas = ps.executeUpdate();
+            
+            return filas;
+            
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al borrar el libro");
+            return 0;
+        }
     }
     
 }

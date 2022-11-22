@@ -93,39 +93,35 @@ public class PanelTable extends javax.swing.JPanel {
         String d, e, c;
         ArrayList <Libro> lista;
         
-        try {
+        lista = TablaController.getListaLibros(LoginController.getTrabajador());
+        
+        DefaultTableModel model = new DefaultTableModel();
+        
+        model.addColumn("Nombre");
+        model.addColumn("Autor");
+        model.addColumn("Editorial");
+        model.addColumn("Fecha pub.");
+        model.addColumn("Precio");
+        model.addColumn("Categoría");
+        
+        for (int i = 0; i < lista.size(); i++) {
+            d = Herramienta.gregorianCalendarToString(lista.get(i).getFechaPub());
             
-            lista = TablaController.getListaLibros(LoginController.getTrabajador());
+            e = TablaController.getNomEdi("SELECT NOMBRE FROM EDITORIAL WHERE ID = "
+                    + lista.get(i).getEditorial());
             
-            DefaultTableModel model = new DefaultTableModel();
+            c = TablaController.getNomCate("SELECT NOMBRE FROM CATEGORIA WHERE ID = "
+                    + lista.get(i).getCategoria());
             
-            model.addColumn("Nombre");
-            model.addColumn("Autor");
-            model.addColumn("Editorial");
-            model.addColumn("Fecha pub.");
-            model.addColumn("Precio");
-            model.addColumn("Categoría");
-            
-            for (int i = 0; i < lista.size(); i++) {
-                d = Herramienta.gregorianCalendarToString(lista.get(i).getFechaPub());
-                e = TablaController.getNomEdi("SELECT NOMBRE FROM EDITORIAL WHERE ID = "
-                        + lista.get(i).getEditorial());
-                c = TablaController.getNomCate("SELECT NOMBRE FROM CATEGORIA WHERE ID = "
-                        + lista.get(i).getCategoria());
-                
-                model.addRow(new Object[]{lista.get(i).getNombre(),
-                                          lista.get(i).getAutor(),
-                                          e,
-                                          d,
-                                          lista.get(i).getPrecio(),
-                                          c});
-            }   
-            
-            this.jTable.setModel(model);
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(PanelTable.class.getName()).log(Level.SEVERE, null, ex);
+            model.addRow(new Object[]{lista.get(i).getNombre(),
+                                      lista.get(i).getAutor(),
+                                      e,
+                                      d,
+                                      lista.get(i).getPrecio(),
+                                      c});
         }
+        
+        this.jTable.setModel(model);
         
     }
     

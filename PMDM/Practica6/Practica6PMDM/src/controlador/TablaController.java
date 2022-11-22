@@ -11,8 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Categoria;
 import modelo.Editorial;
@@ -31,7 +29,52 @@ public class TablaController {
     private static Statement st = null;
     private static ResultSet rs = null;
     
-    public static ArrayList getListaLibros(Trabajador t) throws SQLException{
+    public static ArrayList getLibrosEdi(Trabajador t, Editorial e){
+        
+        ArrayList<Libro> lista = new ArrayList<Libro>();
+        
+        try{
+            con = GestionDB.getConnection();
+        
+            if(t.getIdJefe() == 0){
+                ps = con.prepareStatement("SELECT * FROM LIBRO WHERE ID_EDITORIAL = ?");
+                ps.setInt(1, e.getId());
+            }else{
+                ps = con.prepareStatement("SELECT * FROM LIBRO WHERE ID_EDITORIAL = ? "
+                        + "AND ID_TIENDA = ?");
+
+                ps.setInt(1, e.getId());
+                ps.setInt(2, t.getTienda());
+                
+            }
+            
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                       
+                Libro aux = new Libro(rs.getInt(1),
+                                      rs.getString(2),
+                                      rs.getString(3),
+                                      rs.getInt(4),
+                                      rs.getString(5),
+                                      Herramienta.dateToGregorianCalendar(rs.getDate(6)),
+                                      rs.getFloat(7),
+                                      rs.getInt(8),
+                                      rs.getInt(9));
+                
+                lista.add(aux);
+            }
+            rs.close();
+            ps.close();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al cargar los libros");
+            return null;
+        }        
+        return lista;
+        
+    }
+    
+    public static ArrayList getListaLibros(Trabajador t){
         ArrayList<Libro> lista = new ArrayList<Libro>();
         
         try{
@@ -65,7 +108,7 @@ public class TablaController {
             rs.close();
             ps.close();
         }catch(SQLException e){
-            System.out.println("Error consulta lista");
+            JOptionPane.showMessageDialog(null, "Error al cargar los libros");
             return null;
         }        
         return lista;
@@ -93,7 +136,7 @@ public class TablaController {
             
             return lista;
         } catch (SQLException ex) {
-            Logger.getLogger(TablaController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al coger la categoria");
             return null;
         }
     }
@@ -121,7 +164,7 @@ public class TablaController {
             
             return lista;
         } catch (SQLException ex) {
-            Logger.getLogger(TablaController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al cargar las editoriales");
             return null;
         }
     }
@@ -149,7 +192,7 @@ public class TablaController {
             
             return lista;
         } catch (SQLException ex) {
-            Logger.getLogger(TablaController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al cargar las tiendas");
             return null;
         }
     }
@@ -170,7 +213,7 @@ public class TablaController {
             
             return aux;
         }catch(SQLException es){
-            JOptionPane.showInputDialog(null, "Error en la consulta.");
+            JOptionPane.showMessageDialog(null, "Error al coger la tienda");
             return null;
         }
         
@@ -190,7 +233,7 @@ public class TablaController {
             
             return aux;
         }catch(SQLException es){
-            JOptionPane.showInputDialog(null, "Error en la consulta de la editorial");
+            JOptionPane.showMessageDialog(null, "Error en la consulta de la editorial");
             return null;
         }
         
@@ -210,7 +253,7 @@ public class TablaController {
             
             return aux;
         }catch(SQLException es){
-            JOptionPane.showInputDialog(null, "Error al encontrar el "
+            JOptionPane.showMessageDialog(null, "Error al encontrar el "
                     + "nombre de la categoria");
             return null;
         }
@@ -235,7 +278,7 @@ public class TablaController {
             return aux;
             
         }catch(SQLException ex){
-            JOptionPane.showInputDialog(null, "Error en la consulta de la editorial");
+            JOptionPane.showMessageDialog(null, "Error al conseguir el id del libro");
             return 0;
         }
         

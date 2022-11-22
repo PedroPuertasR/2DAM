@@ -6,7 +6,15 @@
 package vista;
 
 import controlador.LoginController;
+import controlador.TablaController;
+import controlador.UpdateController;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import modelo.Tienda;
 import modelo.Trabajador;
 
@@ -17,6 +25,7 @@ import modelo.Trabajador;
 public class PanelTrabajador extends javax.swing.JPanel {
 
     private boolean modificar;
+    private static String foto = null;
     
     /**
      * Creates new form PanelTrabajador
@@ -47,29 +56,38 @@ public class PanelTrabajador extends javax.swing.JPanel {
         lblFoto = new javax.swing.JLabel();
         lblApe = new javax.swing.JLabel();
         lblDni = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblFecha = new javax.swing.JLabel();
         dcFecha = new com.toedter.calendar.JDateChooser();
         btnFoto = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        lblTienda = new javax.swing.JLabel();
         tfNombre = new javax.swing.JTextField();
         tfApe = new javax.swing.JTextField();
         tfSalario = new javax.swing.JTextField();
         tfDni = new javax.swing.JTextField();
-        tfTienda = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
         fcFoto = new javax.swing.JFileChooser();
+        cbTienda = new javax.swing.JComboBox<>();
+
+        pnlTrabajador.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblNombre.setText("Nombre:");
+        pnlTrabajador.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 35, -1, -1));
 
         lblSalario.setText("Salario:");
+        pnlTrabajador.add(lblSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 109, -1, -1));
 
         lblFoto.setText("FOTO");
+        pnlTrabajador.add(lblFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(378, 12, 170, 166));
 
         lblApe.setText("Apellidos:");
+        pnlTrabajador.add(lblApe, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 72, -1, -1));
 
         lblDni.setText("DNI:");
+        pnlTrabajador.add(lblDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 146, -1, -1));
 
-        jLabel1.setText("Contratación:");
+        lblFecha.setText("Contratación:");
+        pnlTrabajador.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 185, -1, -1));
+        pnlTrabajador.add(dcFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 181, 249, -1));
 
         btnFoto.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
         btnFoto.setText("Cambiar foto");
@@ -78,99 +96,34 @@ public class PanelTrabajador extends javax.swing.JPanel {
                 btnFotoActionPerformed(evt);
             }
         });
+        pnlTrabajador.add(btnFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(416, 218, -1, -1));
 
-        jLabel2.setText("ID Tienda:");
+        lblTienda.setText("ID Tienda:");
+        pnlTrabajador.add(lblTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 221, -1, -1));
+        pnlTrabajador.add(tfNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 33, 249, -1));
+        pnlTrabajador.add(tfApe, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 70, 249, -1));
+        pnlTrabajador.add(tfSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 107, 249, -1));
+        pnlTrabajador.add(tfDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 144, 249, -1));
 
         btnGuardar.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
         btnGuardar.setText("Guardar cambios");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        pnlTrabajador.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(289, 319, -1, -1));
 
         fcFoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fcFotoActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout pnlTrabajadorLayout = new javax.swing.GroupLayout(pnlTrabajador);
-        pnlTrabajador.setLayout(pnlTrabajadorLayout);
-        pnlTrabajadorLayout.setHorizontalGroup(
-            pnlTrabajadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTrabajadorLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(pnlTrabajadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(lblDni)
-                    .addComponent(jLabel1)
-                    .addComponent(lblSalario)
-                    .addComponent(lblApe)
-                    .addComponent(lblNombre))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlTrabajadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfNombre)
-                    .addComponent(tfApe)
-                    .addComponent(tfSalario)
-                    .addComponent(tfDni)
-                    .addComponent(dcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                    .addComponent(tfTienda))
-                .addGap(52, 52, 52)
-                .addGroup(pnlTrabajadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnFoto)
-                    .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTrabajadorLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGuardar)
-                .addGap(141, 141, 141))
-            .addGroup(pnlTrabajadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlTrabajadorLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(fcFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        pnlTrabajadorLayout.setVerticalGroup(
-            pnlTrabajadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTrabajadorLayout.createSequentialGroup()
-                .addGroup(pnlTrabajadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlTrabajadorLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(141, 141, 141))
-                    .addGroup(pnlTrabajadorLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(pnlTrabajadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblNombre)
-                            .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlTrabajadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblApe)
-                            .addComponent(tfApe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlTrabajadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblSalario)
-                            .addComponent(tfSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlTrabajadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblDni)
-                            .addComponent(tfDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlTrabajadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(dcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlTrabajadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(tfTienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnFoto))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)))
-                .addComponent(btnGuardar)
-                .addGap(28, 28, 28))
-            .addGroup(pnlTrabajadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlTrabajadorLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(fcFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
+        pnlTrabajador.add(fcFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
         fcFoto.setVisible(false);
+
+        cbTienda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pnlTrabajador.add(cbTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 200, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -190,27 +143,73 @@ public class PanelTrabajador extends javax.swing.JPanel {
 
     private void btnFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFotoActionPerformed
         
+        btnFoto.setVisible(false);
+        btnGuardar.setVisible(false);
+        tfDni.setVisible(false);
+        tfNombre.setVisible(false);
+        tfApe.setVisible(false);
+        tfSalario.setVisible(false);
+        cbTienda.setVisible(false);
+        lblApe.setVisible(false);
+        lblDni.setVisible(false);
+        lblFoto.setVisible(false);
+        lblNombre.setVisible(false);
+        lblSalario.setVisible(false);
+        lblTienda.setVisible(false);
+        lblFecha.setVisible(false);
+        dcFecha.setVisible(false);
+        
+        
         fcFoto.setVisible(true);
         
     }//GEN-LAST:event_btnFotoActionPerformed
 
     private void fcFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fcFotoActionPerformed
        
+        foto = fcFoto.getSelectedFile().getName(); 
+        
+        lblFoto.setIcon(new ImageIcon(System.getProperty("user.dir") 
+                + "/src/fotos/" + foto));
+        
+        btnFoto.setVisible(true);
+        btnGuardar.setVisible(true);
+        tfDni.setVisible(true);
+        tfNombre.setVisible(true);
+        tfApe.setVisible(true);
+        tfSalario.setVisible(true);
+        cbTienda.setVisible(true);
+        lblApe.setVisible(true);
+        lblDni.setVisible(true);
+        lblFoto.setVisible(true);
+        lblNombre.setVisible(true);
+        lblSalario.setVisible(true);
+        lblTienda.setVisible(true);
+        lblFecha.setVisible(true);
+        dcFecha.setVisible(true);
+        
         fcFoto.setVisible(false);
         
     }//GEN-LAST:event_fcFotoActionPerformed
 
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        
+        int filas = UpdateController.updateFoto(foto, LoginController.getTrabajador());
+        
+        JOptionPane.showMessageDialog(null, "Filas afectadas: " + filas);
+        
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
     public void comprobarBotones(){
         
         if(modificar){
-            fcFoto.setVisible(true);
             btnFoto.setVisible(true);
             btnGuardar.setVisible(true);
             tfDni.setEnabled(true);
             tfNombre.setEnabled(false);
             tfApe.setEnabled(false);
             tfSalario.setEnabled(false);
-            tfTienda.setEnabled(false);
+            cbTienda.setEnabled(false);
+            fcFoto.setVisible(false);
         }else{
             btnFoto.setVisible(false);
             btnGuardar.setVisible(false);
@@ -218,40 +217,53 @@ public class PanelTrabajador extends javax.swing.JPanel {
             tfNombre.setEnabled(false);
             tfApe.setEnabled(false);
             tfSalario.setEnabled(false);
-            tfTienda.setEnabled(false);
+            cbTienda.setEnabled(false);
         }
         
     }
     
     private void cargarDatos() {
+        ArrayList <Tienda> listaTienda = new ArrayList <Tienda>();
+        listaTienda = TablaController.getTiendas();
+        String [] tiendas = new String [(listaTienda.size())];
+        
         Trabajador t = LoginController.getTrabajador();
+        
+        for (int i = 0; i < tiendas.length; i++) {
+            tiendas[i] = listaTienda.get(i).getDireccion();
+        }
+        
+        DefaultComboBoxModel <String> cbT = new DefaultComboBoxModel(tiendas);
+        
+        cbTienda.setModel(cbT);
         
         tfDni.setText(t.getDni());
         tfNombre.setText(t.getNombre());
         tfApe.setText(t.getApellidos());
         tfSalario.setText("" + t.getSalario());
-        tfTienda.setText("" + t.getTienda());
         lblFoto.setIcon(new ImageIcon(System.getProperty("user.dir") 
                 + "/src/fotos/" + t.getFoto()));
+        dcFecha.setCalendar(t.getFechaCont());
+        cbTienda.setSelectedIndex(t.getTienda());
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFoto;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JComboBox<String> cbTienda;
     private com.toedter.calendar.JDateChooser dcFecha;
     private javax.swing.JFileChooser fcFoto;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblApe;
     private javax.swing.JLabel lblDni;
+    private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblFoto;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblSalario;
+    private javax.swing.JLabel lblTienda;
     private javax.swing.JPanel pnlTrabajador;
     private javax.swing.JTextField tfApe;
     private javax.swing.JTextField tfDni;
     private javax.swing.JTextField tfNombre;
     private javax.swing.JTextField tfSalario;
-    private javax.swing.JTextField tfTienda;
     // End of variables declaration//GEN-END:variables
 }

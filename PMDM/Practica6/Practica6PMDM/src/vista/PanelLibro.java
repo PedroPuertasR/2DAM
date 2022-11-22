@@ -9,12 +9,10 @@ import controlador.Herramienta;
 import controlador.LoginController;
 import controlador.TablaController;
 import controlador.UpdateController;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import modelo.Categoria;
 import modelo.Editorial;
 import modelo.Libro;
@@ -115,12 +113,12 @@ public class PanelLibro extends javax.swing.JPanel {
         pnlLibro.add(tfAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 91, 281, -1));
 
         cbEditorial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        pnlLibro.add(cbEditorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 128, 102, -1));
+        pnlLibro.add(cbEditorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 128, 150, -1));
         pnlLibro.add(tfIsbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 170, 281, -1));
         pnlLibro.add(tfPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 286, 281, -1));
 
         cbCateg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        pnlLibro.add(cbCateg, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 244, 101, -1));
+        pnlLibro.add(cbCateg, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 244, 150, -1));
         pnlLibro.add(dcFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 207, 101, -1));
 
         btnGuardar.setText("Guardar");
@@ -152,17 +150,21 @@ public class PanelLibro extends javax.swing.JPanel {
         pnlLibro.add(lblTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, -1, -1));
 
         cbTienda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        pnlLibro.add(cbTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 100, -1));
+        pnlLibro.add(cbTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 150, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlLibro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlLibro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -186,6 +188,8 @@ public class PanelLibro extends javax.swing.JPanel {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         
+        int filas;
+        
         if(alta){
             int contador = TablaController.getIdLibro();
             
@@ -199,12 +203,19 @@ public class PanelLibro extends javax.swing.JPanel {
                                     cbCateg.getSelectedIndex(), 
                                     cbTienda.getSelectedIndex());
             
-            UpdateController.insertarLibro(nuevo);
+            filas = UpdateController.insertarLibro(nuevo);
        
+            JOptionPane.showMessageDialog(null, "Filas afectadas: " + filas);
+            
             cargarMenuAlta();
         }else{
-            int idLibro = jList.getSelectedValue().charAt(0);
-            jList.gets
+            char [] idLibro = jList.getSelectedValue().toCharArray();
+            char verId = idLibro[0];
+            
+            filas = UpdateController.borrarLibro(verId);
+            
+            JOptionPane.showMessageDialog(null, "Filas afectadas: " + filas);
+            
             cargarMenuBaja();
         }
         
@@ -214,18 +225,14 @@ public class PanelLibro extends javax.swing.JPanel {
         
         ArrayList <Libro> lista;
         
-        try {
-            lista = TablaController.getListaLibros(LoginController.getTrabajador());
-            
-            DefaultListModel model = new DefaultListModel();
-            
-            for (int i = 0; i < lista.size(); i++) {
-                model.addElement(lista.get(i).infoLibro());
-            }
-            this.jList.setModel(model);
-        } catch (SQLException ex) {
-            Logger.getLogger(Panel1a1.class.getName()).log(Level.SEVERE, null, ex);
+        lista = TablaController.getListaLibros(LoginController.getTrabajador());
+        
+        DefaultListModel model = new DefaultListModel();
+        
+        for (int i = 0; i < lista.size(); i++) {
+            model.addElement(lista.get(i).infoLibro());
         }
+        this.jList.setModel(model);
     }
     
     public void cargarMenuBaja(){
@@ -303,6 +310,7 @@ public class PanelLibro extends javax.swing.JPanel {
         lblPrecio.setVisible(true);
         lblCateg.setVisible(true);
         lblEditorial.setVisible(true);
+        
         tfAutor.setVisible(true);
         tfAutor.setText("");
         tfIsbn.setVisible(true);
@@ -311,7 +319,9 @@ public class PanelLibro extends javax.swing.JPanel {
         tfNombre.setText("");
         tfPrecio.setVisible(true);
         tfPrecio.setText("");
+        
         dcFecha.setVisible(true);
+        
         cbCateg.setVisible(true);
         cbEditorial.setVisible(true);
         
@@ -343,13 +353,18 @@ public class PanelLibro extends javax.swing.JPanel {
         lblPrecio.setVisible(false);
         lblCateg.setVisible(false);
         lblEditorial.setVisible(false);
+        lblTienda.setVisible(false);
+        
         tfAutor.setVisible(false);
         tfIsbn.setVisible(false);
         tfNombre.setVisible(false);
         tfPrecio.setVisible(false);
+        
         dcFecha.setVisible(false);
+        
         cbCateg.setVisible(false);
         cbEditorial.setVisible(false);
+        cbTienda.setVisible(false);
         
         jList.setVisible(false);
         
