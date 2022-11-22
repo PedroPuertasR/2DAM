@@ -8,10 +8,7 @@ package vista;
 import controlador.LoginController;
 import controlador.TablaController;
 import controlador.UpdateController;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -158,7 +155,6 @@ public class PanelTrabajador extends javax.swing.JPanel {
         lblTienda.setVisible(false);
         lblFecha.setVisible(false);
         dcFecha.setVisible(false);
-        
         
         fcFoto.setVisible(true);
         
