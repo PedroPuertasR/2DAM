@@ -1,0 +1,39 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="InterfazNormal.MainWindow"
+        Title="InterfazNormal">
+	<StackPanel Spacing="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+		<StackPanel Orientation="Horizontal" Spacing="20">
+			<Label x:Name="lblNombre">Indique el nombre:</Label>
+			<TextBox x:Name="tbNombre" Width="200"></TextBox>
+
+			<Label x:Name="lblExt">Indique la extensión</Label>
+			<ComboBox x:Name="cbExt">
+				<ComboBoxItem>MP3</ComboBoxItem>
+				<ComboBoxItem>WAV</ComboBoxItem>
+				<ComboBoxItem>AIFF</ComboBoxItem>
+			</ComboBox>
+		</StackPanel>
+
+		<StackPanel Orientation="Horizontal" Spacing="20">
+			<Button x:Name="btnArchivo">Seleccionar archivo</Button>
+			<TextBox x:Name="tbArchivo" Width="150"></TextBox>
+		</StackPanel>
+
+		<StackPanel HorizontalAlignment="Center">
+			<Button x:Name="btnConvertir">Convertir</Button>
+		</StackPanel>
+
+		<StackPanel Spacing="30" HorizontalAlignment="Center" x:Name="pnlSobre">
+			<Label x:Name="lblSobre" HorizontalContentAlignment="Center">¿Desea sobreescribir el archivo?</Label>
+
+			<StackPanel Orientation="Horizontal" Spacing="40">
+				<Button x:Name="btnSi" HorizontalAlignment="Left">Sí</Button>
+				<Button x:Name="btnNo" HorizontalAlignment="Right">No</Button>
+			</StackPanel>
+		</StackPanel>
+	</StackPanel>
+</Window>
