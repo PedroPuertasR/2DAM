@@ -57,6 +57,10 @@ public class PanelLogin extends javax.swing.JPanel {
 
         lblPass.setText("Contraseña:");
 
+        tfUsuario.setText("alloro");
+
+        tfPass.setText("alber2014");
+
         btnLogin.setText("Acceder");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

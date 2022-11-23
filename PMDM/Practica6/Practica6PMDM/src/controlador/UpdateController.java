@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import modelo.Libro;
-import modelo.Trabajador;
 
 /**
  *
@@ -48,12 +47,35 @@ public class UpdateController {
             
             con = GestionDB.getConnection();
             
-            ps = con.prepareStatement("UPDATE TRABAJADOR SET FOTO = ? WHERE ID = ?");
+            ps = con.prepareStatement("UPDATE TRABAJADOR SET FOTO = ?, DNI = ?, "
+                    + "FECHA_CONT = ? WHERE ID = ?");
             
             ps.setString(1, foto);
-            ps.setInt(2, idTr);
-            ps.setString(3, dni);
-            ps.setString(4, fecha);
+            ps.setString(2, dni);
+            ps.setString(3, fecha);
+            ps.setInt(4, idTr);
+            
+            int filas = ps.executeUpdate();
+            
+            return filas;
+            
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al actualizar el presupuesto");
+            return 0;
+        }
+    }
+    
+    public static int updateTrabajadorSinF(String dni, String fecha, int idTr){
+        try{
+            
+            con = GestionDB.getConnection();
+            
+            ps = con.prepareStatement("UPDATE TRABAJADOR SET DNI = ?, "
+                    + "FECHA_CONT = ? WHERE ID = ?");
+            
+            ps.setString(1, dni);
+            ps.setString(2, fecha);
+            ps.setInt(3, idTr);
             
             int filas = ps.executeUpdate();
             

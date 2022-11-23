@@ -9,12 +9,18 @@ import com.aeat.valida.Validador;
 import controlador.LoginController;
 import controlador.TablaController;
 import controlador.UpdateController;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import modelo.Tienda;
 import modelo.Trabajador;
+import java.io.*;
+import java.nio.file.*;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -163,6 +169,18 @@ public class PanelTrabajador extends javax.swing.JPanel {
 
     private void fcFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fcFotoActionPerformed
        
+        Path origen;
+        Path destino;
+        
+        try {
+            origen = Paths.get(fcFoto.getSelectedFile().getPath());
+            destino = Paths.get(System.getProperty("user.dir") + "/src/fotos/" 
+                    + fcFoto.getSelectedFile().getName());
+            Files.copy(origen, destino, REPLACE_EXISTING);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Error al guardar la foto");
+        }
+        
         foto = fcFoto.getSelectedFile().getName(); 
         
         lblFoto.setIcon(new ImageIcon(System.getProperty("user.dir") 
@@ -190,22 +208,29 @@ public class PanelTrabajador extends javax.swing.JPanel {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        int filas;
+        String dni, fecha;
+        
         Validador val = new Validador();
+        dni = tfDni.getText();
         
-        if(val.checkNif(tfDni.getText()) > 0){
-            
+        fecha = sdf.format(dcFecha.getDate());
+        
+        if(val.checkNif(dni) < 0){
+            JOptionPane.showMessageDialog(null, "Ingrese un dni válido");
         }else{
-            JOptionPane.showMessageDialog(null, "Debe ingresar un dni válido.");
-        }
+            if(foto == null){
+                filas = UpdateController.updateTrabajadorSinF(dni, fecha, 
+                        LoginController.getTrabajador().getId());
+            }else{
+                filas = UpdateController.updateTrabajador(foto, dni, fecha,
+                        LoginController.getTrabajador().getId());
+            }
         
-        String fecha = dcFecha.getDateFormatString();
-        
-        System.out.println(fecha);
-        
-        //int filas = UpdateController.updateTrabajador(foto, tfDni.getText(), dcFecha.getDateFormatString());
-        
-        //JOptionPane.showMessageDialog(null, "Filas afectadas: " + filas);
-        
+            JOptionPane.showMessageDialog(null, "Filas afectadas: " + filas);
+            
+        }       
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     public void comprobarBotones(){
