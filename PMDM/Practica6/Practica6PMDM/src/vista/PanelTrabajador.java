@@ -5,6 +5,7 @@
  */
 package vista;
 
+import com.aeat.valida.Validador;
 import controlador.LoginController;
 import controlador.TablaController;
 import controlador.UpdateController;
@@ -189,9 +190,21 @@ public class PanelTrabajador extends javax.swing.JPanel {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         
-        int filas = UpdateController.updateFoto(foto, LoginController.getTrabajador());
+        Validador val = new Validador();
         
-        JOptionPane.showMessageDialog(null, "Filas afectadas: " + filas);
+        if(val.checkNif(tfDni.getText()) > 0){
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe ingresar un dni válido.");
+        }
+        
+        String fecha = dcFecha.getDateFormatString();
+        
+        System.out.println(fecha);
+        
+        //int filas = UpdateController.updateTrabajador(foto, tfDni.getText(), dcFecha.getDateFormatString());
+        
+        //JOptionPane.showMessageDialog(null, "Filas afectadas: " + filas);
         
     }//GEN-LAST:event_btnGuardarActionPerformed
 

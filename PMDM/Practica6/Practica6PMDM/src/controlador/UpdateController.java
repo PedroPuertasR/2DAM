@@ -43,7 +43,7 @@ public class UpdateController {
         }
     }
     
-    public static int updateFoto(String foto, Trabajador t){
+    public static int updateTrabajador(String foto, String dni, String fecha, int idTr){
         try{
             
             con = GestionDB.getConnection();
@@ -51,7 +51,9 @@ public class UpdateController {
             ps = con.prepareStatement("UPDATE TRABAJADOR SET FOTO = ? WHERE ID = ?");
             
             ps.setString(1, foto);
-            ps.setInt(2, t.getId());
+            ps.setInt(2, idTr);
+            ps.setString(3, dni);
+            ps.setString(4, fecha);
             
             int filas = ps.executeUpdate();
             
