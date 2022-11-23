@@ -1,4 +1,5 @@
 import pyglet
+import pymunk
 
 
 class MyWindow(pyglet.window.Window):
@@ -18,7 +19,7 @@ class MyWindow(pyglet.window.Window):
         self.img.height = alto
 
         self.sprite = pyglet.sprite.Sprite(self.img, y= self.height/2)
-        self.spriteDos = pyglet.sprite.Sprite(self.img, y= self.height/2, x= self.width/2)
+        self.spriteDos = pyglet.sprite.Sprite(self.img, y= self.height/2, x= self.width - 50)
 
     def on_draw(self):
         window.clear()
@@ -51,5 +52,5 @@ class MyWindow(pyglet.window.Window):
                 self.spriteDos.y -= 80
 
 if __name__ == "__main__":
-    window = MyWindow(1280, 720, "Videojuego", resizable=False)
+    window = MyWindow(1280, 720, "Ping Pong", resizable=False)
     pyglet.app.run()
