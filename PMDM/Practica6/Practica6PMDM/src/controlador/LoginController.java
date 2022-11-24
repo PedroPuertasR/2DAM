@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Trabajador;
 
@@ -67,6 +69,39 @@ public class LoginController {
     
     public static Trabajador getTrabajador(){
         return aux;
+    }
+    
+    public static void actTrabajador(){
+        
+        try {
+            con = GestionDB.getConnection();
+            
+            ps = con.prepareStatement("SELECT * FROM TRABAJADOR "
+                    + "WHERE ID = ?");
+            
+            ps.setInt(1, getTrabajador().getId());
+            
+            rs = ps.executeQuery();
+            
+            rs.next();
+            
+            aux = new Trabajador(rs.getInt(1),
+                                 rs.getString(2),
+                                 rs.getString(3), 
+                                 rs.getString(4), 
+                                 Herramienta.dateToGregorianCalendar(rs.getDate(5)),
+                                 rs.getFloat(6), 
+                                 rs.getInt(7), 
+                                 rs.getInt(8), 
+                                 rs.getString(9),
+                                 rs.getString(10), 
+                                 rs.getString(11));
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se ha podido actualizar el"
+                    + " trabajador");
+        }
+        
     }
     
 }

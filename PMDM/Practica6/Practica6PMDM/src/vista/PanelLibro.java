@@ -12,6 +12,7 @@ import controlador.UpdateController;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import modelo.Categoria;
 import modelo.Editorial;
@@ -34,7 +35,6 @@ public class PanelLibro extends javax.swing.JPanel {
         initComponents();
         
         iniciarMenu();
-        //this.setPreferredSize(new Dimension(619, 519));
 
     }
 
@@ -79,7 +79,7 @@ public class PanelLibro extends javax.swing.JPanel {
                 btnBajaActionPerformed(evt);
             }
         });
-        pnlLibro.add(btnBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 325, -1, -1));
+        pnlLibro.add(btnBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, -1, -1));
 
         btnAlta.setText("Altas");
         btnAlta.addActionListener(new java.awt.event.ActionListener() {
@@ -265,7 +265,7 @@ public class PanelLibro extends javax.swing.JPanel {
         btnBaja.setVisible(false);
         
         rellenarJList();
-        
+   
     }
     
     public void cargarMenuAlta(){
