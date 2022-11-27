@@ -170,6 +170,27 @@ end;
 5.- Realiza un procedimiento que muestre el nombre del empleado más antiguo de cada departamento junto con el nombre del departamento.
 */
 
+create or replace procedure mostrar_antiguo
+as
+    cursor c1 is select * from depart;
+    cursor c2(num_dept number) is select *
+                                    from(select *
+                                        from emple
+                                        where dept_no = num_dept
+                                        order by fecha_alt)
+                                    where rownum < 1;
+begin
+    for v1 in c1 loop
+        dbms_output.put_line('Departamento: ' || v1.dnombre);
+        for v2 in c2(v1.dept_no) loop
+            dbms_output.put_line('Empleado: ' || v2.nombre || '. Fecha de alta: ' || v2.fecha_alt);
+        end loop;
+    end loop;
+
+    exception
+        when others then
+            dbms_output.put_line(sqlcode || sqlerrm);
+end;
 
 
 /*
