@@ -36,8 +36,7 @@ public class UpdateController {
             return filas;
             
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al actualizar el presupuesto");
-            return 0;
+            throw new ProgramExceptions("Error al actualizar el presupuesto ", ex.fillInStackTrace());
         }
     }
     

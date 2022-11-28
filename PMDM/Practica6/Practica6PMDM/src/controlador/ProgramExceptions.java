@@ -5,18 +5,21 @@
  */
 package controlador;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author pedro
  */
-public class ProgramExceptions extends Exception{
+public class ProgramExceptions extends RuntimeException{
     
     public ProgramExceptions(){
         
     }
     
-    public ProgramExceptions(String msg){
-        super(msg);
+    public ProgramExceptions(String msg, Throwable err){
+        super(msg, err);
+        JOptionPane.showMessageDialog(null, msg + err);
     }
     
 }
