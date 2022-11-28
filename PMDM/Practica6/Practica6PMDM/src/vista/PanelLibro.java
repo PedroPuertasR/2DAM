@@ -12,7 +12,6 @@ import controlador.UpdateController;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import modelo.Categoria;
 import modelo.Editorial;
@@ -96,16 +95,16 @@ public class PanelLibro extends javax.swing.JPanel {
         pnlLibro.add(lblAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 93, -1, -1));
 
         lblEditorial.setText("Editorial:");
-        pnlLibro.add(lblEditorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 133, -1, -1));
+        pnlLibro.add(lblEditorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
 
         lblIsbn.setText("ISBN:");
-        pnlLibro.add(lblIsbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 172, -1, -1));
+        pnlLibro.add(lblIsbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, -1, -1));
 
         lblFecha.setText("Fecha publicación:");
-        pnlLibro.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 211, -1, -1));
+        pnlLibro.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, -1));
 
         lblCateg.setText("Categoría:");
-        pnlLibro.add(lblCateg, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 249, -1, -1));
+        pnlLibro.add(lblCateg, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, -1, -1));
 
         lblPrecio.setText("Precio:");
         pnlLibro.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 288, -1, -1));
@@ -191,7 +190,8 @@ public class PanelLibro extends javax.swing.JPanel {
         int filas;
         
         if(alta){
-            int contador = TablaController.getIdLibro();
+            int contador = TablaController.getIdLibro() + 1;
+            float pre = Float.parseFloat(tfPrecio.getText());
             
             Libro nuevo = new Libro(contador, 
                                     tfAutor.getText(), 
@@ -199,14 +199,16 @@ public class PanelLibro extends javax.swing.JPanel {
                                     cbEditorial.getSelectedIndex() + 1, 
                                     tfIsbn.getText(), 
                                     Herramienta.dateToGregorianCalendar(dcFecha.getDate()), 
-                                    Float.parseFloat(tfPrecio.getText()), 
+                                    pre, 
                                     cbCateg.getSelectedIndex(), 
                                     cbTienda.getSelectedIndex());
             
-            filas = UpdateController.insertarLibro(nuevo);
+            filas = UpdateController.insertarLibro(nuevo.getAtributos());
        
-            JOptionPane.showMessageDialog(null, "Filas afectadas: " + filas);
-            
+            if(filas >= 1){
+                JOptionPane.showMessageDialog(null, "Filas afectadas: " + filas);
+            }
+
             cargarMenuAlta();
         }else{
             char [] idLibro = jList.getSelectedValue().toCharArray();

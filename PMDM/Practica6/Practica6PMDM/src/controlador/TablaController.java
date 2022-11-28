@@ -268,8 +268,9 @@ public class TablaController {
             
             con = GestionDB.getConnection();
             
-            ps = con.prepareStatement("SELECT ID FROM LIBRO ORDER BY ID DESC");
-            rs = ps.executeQuery();
+            st = con.createStatement();
+            
+            rs = ps.executeQuery("SELECT ID FROM LIBRO ORDER BY ID DESC FETCH FIRST ROW ONLY");
             
             rs.next();
             

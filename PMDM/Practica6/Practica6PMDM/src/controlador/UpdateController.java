@@ -87,12 +87,14 @@ public class UpdateController {
         }
     }
     
-    public static int insertarLibro(Libro l){
+    public static int insertarLibro(String datos){
         
         try {
             con = GestionDB.getConnection();
             
-            ps = con.prepareStatement("INSERT INTO LIBRO VALUES (" + l.getAtributos() + ")");
+            ps = con.prepareStatement("INSERT INTO LIBRO VALUES (?)");
+            
+            ps.setString(1, datos);
             
             int filas = ps.executeUpdate();
             

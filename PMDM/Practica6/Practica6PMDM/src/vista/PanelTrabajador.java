@@ -231,6 +231,7 @@ public class PanelTrabajador extends javax.swing.JPanel {
             tfApe.setEnabled(false);
             tfSalario.setEnabled(false);
             cbTienda.setEnabled(false);
+            dcFecha.setEnabled(true);
         } else {
             btnFoto.setVisible(false);
             btnGuardar.setVisible(false);
@@ -239,6 +240,7 @@ public class PanelTrabajador extends javax.swing.JPanel {
             tfApe.setEnabled(false);
             tfSalario.setEnabled(false);
             cbTienda.setEnabled(false);
+            dcFecha.setEnabled(false);
         }
 
     }

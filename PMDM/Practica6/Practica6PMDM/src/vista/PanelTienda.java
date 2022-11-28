@@ -10,12 +10,12 @@ package vista;
  * @author alumno
  */
 public class PanelTienda extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form PanelTienda
      */
     public PanelTienda() {
-        initComponents();
+        initComponents();     
     }
 
     /**
@@ -27,19 +27,43 @@ public class PanelTienda extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlTienda = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+
+        jLabel1.setText("jLabel1");
+
+        javax.swing.GroupLayout pnlTiendaLayout = new javax.swing.GroupLayout(pnlTienda);
+        pnlTienda.setLayout(pnlTiendaLayout);
+        pnlTiendaLayout.setHorizontalGroup(
+            pnlTiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTiendaLayout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(jLabel1)
+                .addContainerGap(276, Short.MAX_VALUE))
+        );
+        pnlTiendaLayout.setVerticalGroup(
+            pnlTiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTiendaLayout.createSequentialGroup()
+                .addGap(96, 96, 96)
+                .addComponent(jLabel1)
+                .addContainerGap(188, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(pnlTienda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(pnlTienda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel pnlTienda;
     // End of variables declaration//GEN-END:variables
 }
