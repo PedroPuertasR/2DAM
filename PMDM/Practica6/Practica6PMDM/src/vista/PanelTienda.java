@@ -9,33 +9,34 @@ import controlador.LoginController;
 import controlador.MoverController;
 import controlador.TablaController;
 import controlador.UpdateController;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author alumno
  */
 public class PanelTienda extends javax.swing.JPanel {
-    
+
     /**
      * Creates new form PanelTienda
      */
     public PanelTienda() {
-        initComponents(); 
-        
-        if(LoginController.getTrabajador().getIdJefe() == 0){
+        initComponents();
+
+        if (LoginController.getTrabajador().getIdJefe() == 0) {
             MoverController.iniciar("SELECT * FROM TIENDA");
             cargarDatos();
             updateBotones();
             btnAnterior.setVisible(true);
             btnSiguiente.setVisible(true);
-        }else{
-            MoverController.iniciar("SELECT * FROM TIENDA WHERE ID = " 
+        } else {
+            MoverController.iniciar("SELECT * FROM TIENDA WHERE ID = "
                     + LoginController.getTrabajador().getTienda());
             btnAnterior.setVisible(false);
             btnSiguiente.setVisible(false);
             cargarDatos();
         }
-        
-        
+
     }
 
     /**
@@ -151,8 +152,35 @@ public class PanelTienda extends javax.swing.JPanel {
 
     private void btnCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompActionPerformed
 
-        UpdateController.updatePresupuesto(TablaController.getTotalSalario(MoverController.getTienda().getId()), MoverController.getTienda().getId());
-        
+        float total, salarios;
+
+        salarios = TablaController.getTotalSalario(MoverController.getTienda().getId());
+        total = MoverController.getTienda().getPresupuesto();
+
+        if ((total - salarios) < 0) {
+            JOptionPane.showMessageDialog(null, "El presupuesto no puede ser menor que 0");
+        } else {
+            int filas = UpdateController.updatePresupuesto(TablaController.getTotalSalario(MoverController.getTienda().getId()), MoverController.getTienda().getId());
+            JOptionPane.showMessageDialog(null, "Filas afectadas: " + filas);
+
+            if (LoginController.getTrabajador().getIdJefe() == 0) {
+                MoverController.iniciar("SELECT * FROM TIENDA");
+                cargarDatos();
+                updateBotones();
+                btnAnterior.setVisible(true);
+                btnSiguiente.setVisible(true);
+            } else {
+                MoverController.iniciar("SELECT * FROM TIENDA WHERE ID = "
+                        + LoginController.getTrabajador().getTienda());
+                btnAnterior.setVisible(false);
+                btnSiguiente.setVisible(false);
+                cargarDatos();
+            }
+        }
+
+        cargarDatos();
+        updateBotones();
+
     }//GEN-LAST:event_btnCompActionPerformed
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
@@ -160,7 +188,7 @@ public class PanelTienda extends javax.swing.JPanel {
         MoverController.retroceder();
         cargarDatos();
         updateBotones();
-        
+
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
@@ -168,31 +196,31 @@ public class PanelTienda extends javax.swing.JPanel {
         MoverController.avanzar();
         cargarDatos();
         updateBotones();
-        
+
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
-    public void cargarDatos(){
-        
-        tfIdTienda.setText(""+MoverController.getTienda().getId());
+    public void cargarDatos() {
+
+        tfIdTienda.setText("" + MoverController.getTienda().getId());
         tfDire.setText(MoverController.getTienda().getDireccion());
-        tfPresup.setText(""+MoverController.getTienda().getPresupuesto() + "€");
-        
+        tfPresup.setText("" + MoverController.getTienda().getPresupuesto() + "€");
+
         updateBotones();
-        
+
         tfIdTienda.setEnabled(false);
         tfDire.setEnabled(false);
         tfPresup.setEnabled(false);
-        
+
     }
-    
-    public void updateBotones(){
-        if(MoverController.primero()){
+
+    public void updateBotones() {
+        if (MoverController.primero()) {
             btnAnterior.setEnabled(false);
             btnSiguiente.setEnabled(true);
-        }else if(MoverController.ultimo()){
+        } else if (MoverController.ultimo()) {
             btnAnterior.setEnabled(true);
             btnSiguiente.setEnabled(false);
-        }else{
+        } else {
             btnAnterior.setEnabled(true);
             btnSiguiente.setEnabled(true);
         }

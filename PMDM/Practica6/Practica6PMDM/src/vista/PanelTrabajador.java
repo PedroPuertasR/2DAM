@@ -161,6 +161,8 @@ public class PanelTrabajador extends javax.swing.JPanel {
             
             foto = f.getName();
             
+            System.out.println(foto);
+            
             Image img = new ImageIcon(System.getProperty("user.dir")
                     + "/src/fotos/" + f.getName()).getImage();
 
@@ -193,7 +195,7 @@ public class PanelTrabajador extends javax.swing.JPanel {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         int filas;
         String dni, fecha;
 

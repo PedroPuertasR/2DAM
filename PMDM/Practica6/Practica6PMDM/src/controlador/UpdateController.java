@@ -59,7 +59,8 @@ public class UpdateController {
             return filas;
             
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al actualizar el presupuesto");
+            JOptionPane.showMessageDialog(null, "Error al actualizar al "
+                    + "trabajador con foto");
             return 0;
         }
     }
@@ -81,7 +82,7 @@ public class UpdateController {
             return filas;
             
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al actualizar el presupuesto");
+            JOptionPane.showMessageDialog(null, "Error al actualizar el trabajador");
             return 0;
         }
     }

@@ -11,8 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Categoria;
 import modelo.Editorial;
@@ -272,7 +270,7 @@ public class TablaController {
             
             st = con.createStatement();
             
-            rs = st.executeQuery("SELECT ID FROM LIBRO ORDER BY ID DESC FETCH FIRST ROW ONLY");
+            rs = st.executeQuery("SELECT ID FROM LIBRO ORDER BY ID DESC LIMIT 1");
             
             rs.next();
             

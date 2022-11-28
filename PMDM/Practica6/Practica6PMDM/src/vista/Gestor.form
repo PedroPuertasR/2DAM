@@ -40,7 +40,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="item1a1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="1 a 1"/>
+                <Property name="text" type="java.lang.String" value="Ver editoriales"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item1a1ActionPerformed"/>
@@ -48,7 +48,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemTable">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Table"/>
+                <Property name="text" type="java.lang.String" value="Ver listado libros"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemTableActionPerformed"/>
@@ -56,7 +56,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemUsuario">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Usuario"/>
+                <Property name="text" type="java.lang.String" value="Ver perfil"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemUsuarioActionPerformed"/>
@@ -64,7 +64,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemLibro">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Libro"/>
+                <Property name="text" type="java.lang.String" value="Alta/Baja libros"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemLibroActionPerformed"/>
@@ -72,7 +72,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemTienda">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Tienda"/>
+                <Property name="text" type="java.lang.String" value="Ver tienda"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemTiendaActionPerformed"/>

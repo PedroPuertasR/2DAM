@@ -118,7 +118,7 @@ public class PanelLibro extends javax.swing.JPanel {
 
         cbCateg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         pnlLibro.add(cbCateg, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 244, 150, -1));
-        pnlLibro.add(dcFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 207, 101, -1));
+        pnlLibro.add(dcFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 207, 150, -1));
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {

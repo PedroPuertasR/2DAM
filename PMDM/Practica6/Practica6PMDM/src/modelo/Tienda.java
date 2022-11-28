@@ -14,8 +14,7 @@ public class Tienda {
     private int id;
     private String direccion;
     private float presupuesto;
-    private final float PRESUTOTAL = 9000;
-
+    
     public Tienda() {
     }
 
@@ -47,10 +46,6 @@ public class Tienda {
 
     public void setPresupuesto(float presupuesto) {
         this.presupuesto = presupuesto;
-    }
-    
-    public float getPRESUTOTAL() {
-        return PRESUTOTAL;
     }
 
     @Override

@@ -117,7 +117,7 @@ public class Gestor extends javax.swing.JFrame {
 
         menuVista.setText("Vista");
 
-        item1a1.setText("1 a 1");
+        item1a1.setText("Ver editoriales");
         item1a1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 item1a1ActionPerformed(evt);
@@ -125,7 +125,7 @@ public class Gestor extends javax.swing.JFrame {
         });
         menuVista.add(item1a1);
 
-        itemTable.setText("Table");
+        itemTable.setText("Ver listado libros");
         itemTable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemTableActionPerformed(evt);
@@ -133,7 +133,7 @@ public class Gestor extends javax.swing.JFrame {
         });
         menuVista.add(itemTable);
 
-        itemUsuario.setText("Usuario");
+        itemUsuario.setText("Ver perfil");
         itemUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemUsuarioActionPerformed(evt);
@@ -141,7 +141,7 @@ public class Gestor extends javax.swing.JFrame {
         });
         menuVista.add(itemUsuario);
 
-        itemLibro.setText("Libro");
+        itemLibro.setText("Alta/Baja libros");
         itemLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemLibroActionPerformed(evt);
@@ -149,7 +149,7 @@ public class Gestor extends javax.swing.JFrame {
         });
         menuVista.add(itemLibro);
 
-        itemTienda.setText("Tienda");
+        itemTienda.setText("Ver tienda");
         itemTienda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemTiendaActionPerformed(evt);
