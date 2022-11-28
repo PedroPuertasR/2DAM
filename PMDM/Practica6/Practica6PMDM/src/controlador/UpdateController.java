@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import modelo.Libro;
 
 /**
  *
@@ -29,7 +28,7 @@ public class UpdateController {
             
             con = GestionDB.getConnection();
             
-            ps = con.prepareStatement("UPDATE TIENDA SET PRESUPUESTO = PRESUPUESTO + " 
+            ps = con.prepareStatement("UPDATE TIENDA SET PRESUPUESTO = PRESUPUESTO - " 
                     + pres + " WHERE ID = " + id);
             
             int filas = ps.executeUpdate();
@@ -92,19 +91,15 @@ public class UpdateController {
         try {
             con = GestionDB.getConnection();
             
-            ps = con.prepareStatement("INSERT INTO LIBRO VALUES (?)");
+            st = con.createStatement();
             
-            ps.setString(1, datos);
-            
-            int filas = ps.executeUpdate();
+            int filas = st.executeUpdate("INSERT INTO LIBRO VALUES ("+ datos + ")");
             
             return filas;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al insertar el libro");
             return 0;
         }
-        
-        
     }
     
     public static int borrarLibro(char index){

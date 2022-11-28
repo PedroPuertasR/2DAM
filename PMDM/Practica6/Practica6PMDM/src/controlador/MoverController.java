@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import modelo.Editorial;
+import modelo.Tienda;
 
 /**
  *
@@ -26,10 +27,24 @@ public class MoverController {
             aux = new Editorial(rs.getInt(1),
                                  rs.getString(2),
                                  rs.getString(3));
+            return aux;
         }catch(SQLException e){
-            System.out.println("Fallo BBDD.");
+            JOptionPane.showMessageDialog(null, "Error al conseguir la editorial");
+            return null;
         }
-        return aux;
+    }
+    
+    public static Tienda getTienda(){
+        Tienda aux = null;
+        try{
+            aux = new Tienda(rs.getInt(1),
+                             rs.getString(2),
+                             rs.getFloat(3));
+            return aux;
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Error al conseguir la tienda");
+            return null;
+        }
     }
     
     public static void iniciar(String query){
@@ -50,7 +65,7 @@ public class MoverController {
         try {
             return rs.next();
         } catch (SQLException ex) {
-            System.out.println("Error al mostrar el siguiente.");
+            JOptionPane.showMessageDialog(null, "Error al avanzar");
         }
         return false;
     }
@@ -59,7 +74,7 @@ public class MoverController {
         try {
             return rs.previous();
         } catch (SQLException ex) {
-            System.out.println("Error al mostrar el anterior.");
+            JOptionPane.showMessageDialog(null, "Error al retroceder");
         }
         return false;
     }
@@ -68,7 +83,7 @@ public class MoverController {
         try{
             return rs.first();
         }catch(SQLException ex){
-            System.out.println("No hay primero.");
+            JOptionPane.showMessageDialog(null, "Error. No hay primero");
         }
         return false;
     }
@@ -77,7 +92,7 @@ public class MoverController {
         try{
             return rs.last();
         }catch(SQLException ex){
-            System.out.println("No hay último.");
+            JOptionPane.showMessageDialog(null, "Error. No hay último");
         }
         return false;
     }
@@ -86,7 +101,7 @@ public class MoverController {
         try{
             return rs.isFirst();
         }catch(SQLException ex){
-            System.out.println("No hay primero.");
+            JOptionPane.showMessageDialog(null, "Error. No hay primero");
         }
         return false;
     }
@@ -95,13 +110,20 @@ public class MoverController {
         try{
             return rs.isLast();
         }catch(SQLException ex){
-            System.out.println("No hay primero.");
+            JOptionPane.showMessageDialog(null, "Error. No hay último");
         }
         return false;
     }
     
     public static boolean finalizar(){
-        return false;
+        try {
+            rs.close();
+            
+            return rs.isClosed();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error. No se ha podido finalizar");
+            return false;
+        }
     }
     
 }

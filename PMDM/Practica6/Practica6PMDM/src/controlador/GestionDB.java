@@ -21,12 +21,12 @@ public class GestionDB {
     
     public static void open() {
         try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");	
+            Class.forName("com.mysql.jdbc.Driver");	
         } catch (ClassNotFoundException e) {
             System.out.println("ERROR: exception loading driver class");
         }
                
-        String url = "jdbc:derby://localhost:1527/libreria";
+        String url = "jdbc:mysql://localhost:3306/libreriaBuena";
         try {
             con = DriverManager.getConnection(url, usuario, pass);
         } catch (SQLException ex) {

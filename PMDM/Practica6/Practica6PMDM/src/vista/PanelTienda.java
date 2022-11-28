@@ -5,6 +5,10 @@
  */
 package vista;
 
+import controlador.LoginController;
+import controlador.MoverController;
+import controlador.TablaController;
+import controlador.UpdateController;
 /**
  *
  * @author alumno
@@ -15,7 +19,23 @@ public class PanelTienda extends javax.swing.JPanel {
      * Creates new form PanelTienda
      */
     public PanelTienda() {
-        initComponents();     
+        initComponents(); 
+        
+        if(LoginController.getTrabajador().getIdJefe() == 0){
+            MoverController.iniciar("SELECT * FROM TIENDA");
+            cargarDatos();
+            updateBotones();
+            btnAnterior.setVisible(true);
+            btnSiguiente.setVisible(true);
+        }else{
+            MoverController.iniciar("SELECT * FROM TIENDA WHERE ID = " 
+                    + LoginController.getTrabajador().getTienda());
+            btnAnterior.setVisible(false);
+            btnSiguiente.setVisible(false);
+            cargarDatos();
+        }
+        
+        
     }
 
     /**
@@ -28,25 +48,93 @@ public class PanelTienda extends javax.swing.JPanel {
     private void initComponents() {
 
         pnlTienda = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblIdTienda = new javax.swing.JLabel();
+        lblDire = new javax.swing.JLabel();
+        lblPresup = new javax.swing.JLabel();
+        tfIdTienda = new javax.swing.JTextField();
+        tfDire = new javax.swing.JTextField();
+        tfPresup = new javax.swing.JTextField();
+        btnAnterior = new javax.swing.JButton();
+        btnSiguiente = new javax.swing.JButton();
+        btnComp = new javax.swing.JButton();
 
-        jLabel1.setText("jLabel1");
+        lblIdTienda.setText("Nº de tienda:");
+
+        lblDire.setText("Dirección:");
+
+        lblPresup.setText("Presupuesto:");
+
+        btnAnterior.setText("Anterior");
+        btnAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnteriorActionPerformed(evt);
+            }
+        });
+
+        btnSiguiente.setText("Siguiente");
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguienteActionPerformed(evt);
+            }
+        });
+
+        btnComp.setText("Comprobar presupuesto");
+        btnComp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlTiendaLayout = new javax.swing.GroupLayout(pnlTienda);
         pnlTienda.setLayout(pnlTiendaLayout);
         pnlTiendaLayout.setHorizontalGroup(
             pnlTiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTiendaLayout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addComponent(jLabel1)
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addGap(57, 57, 57)
+                .addComponent(btnAnterior)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSiguiente)
+                .addGap(47, 47, 47))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTiendaLayout.createSequentialGroup()
+                .addContainerGap(94, Short.MAX_VALUE)
+                .addGroup(pnlTiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTiendaLayout.createSequentialGroup()
+                        .addGroup(pnlTiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblPresup)
+                            .addComponent(lblDire)
+                            .addComponent(lblIdTienda))
+                        .addGap(27, 27, 27)
+                        .addGroup(pnlTiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfIdTienda)
+                            .addComponent(tfDire)
+                            .addComponent(tfPresup, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(86, 86, 86))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTiendaLayout.createSequentialGroup()
+                        .addComponent(btnComp)
+                        .addGap(100, 100, 100))))
         );
         pnlTiendaLayout.setVerticalGroup(
             pnlTiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTiendaLayout.createSequentialGroup()
-                .addGap(96, 96, 96)
-                .addComponent(jLabel1)
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addGap(74, 74, 74)
+                .addGroup(pnlTiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblIdTienda)
+                    .addComponent(tfIdTienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlTiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDire)
+                    .addComponent(tfDire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlTiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPresup)
+                    .addComponent(tfPresup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnComp)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGroup(pnlTiendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAnterior)
+                    .addComponent(btnSiguiente))
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -61,9 +149,65 @@ public class PanelTienda extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompActionPerformed
+
+        UpdateController.updatePresupuesto(TablaController.getTotalSalario(MoverController.getTienda().getId()), MoverController.getTienda().getId());
+        
+    }//GEN-LAST:event_btnCompActionPerformed
+
+    private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
+
+        MoverController.retroceder();
+        cargarDatos();
+        updateBotones();
+        
+    }//GEN-LAST:event_btnAnteriorActionPerformed
+
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+
+        MoverController.avanzar();
+        cargarDatos();
+        updateBotones();
+        
+    }//GEN-LAST:event_btnSiguienteActionPerformed
+
+    public void cargarDatos(){
+        
+        tfIdTienda.setText(""+MoverController.getTienda().getId());
+        tfDire.setText(MoverController.getTienda().getDireccion());
+        tfPresup.setText(""+MoverController.getTienda().getPresupuesto() + "€");
+        
+        updateBotones();
+        
+        tfIdTienda.setEnabled(false);
+        tfDire.setEnabled(false);
+        tfPresup.setEnabled(false);
+        
+    }
+    
+    public void updateBotones(){
+        if(MoverController.primero()){
+            btnAnterior.setEnabled(false);
+            btnSiguiente.setEnabled(true);
+        }else if(MoverController.ultimo()){
+            btnAnterior.setEnabled(true);
+            btnSiguiente.setEnabled(false);
+        }else{
+            btnAnterior.setEnabled(true);
+            btnSiguiente.setEnabled(true);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnAnterior;
+    private javax.swing.JButton btnComp;
+    private javax.swing.JButton btnSiguiente;
+    private javax.swing.JLabel lblDire;
+    private javax.swing.JLabel lblIdTienda;
+    private javax.swing.JLabel lblPresup;
     private javax.swing.JPanel pnlTienda;
+    private javax.swing.JTextField tfDire;
+    private javax.swing.JTextField tfIdTienda;
+    private javax.swing.JTextField tfPresup;
     // End of variables declaration//GEN-END:variables
 }

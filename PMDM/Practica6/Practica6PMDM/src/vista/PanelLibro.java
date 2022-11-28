@@ -200,8 +200,8 @@ public class PanelLibro extends javax.swing.JPanel {
                                     tfIsbn.getText(), 
                                     Herramienta.dateToGregorianCalendar(dcFecha.getDate()), 
                                     pre, 
-                                    cbCateg.getSelectedIndex(), 
-                                    cbTienda.getSelectedIndex());
+                                    cbCateg.getSelectedIndex() + 1, 
+                                    cbTienda.getSelectedIndex() + 1);
             
             filas = UpdateController.insertarLibro(nuevo.getAtributos());
        
@@ -323,6 +323,7 @@ public class PanelLibro extends javax.swing.JPanel {
         tfPrecio.setText("");
         
         dcFecha.setVisible(true);
+        dcFecha.setCalendar(null);
         
         cbCateg.setVisible(true);
         cbEditorial.setVisible(true);

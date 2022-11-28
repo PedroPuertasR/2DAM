@@ -14,7 +14,7 @@ public class Tienda {
     private int id;
     private String direccion;
     private float presupuesto;
-    private final float PRESUTOTAL = 5000;
+    private final float PRESUTOTAL = 9000;
 
     public Tienda() {
     }

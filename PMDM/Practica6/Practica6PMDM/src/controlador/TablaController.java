@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Categoria;
 import modelo.Editorial;
@@ -270,7 +272,7 @@ public class TablaController {
             
             st = con.createStatement();
             
-            rs = ps.executeQuery("SELECT ID FROM LIBRO ORDER BY ID DESC FETCH FIRST ROW ONLY");
+            rs = st.executeQuery("SELECT ID FROM LIBRO ORDER BY ID DESC FETCH FIRST ROW ONLY");
             
             rs.next();
             
@@ -280,6 +282,29 @@ public class TablaController {
             
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al conseguir el id del libro");
+            return 0;
+        }
+        
+    }
+    
+    public static float getTotalSalario(int idTienda){
+        
+        float aux = 0;
+        
+        try {
+            con = GestionDB.getConnection();
+            
+            st = con.createStatement();
+            
+            rs = st.executeQuery("SELECT SALARIO FROM TRABAJADOR WHERE TIENDA = "+ idTienda);
+            
+            while(rs.next()){
+                aux = aux + rs.getFloat(1);
+            }
+            
+            return aux;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al recoger los salarios");
             return 0;
         }
         
