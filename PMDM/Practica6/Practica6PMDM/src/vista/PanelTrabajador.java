@@ -7,6 +7,7 @@ package vista;
 
 import com.aeat.valida.Validador;
 import controlador.LoginController;
+import controlador.ProgramExceptions;
 import controlador.TablaController;
 import controlador.UpdateController;
 import java.awt.Image;
@@ -139,88 +140,100 @@ public class PanelTrabajador extends javax.swing.JPanel {
 
     private void btnFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFotoActionPerformed
 
-        Path origen;
-        Path destino;
+        try {
 
-        JFileChooser fcFoto = new JFileChooser();
-        fcFoto.showSaveDialog(null);
+            Path origen;
+            Path destino;
 
-        int returnVal = fcFoto.showOpenDialog(null);
+            JFileChooser fcFoto = new JFileChooser();
+            fcFoto.showSaveDialog(null);
 
-        File f = fcFoto.getSelectedFile();
-        
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            try {
-                origen = Paths.get(f.getPath());
-                destino = Paths.get(System.getProperty("user.dir") + "/src/fotos/"
-                        + f.getName());
-                Files.copy(origen, destino, REPLACE_EXISTING);
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(null, "Error al guardar la foto");
+            int returnVal = fcFoto.showOpenDialog(null);
+
+            File f = fcFoto.getSelectedFile();
+
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                try {
+                    origen = Paths.get(f.getPath());
+                    destino = Paths.get(System.getProperty("user.dir") + "/src/fotos/"
+                            + f.getName());
+                    Files.copy(origen, destino, REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "Error al guardar la foto");
+                }
+
+                foto = f.getName();
+
+                System.out.println(foto);
+
+                Image img = new ImageIcon(System.getProperty("user.dir")
+                        + "/src/fotos/" + f.getName()).getImage();
+
+                ImageIcon ic = new ImageIcon(img.getScaledInstance(170, 166, Image.SCALE_SMOOTH));
+
+                lblFoto.setIcon(ic);
+
+                btnFoto.setVisible(true);
+                btnGuardar.setVisible(true);
+                tfDni.setVisible(true);
+                tfNombre.setVisible(true);
+                tfApe.setVisible(true);
+                tfSalario.setVisible(true);
+                cbTienda.setVisible(true);
+                lblApe.setVisible(true);
+                lblDni.setVisible(true);
+                lblFoto.setVisible(true);
+                lblNombre.setVisible(true);
+                lblSalario.setVisible(true);
+                lblTienda.setVisible(true);
+                lblFecha.setVisible(true);
+                dcFecha.setVisible(true);
+
+                fcFoto.setVisible(false);
+            } else {
+                throw new ProgramExceptions(11);
             }
-            
-            foto = f.getName();
-            
-            System.out.println(foto);
-            
-            Image img = new ImageIcon(System.getProperty("user.dir")
-                    + "/src/fotos/" + f.getName()).getImage();
 
-            ImageIcon ic = new ImageIcon(img.getScaledInstance(170, 166, Image.SCALE_SMOOTH));
-
-            lblFoto.setIcon(ic);
-
-            btnFoto.setVisible(true);
-            btnGuardar.setVisible(true);
-            tfDni.setVisible(true);
-            tfNombre.setVisible(true);
-            tfApe.setVisible(true);
-            tfSalario.setVisible(true);
-            cbTienda.setVisible(true);
-            lblApe.setVisible(true);
-            lblDni.setVisible(true);
-            lblFoto.setVisible(true);
-            lblNombre.setVisible(true);
-            lblSalario.setVisible(true);
-            lblTienda.setVisible(true);
-            lblFecha.setVisible(true);
-            dcFecha.setVisible(true);
-
-            fcFoto.setVisible(false);
-        } else {
-            JOptionPane.showMessageDialog(null, "No has seleccionado ningún archivo");
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
         }
 
     }//GEN-LAST:event_btnFotoActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        int filas;
-        String dni, fecha;
+        try {
 
-        Validador val = new Validador();
-        dni = tfDni.getText();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            int filas;
+            String dni, fecha;
 
-        fecha = sdf.format(dcFecha.getDate());
+            Validador val = new Validador();
+            dni = tfDni.getText();
 
-        if (val.checkNif(dni) < 0) {
-            JOptionPane.showMessageDialog(null, "Ingrese un dni válido");
-        } else {
-            if (foto == null) {
-                filas = UpdateController.updateTrabajadorSinF(dni, fecha,
-                        LoginController.getTrabajador().getId());
+            fecha = sdf.format(dcFecha.getDate());
+
+            if (val.checkNif(dni) < 0) {
+                throw new ProgramExceptions(9);
             } else {
-                filas = UpdateController.updateTrabajador(foto, dni, fecha,
-                        LoginController.getTrabajador().getId());
+                if (foto == null) {
+                    filas = UpdateController.updateTrabajadorSinF(dni, fecha,
+                            LoginController.getTrabajador().getId());
+                } else {
+                    filas = UpdateController.updateTrabajador(foto, dni, fecha,
+                            LoginController.getTrabajador().getId());
+                }
+
+                JOptionPane.showMessageDialog(null, "Filas afectadas: " + filas);
+
             }
 
-            JOptionPane.showMessageDialog(null, "Filas afectadas: " + filas);
+            LoginController.actTrabajador();
 
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
         }
-        
-        LoginController.actTrabajador();
-        
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     public void comprobarBotones() {
@@ -248,32 +261,40 @@ public class PanelTrabajador extends javax.swing.JPanel {
     }
 
     private void cargarDatos() {
-        ArrayList<Tienda> listaTienda = new ArrayList<Tienda>();
-        listaTienda = TablaController.getTiendas();
-        String[] tiendas = new String[(listaTienda.size())];
-        
-        Trabajador t = LoginController.getTrabajador();
-        
-        Image img = new ImageIcon(System.getProperty("user.dir")
+
+        try {
+
+            ArrayList<Tienda> listaTienda = new ArrayList<Tienda>();
+            listaTienda = TablaController.getTiendas();
+            String[] tiendas = new String[(listaTienda.size())];
+
+            Trabajador t = LoginController.getTrabajador();
+
+            Image img = new ImageIcon(System.getProperty("user.dir")
                     + "/src/fotos/" + t.getFoto()).getImage();
 
-        ImageIcon ic = new ImageIcon(img.getScaledInstance(170, 166, Image.SCALE_SMOOTH));
+            ImageIcon ic = new ImageIcon(img.getScaledInstance(170, 166, Image.SCALE_SMOOTH));
 
-        for (int i = 0; i < tiendas.length; i++) {
-            tiendas[i] = listaTienda.get(i).getDireccion();
+            for (int i = 0; i < tiendas.length; i++) {
+                tiendas[i] = listaTienda.get(i).getDireccion();
+            }
+
+            DefaultComboBoxModel<String> cbT = new DefaultComboBoxModel(tiendas);
+
+            cbTienda.setModel(cbT);
+
+            tfDni.setText(t.getDni());
+            tfNombre.setText(t.getNombre());
+            tfApe.setText(t.getApellidos());
+            tfSalario.setText("" + t.getSalario());
+            lblFoto.setIcon(ic);
+            dcFecha.setCalendar(t.getFechaCont());
+            cbTienda.setSelectedIndex(t.getTienda());
+
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
         }
 
-        DefaultComboBoxModel<String> cbT = new DefaultComboBoxModel(tiendas);
-
-        cbTienda.setModel(cbT);
-
-        tfDni.setText(t.getDni());
-        tfNombre.setText(t.getNombre());
-        tfApe.setText(t.getApellidos());
-        tfSalario.setText("" + t.getSalario());
-        lblFoto.setIcon(ic);
-        dcFecha.setCalendar(t.getFechaCont());
-        cbTienda.setSelectedIndex(t.getTienda());     
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

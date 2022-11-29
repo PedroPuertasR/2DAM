@@ -29,7 +29,7 @@ public class MoverController {
                                  rs.getString(3));
             return aux;
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "Error al conseguir la editorial");
+            //JOptionPane.showMessageDialog(null, "Error al conseguir la editorial");
             ProgramExceptions err = new ProgramExceptions(1);
             ProgramExceptions.guardarError(e.getMessage());
             throw err;
@@ -44,7 +44,7 @@ public class MoverController {
                              rs.getFloat(3));
             return aux;
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "Error al conseguir la tienda");
+            //JOptionPane.showMessageDialog(null, "Error al conseguir la tienda");
             ProgramExceptions err = new ProgramExceptions(1);
             ProgramExceptions.guardarError(e.getMessage());
             throw err;
@@ -61,7 +61,7 @@ public class MoverController {
                 rs.first();
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al iniciar la lista");
+            //JOptionPane.showMessageDialog(null, "Error al iniciar la lista");
             ProgramExceptions err = new ProgramExceptions(5);
             ProgramExceptions.guardarError(ex.getMessage());
             throw err;
@@ -72,7 +72,7 @@ public class MoverController {
         try {
             return rs.next();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al avanzar");
+            //JOptionPane.showMessageDialog(null, "Error al avanzar");
             ProgramExceptions err = new ProgramExceptions(5);
             ProgramExceptions.guardarError(ex.getMessage());
             throw err;
@@ -83,7 +83,7 @@ public class MoverController {
         try {
             return rs.previous();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al retroceder");
+            //JOptionPane.showMessageDialog(null, "Error al retroceder");
             ProgramExceptions err = new ProgramExceptions(5);
             ProgramExceptions.guardarError(ex.getMessage());
             throw err;
@@ -94,7 +94,7 @@ public class MoverController {
         try{
             return rs.first();
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error. No hay primero");
+            //JOptionPane.showMessageDialog(null, "Error. No hay primero");
             ProgramExceptions err = new ProgramExceptions(5);
             ProgramExceptions.guardarError(ex.getMessage());
             throw err;
@@ -105,7 +105,7 @@ public class MoverController {
         try{
             return rs.last();
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error. No hay último");
+            //JOptionPane.showMessageDialog(null, "Error. No hay último");
             ProgramExceptions err = new ProgramExceptions(5);
             ProgramExceptions.guardarError(ex.getMessage());
             throw err;
@@ -116,7 +116,7 @@ public class MoverController {
         try{
             return rs.isFirst();
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error. No hay primero");
+            //JOptionPane.showMessageDialog(null, "Error. No hay primero");
             ProgramExceptions err = new ProgramExceptions(5);
             ProgramExceptions.guardarError(ex.getMessage());
             throw err;
@@ -127,7 +127,7 @@ public class MoverController {
         try{
             return rs.isLast();
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error. No hay último");
+            //JOptionPane.showMessageDialog(null, "Error. No hay último");
             ProgramExceptions err = new ProgramExceptions(5);
             ProgramExceptions.guardarError(ex.getMessage());
             throw err;
@@ -139,7 +139,7 @@ public class MoverController {
             rs.close();
             return rs.isClosed();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error. No se ha podido finalizar");
+            //JOptionPane.showMessageDialog(null, "Error. No se ha podido finalizar");
             ProgramExceptions err = new ProgramExceptions(5);
             ProgramExceptions.guardarError(ex.getMessage());
             throw err;

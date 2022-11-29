@@ -10,17 +10,17 @@ namespace EjercicioConvertir
             InitializeComponent();
         }
 
-        /*En caso de que pulsemos el botón de seleccionar archivo se mostrará el openFileDialog para que el
+        /*En caso de que pulsemos el botï¿½n de seleccionar archivo se mostrarï¿½ el openFileDialog para que el
          * usuario pueda seleccionarlo
          */
         private void btnArchivo_Click(object sender, EventArgs e)
         {
             ofArchivo.ShowDialog();
 
-            //Guardamos en una variable el nombre y la extensión del archivo
+            //Guardamos en una variable el nombre y la extensiï¿½n del archivo
             tbArchivo.Text = ofArchivo.SafeFileName;
 
-            //Solo si el archivo existe mostrará en un textBox el nombre y su extensión
+            //Solo si el archivo existe mostrarï¿½ en un textBox el nombre y su extensiï¿½n
             if (ofArchivo.CheckFileExists)
             {
                 tbArchivo.Visible = true;
@@ -56,17 +56,17 @@ namespace EjercicioConvertir
                         //Guardamos la ruta del openFileDialog
                         string ruta = ofArchivo.FileName;
 
-                        //Instanciamos la variable que ejecutará el proceso
+                        //Instanciamos la variable que ejecutarï¿½ el proceso
                         var ps = new ProcessStartInfo();
 
-                        //El proceso ejecutará el cmd
+                        //El proceso ejecutarï¿½ el cmd
                         ps.FileName = "cmd.exe";
 
-                        //No se abrirá la consola en el proceso gracias a este método
+                        //No se abrirï¿½ la consola en el proceso gracias a este mï¿½todo
                         ps.UseShellExecute = false;
 
                         /*Le pasamos las instrucciones con la ruta y el nombre de archivo 
-                         * para que realice la conversión
+                         * para que realice la conversiï¿½n
                          */
                         ps.Arguments = "/c ffmpeg -i " + ruta + " " + Path.GetDirectoryName(ruta) + "\\" + tbNombre.Text + "." + cbTipo.Text;
 
@@ -76,44 +76,44 @@ namespace EjercicioConvertir
                         string sobre = Path.GetDirectoryName(ruta) + "\\" + tbNombre.Text + "." + cbTipo.Text;
 
                         /*Si nuestra variable coincide con el nuevo archivo ponemos como visible un panel que
-                         * le preguntará al usuario si desea sobreescribir el archivo
+                         * le preguntarï¿½ al usuario si desea sobreescribir el archivo
                          */
                         if (File.Exists(sobre))
                         {
                             panelSobre.Visible = true;
 
-                            lblSobre.Text = "El archivo ya existe\n¿Desea sobreescribirlo?";
+                            lblSobre.Text = "El archivo ya existe\nÂ¿Desea sobreescribirlo?";
                         }
-                        /*En caso de que no exista realizará el proceso normalmente y mostrará un 
-                         * label de éxito en la conversión
+                        /*En caso de que no exista realizarï¿½ el proceso normalmente y mostrarï¿½ un 
+                         * label de ï¿½xito en la conversiï¿½n
                          */
                         else
                         {
-                            //Iniciamos el proceso para realizar la conversión
+                            //Iniciamos el proceso para realizar la conversiï¿½n
                             using var proceso = Process.Start(ps);
 
-                            //Cuando se ejecute el proceso mostrará un MessageBox de éxito
-                            MessageBox.Show("Conversión a ." + cbTipo.Text + " realizada.");
+                            //Cuando se ejecute el proceso mostrarï¿½ un MessageBox de ï¿½xito
+                            MessageBox.Show("ConversiÃ³n a ." + cbTipo.Text + " realizada.");
                         }
                     }
                 }
             }
         }
 
-        /*En caso de que el usuario elija que no en la sobreescritura simplemente ocultará el panel 
-         * y no hará nada
+        /*En caso de que el usuario elija que no en la sobreescritura simplemente ocultarï¿½ el panel 
+         * y no harï¿½ nada
          */
         private void btnNo_Click(object sender, EventArgs e)
         {
             panelSobre.Visible = false;
         }
 
-        /*En caso de que el usuario seleccione que si se ejecutará el comando del cmd con un -y delante, 
-         * el cual hará que se sobreescriba automáticamente sin preguntar nada al usuario por consola
+        /*En caso de que el usuario seleccione que si se ejecutarï¿½ el comando del cmd con un -y delante, 
+         * el cual harï¿½ que se sobreescriba automï¿½ticamente sin preguntar nada al usuario por consola
          */
         private void btnSi_Click(object sender, EventArgs e)
         {
-            //Oculta el panel una vez que pulsemos el sí
+            //Oculta el panel una vez que pulsemos el sï¿½
             panelSobre.Visible = false;
             string ruta = ofArchivo.FileName;
             var ps = new ProcessStartInfo();
@@ -126,8 +126,8 @@ namespace EjercicioConvertir
             //Iniciamos el proceso para que convierta el archivo
             using var proceso = Process.Start(ps);
 
-            //Cuando se ejecute el proceso mostrará un MessageBox de éxito
-            MessageBox.Show("Conversión a ." + cbTipo.Text + " realizada.");
+            //Cuando se ejecute el proceso mostrarï¿½ un MessageBox de ï¿½xito
+            MessageBox.Show("ConversiÃ³n a ." + cbTipo.Text + " realizada.");
         }
     }
 }

@@ -7,6 +7,7 @@ package vista;
 
 import controlador.Herramienta;
 import controlador.LoginController;
+import controlador.ProgramExceptions;
 import controlador.TablaController;
 import controlador.UpdateController;
 import java.util.ArrayList;
@@ -25,14 +26,14 @@ import modelo.Tienda;
 public class PanelLibro extends javax.swing.JPanel {
 
     private static boolean alta = false;
-    
+
     /**
      * Creates new form PanelLibro
      */
     public PanelLibro() {
-        
+
         initComponents();
-        
+
         iniciarMenu();
 
     }
@@ -168,78 +169,95 @@ public class PanelLibro extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaActionPerformed
-        
+
         cargarMenuAlta();
-        
+
     }//GEN-LAST:event_btnAltaActionPerformed
 
     private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
-        
+
         cargarMenuBaja();
-        
+
     }//GEN-LAST:event_btnBajaActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        
+
         iniciarMenu();
-        
+
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        
-        int filas;
-        
-        if(alta){
-            int contador = TablaController.getIdLibro() + 1;
-            float pre = Float.parseFloat(tfPrecio.getText());
-            
-            Libro nuevo = new Libro(contador, 
-                                    tfAutor.getText(), 
-                                    tfNombre.getText(), 
-                                    cbEditorial.getSelectedIndex() + 1, 
-                                    tfIsbn.getText(), 
-                                    Herramienta.dateToGregorianCalendar(dcFecha.getDate()), 
-                                    pre, 
-                                    cbCateg.getSelectedIndex() + 1, 
-                                    cbTienda.getSelectedIndex() + 1);
-            
-            filas = UpdateController.insertarLibro(nuevo.getAtributos());
-       
-            if(filas >= 1){
+
+        try {
+
+            int filas;
+
+            if (alta) {
+                int contador = TablaController.getIdLibro() + 1;
+                float pre = Float.parseFloat(tfPrecio.getText());
+                String isbn = tfIsbn.getText();
+
+                if (isbn.length() != 13) {
+                    throw new ProgramExceptions(8);
+                } else {
+                    Libro nuevo = new Libro(contador,
+                            tfAutor.getText(),
+                            tfNombre.getText(),
+                            cbEditorial.getSelectedIndex() + 1,
+                            tfIsbn.getText(),
+                            Herramienta.dateToGregorianCalendar(dcFecha.getDate()),
+                            pre,
+                            cbCateg.getSelectedIndex() + 1,
+                            cbTienda.getSelectedIndex() + 1);
+
+                    filas = UpdateController.insertarLibro(nuevo.getAtributos());
+
+                    if (filas >= 1) {
+                        JOptionPane.showMessageDialog(null, "Filas afectadas: " + filas);
+                    }
+                }
+
+                cargarMenuAlta();
+            } else {
+                char[] idLibro = jList.getSelectedValue().toCharArray();
+                char verId = idLibro[0];
+
+                filas = UpdateController.borrarLibro(verId);
+
                 JOptionPane.showMessageDialog(null, "Filas afectadas: " + filas);
+
+                cargarMenuBaja();
             }
 
-            cargarMenuAlta();
-        }else{
-            char [] idLibro = jList.getSelectedValue().toCharArray();
-            char verId = idLibro[0];
-            
-            filas = UpdateController.borrarLibro(verId);
-            
-            JOptionPane.showMessageDialog(null, "Filas afectadas: " + filas);
-            
-            cargarMenuBaja();
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
         }
-        
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    public void rellenarJList(){
-        
-        ArrayList <Libro> lista;
-        
-        lista = TablaController.getListaLibros(LoginController.getTrabajador());
-        
-        DefaultListModel model = new DefaultListModel();
-        
-        for (int i = 0; i < lista.size(); i++) {
-            model.addElement(lista.get(i).infoLibro());
+    public void rellenarJList() {
+
+        try {
+
+            ArrayList<Libro> lista;
+
+            lista = TablaController.getListaLibros(LoginController.getTrabajador());
+
+            DefaultListModel model = new DefaultListModel();
+
+            for (int i = 0; i < lista.size(); i++) {
+                model.addElement(lista.get(i).infoLibro());
+            }
+            this.jList.setModel(model);
+
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
         }
-        this.jList.setModel(model);
     }
-    
-    public void cargarMenuBaja(){
+
+    public void cargarMenuBaja() {
         alta = false;
-        
+
         lblAutor.setVisible(false);
         lblNombre.setVisible(false);
         lblFecha.setVisible(false);
@@ -256,99 +274,104 @@ public class PanelLibro extends javax.swing.JPanel {
         cbCateg.setVisible(false);
         cbEditorial.setVisible(false);
         cbTienda.setVisible(false);
-        
+
         jList.setVisible(true);
-        
+
         btnCancelar.setVisible(true);
         btnGuardar.setVisible(true);
         btnGuardar.setText("Dar de baja");
-        
+
         btnAlta.setVisible(false);
         btnBaja.setVisible(false);
-        
+
         rellenarJList();
-   
+
     }
-    
-    public void cargarMenuAlta(){
-        alta = true;
-        
-        ArrayList <Categoria> listaCate = new ArrayList <Categoria>();
-        ArrayList <Editorial> listaEdi = new ArrayList <Editorial>();
-        ArrayList <Tienda> listaTienda = new ArrayList <Tienda>();
-        
-        listaTienda = TablaController.getTiendas();
-        listaCate = TablaController.getCategorias();
-        listaEdi = TablaController.getEditoriales();
-        
-        String [] edi = new String [(listaEdi.size())];
-        String [] cate = new String [(listaCate.size())];
-        String [] tiendas = new String [(listaTienda.size())];
-        
-        for (int i = 0; i < cate.length; i++) {
-            cate[i] = listaCate.get(i).getNombre();
+
+    public void cargarMenuAlta() {
+        try {
+
+            alta = true;
+
+            ArrayList<Categoria> listaCate = new ArrayList<Categoria>();
+            ArrayList<Editorial> listaEdi = new ArrayList<Editorial>();
+            ArrayList<Tienda> listaTienda = new ArrayList<Tienda>();
+
+            listaTienda = TablaController.getTiendas();
+            listaCate = TablaController.getCategorias();
+            listaEdi = TablaController.getEditoriales();
+
+            String[] edi = new String[(listaEdi.size())];
+            String[] cate = new String[(listaCate.size())];
+            String[] tiendas = new String[(listaTienda.size())];
+
+            for (int i = 0; i < cate.length; i++) {
+                cate[i] = listaCate.get(i).getNombre();
+            }
+
+            for (int i = 0; i < edi.length; i++) {
+                edi[i] = listaEdi.get(i).getNombre();
+            }
+
+            for (int i = 0; i < tiendas.length; i++) {
+                tiendas[i] = listaTienda.get(i).getDireccion();
+            }
+
+            DefaultComboBoxModel<String> cb = new DefaultComboBoxModel(cate);
+            DefaultComboBoxModel<String> cbE = new DefaultComboBoxModel(edi);
+            DefaultComboBoxModel<String> cbT = new DefaultComboBoxModel(tiendas);
+
+            cbCateg.setModel(cb);
+            cbEditorial.setModel(cbE);
+            cbTienda.setModel(cbT);
+
+            lblAutor.setVisible(true);
+            lblNombre.setVisible(true);
+            lblFecha.setVisible(true);
+            lblIsbn.setVisible(true);
+            lblPrecio.setVisible(true);
+            lblCateg.setVisible(true);
+            lblEditorial.setVisible(true);
+
+            tfAutor.setVisible(true);
+            tfAutor.setText("");
+            tfIsbn.setVisible(true);
+            tfIsbn.setText("");
+            tfNombre.setVisible(true);
+            tfNombre.setText("");
+            tfPrecio.setVisible(true);
+            tfPrecio.setText("");
+
+            dcFecha.setVisible(true);
+            dcFecha.setCalendar(null);
+
+            cbCateg.setVisible(true);
+            cbEditorial.setVisible(true);
+
+            if (LoginController.getTrabajador().getIdJefe() == 0) {
+                cbTienda.setVisible(true);
+                lblTienda.setVisible(true);
+            } else {
+                cbTienda.setVisible(false);
+                lblTienda.setVisible(false);
+            }
+
+            jList.setVisible(false);
+
+            btnCancelar.setVisible(true);
+            btnGuardar.setVisible(true);
+            btnGuardar.setText("Guardar");
+
+            btnAlta.setVisible(false);
+            btnBaja.setVisible(false);
+
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
         }
-        
-        for (int i = 0; i < edi.length; i++) {
-            edi[i] = listaEdi.get(i).getNombre();
-        }
-        
-        for (int i = 0; i < tiendas.length; i++) {
-            tiendas[i] = listaTienda.get(i).getDireccion();
-        }
-        
-        DefaultComboBoxModel <String> cb = new DefaultComboBoxModel(cate);
-        DefaultComboBoxModel <String> cbE = new DefaultComboBoxModel(edi);
-        DefaultComboBoxModel <String> cbT = new DefaultComboBoxModel(tiendas);
-        
-        cbCateg.setModel(cb);
-        cbEditorial.setModel(cbE);
-        cbTienda.setModel(cbT);
-        
-        lblAutor.setVisible(true);
-        lblNombre.setVisible(true);
-        lblFecha.setVisible(true);
-        lblIsbn.setVisible(true);
-        lblPrecio.setVisible(true);
-        lblCateg.setVisible(true);
-        lblEditorial.setVisible(true);
-        
-        tfAutor.setVisible(true);
-        tfAutor.setText("");
-        tfIsbn.setVisible(true);
-        tfIsbn.setText("");
-        tfNombre.setVisible(true);
-        tfNombre.setText("");
-        tfPrecio.setVisible(true);
-        tfPrecio.setText("");
-        
-        dcFecha.setVisible(true);
-        dcFecha.setCalendar(null);
-        
-        cbCateg.setVisible(true);
-        cbEditorial.setVisible(true);
-        
-        if(LoginController.getTrabajador().getIdJefe() == 0){
-            cbTienda.setVisible(true);
-            lblTienda.setVisible(true);
-        }else{
-            cbTienda.setVisible(false);
-            lblTienda.setVisible(false);
-        }
-        
-        jList.setVisible(false);
-        
-        btnCancelar.setVisible(true);
-        btnGuardar.setVisible(true);
-        btnGuardar.setText("Guardar");
-        
-        btnAlta.setVisible(false);
-        btnBaja.setVisible(false);
-        
     }
-    
-    public void iniciarMenu(){
-        
+
+    public void iniciarMenu() {
+
         lblAutor.setVisible(false);
         lblNombre.setVisible(false);
         lblFecha.setVisible(false);
@@ -357,23 +380,23 @@ public class PanelLibro extends javax.swing.JPanel {
         lblCateg.setVisible(false);
         lblEditorial.setVisible(false);
         lblTienda.setVisible(false);
-        
+
         tfAutor.setVisible(false);
         tfIsbn.setVisible(false);
         tfNombre.setVisible(false);
         tfPrecio.setVisible(false);
-        
+
         dcFecha.setVisible(false);
-        
+
         cbCateg.setVisible(false);
         cbEditorial.setVisible(false);
         cbTienda.setVisible(false);
-        
+
         jList.setVisible(false);
-        
+
         btnCancelar.setVisible(false);
         btnGuardar.setVisible(false);
-        
+
         btnAlta.setVisible(true);
         btnBaja.setVisible(true);
     }

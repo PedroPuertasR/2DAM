@@ -50,6 +50,18 @@ public class ProgramExceptions extends RuntimeException{
             case 7:
                 this.msg = "Error al borrar una fila";
                 break;
+            case 8:
+                this.msg = "El ISBN debe tener 13 caracteres";
+                break;
+            case 9:
+                this.msg = "El DNI no es válido";
+                break;
+            case 10:
+                this.msg = "El presupuesto no puede ser menor que 0";
+                break;
+            case 11:
+                this.msg = "No ha seleccionado la foto";
+                break;
             default:
                 this.msg = "Error en el programa";
         }
@@ -59,14 +71,15 @@ public class ProgramExceptions extends RuntimeException{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         GregorianCalendar gc = new GregorianCalendar();
         
-        String error = "Error Nº " + err + ": " + msg + sdf.format(gc.getTime());
+        String error = "Error Nº " + err + ": " + msg + ". " + sdf.format(gc.getTime());
         
         JOptionPane.showMessageDialog(null, error);
     }
     
     public static void guardarError(String error){
         try{
-            BufferedWriter bf = new BufferedWriter(new FileWriter(new File(System.getProperty("user.dir") + "/src/log"), true));
+            BufferedWriter bf = new BufferedWriter(new FileWriter(new File(System.getProperty("user.dir") 
+                    + "/src/logs/log.txt"), true));
             
             bf.write(error);
             bf.close();

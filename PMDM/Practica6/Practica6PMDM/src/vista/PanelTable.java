@@ -7,6 +7,7 @@ package vista;
 
 import controlador.Herramienta;
 import controlador.LoginController;
+import controlador.ProgramExceptions;
 import controlador.TablaController;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -24,9 +25,15 @@ public class PanelTable extends javax.swing.JPanel {
      */
     public PanelTable() {
         initComponents();
-        
-        rellenarJTable(TablaController.getTienda("SELECT * FROM TIENDA WHERE ID = " 
-                                                 + LoginController.getTrabajador().getTienda()));
+
+        try {
+
+            rellenarJTable(TablaController.getTienda("SELECT * FROM TIENDA WHERE ID = "
+                    + LoginController.getTrabajador().getTienda()));
+
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
+        }
     }
 
     /**
@@ -85,43 +92,47 @@ public class PanelTable extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public void rellenarJTable(Tienda t){
-        
-        String d, e, c;
-        ArrayList <Libro> lista;
-        
-        lista = TablaController.getListaLibros(LoginController.getTrabajador());
-        
-        DefaultTableModel model = new DefaultTableModel();
-        
-        model.addColumn("Nombre");
-        model.addColumn("Autor");
-        model.addColumn("Editorial");
-        model.addColumn("Fecha pub.");
-        model.addColumn("Precio");
-        model.addColumn("Categoría");
-        
-        for (int i = 0; i < lista.size(); i++) {
-            d = Herramienta.gregorianCalendarToString(lista.get(i).getFechaPub());
-            
-            e = TablaController.getNomEdi("SELECT NOMBRE FROM EDITORIAL WHERE ID = "
-                    + lista.get(i).getEditorial());
-            
-            c = TablaController.getNomCate("SELECT NOMBRE FROM CATEGORIA WHERE ID = "
-                    + lista.get(i).getCategoria());
-            
-            model.addRow(new Object[]{lista.get(i).getNombre(),
-                                      lista.get(i).getAutor(),
-                                      e,
-                                      d,
-                                      lista.get(i).getPrecio(),
-                                      c});
+    public void rellenarJTable(Tienda t) {
+
+        try {
+            String d, e, c;
+            ArrayList<Libro> lista;
+
+            lista = TablaController.getListaLibros(LoginController.getTrabajador());
+
+            DefaultTableModel model = new DefaultTableModel();
+
+            model.addColumn("Nombre");
+            model.addColumn("Autor");
+            model.addColumn("Editorial");
+            model.addColumn("Fecha pub.");
+            model.addColumn("Precio");
+            model.addColumn("Categoría");
+
+            for (int i = 0; i < lista.size(); i++) {
+                d = Herramienta.gregorianCalendarToString(lista.get(i).getFechaPub());
+
+                e = TablaController.getNomEdi("SELECT NOMBRE FROM EDITORIAL WHERE ID = "
+                        + lista.get(i).getEditorial());
+
+                c = TablaController.getNomCate("SELECT NOMBRE FROM CATEGORIA WHERE ID = "
+                        + lista.get(i).getCategoria());
+
+                model.addRow(new Object[]{lista.get(i).getNombre(),
+                    lista.get(i).getAutor(),
+                    e,
+                    d,
+                    lista.get(i).getPrecio(),
+                    c});
+            }
+
+            this.jTable.setModel(model);
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
         }
-        
-        this.jTable.setModel(model);
-        
+
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

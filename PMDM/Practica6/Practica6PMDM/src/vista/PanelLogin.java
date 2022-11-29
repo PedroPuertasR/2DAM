@@ -7,6 +7,7 @@ package vista;
 
 import controlador.GestionDB;
 import controlador.LoginController;
+import controlador.ProgramExceptions;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import modelo.Trabajador;
@@ -22,18 +23,18 @@ public class PanelLogin extends javax.swing.JPanel {
     private JMenu acercaDe;
     private JMenuItem abrir;
     private JMenuItem cerrar;
-    
+
     /**
      * Creates new form PanelLogin
      */
     public PanelLogin(JMenu vista, JMenu otro, JMenu acercaDe, JMenuItem abrir, JMenuItem cerrar) {
-        
+
         this.vista = vista;
         this.otro = otro;
         this.acercaDe = acercaDe;
         this.abrir = abrir;
         this.cerrar = cerrar;
-        
+
         initComponents();
     }
 
@@ -117,29 +118,39 @@ public class PanelLogin extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void comprobarConexion(Trabajador aux) {
-        if(aux != null){
+        if (aux != null) {
             this.setVisible(false);
             vista.setEnabled(true);
             otro.setEnabled(true);
             acercaDe.setEnabled(true);
             abrir.setEnabled(false);
             cerrar.setEnabled(true);
-        }else{
-            
+        } else {
+            vista.setEnabled(false);
+            otro.setEnabled(false);
+            acercaDe.setEnabled(false);
+            abrir.setEnabled(true);
+            cerrar.setEnabled(false);
         }
     }
-    
+
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        
-        GestionDB.open();
-        
-        String usuario = tfUsuario.getText();
-        String pass = tfPass.getText();
-        
-        Trabajador aux = LoginController.getConexion(usuario, pass);
-        
-        comprobarConexion(aux);
-        
+
+        try {
+
+            GestionDB.open();
+
+            String usuario = tfUsuario.getText();
+            String pass = tfPass.getText();
+
+            Trabajador aux = LoginController.getConexion(usuario, pass);
+
+            comprobarConexion(aux);
+
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
+        }
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
 

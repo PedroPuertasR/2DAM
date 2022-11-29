@@ -1,4 +1,6 @@
 using Avalonia.Controls;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace InterfazNormal
 {
@@ -17,14 +19,15 @@ namespace InterfazNormal
         private void BtnConvertir_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             string extension = cbExt.SelectedItem.ToString();
-            System.Console.WriteLine(extension);
+            tbArchivo.Text = extension;
             string nuevo = tbNombre.Text;
         }
 
         private void BtnArchivo_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-
-            string ruta = "";
+            var ruta = abrirArchivo();
+            
+            tbArchivo.Text = ruta.ToString();
 
             if (ruta.Equals(""))
             {
@@ -34,6 +37,15 @@ namespace InterfazNormal
             {
 
             }
+        }
+
+        public async Task abrirArchivo()
+        {
+            var dialog = new OpenFileDialog();
+            dialog.Directory = "C:";
+            dialog.AllowMultiple = false;
+
+            var result = await dialog.ShowAsync(this);
         }
     }
 }

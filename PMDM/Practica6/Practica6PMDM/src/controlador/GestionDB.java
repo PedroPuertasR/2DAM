@@ -23,7 +23,7 @@ public class GestionDB {
         try {
             Class.forName("com.mysql.jdbc.Driver");	
         } catch (ClassNotFoundException e) {
-            System.out.println("ERROR: exception loading driver class");
+            //System.out.println("ERROR: exception loading driver class");
             ProgramExceptions err = new ProgramExceptions(3);
             ProgramExceptions.guardarError(e.getMessage());
             throw err;

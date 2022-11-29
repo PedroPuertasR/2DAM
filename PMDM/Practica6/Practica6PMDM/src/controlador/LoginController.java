@@ -56,12 +56,12 @@ public class LoginController {
             return aux;
             
         }catch(SQLException sql){
-            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
+            //JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
             ProgramExceptions err = new ProgramExceptions(2);
             ProgramExceptions.guardarError(sql.getMessage());
             throw err;
         }catch(NullPointerException ne){
-            JOptionPane.showMessageDialog(null, "Error en el guardado de la lista");
+            //JOptionPane.showMessageDialog(null, "Error en el guardado de la lista");
             ProgramExceptions err = new ProgramExceptions(2);
             ProgramExceptions.guardarError(ne.getMessage());
             throw err;
@@ -100,8 +100,8 @@ public class LoginController {
                                  rs.getString(11));
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se ha podido actualizar el"
-                    + " trabajador");
+            //JOptionPane.showMessageDialog(null, "No se ha podido actualizar el"
+            //        + " trabajador");
             ProgramExceptions err = new ProgramExceptions(1);
             ProgramExceptions.guardarError(ex.getMessage());
             throw err;

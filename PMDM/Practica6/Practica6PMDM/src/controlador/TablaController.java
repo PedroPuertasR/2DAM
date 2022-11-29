@@ -69,7 +69,7 @@ public class TablaController {
             
             return lista;
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al cargar los libros");
+            //JOptionPane.showMessageDialog(null, "Error al cargar los libros");
             ProgramExceptions err = new ProgramExceptions(1);
             ProgramExceptions.guardarError(ex.getMessage());
             throw err;
@@ -111,7 +111,7 @@ public class TablaController {
             ps.close();
             return lista;
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "Error al cargar los libros");
+            //JOptionPane.showMessageDialog(null, "Error al cargar los libros");
             ProgramExceptions err = new ProgramExceptions(1);
             ProgramExceptions.guardarError(e.getMessage());
             throw err;
@@ -140,7 +140,7 @@ public class TablaController {
             
             return lista;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al coger la categoria");
+            //JOptionPane.showMessageDialog(null, "Error al coger la categoria");
             ProgramExceptions err = new ProgramExceptions(1);
             ProgramExceptions.guardarError(ex.getMessage());
             throw err;
@@ -170,7 +170,7 @@ public class TablaController {
             
             return lista;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al cargar las editoriales");
+            //JOptionPane.showMessageDialog(null, "Error al cargar las editoriales");
             ProgramExceptions err = new ProgramExceptions(1);
             ProgramExceptions.guardarError(ex.getMessage());
             throw err;
@@ -200,7 +200,7 @@ public class TablaController {
             
             return lista;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al cargar las tiendas");
+            //JOptionPane.showMessageDialog(null, "Error al cargar las tiendas");
             ProgramExceptions err = new ProgramExceptions(1);
             ProgramExceptions.guardarError(ex.getMessage());
             throw err;
@@ -223,7 +223,7 @@ public class TablaController {
             
             return aux;
         }catch(SQLException es){
-            JOptionPane.showMessageDialog(null, "Error al coger la tienda");
+            //JOptionPane.showMessageDialog(null, "Error al coger la tienda");
             ProgramExceptions err = new ProgramExceptions(1);
             ProgramExceptions.guardarError(es.getMessage());
             throw err;
@@ -245,7 +245,7 @@ public class TablaController {
             
             return aux;
         }catch(SQLException es){
-            JOptionPane.showMessageDialog(null, "Error en la consulta de la editorial");
+            //JOptionPane.showMessageDialog(null, "Error en la consulta de la editorial");
             ProgramExceptions err = new ProgramExceptions(1);
             ProgramExceptions.guardarError(es.getMessage());
             throw err;
@@ -267,8 +267,8 @@ public class TablaController {
             
             return aux;
         }catch(SQLException es){
-            JOptionPane.showMessageDialog(null, "Error al encontrar el "
-                    + "nombre de la categoria");
+            //JOptionPane.showMessageDialog(null, "Error al encontrar el "
+            //        + "nombre de la categoria");
             ProgramExceptions err = new ProgramExceptions(1);
             ProgramExceptions.guardarError(es.getMessage());
             throw err;
@@ -295,7 +295,7 @@ public class TablaController {
             return aux;
             
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al conseguir el id del libro");
+            //JOptionPane.showMessageDialog(null, "Error al conseguir el id del libro");
             ProgramExceptions err = new ProgramExceptions(1);
             ProgramExceptions.guardarError(ex.getMessage());
             throw err;
@@ -320,7 +320,7 @@ public class TablaController {
             
             return aux;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al recoger los salarios");
+            //JOptionPane.showMessageDialog(null, "Error al recoger los salarios");
             ProgramExceptions err = new ProgramExceptions(1);
             ProgramExceptions.guardarError(ex.getMessage());
             throw err;

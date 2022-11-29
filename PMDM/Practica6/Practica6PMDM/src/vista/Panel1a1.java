@@ -5,7 +5,6 @@
  */
 package vista;
 
-import com.sun.tools.sjavac.ProblemException;
 import controlador.LoginController;
 import controlador.MoverController;
 import controlador.ProgramExceptions;

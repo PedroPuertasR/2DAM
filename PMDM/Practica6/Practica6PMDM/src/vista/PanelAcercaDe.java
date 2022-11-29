@@ -15,6 +15,9 @@ public class PanelAcercaDe extends javax.swing.JPanel {
     /** Creates new form PanelAcercaDe */
     public PanelAcercaDe() {
         initComponents();
+        tfAutor.setEnabled(false);
+        tfFecha.setEnabled(false);
+        tfVersion.setEnabled(false);
     }
 
     /** This method is called from within the constructor to
@@ -31,8 +34,8 @@ public class PanelAcercaDe extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         tfAutor = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        tfVersion = new javax.swing.JTextField();
+        tfFecha = new javax.swing.JTextField();
 
         lblCreador.setText("Creador:");
 
@@ -40,11 +43,14 @@ public class PanelAcercaDe extends javax.swing.JPanel {
 
         jLabel3.setText("Versión:");
 
+        tfAutor.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         tfAutor.setText("Pedro Puertas Rodríguez");
 
-        jTextField1.setText("1.0");
+        tfVersion.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tfVersion.setText("1.0");
 
-        jTextField2.setText("03/11/2022");
+        tfFecha.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tfFecha.setText("03/11/2022");
 
         javax.swing.GroupLayout pnlAcercaLayout = new javax.swing.GroupLayout(pnlAcerca);
         pnlAcerca.setLayout(pnlAcercaLayout);
@@ -58,9 +64,9 @@ public class PanelAcercaDe extends javax.swing.JPanel {
                     .addComponent(jLabel3))
                 .addGap(37, 37, 37)
                 .addGroup(pnlAcercaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2))
+                    .addComponent(tfAutor)
+                    .addComponent(tfVersion)
+                    .addComponent(tfFecha))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         pnlAcercaLayout.setVerticalGroup(
@@ -73,11 +79,11 @@ public class PanelAcercaDe extends javax.swing.JPanel {
                 .addGap(28, 28, 28)
                 .addGroup(pnlAcercaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfVersion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(pnlAcercaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
 
@@ -97,11 +103,11 @@ public class PanelAcercaDe extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblCreador;
     private javax.swing.JPanel pnlAcerca;
     private javax.swing.JTextField tfAutor;
+    private javax.swing.JTextField tfFecha;
+    private javax.swing.JTextField tfVersion;
     // End of variables declaration//GEN-END:variables
 
 }

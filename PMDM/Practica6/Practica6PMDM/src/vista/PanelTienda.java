@@ -7,6 +7,7 @@ package vista;
 
 import controlador.LoginController;
 import controlador.MoverController;
+import controlador.ProgramExceptions;
 import controlador.TablaController;
 import controlador.UpdateController;
 import javax.swing.JOptionPane;
@@ -23,18 +24,22 @@ public class PanelTienda extends javax.swing.JPanel {
     public PanelTienda() {
         initComponents();
 
-        if (LoginController.getTrabajador().getIdJefe() == 0) {
-            MoverController.iniciar("SELECT * FROM TIENDA");
-            cargarDatos();
-            updateBotones();
-            btnAnterior.setVisible(true);
-            btnSiguiente.setVisible(true);
-        } else {
-            MoverController.iniciar("SELECT * FROM TIENDA WHERE ID = "
-                    + LoginController.getTrabajador().getTienda());
-            btnAnterior.setVisible(false);
-            btnSiguiente.setVisible(false);
-            cargarDatos();
+        try {
+            if (LoginController.getTrabajador().getIdJefe() == 0) {
+                MoverController.iniciar("SELECT * FROM TIENDA");
+                cargarDatos();
+                updateBotones();
+                btnAnterior.setVisible(true);
+                btnSiguiente.setVisible(true);
+            } else {
+                MoverController.iniciar("SELECT * FROM TIENDA WHERE ID = "
+                        + LoginController.getTrabajador().getTienda());
+                btnAnterior.setVisible(false);
+                btnSiguiente.setVisible(false);
+                cargarDatos();
+            }
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
         }
 
     }
@@ -152,77 +157,104 @@ public class PanelTienda extends javax.swing.JPanel {
 
     private void btnCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompActionPerformed
 
-        float total, salarios;
+        try {
 
-        salarios = TablaController.getTotalSalario(MoverController.getTienda().getId());
-        total = MoverController.getTienda().getPresupuesto();
+            float total, salarios;
 
-        if ((total - salarios) < 0) {
-            JOptionPane.showMessageDialog(null, "El presupuesto no puede ser menor que 0");
-        } else {
-            int filas = UpdateController.updatePresupuesto(TablaController.getTotalSalario(MoverController.getTienda().getId()), MoverController.getTienda().getId());
-            JOptionPane.showMessageDialog(null, "Filas afectadas: " + filas);
+            salarios = TablaController.getTotalSalario(MoverController.getTienda().getId());
+            total = MoverController.getTienda().getPresupuesto();
 
-            if (LoginController.getTrabajador().getIdJefe() == 0) {
-                MoverController.iniciar("SELECT * FROM TIENDA");
-                cargarDatos();
-                updateBotones();
-                btnAnterior.setVisible(true);
-                btnSiguiente.setVisible(true);
+            if ((total - salarios) < 0) {
+                throw new ProgramExceptions(10);
             } else {
-                MoverController.iniciar("SELECT * FROM TIENDA WHERE ID = "
-                        + LoginController.getTrabajador().getTienda());
-                btnAnterior.setVisible(false);
-                btnSiguiente.setVisible(false);
-                cargarDatos();
-            }
-        }
+                int filas = UpdateController.updatePresupuesto(TablaController.getTotalSalario(MoverController.getTienda().getId()), MoverController.getTienda().getId());
+                JOptionPane.showMessageDialog(null, "Filas afectadas: " + filas);
 
-        cargarDatos();
-        updateBotones();
+                if (LoginController.getTrabajador().getIdJefe() == 0) {
+                    MoverController.iniciar("SELECT * FROM TIENDA");
+                    cargarDatos();
+                    updateBotones();
+                    btnAnterior.setVisible(true);
+                    btnSiguiente.setVisible(true);
+                } else {
+                    MoverController.iniciar("SELECT * FROM TIENDA WHERE ID = "
+                            + LoginController.getTrabajador().getTienda());
+                    btnAnterior.setVisible(false);
+                    btnSiguiente.setVisible(false);
+                    cargarDatos();
+                }
+            }
+
+            cargarDatos();
+            updateBotones();
+
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
+        }
 
     }//GEN-LAST:event_btnCompActionPerformed
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
 
-        MoverController.retroceder();
-        cargarDatos();
-        updateBotones();
+        try {
+
+            MoverController.retroceder();
+            cargarDatos();
+            updateBotones();
+
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
+        }
 
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
 
-        MoverController.avanzar();
-        cargarDatos();
-        updateBotones();
+        try {
+            MoverController.avanzar();
+            cargarDatos();
+            updateBotones();
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
+        }
 
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     public void cargarDatos() {
 
-        tfIdTienda.setText("" + MoverController.getTienda().getId());
-        tfDire.setText(MoverController.getTienda().getDireccion());
-        tfPresup.setText("" + MoverController.getTienda().getPresupuesto() + "€");
+        try {
 
-        updateBotones();
+            tfIdTienda.setText("" + MoverController.getTienda().getId());
+            tfDire.setText(MoverController.getTienda().getDireccion());
+            tfPresup.setText("" + MoverController.getTienda().getPresupuesto() + "€");
 
-        tfIdTienda.setEnabled(false);
-        tfDire.setEnabled(false);
-        tfPresup.setEnabled(false);
+            updateBotones();
 
+            tfIdTienda.setEnabled(false);
+            tfDire.setEnabled(false);
+            tfPresup.setEnabled(false);
+
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
+        }
     }
 
     public void updateBotones() {
-        if (MoverController.primero()) {
-            btnAnterior.setEnabled(false);
-            btnSiguiente.setEnabled(true);
-        } else if (MoverController.ultimo()) {
-            btnAnterior.setEnabled(true);
-            btnSiguiente.setEnabled(false);
-        } else {
-            btnAnterior.setEnabled(true);
-            btnSiguiente.setEnabled(true);
+        try {
+
+            if (MoverController.primero()) {
+                btnAnterior.setEnabled(false);
+                btnSiguiente.setEnabled(true);
+            } else if (MoverController.ultimo()) {
+                btnAnterior.setEnabled(true);
+                btnSiguiente.setEnabled(false);
+            } else {
+                btnAnterior.setEnabled(true);
+                btnSiguiente.setEnabled(true);
+            }
+
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
         }
     }
 

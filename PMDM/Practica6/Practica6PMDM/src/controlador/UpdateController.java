@@ -60,8 +60,8 @@ public class UpdateController {
             return filas;
             
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al actualizar al "
-                    + "trabajador con foto");
+            //JOptionPane.showMessageDialog(null, "Error al actualizar al "
+            //        + "trabajador con foto");
             ProgramExceptions err = new ProgramExceptions(6);
             ProgramExceptions.guardarError(ex.getMessage());
             throw err;
@@ -85,7 +85,7 @@ public class UpdateController {
             return filas;
             
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al actualizar el trabajador");
+            //JOptionPane.showMessageDialog(null, "Error al actualizar el trabajador");
             ProgramExceptions err = new ProgramExceptions(6);
             ProgramExceptions.guardarError(ex.getMessage());
             throw err;
@@ -103,7 +103,7 @@ public class UpdateController {
             
             return filas;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al insertar el libro");
+            //JOptionPane.showMessageDialog(null, "Error al insertar el libro");
             ProgramExceptions err = new ProgramExceptions(6);
             ProgramExceptions.guardarError(ex.getMessage());
             throw err;
@@ -122,7 +122,7 @@ public class UpdateController {
             return filas;
             
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al borrar el libro");
+            //JOptionPane.showMessageDialog(null, "Error al borrar el libro");
             ProgramExceptions err = new ProgramExceptions(7);
             ProgramExceptions.guardarError(ex.getMessage());
             throw err;
