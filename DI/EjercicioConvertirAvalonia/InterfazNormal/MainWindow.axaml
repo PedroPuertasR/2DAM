@@ -10,11 +10,11 @@
 			<Label x:Name="lblNombre">Indique el nombre:</Label>
 			<TextBox x:Name="tbNombre" Width="200"></TextBox>
 
-			<Label x:Name="lblExt">Indique la extensión</Label>
+			<Label x:Name="lblExt">Indique la extensión:</Label>
 			<ComboBox x:Name="cbExt">
-				<ComboBoxItem>MP3</ComboBoxItem>
-				<ComboBoxItem>WAV</ComboBoxItem>
-				<ComboBoxItem>AIFF</ComboBoxItem>
+				<ComboBoxItem>mp3</ComboBoxItem>
+				<ComboBoxItem>wav</ComboBoxItem>
+				<ComboBoxItem>aiff</ComboBoxItem>
 			</ComboBox>
 		</StackPanel>
 
@@ -30,10 +30,14 @@
 		<StackPanel Spacing="30" HorizontalAlignment="Center" x:Name="pnlSobre">
 			<Label x:Name="lblSobre" HorizontalContentAlignment="Center">¿Desea sobreescribir el archivo?</Label>
 
-			<StackPanel Orientation="Horizontal" Spacing="40">
+			<StackPanel Orientation="Horizontal" Spacing="160">
 				<Button x:Name="btnSi" HorizontalAlignment="Left">Sí</Button>
 				<Button x:Name="btnNo" HorizontalAlignment="Right">No</Button>
 			</StackPanel>
+		</StackPanel>
+
+		<StackPanel Spacing="30" HorizontalAlignment="Center" x:Name="pnlInfo">
+			<TextBox x:Name="tbInfo"></TextBox>
 		</StackPanel>
 	</StackPanel>
 </Window>
