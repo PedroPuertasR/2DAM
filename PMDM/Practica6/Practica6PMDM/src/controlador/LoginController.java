@@ -23,7 +23,7 @@ public class LoginController {
     private static Connection con = null;
     private static PreparedStatement ps = null;
     
-    public static Trabajador getConexion(String usuario, String pass){
+    public static Trabajador getConexion(String usuario, String pass) throws ProgramExceptions{
         
         try{
             con = GestionDB.getConnection();
@@ -57,10 +57,14 @@ public class LoginController {
             
         }catch(SQLException sql){
             JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
-            return null;
+            ProgramExceptions err = new ProgramExceptions(2);
+            ProgramExceptions.guardarError(sql.getMessage());
+            throw err;
         }catch(NullPointerException ne){
-            JOptionPane.showMessageDialog(null, "Error lista");
-            return null;
+            JOptionPane.showMessageDialog(null, "Error en el guardado de la lista");
+            ProgramExceptions err = new ProgramExceptions(2);
+            ProgramExceptions.guardarError(ne.getMessage());
+            throw err;
         }
         
     }
@@ -98,6 +102,9 @@ public class LoginController {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se ha podido actualizar el"
                     + " trabajador");
+            ProgramExceptions err = new ProgramExceptions(1);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
         
     }

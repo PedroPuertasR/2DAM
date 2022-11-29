@@ -23,7 +23,7 @@ public class UpdateController {
     private static Connection con = null;
     private static ResultSet rs = null;
     
-    public static int updatePresupuesto(float pres, int id){
+    public static int updatePresupuesto(float pres, int id) throws ProgramExceptions{
         try{
             
             con = GestionDB.getConnection();
@@ -36,11 +36,13 @@ public class UpdateController {
             return filas;
             
         }catch(SQLException ex){
-            throw new ProgramExceptions("Error al actualizar el presupuesto ", ex.fillInStackTrace());
+            ProgramExceptions err = new ProgramExceptions(6);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
     }
     
-    public static int updateTrabajador(String foto, String dni, String fecha, int idTr){
+    public static int updateTrabajador(String foto, String dni, String fecha, int idTr) throws ProgramExceptions{
         try{
             
             con = GestionDB.getConnection();
@@ -60,11 +62,13 @@ public class UpdateController {
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al actualizar al "
                     + "trabajador con foto");
-            return 0;
+            ProgramExceptions err = new ProgramExceptions(6);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
     }
     
-    public static int updateTrabajadorSinF(String dni, String fecha, int idTr){
+    public static int updateTrabajadorSinF(String dni, String fecha, int idTr) throws ProgramExceptions{
         try{
             
             con = GestionDB.getConnection();
@@ -82,11 +86,13 @@ public class UpdateController {
             
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al actualizar el trabajador");
-            return 0;
+            ProgramExceptions err = new ProgramExceptions(6);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
     }
     
-    public static int insertarLibro(String datos){
+    public static int insertarLibro(String datos) throws ProgramExceptions{
         
         try {
             con = GestionDB.getConnection();
@@ -98,11 +104,13 @@ public class UpdateController {
             return filas;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al insertar el libro");
-            return 0;
+            ProgramExceptions err = new ProgramExceptions(6);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
     }
     
-    public static int borrarLibro(char index){
+    public static int borrarLibro(char index) throws ProgramExceptions{
         try{
             
             con = GestionDB.getConnection();
@@ -115,7 +123,9 @@ public class UpdateController {
             
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al borrar el libro");
-            return 0;
+            ProgramExceptions err = new ProgramExceptions(7);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
     }
     

@@ -21,7 +21,7 @@ public class MoverController {
     private static Statement st = null;
     private static ResultSet rs = null;
     
-    public static Editorial getEdi(){
+    public static Editorial getEdi()throws ProgramExceptions{
         Editorial aux = null;
         try{
             aux = new Editorial(rs.getInt(1),
@@ -30,11 +30,13 @@ public class MoverController {
             return aux;
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Error al conseguir la editorial");
-            return null;
+            ProgramExceptions err = new ProgramExceptions(1);
+            ProgramExceptions.guardarError(e.getMessage());
+            throw err;
         }
     }
     
-    public static Tienda getTienda(){
+    public static Tienda getTienda()throws ProgramExceptions{
         Tienda aux = null;
         try{
             aux = new Tienda(rs.getInt(1),
@@ -43,11 +45,13 @@ public class MoverController {
             return aux;
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Error al conseguir la tienda");
-            return null;
+            ProgramExceptions err = new ProgramExceptions(1);
+            ProgramExceptions.guardarError(e.getMessage());
+            throw err;
         }
     }
     
-    public static void iniciar(String query){
+    public static void iniciar(String query)throws ProgramExceptions{
         try {
             st = GestionDB.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                   ResultSet.CONCUR_READ_ONLY);
@@ -57,72 +61,88 @@ public class MoverController {
                 rs.first();
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, "Error al iniciar la lista");
+            ProgramExceptions err = new ProgramExceptions(5);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
     }
     
-    public static boolean avanzar(){
+    public static boolean avanzar()throws ProgramExceptions{
         try {
             return rs.next();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al avanzar");
+            ProgramExceptions err = new ProgramExceptions(5);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
-        return false;
     }
     
-    public static boolean retroceder(){
+    public static boolean retroceder()throws ProgramExceptions{
         try {
             return rs.previous();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al retroceder");
+            ProgramExceptions err = new ProgramExceptions(5);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
-        return false;
     }
     
-    public static boolean irPrimero(){
+    public static boolean irPrimero()throws ProgramExceptions{
         try{
             return rs.first();
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error. No hay primero");
+            ProgramExceptions err = new ProgramExceptions(5);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
-        return false;
     }
     
-    public static boolean irUltimo(){
+    public static boolean irUltimo()throws ProgramExceptions{
         try{
             return rs.last();
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error. No hay último");
+            ProgramExceptions err = new ProgramExceptions(5);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
-        return false;
     }
     
-    public static boolean primero(){
+    public static boolean primero()throws ProgramExceptions{
         try{
             return rs.isFirst();
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error. No hay primero");
+            ProgramExceptions err = new ProgramExceptions(5);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
-        return false;
     }
     
-    public static boolean ultimo(){
+    public static boolean ultimo()throws ProgramExceptions{
         try{
             return rs.isLast();
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error. No hay último");
+            ProgramExceptions err = new ProgramExceptions(5);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
-        return false;
     }
     
-    public static boolean finalizar(){
+    public static boolean finalizar()throws ProgramExceptions{
         try {
             rs.close();
-            
             return rs.isClosed();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error. No se ha podido finalizar");
-            return false;
+            ProgramExceptions err = new ProgramExceptions(5);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
     }
     

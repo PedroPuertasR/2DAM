@@ -29,7 +29,7 @@ public class TablaController {
     private static Statement st = null;
     private static ResultSet rs = null;
     
-    public static ArrayList getLibrosEdi(Trabajador t, Editorial e){
+    public static ArrayList getLibrosEdi(Trabajador t, Editorial e) throws ProgramExceptions{
         
         ArrayList<Libro> lista = new ArrayList<Libro>();
         
@@ -66,15 +66,17 @@ public class TablaController {
             }
             rs.close();
             ps.close();
+            
+            return lista;
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al cargar los libros");
-            return null;
-        }        
-        return lista;
-        
+            ProgramExceptions err = new ProgramExceptions(1);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
+        }           
     }
     
-    public static ArrayList getListaLibros(Trabajador t){
+    public static ArrayList getListaLibros(Trabajador t) throws ProgramExceptions{
         ArrayList<Libro> lista = new ArrayList<Libro>();
         
         try{
@@ -107,14 +109,16 @@ public class TablaController {
             }
             rs.close();
             ps.close();
+            return lista;
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Error al cargar los libros");
-            return null;
-        }        
-        return lista;
+            ProgramExceptions err = new ProgramExceptions(1);
+            ProgramExceptions.guardarError(e.getMessage());
+            throw err;
+        }            
     }
     
-    public static ArrayList getCategorias(){
+    public static ArrayList getCategorias() throws ProgramExceptions{
         ArrayList <Categoria> lista = new ArrayList <Categoria>();
         
         try {
@@ -137,11 +141,13 @@ public class TablaController {
             return lista;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al coger la categoria");
-            return null;
+            ProgramExceptions err = new ProgramExceptions(1);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
     }
     
-    public static ArrayList getEditoriales(){
+    public static ArrayList getEditoriales() throws ProgramExceptions{
         ArrayList <Editorial> lista = new ArrayList <Editorial>();
         
         try {
@@ -165,11 +171,13 @@ public class TablaController {
             return lista;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al cargar las editoriales");
-            return null;
+            ProgramExceptions err = new ProgramExceptions(1);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
     }
     
-    public static ArrayList getTiendas(){
+    public static ArrayList getTiendas() throws ProgramExceptions{
         ArrayList <Tienda> lista = new ArrayList <Tienda>();
         
         try {
@@ -193,11 +201,13 @@ public class TablaController {
             return lista;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al cargar las tiendas");
-            return null;
+            ProgramExceptions err = new ProgramExceptions(1);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
     }
     
-    public static Tienda getTienda(String query){
+    public static Tienda getTienda(String query) throws ProgramExceptions{
         
         Tienda aux;
         
@@ -214,12 +224,14 @@ public class TablaController {
             return aux;
         }catch(SQLException es){
             JOptionPane.showMessageDialog(null, "Error al coger la tienda");
-            return null;
+            ProgramExceptions err = new ProgramExceptions(1);
+            ProgramExceptions.guardarError(es.getMessage());
+            throw err;
         }
         
     }
     
-    public static String getNomEdi(String query){
+    public static String getNomEdi(String query) throws ProgramExceptions{
         
         String aux;
         
@@ -234,12 +246,14 @@ public class TablaController {
             return aux;
         }catch(SQLException es){
             JOptionPane.showMessageDialog(null, "Error en la consulta de la editorial");
-            return null;
+            ProgramExceptions err = new ProgramExceptions(1);
+            ProgramExceptions.guardarError(es.getMessage());
+            throw err;
         }
         
     }
     
-    public static String getNomCate(String query){
+    public static String getNomCate(String query) throws ProgramExceptions{
         
         String aux;
         
@@ -255,12 +269,14 @@ public class TablaController {
         }catch(SQLException es){
             JOptionPane.showMessageDialog(null, "Error al encontrar el "
                     + "nombre de la categoria");
-            return null;
+            ProgramExceptions err = new ProgramExceptions(1);
+            ProgramExceptions.guardarError(es.getMessage());
+            throw err;
         }
         
     }
     
-    public static int getIdLibro(){
+    public static int getIdLibro() throws ProgramExceptions{
         
         int aux;
         
@@ -280,12 +296,14 @@ public class TablaController {
             
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al conseguir el id del libro");
-            return 0;
+            ProgramExceptions err = new ProgramExceptions(1);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
         
     }
     
-    public static float getTotalSalario(int idTienda){
+    public static float getTotalSalario(int idTienda) throws ProgramExceptions{
         
         float aux = 0;
         
@@ -303,7 +321,9 @@ public class TablaController {
             return aux;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al recoger los salarios");
-            return 0;
+            ProgramExceptions err = new ProgramExceptions(1);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
         
     }

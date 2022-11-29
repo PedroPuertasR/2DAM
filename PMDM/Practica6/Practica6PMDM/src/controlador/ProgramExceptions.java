@@ -5,6 +5,12 @@
  */
 package controlador;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,13 +19,60 @@ import javax.swing.JOptionPane;
  */
 public class ProgramExceptions extends RuntimeException{
     
+    private String msg;
+    private int err;
+    
     public ProgramExceptions(){
-        
     }
     
-    public ProgramExceptions(String msg, Throwable err){
-        super(msg, err);
-        JOptionPane.showMessageDialog(null, msg + err);
+    public ProgramExceptions(int err){
+        this.err = err;
+        
+        switch(err){
+            case 1:
+                this.msg = "Error en una consulta de SQL";
+                break;
+            case 2:
+                this.msg = "Error en el login";
+                break;
+            case 3:
+                this.msg = "Error en el acceso a la base de datos";
+                break;
+            case 4:
+                this.msg = "Error en el guardado de la lista";
+                break;
+            case 5:
+                this.msg = "Error en el movimiento por la lista";
+                break;
+            case 6:
+                this.msg = "Error al actualizar una tabla";
+                break;
+            case 7:
+                this.msg = "Error al borrar una fila";
+                break;
+            default:
+                this.msg = "Error en el programa";
+        }
+    }
+    
+    public void mostrarError(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        GregorianCalendar gc = new GregorianCalendar();
+        
+        String error = "Error Nº " + err + ": " + msg + sdf.format(gc.getTime());
+        
+        JOptionPane.showMessageDialog(null, error);
+    }
+    
+    public static void guardarError(String error){
+        try{
+            BufferedWriter bf = new BufferedWriter(new FileWriter(new File(System.getProperty("user.dir") + "/src/log"), true));
+            
+            bf.write(error);
+            bf.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
     
 }

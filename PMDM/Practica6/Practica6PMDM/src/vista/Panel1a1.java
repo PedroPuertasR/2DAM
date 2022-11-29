@@ -5,8 +5,10 @@
  */
 package vista;
 
+import com.sun.tools.sjavac.ProblemException;
 import controlador.LoginController;
 import controlador.MoverController;
+import controlador.ProgramExceptions;
 import controlador.TablaController;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -18,67 +20,80 @@ import modelo.Libro;
  * @author alumno
  */
 public class Panel1a1 extends javax.swing.JPanel {
-    
+
     /**
      * Creates new form Panel1a1
      */
     public Panel1a1() {
         initComponents();
-        
+
         MoverController.iniciar("SELECT * FROM EDITORIAL");
         cargarDatos();
         updateBotones();
-        
+
     }
-    
-    public void updateBotones(){
-        if(MoverController.primero()){
-            btnAnterior.setEnabled(false);
-            btnPrimero.setEnabled(false);
-        }else{
-            btnAnterior.setEnabled(true);
-            btnPrimero.setEnabled(true);
-        }
-        
-        if(MoverController.ultimo()){
-            btnSiguiente.setEnabled(false);
-            btnUltimo.setEnabled(false);
-        }else{
-            btnSiguiente.setEnabled(true);
-            btnUltimo.setEnabled(true);
+
+    public void updateBotones() {
+        try {
+            if (MoverController.primero()) {
+                btnAnterior.setEnabled(false);
+                btnPrimero.setEnabled(false);
+            } else {
+                btnAnterior.setEnabled(true);
+                btnPrimero.setEnabled(true);
+            }
+
+            if (MoverController.ultimo()) {
+                btnSiguiente.setEnabled(false);
+                btnUltimo.setEnabled(false);
+            } else {
+                btnSiguiente.setEnabled(true);
+                btnUltimo.setEnabled(true);
+            }
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
         }
     }
 
-    public void cargarDatos(){
-        mostrarEdi(MoverController.getEdi());
+    public void cargarDatos() {
+        try {
+            mostrarEdi(MoverController.getEdi());
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
+        }
         rellenarJList();
         updateBotones();
         tfId.setEnabled(false);
         tfNombre.setEnabled(false);
         tfCif.setEnabled(false);
     }
-    
-    public void mostrarEdi(Editorial e){
+
+    public void mostrarEdi(Editorial e) {
         tfId.setText("" + e.getId());
         tfNombre.setText(e.getNombre());
         tfCif.setText(e.getCif());
         rellenarJList();
     }
-    
-    public void rellenarJList(){
-        
-        ArrayList <Libro> lista;
-        
-        lista = TablaController.getLibrosEdi(LoginController.getTrabajador(), MoverController.getEdi());
-        
-        DefaultListModel model = new DefaultListModel();
-        
-        for (int i = 0; i < lista.size(); i++) {
-            model.addElement(lista.get(i).infoLibro());
+
+    public void rellenarJList() {
+
+        ArrayList<Libro> lista;
+
+        try {
+            lista = TablaController.getLibrosEdi(LoginController.getTrabajador(), MoverController.getEdi());
+
+            DefaultListModel model = new DefaultListModel();
+
+            for (int i = 0; i < lista.size(); i++) {
+                model.addElement(lista.get(i).infoLibro());
+            }
+            this.jList.setModel(model);
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
         }
-        this.jList.setModel(model);
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -216,35 +231,55 @@ public class Panel1a1 extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        
-        MoverController.avanzar();
-        mostrarEdi(MoverController.getEdi());
-        updateBotones();
-        
+
+        try {
+            MoverController.avanzar();
+            mostrarEdi(MoverController.getEdi());
+            updateBotones();
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
+        }
+
+
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
-        
-        MoverController.retroceder();
-        mostrarEdi(MoverController.getEdi());
-        updateBotones();
-        
+
+        try {
+            MoverController.retroceder();
+            mostrarEdi(MoverController.getEdi());
+            updateBotones();
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
+        }
+
+
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
-        
-        MoverController.irUltimo();
-        mostrarEdi(MoverController.getEdi());
-        updateBotones();
-        
+
+        try {
+            MoverController.irUltimo();
+            mostrarEdi(MoverController.getEdi());
+            updateBotones();
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
+        }
+
+
     }//GEN-LAST:event_btnUltimoActionPerformed
 
     private void btnPrimeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeroActionPerformed
-        
-        MoverController.irPrimero();
-        mostrarEdi(MoverController.getEdi());
-        updateBotones();
-        
+
+        try {
+            MoverController.irPrimero();
+            mostrarEdi(MoverController.getEdi());
+            updateBotones();
+        } catch (ProgramExceptions ex) {
+            ex.mostrarError();
+        }
+
+
     }//GEN-LAST:event_btnPrimeroActionPerformed
 
 

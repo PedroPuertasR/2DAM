@@ -19,18 +19,23 @@ public class GestionDB {
     private static final String pass = "1234";
     private static Connection con = null;
     
-    public static void open() {
+    public static void open() throws ProgramExceptions{
         try {
             Class.forName("com.mysql.jdbc.Driver");	
         } catch (ClassNotFoundException e) {
             System.out.println("ERROR: exception loading driver class");
+            ProgramExceptions err = new ProgramExceptions(3);
+            ProgramExceptions.guardarError(e.getMessage());
+            throw err;
         }
                
         String url = "jdbc:mysql://localhost:3306/libreria";
         try {
             con = DriverManager.getConnection(url, usuario, pass);
         } catch (SQLException ex) {
-            System.out.println("ERROR: conexion");
+            ProgramExceptions err = new ProgramExceptions(3);
+            ProgramExceptions.guardarError(ex.getMessage());
+            throw err;
         }
         
     }
