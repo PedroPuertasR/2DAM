@@ -18,6 +18,12 @@ public class Principal {
         
         ContadorCompartido c = new ContadorCompartido(1);
         
+        IncrementadorLento hilo1 = new IncrementadorLento("1", c);
+        IncrementadorLento hilo2 = new IncrementadorLento("2", c);
+        
+        hilo1.start();
+        hilo2.start();
+        
     }
     
 }

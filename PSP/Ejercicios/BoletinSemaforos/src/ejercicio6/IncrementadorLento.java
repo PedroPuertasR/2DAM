@@ -26,17 +26,16 @@ public class IncrementadorLento extends Thread{
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
         try {
-            s.acquire(c.getN(id));
-            
-            sleep(1000);
-            
-            c.setN(id, c.getN(id) + 1);
-            
-            s.release();
+            s.acquire();
+            int in = c.getN(id);
+            wait(1000);
+            c.setN(id, in);
         } catch (InterruptedException ex) {
             Logger.getLogger(IncrementadorLento.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            s.release();
         }
     }
     

@@ -12,21 +12,23 @@ package ejercicio6;
 public class ContadorCompartido {
     
     private int almacenar;
+    private int contador;
     
     public ContadorCompartido(int a){
         almacenar = a;
+        contador = 0;
     }
 
-    public int getN(String id){
-        if(id.equalsIgnoreCase("Hilo 1")){
-            almacenar = 1;
-        }
+    public synchronized int getN(String id){
+        System.out.println("En el hilo " + id + " el valor es: " + almacenar);
         return almacenar;
     }
     
-    public int setN(String id, int n){
+    public synchronized void setN(String id, int n){
         
-        
+        this.almacenar = n;
+        this.contador += almacenar;
+        System.out.println("En el hilo " + id + ", modifica el valor: " + contador);
         
     }
     

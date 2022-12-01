@@ -9,7 +9,7 @@ package ejercicio5;
  *
  * @author alumno
  */
-public class Productor extends Thread {
+class Productor extends Thread {
 
     public static final int P_DELAY = 1000;
     private final Buffer<Integer> buffer;
@@ -35,5 +35,4 @@ public class Productor extends Thread {
         } catch (InterruptedException ignored) {
         }
     }
-
 }

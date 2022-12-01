@@ -11,9 +11,9 @@ package ejercicio5;
  */
 public class Buffer<E> {
 
-    private final E[] data;
     private int nDatos;
-
+    private final E[] data;
+    
     public Buffer(int size) {
         data = (E[]) new Object[size];
         nDatos = 0;
@@ -27,7 +27,7 @@ public class Buffer<E> {
         notifyAll();
     }
 
-    public E take() {
+    public synchronized E take() {
         while (nDatos <= 0) {
             waiting();
         }
@@ -39,11 +39,10 @@ public class Buffer<E> {
         return x;
     }
 
-    public void waiting() {
+    private void waiting() {
         try {
             wait();
         } catch (InterruptedException ignored) {
         }
     }
-
 }

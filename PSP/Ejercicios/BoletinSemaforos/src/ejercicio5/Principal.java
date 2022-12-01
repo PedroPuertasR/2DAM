@@ -15,7 +15,6 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
         Buffer<Integer> buffer = new Buffer<Integer>(3);
         Productor p = new Productor(buffer);
         Consumidor c = new Consumidor(buffer);
@@ -23,5 +22,4 @@ public class Principal {
         c.start();
 
     }
-
 }

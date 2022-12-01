@@ -9,7 +9,7 @@ package ejercicio5;
  *
  * @author alumno
  */
-public class Consumidor extends Thread {
+class Consumidor extends Thread {
 
     public static final int C_DELAY = 1000;
     private final Buffer<Integer> buffer;
@@ -38,5 +38,4 @@ public class Consumidor extends Thread {
         } catch (InterruptedException ignored) {
         }
     }
-
 }
