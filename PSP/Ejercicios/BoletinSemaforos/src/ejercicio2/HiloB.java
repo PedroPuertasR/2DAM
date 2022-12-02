@@ -21,6 +21,9 @@ public class HiloB extends Thread{
         this.p1 = p1;
     }
     
+    /* Cuando el hilo A libere los recursos el B, el cual adquirió un recurso 
+    * se desbloqueará e imprimirá por pantalla 5 veces la palabra "Hola".
+    */
     public void run(){
         
         try {

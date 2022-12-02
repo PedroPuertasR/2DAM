@@ -5,9 +5,6 @@
  */
 package ejercicio3;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author pedro
@@ -22,6 +19,7 @@ public class SemaforoTest {
      */
     public static void main(String[] args) {
 
+        //Instanciamos el SemaforoTest y lo iniciamos para comprobar el resultado.
         SemaforoTest st = new SemaforoTest();
         st.iniciar();
         
@@ -29,20 +27,29 @@ public class SemaforoTest {
 
     public void iniciar() {
         try {
+            //Instanciamos nuestro semáforo y le adjudicamos 1 permiso.
             MiSemaforo s = new MiSemaforo(1);
             
+            //Cada una de las instancias de nuestra clase hilo incluirá el semáforo
             Hilo h1 = new Hilo(s);
             Hilo h2 = new Hilo(s);
             Hilo h3 = new Hilo(s);
             
+            //Los empezamos todos
             h1.start();
             h2.start();
             h3.start();
             
+            //Indicamos que cada uno se ejecute cuando el anterior termine
             h1.join();
             h2.join();
             h3.join();
             
+            /* En caso de que x sea igual que contador * 3 (300), se imprimirá
+            * por pantalla "Todo OK.", en el caso contrarió "Condición de carrera".
+            * Como con la ayuda de nuestro semáforo cada hilo sumará a x 100 este
+            * if se cumplirá.
+            */
             if(x == 3 * contador){
                 System.out.println("Todo OK.");
             }else{
@@ -61,6 +68,11 @@ public class SemaforoTest {
             this.semaforo = s;
         }
 
+        /* Al iniciar el hilo nuestro semáforo obtendrá un permiso, lo cual hará
+        * que este se bloquee. Una vez sumado 1 a x liberaremos el recurso. Esto
+        * lo realizaremos el número de veces que se encuentre en nuestro contador,
+        * en nuestro caso 100 veces. Por lo que x habrá llegado a 100.
+        */
         @Override
         public void run() {
             try {

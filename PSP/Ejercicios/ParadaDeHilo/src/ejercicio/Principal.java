@@ -147,70 +147,170 @@ class LaminaPelota extends JPanel {
 }
 
 /* Con esta clase controlaremos los botones que instanciaran las pelotas y nos
-* permitirán terminar el programa.
+* permitirán detenerlas y terminar el programa.
 */
 final class MarcoRebote extends JFrame {
 
     private LaminaPelota lamina;
-    private Thread t;
+    private Thread t1, t2, t3;
+    private JButton ini1, ini2, ini3, par1, par2, par3;
 
     public MarcoRebote() {
         //Setteamos el JFrame
-        setBounds(600, 300, 400, 350);
+        setBounds(600, 300, 600, 350);
         //Setteamos el nombre del JFrame
         setTitle("Rebotes");
         lamina = new LaminaPelota();
         add(lamina, BorderLayout.CENTER);
         JPanel laminaBotones = new JPanel();
         
-        ponerBoton(laminaBotones, "Iniciar", new ActionListener() {
-            
-            @Override
-            public void actionPerformed(ActionEvent evento) {
+        
+        /*Instanciamos el JButton que corresponde al primer hilo. Al pulsarlo 
+        * llamaremos al método que inicia el hilo y por lo tanto mueve la 
+        * pelota
+        */
+        ini1 = new JButton("Hilo 1");
+        
+        ini1.addActionListener(new ActionListener(){
+        
+            public void actionPerformed(ActionEvent evento){
                 comienza_el_juego(evento);
             }
-        });
-        
-        ponerBoton(laminaBotones, "Salir", new ActionListener() {
             
-            @Override
-            public void actionPerformed(ActionEvent evento) {
-                System.exit(0);
-            }
         });
         
-        ponerBoton(laminaBotones, "Detener", new ActionListener() {
+        laminaBotones.add(ini1);
+        
+        
+        /*Instanciamos el JButton que corresponde al segundo hilo. Al pulsarlo 
+        * llamaremos al método que inicia el hilo y por lo tanto mueve la 
+        * pelota
+        */
+        ini2 = new JButton("Hilo 2");
+        
+        ini2.addActionListener(new ActionListener(){
+        
+            public void actionPerformed(ActionEvent evento){
+                comienza_el_juego(evento);
+            }
             
-            @Override
-            public void actionPerformed(ActionEvent evento) {
-                detener();
-            }
         });
         
+        laminaBotones.add(ini2);
+        
+        
+        /*Instanciamos el JButton que corresponde al tercer hilo. Al pulsarlo 
+        * llamaremos al método que inicia el hilo y por lo tanto mueve la 
+        * pelota
+        */
+        ini3 = new JButton("Hilo 3");
+        
+        ini3.addActionListener(new ActionListener(){
+        
+            public void actionPerformed(ActionEvent evento){
+                comienza_el_juego(evento);
+            }
+            
+        });
+        
+        laminaBotones.add(ini3);
+        
+        
+        /* Instanciamos el JButton que corresponde a la parada del primer hilo.
+        * En caso de que pulsemos este botón llamaremos al método que
+        * hará que se interrumpa la primera pelota.
+        */
+        par1 = new JButton("Parar 1");
+        
+        par1.addActionListener(new ActionListener(){
+        
+            public void actionPerformed(ActionEvent evento){
+                detener(evento);
+            }
+            
+        });
+        
+        laminaBotones.add(par1);
+        
+        
+        /* Instanciamos el JButton que corresponde a la parada del segundo hilo.
+        * En caso de que pulsemos este botón llamaremos al método que
+        * hará que se interrumpa la segunda pelota.
+        */
+        par2 = new JButton("Parar 2");
+        
+        par2.addActionListener(new ActionListener(){
+        
+            public void actionPerformed(ActionEvent evento){
+                detener(evento);
+            }
+            
+        });
+        
+        laminaBotones.add(par2);
+        
+        
+        /* Instanciamos el JButton que corresponde a la parada del tercer hilo.
+        * En caso de que pulsemos este botón llamaremos al método que
+        * hará que se interrumpa la tercera pelota.
+        */
+        par3 = new JButton("Parar 3");
+        
+        par3.addActionListener(new ActionListener(){
+        
+            public void actionPerformed(ActionEvent evento){
+                detener(evento);
+            }
+            
+        });
+        
+        laminaBotones.add(par3);
+
         add(laminaBotones, BorderLayout.SOUTH);
 
     }
 
-    //Con este método instanciamos los botones.
-    public void ponerBoton(Container c, String titulo, ActionListener oyente) {
-        JButton boton = new JButton(titulo);
-        c.add(boton);
-        boton.addActionListener(oyente);
-    }
-
-    //Con este método iniciamos el movimiento de la pelota.
+    /*Con este método iniciamos el hilo que corresponda al botón que le 
+    * pasamos. En nuestro caso como tenemos tres botones de inicio, cada
+    * uno empezará el hilo correspondiente.
+    */
     public void comienza_el_juego(ActionEvent evento) {
         Pelota pelota = new Pelota();
         lamina.add(pelota);
         
         Runnable run = new PelotaHilos(pelota, lamina);
-        t = new Thread(run);
         
-        t.start();
+        if(evento.getSource().equals(ini1)){
+            t1 = new Thread(run);
+        
+            t1.start();
+        }else if(evento.getSource().equals(ini2)){
+            t2 = new Thread(run);
+            
+            t2.start();
+        }else if(evento.getSource().equals(ini3)){
+            t3 = new Thread(run);
+            
+            t3.start();
+        }
+        
+        
     }
     
-    public void detener(){
-        t.interrupt();
+    /* Con este método detendremos el hilo dependiendo del ActioEvent que le
+    * pasemos. Como en nuestro caso tenemos 3 botones para detener el hilo
+    * cada uno de los botones detendrá su hilo respectivamente.
+    */
+    public void detener(ActionEvent evento){
+        
+        if(evento.getSource().equals(par1)){
+            t1.interrupt();
+        }else if(evento.getSource().equals(par2)){
+            t2.interrupt();
+        }else if(evento.getSource().equals(par3)){
+            t3.interrupt();
+        }
+        
     }
 
 }

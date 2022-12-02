@@ -19,6 +19,10 @@ public class HiloA extends Thread{
         this.p1 = p1;
     }
     
+    /* Al iniciar este hilo su semáforo entrará primero, puesto que no intenta
+    * adquirir ningún permiso. Imprimirá 5 veces la palabra "Adiós" y liberará
+    * 2 recursos, lo cual desbloqueará los otros dos hilos.
+    */
     public void run(){
         
         System.out.println("Comienza el hilo A.");

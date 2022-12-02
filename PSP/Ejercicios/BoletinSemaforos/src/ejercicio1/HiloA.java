@@ -21,6 +21,9 @@ public class HiloA extends Thread{
         this.p1 = p1;
     }
     
+    /* Al iniciar el hilo el semáforo obtiene un recurso y más tarde imprimirá
+    * por pantalla 5 veces la palabra "Adiós".
+    */
     public void run(){
         
         System.out.println("Comienza el hilo A.");
