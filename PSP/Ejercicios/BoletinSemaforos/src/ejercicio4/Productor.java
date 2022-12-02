@@ -18,6 +18,7 @@ public class Productor extends Thread {
         this.almacen = almacen;
     }
 
+    //Al iniciar el hilo produce un producto.
     public void run() {
         while (true) {
             almacen.producir(this.getName());

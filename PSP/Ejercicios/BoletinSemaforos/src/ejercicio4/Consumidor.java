@@ -18,6 +18,7 @@ public class Consumidor extends Thread {
         this.almacen = a;
     }
 
+    //Al iniciar el hilo consume un producto.
     public void run() {
         while (true) {
             almacen.consumir(this.getName());

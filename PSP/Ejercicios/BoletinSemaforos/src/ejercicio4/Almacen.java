@@ -19,6 +19,11 @@ public class Almacen {
     private Semaphore consumidor = new Semaphore(0);
     private Semaphore mutex = new Semaphore(1);
 
+    /* Con este método adquirimos 1 recurso del productor y otro del mutex, por
+    * lo que utilizará los dos, sumará 1 al almacenamiento e imprimirá por 
+    * pantalla que se almacena un producto. Esperará medio segundo y liberará
+    * los recursos. 
+    */
     public void producir(String nombreProductor) {
         System.out.println(nombreProductor + " intentando almacenar un producto");
         try {
@@ -26,37 +31,45 @@ public class Almacen {
             productor.acquire();
             mutex.acquire();
             
+            producto++;
+            
             System.out.println(nombreProductor + " almacena un producto. "
                     + "Almacén con " + producto + (producto > 1 ? " productos." : " producto."));
 
             Thread.sleep(500);
-            
-            mutex.release();
-            consumidor.release();
 
         } catch (InterruptedException ex) {
             System.out.println("Error al producir");
         } finally {
-            
+            mutex.release();
+            consumidor.release();
         }
     }
 
+    /* Con este método adquirimos 1 recurso del mutex y otro del consumidor para
+    * decrecer el número de productos del almacén. Por lo que si hay algún producto
+    * en el almacén retiraremos uno de ellos. Tras todo esto liberamos
+    * los recursos obtenidos del mutex y el consumidor.
+    */
     public void consumir(String nombreConsumidor) {
         System.out.println(nombreConsumidor + " intentando retirar un producto");
         try {
             mutex.acquire();
             consumidor.acquire();
-            System.out.println(nombreConsumidor + " retira un producto. "
-                    + "Almacén con " + producto + (producto > 1 ? " productos." : " producto."));
 
-            Thread.sleep(500);
+            if (producto >= 1){
+                producto--;
+                System.out.println(nombreConsumidor + " retira un producto. "
+                    + "Almacén con " + producto + (producto > 1 ? " productos." : " producto."));
+            }
             
-            mutex.release();
-            consumidor.release();
+            Thread.sleep(1000);
+            
         } catch (InterruptedException ex) {
             System.out.println("Error al consumir");
         } finally {
-            
+            mutex.release();
+            consumidor.release();
         }
     }
 }
