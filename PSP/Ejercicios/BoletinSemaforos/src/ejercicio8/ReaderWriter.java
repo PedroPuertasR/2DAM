@@ -27,6 +27,10 @@ public class ReaderWriter extends Thread {
         this.button = button;
     }
 
+    /* Al iniciar el hilo setearemos el botón, haremos que el hilo espere un
+    * tiempo aleatorio y de forma aleatoria también haremos que se alternen la
+    * suma de readers y writers de la variable tipo Data.
+    */
     @Override
     public void run() {
         while (true) {
@@ -49,6 +53,7 @@ public class ReaderWriter extends Thread {
         }
     }
 
+    //Método para hacer que el hilo espere un tiempo aleatorio
     public void nap(int s) {
         try {
             sleep(random.nextInt(s) * 3000);

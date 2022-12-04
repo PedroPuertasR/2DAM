@@ -19,11 +19,17 @@ public class ContadorCompartido {
         contador = 0;
     }
 
+    /* Con este método le devolvemos al usuario la variable almacenar, además de
+    * mostrar por pantalla su valor actual.
+    */
     public synchronized int getN(String id){
         System.out.println("En el hilo " + id + " el valor es: " + almacenar);
         return almacenar;
     }
     
+    /* Con este método seteamos la variable almacenar con el valor que nos pasen,
+    * además se lo sumamos al contador para mostrarlo por pantalla
+    */
     public synchronized void setN(String id, int n){
         
         this.almacenar = n;

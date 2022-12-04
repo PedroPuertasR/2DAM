@@ -17,6 +17,9 @@ public class Cliente extends Thread {
         this.cc = cc;
     }
 
+    /* Al iniciar el hilo hace que espere un tiempo aleatorio y resta del saldo
+    * de la cuenta 1. Espera otra vez un tiempo aleatorio y le suma al saldo 1.
+    */
     @Override
     public void run() {
         nap();
@@ -25,6 +28,7 @@ public class Cliente extends Thread {
         cc.mete(1);
     }
 
+    //Este método duerme el hilo un tiempo aleatorio
     private static void nap() {
         try {
             Thread.sleep((long) (100 * Math.random()));

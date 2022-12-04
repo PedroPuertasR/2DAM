@@ -15,14 +15,17 @@ public class CuentaCorriente {
 
     private AtomicInteger saldo = new AtomicInteger(0);
 
+    //Este método añade n a saldo y devuelve este más tarde
     public void mete(int n) {
         saldo.addAndGet(n);
     }
 
+    //Este método resta n a saldo y devuelve este más tarde
     public void saca(int n) {
         saldo.addAndGet(-n);
     }
 
+    //Este método devuelve el saldo
     public int getSaldo() {
         return saldo.get();
     }

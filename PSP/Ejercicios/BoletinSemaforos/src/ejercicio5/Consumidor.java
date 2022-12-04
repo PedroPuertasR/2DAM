@@ -19,6 +19,10 @@ class Consumidor extends Thread {
         this.buffer = buffer;
     }
 
+    /* Al iniciar el hilo sumará 1 al contador y esperará un segundo para 
+    * coger del buffer un producto y guardarlo en una variable que 
+    * mostraremos más tarde por pantalla
+    */
     @Override
     public void run() {
         while (true) {
@@ -32,6 +36,7 @@ class Consumidor extends Thread {
         }
     }
 
+    //Método para hacer que el hilo espere durante el tiempo que indiquemos
     private void nap(int ms) {
         try {
             Thread.sleep(ms);

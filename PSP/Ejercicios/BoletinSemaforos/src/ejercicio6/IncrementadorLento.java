@@ -25,6 +25,11 @@ public class IncrementadorLento extends Thread{
         this.s = new Semaphore(1, true);
     }
 
+    /* Al iniciar el hilo adquiere un permiso y guarda en una variable el get
+    * del ContadorCompartido, lo que hara que muestre por pantalla su valor.
+    * Esperará 1 segundo y seteará el contador compartido a la variable que
+    * hemos guardado antes. Lo que hará que también se muestre su valor por pantalla.
+    */
     @Override
     public synchronized void run() {
         try {

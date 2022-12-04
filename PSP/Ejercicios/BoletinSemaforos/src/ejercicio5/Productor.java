@@ -19,6 +19,10 @@ class Productor extends Thread {
         this.buffer = buffer;
     }
 
+    /* Al iniciar el hilo el productor sumará 1 a su contador y pondrá en
+    * el buffer el número de productos que tiene. Además haremos que el hilo
+    * espere un segundo.
+    */
     @Override
     public void run() {
         while (true) {
@@ -29,6 +33,7 @@ class Productor extends Thread {
         }
     }
 
+    //Método para hacer que el hilo espere durante el tiempo que indiquemos
     private void nap(int ms) {
         try {
             Thread.sleep(ms);

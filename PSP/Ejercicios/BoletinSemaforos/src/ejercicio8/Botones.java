@@ -20,6 +20,9 @@ public class Botones {
     private static final int N_ROWS = 5;
     private static final int N_COLS = 4;
 
+    /* En el main instanciaremos nuestro JFrame y haremos que nuestro ReaderWriter
+    * realice su función, como hemos comentado en su clase.
+    */
     public static void main(String[] args) {
 
         Data data = new Data();
