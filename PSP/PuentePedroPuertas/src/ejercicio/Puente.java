@@ -20,18 +20,23 @@ public class Puente {
         this.peso = peso;
         this.numPersonas = numPersonas;
     }
-    
-    
-    
+
+    //Método para conseguir el peso del puente.
     public int getPeso (){
         return peso;
     }
     
+    //Método para conseguir el número de personas del puente.
     public int getNumPersonas(){
         return numPersonas;
     }
     
+    /* Método para comprobar si la persona puede entrar en el puente. En caso
+    * de que cumpla los requisitos de peso y número de personas sumará el
+    * peso al puente y agregará 1 al contador de personas, además de delvolver true.
+    */
     public synchronized boolean autorizacionPaso (Persona p){
+        System.out.println(p.getId() + " pide paso en el puente.");
         if(numPersonas < MAX_PERSONAS && peso + p.getPeso() < PESO_MAXIMO){
             numPersonas++;
             peso += p.getPeso();
@@ -41,9 +46,13 @@ public class Puente {
         }
     }
             
+    /* Método para que una persona abandone el puente, lo que restará 1 al contador
+    * de personas y restará el peso del puente.
+    */
     public synchronized void terminaPaso (Persona p){
         numPersonas--;
         peso -= p.getPeso();
+        System.out.println(p.getId() + " termina su paso.");
     }
     
 }

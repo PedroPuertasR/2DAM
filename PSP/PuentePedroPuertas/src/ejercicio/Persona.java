@@ -5,6 +5,7 @@
  */
 package ejercicio;
 
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,16 +32,33 @@ public class Persona extends Thread{
         return peso;
     }
 
+    /* Al iniciar el hilo comprobará que se cumple las condiciones para ingresar
+    * al puente y en caso de que pueda espera un tiempo aleatorio dentro y después
+    * sale del puente.
+    */
     @Override
     public void run() {
         if(puente.autorizacionPaso(this)){
-            try {
-                sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else{
+            nap();
             puente.terminaPaso(this);
+            
+            //Una vez que termine la ejecución avisará a los demás hilos a la espera.
+            synchronized(this){
+                notifyAll();
+            }
+        }
+    }
+    
+    //Método para hacer que el hilo espere con un número de segundos aleatorio
+    public void nap(){
+        try {
+            Random r = new Random();
+            
+            int num = r.nextInt(((tMaxPaso - tMinPaso) - 1) + tMinPaso);
+            
+            sleep(num);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
