@@ -13,11 +13,11 @@ import java.util.logging.Logger;
  *
  * @author alumno
  */
-public class Persona extends Thread{
-    
+public class Persona extends Thread {
+
     private final String idPersona;
     private final int peso;
-    private final int tMinPaso , tMaxPaso;
+    private final int tMinPaso, tMaxPaso;
     private final Puente puente;
 
     public Persona(String idPersona, int peso, int tMinPaso, int tMaxPaso, Puente puente) {
@@ -27,41 +27,67 @@ public class Persona extends Thread{
         this.tMaxPaso = tMaxPaso;
         this.puente = puente;
     }
-    
-    public int getPeso(){
+
+    //Método que devuelve el peso de la persona.
+    public int getPeso() {
         return peso;
+    }
+
+    //Método que devuelve el id de la persona.
+    public String getIdPersona() {
+        return idPersona;
     }
 
     /* Al iniciar el hilo comprobará que se cumple las condiciones para ingresar
     * al puente y en caso de que pueda espera un tiempo aleatorio dentro y después
-    * sale del puente.
+    * sale del puente. En caso de que no pueda pasar el hilo permanecerá a la
+    * espera.
     */
     @Override
     public void run() {
-        if(puente.autorizacionPaso(this)){
-            nap();
-            puente.terminaPaso(this);
-            
-            //Una vez que termine la ejecución avisará a los demás hilos a la espera.
-            synchronized(this){
-                notifyAll();
+
+        boolean pasaje = false;
+
+        while (!pasaje) {
+            synchronized (this.puente) {
+                pasaje = this.puente.autorizacionPaso(this);
+                if (!pasaje) {
+                    try {
+                        System.out.println(idPersona + " tiene que esperar.");
+                        puente.wait();
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
         }
-    }
-    
-    //Método para hacer que el hilo espere con un número de segundos aleatorio
-    public void nap(){
+
+        System.out.println("Peso actual: " + puente.getPeso() + ". Personas en el puente: "
+                + puente.getNumPersonas());
+
+        int tiempo = generarAleatorio(tMaxPaso, tMinPaso);
+        System.out.println("Tiempo en pasar: " + tiempo);
+
         try {
-            Random r = new Random();
-            
-            int num = r.nextInt(((tMaxPaso - tMinPaso) - 1) + tMinPaso);
-            
-            sleep(num);
+            sleep(1000 * tiempo);
         } catch (InterruptedException ex) {
             Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        synchronized (this.puente) {
+            this.puente.terminaPaso(this);
+
+            puente.notifyAll();
+        }
+
     }
-    
-    
-    
+
+    //Método para generar un número aleatorio
+    public static int generarAleatorio(int max, int min) {
+        Random r = new Random();
+
+        int num = r.nextInt(((max - min) - 1) + min);
+
+        return num;
+    }
 }

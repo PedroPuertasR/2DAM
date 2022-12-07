@@ -36,17 +36,16 @@ public class Principal {
         */
         while(true){
             peso = generarAleatorio(maxPesoPersona, minPesoPersona);
-            Persona per = new Persona("Persona " + String.valueOf(idPersona++), peso, tMinPaso, tMaxPaso, p);
+            Persona per = new Persona("Persona " + idPersona, peso, tMinPaso, tMaxPaso, p);
+            idPersona++;
             tiempoEnLlegar = generarAleatorio(tMaxParaLlegadaPersona, tMinParaLlegadaPersona);
             try {
-                Thread.sleep(tiempoEnLlegar);
-                System.out.printf("Tiempo en llegar: %d segundos.\n", tiempoEnLlegar);
+                System.out.printf("La siguiente persona tarda: %d segundos.\n", tiempoEnLlegar);
+                Thread.sleep(1000 * tiempoEnLlegar); 
             } catch (InterruptedException ex) {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
             per.start();
-            System.out.println("Hay " + p.getNumPersonas() 
-                    + " personas pasando por el puente. Peso actual: " + p.getPeso());
         }
         
     }
