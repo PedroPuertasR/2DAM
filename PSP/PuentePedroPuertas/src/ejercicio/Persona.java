@@ -69,7 +69,7 @@ public class Persona extends Thread {
         System.out.println("Tiempo en pasar: " + tiempo);
 
         try {
-            sleep(1000 * tiempo);
+            sleep(500 * tiempo);
         } catch (InterruptedException ex) {
             Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -83,10 +83,10 @@ public class Persona extends Thread {
     }
 
     //Método para generar un número aleatorio
-    public static int generarAleatorio(int max, int min) {
+    public int generarAleatorio(int max, int min) {
         Random r = new Random();
 
-        int num = r.nextInt(((max - min) + 1) + min);
+        int num = r.nextInt(((max - min) + 1)) + min;
 
         return num;
     }

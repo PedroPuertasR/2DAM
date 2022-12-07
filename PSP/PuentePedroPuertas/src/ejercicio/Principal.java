@@ -41,7 +41,7 @@ public class Principal {
             tiempoEnLlegar = generarAleatorio(tMaxParaLlegadaPersona, tMinParaLlegadaPersona);
             try {
                 System.out.printf("La siguiente persona tarda: %d segundos.\n", tiempoEnLlegar);
-                Thread.sleep(1000 * tiempoEnLlegar); 
+                Thread.sleep(500 * tiempoEnLlegar); 
             } catch (InterruptedException ex) {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -54,7 +54,7 @@ public class Principal {
     public static int generarAleatorio(int max, int min){
         Random r = new Random();
             
-        int num = r.nextInt(((max - min) + 1) + min);
+        int num = r.nextInt(((max - min) + 1)) + min;
         
         return num;
     }
