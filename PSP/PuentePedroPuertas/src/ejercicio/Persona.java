@@ -86,7 +86,7 @@ public class Persona extends Thread {
     public static int generarAleatorio(int max, int min) {
         Random r = new Random();
 
-        int num = r.nextInt(((max - min) - 1) + min);
+        int num = r.nextInt(((max - min) + 1) + min);
 
         return num;
     }
