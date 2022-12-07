@@ -22,12 +22,12 @@ public class Puente {
     }
 
     //Método para conseguir el peso del puente.
-    public int getPeso (){
+    public synchronized int getPeso (){
         return peso;
     }
     
     //Método para conseguir el número de personas del puente.
-    public int getNumPersonas(){
+    public synchronized int getNumPersonas(){
         return numPersonas;
     }
     
