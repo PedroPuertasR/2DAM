@@ -2,6 +2,7 @@ import pygame
 
 white = (255, 255, 255)
 
+
 class Marcador():
     def __init__(self, x, y):
         self.x = x
@@ -17,5 +18,8 @@ class Marcador():
         text_rect = text_surface.get_rect()
         text_rect.midtop = (self.x, self.y)
         surf.blit(text_surface, text_rect)
+
+    def marcar(self):
+        self.marcador += 1;
 
 
