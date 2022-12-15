@@ -168,6 +168,8 @@ as
     contador number := 0;
 begin
 
+    commit;
+
     for v1 in c1 loop
 
         select avg(salario) into media
@@ -176,20 +178,19 @@ begin
 
         for v2 in c2(v1.id) loop
             
-            if media < v2.salario then
+            if media > v2.salario then
                 delete from trabajador where id = v2.id;
                 contador := contador + 1;
             end if;
 
         end loop;
-
-        media := 0;
-
     end loop;
 
     if contador <= 0 then
         raise_application_error(-20001, 'No se ha dado de baja a ningún empleado.');
     end if;
+
+    commit;
 
     dbms_output.put_line('Filas afectadas: ' || contador);
 
@@ -206,3 +207,138 @@ begin
 end;
 
 exec baja_empleados;
+
+/* Procedimiento que muestra los datos del jefe de la franquicia y los encargados de cada tienda. En caso de que no se hayan mostrado todos ellos
+   se llamará a la excepción e1 que informará del error.
+*/
+
+create or replace procedure consultar_jefes
+as
+    cursor c1 is select * 
+                 from tienda;
+    cursor c2(dire integer) is select id, nombre, apellidos, dni, fecha_cont, salario, tienda, id_jefe
+                               from trabajador
+                               where id in (select distinct id_jefe
+                                            from trabajador)
+                                     and tienda = dire;
+    v_tiendas tienda.id%type;
+    v1 c1%rowtype;
+    contador integer;
+    e1 exception;
+begin
+
+    select count(*) into v_tiendas
+    from tienda;
+
+    open c1;
+
+    fetch c1 into v1;
+
+    while c1%found loop
+
+        for v2 in c2(v1.id) loop
+
+            if v2.id_jefe is null then
+                dbms_output.put_line('Jefe de la franquicia:');
+            else
+                dbms_output.put_line('Encargado/a de la tienda nº' || v1.id || ':');
+            end if;
+
+            dbms_output.put_line('Nombre: ' || v2.nombre || ', Apellidos: ' || v2.apellidos || ', DNI: ' || v2.dni);
+            dbms_output.put_line('Fecha contrato: ' || v2.fecha_cont || ', Salario: ' || v2.salario || '€, Tienda: ' || v1.direccion || chr(10));
+
+            contador := contador + 1;
+        end loop;
+
+        fetch c1 into v1;
+
+    end loop;
+
+    if contador <= v_tiendas then
+        raise e1;
+    end if;
+
+    close c1;
+
+    exception
+        when no_data_found then
+            dbms_output.put_line('Error al encontrar en número de tiendas.');
+        when too_many_rows then
+            dbms_output.put_line('Una consulta ha devuelto más de una fila.');
+        when e1 then
+            dbms_output.put_line('Número de jefes menor al natural.');
+        when others then
+            dbms_output.put_line(sqlcode || sqlerrm);
+end;
+
+
+/* Procedimiento que realiza un listado de los datos de los libros por editorial. Mostrando el precio total de los libros
+   de cada editorial, además del total de todas ellas.
+*/
+
+create or replace procedure mostrar_libros_edi
+as
+    cursor c1 is select id, nombre from editorial;
+    cursor c2(vedi integer) is select *
+                               from libro
+                               where id_editorial = vedi
+                               order by nombre;
+    v_cat categoria.nombre%type;
+    precio_total number := 0;
+    precio_edi number := 0;
+    num_libros number := 0;
+begin
+
+    for v1 in c1 loop
+
+        dbms_output.put_line('Editorial: ' || v1.nombre || chr(10));
+
+        for v2 in c2(v1.id) loop
+
+            select nombre into v_cat
+            from categoria
+            where id = v2.id_categoria;
+
+            dbms_output.put_line('Nombre: ' || v2.nombre || '. Autor: ' || v2.autor || '. ISBN: ' || v2.isbn);
+            dbms_output.put_line('Fecha publicación: ' || v2.fecha_pub ||'. Precio: ' || v2.precio || '€. Categoría: ' || v_cat || chr(10));
+
+
+            num_libros := num_libros + 1;
+            precio_edi := precio_edi + v2.precio;
+
+        end loop;
+
+        if precio_edi <= 0 then
+            raise_application_error(-20001, 'No existen libros en la editorial. Introduzca libros o borre la editorial.');
+        end if;
+
+        dbms_output.put_line('Precio de los libros de ' || v1.nombre || ': ' || precio_edi || '€.' || chr(10) || chr(10));
+
+        precio_total := precio_total + precio_edi;
+
+        precio_edi := 0;
+
+    end loop;
+
+    if precio_total <= 0 then
+        raise_application_error(-20002, 'No existen libros en las editoriales.');
+    end if;
+
+    dbms_output.put_line('Precio total de los libros de todas las editoriales: ' || precio_total || '€.');
+
+    exception
+        when no_data_found then
+            dbms_output.put_line('No se ha encontrado la fila buscada.');
+        when too_many_rows then
+            dbms_output.put_line('Alguna consulta ha devuelto más de una fila.');
+        when others then
+            dbms_output.put_line(sqlcode || sqlerrm);
+
+end;
+
+
+
+create or replace procedure cambiar_editorial(antiguo varchar2, nuevo varchar2)
+as
+begin
+end;
