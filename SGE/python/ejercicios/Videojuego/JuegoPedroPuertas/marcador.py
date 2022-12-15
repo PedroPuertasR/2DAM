@@ -9,6 +9,7 @@ class Marcador():
         self.y = y
         self.marcador = 0
 
+    #Método para mostrar en pantalla el marcador
     def draw(self, surf, size):
         font_name = pygame.font.match_font('arial')
         text = str(self.marcador)
@@ -19,7 +20,13 @@ class Marcador():
         text_rect.midtop = (self.x, self.y)
         surf.blit(text_surface, text_rect)
 
+    #Método para sumar uno a la puntuación al marcar
     def marcar(self):
-        self.marcador += 1;
 
+        self.marcador += 1
+
+    #Método para reiniciar el marcador
+    def terminar(self):
+
+        self.marcador = 0
 
