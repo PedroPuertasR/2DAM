@@ -53,6 +53,7 @@ INSERT INTO categoria VALUES(1, 'Fantasia');
 INSERT INTO categoria VALUES(2, 'Ciencia ficcion');
 INSERT INTO categoria VALUES(3, 'Comic');
 INSERT INTO categoria VALUES(4, 'Suspense');
+INSERT INTO categoria VALUES(5, 'Provisional');
 
 CREATE TABLE libro(
     id INTEGER NOT NULL PRIMARY KEY, 

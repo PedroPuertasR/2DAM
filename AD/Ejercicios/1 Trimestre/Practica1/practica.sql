@@ -271,6 +271,7 @@ begin
             dbms_output.put_line(sqlcode || sqlerrm);
 end;
 
+exec consultar_jefes;
 
 /* Procedimiento que realiza un listado de los datos de los libros por editorial. Mostrando el precio total de los libros
    de cada editorial, además del total de todas ellas.
@@ -336,9 +337,138 @@ begin
 
 end;
 
+exec mostrar_libros_edi;
 
+/* Procedimiento para cambiar de editorial los libros a una nueva editorial.
+*/
 
 create or replace procedure cambiar_editorial(antiguo varchar2, nuevo varchar2)
 as
+    v_antiguo editorial.id%type;
+    v_nuevo editorial.id%type;
+    cursor c1 is select id from libro where id_editorial = v_antiguo;
+    v1 c1%rowtype;
+    bandera integer := 0;
+    contador integer := 0;
 begin
+
+    commit;
+
+    select id into v_nuevo
+    from editorial
+    where nombre like nuevo;
+
+    bandera := 1;
+
+    select id into v_antiguo
+    from editorial
+    where nombre like antiguo;
+
+    open c1;
+
+    fetch c1 into v1;
+
+    while c1%found loop
+
+        update libro set id_editorial = v_nuevo where id = v1.id;
+
+        contador := contador + 1;
+        fetch c1 into v1;
+    end loop;
+
+    close c1;
+
+    dbms_output.put_line('Filas afectadas: ' || contador);
+
+    commit;
+
+    exception
+        when no_data_found then
+            rollback;
+            if bandera = 0 then
+                dbms_output.put_line('No se ha encontrado la nueva editorial.');
+            elsif bandera = 1 then
+                dbms_output.put_line('No se ha encontrado la antigua editorial.');
+            end if;
+        when too_many_rows then
+            dbms_output.put_line('Una de las consultas ha devuelto más de una fila.');
+            rollback;
+        when others then
+            dbms_output.put_line(sqlcode || sqlerrm);
+            rollback;
 end;
+
+exec cambiar_editorial('Alianza Editorial', 'Nova Editorial');
+
+
+/* Procedimiento para borrar una categoría y poner todos los libros que estén en ella en una
+   categoría provisional.
+*/
+
+create or replace procedure borrar_categoria(nom varchar2)
+as
+    vnom categoria.id%type;
+    cursor c1 is select * 
+                 from libro 
+                 where id_categoria = (select id
+                                       from categoria
+                                       where nombre like 'Provisional');
+    cursor c2 is select * from libro where id_categoria = vnom;
+    v2 c1%rowtype;
+    vcat categoria.nombre%type;
+    contador integer := 0;
+    bandera integer := 0;
+begin
+    commit;
+
+    select id into vnom
+    from categoria
+    where nombre like nom;
+
+    bandera := 1;
+
+    open c2;
+
+    fetch c2 into v2;
+
+    while c2%found loop
+        update libro set id_categoria = vnom where id = v2.id;
+        contador := contador + 1;
+    end loop;
+
+    delete from categoria where id = vnom;
+
+    close c2;
+
+    dbms_output.put_line('Filas afectadas: ' || contador || chr(10));
+    dbms_output.put_line('Libros cambiados:' || chr(10));
+
+    select nombre into vcat
+    from categoria
+    where id = vnom;
+
+    for v1 in c1 loop
+        dbms_output.put_line('Nombre: ' || v1.nombre || '. Autor: ' || v1.autor || '. Precio: ' || v1.precio || '€.');
+        dbms_output.put_line('Fecha publicación: ' || v1.fecha_pub || '. ISBN: ' || v1.isbn || '. Categoria: ' || vcat || chr(10));
+    end loop;
+
+    commit;
+
+    exception
+        when no_data_found then
+            rollback;
+            if bandera = 0 then
+                dbms_output.put_line('No se ha encontrado la categoría antigua.');
+            elsif bandera = 1 then
+                dbms_output.put_line('No se ha encontrado la nueva categoría.');
+            end if;
+        when too_many_rows then
+            dbms_output.put_line('Ha habido más de un resultado en una consulta.');
+            rollback;
+        when others then
+            dbms_output.put_line(sqlcode || sqlerrm);
+            rollback;
+
+end;
+
+exec borrar_categoria('Fantasia');
