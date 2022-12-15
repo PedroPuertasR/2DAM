@@ -11,14 +11,11 @@ class Pelota(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
-    def update(self):
-        velo_y = 10
-
+    def update(self, velo_x, velo_y):
         self.rect.y += velo_y
+        self.rect.x += velo_x
 
-        if self.rect.y > 590 or self.rect.y < 10:
-            velo_y *= -1
+    def reset(self):
 
-        if self.rect.x > 800:
-            self.rect.x = 400
-            self.rect.y = 300
+        self.rect.x = 400
+        self.rect.y = 300
