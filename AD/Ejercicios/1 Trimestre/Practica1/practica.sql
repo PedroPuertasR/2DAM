@@ -432,7 +432,7 @@ begin
     fetch c2 into v2;
 
     while c2%found loop
-        update libro set id_categoria = vnom where id = v2.id;
+        update libro set id_categoria = 5 where id = v2.id;
         contador := contador + 1;
     end loop;
 
@@ -445,7 +445,7 @@ begin
 
     select nombre into vcat
     from categoria
-    where id = vnom;
+    where id = 5;
 
     for v1 in c1 loop
         dbms_output.put_line('Nombre: ' || v1.nombre || '. Autor: ' || v1.autor || '. Precio: ' || v1.precio || '€.');
