@@ -19,6 +19,5 @@ class Pelota(pygame.sprite.Sprite):
 
     #Método para reiniciar la posición de la pelota
     def reset(self):
-
         self.rect.x = 400
         self.rect.y = 300

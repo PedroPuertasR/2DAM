@@ -22,11 +22,9 @@ class Marcador():
 
     #Método para sumar uno a la puntuación al marcar
     def marcar(self):
-
         self.marcador += 1
 
     #Método para reiniciar el marcador
     def terminar(self):
-
         self.marcador = 0
 

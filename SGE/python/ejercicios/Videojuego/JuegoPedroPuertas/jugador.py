@@ -23,3 +23,7 @@ class Jugador(pygame.sprite.Sprite):
             self.rect.y -= velo
         elif tecla[teclaDOWN] and self.rect.y < 500:
             self.rect.y += velo
+
+    #Método para reiniciar la posición del jugador
+    def reset(self, y):
+        self.rect.y = y

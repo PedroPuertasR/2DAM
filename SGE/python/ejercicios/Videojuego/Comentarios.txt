@@ -1,0 +1,8 @@
+La única dificultad que encontré con el trabajo fueron las colisiones de los sprites.
+Al no tener sprites directamente, sino clases para crear a los jugadores y la pelota, se me
+hacía imposible controlar la colisión.
+
+Para ello encontré este video, con el que combinando un poco con mi código conseguí que
+funcionara utilizando listas de sprites.
+
+https://www.youtube.com/watch?v=bQnEQvyS1Ns

@@ -96,6 +96,8 @@ while not terminado:
                 velo_x = 6
                 velo_y = 6
                 pelota.reset()
+                jugador.reset(jugador_y)
+                jugador2.reset(jugador2_y)
             # En caso de que usemos la tecla escape se terminará el juego
             if event.key == pygame.K_ESCAPE:
                 terminado = True
