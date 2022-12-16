@@ -1,0 +1,104 @@
+<tienda>
+    <id>1</id>
+    <direccion>Calle El Greco 50</direccion>
+    <presupuesto>10000.5</presupuesto>
+</tienda>
+
+<tienda>
+    <id>2</id>
+    <direccion>Avenida Luis Montoto 25</direccion>
+    <presupuesto> 8000.5 </presupuesto>
+</tienda>
+
+<tienda>
+    <id>1</id>
+    <direccion>Calle El Greco 50</direccion>
+    <presupuesto>4500.5</presupuesto>
+</tienda>
+
+<trabajador>
+    <id>1</id>
+    <nombre>Alberto</nombre>
+    <apellidos>López Rodríguez</apellidos>
+    <dni>42738623T</dni>
+    <fecha_cont>16/06/2014</fecha_cont>
+    <salario>2500</salario>
+    <id_jefe>null</id_jefe>
+    <id_tienda>1</id_tienda>
+    <usuario>alloro</usuario>
+    <pass>alber2014</pass>
+    <foto>1001.jpg</foto>
+</trabajador>
+
+<editorial>
+    <id>1</id>
+    <nombre>Alianza Editorial</nombre>
+    <cif>A28085223</cif>
+</editorial>
+
+<editorial>
+    <id>2</id>
+    <nombre>Nova Editorial</nombre>
+    <cif>B79527610</cif>
+</editorial>
+
+<editorial>
+    <id>3</id>
+    <nombre>Editorial Planeta SA</nombre>
+    <cif>A08186249</cif>
+</editorial>
+
+<editorial>
+    <id>4</id>
+    <nombre>Alfaguara Grupo Editorial SL</nombre>
+    <cif>B87008595</cif>
+</editorial>
+
+<categoria>
+    <id>1</id>
+    <nombre>Fantasía</nombre>
+</categoria>
+
+<categoria>
+    <id>2</id>
+    <nombre>Ciencia Ficción</nombre>
+</categoria>
+
+<categoria>
+    <id>3</id>
+    <nombre>Cómic</nombre>
+</categoria>
+
+<categoria>
+    <id>4</id>
+    <nombre>Suspense</nombre>
+</categoria>
+
+<categoria>
+    <id>5</id>
+    <nombre>Provisional</nombre>
+</categoria>
+
+<libro>
+    <id>1</id>
+    <autor>Joe Abercrombie</autor>
+    <nombre>Tierras Rojas</nombre>
+    <id_editorial>1</id_editorial>
+    <isbn>9788491810681</isbn>
+    <fecha_pub>03/08/2018</fecha_pub>
+    <precio>14.5</precio>
+    <id_categoria>2</id_categoria>
+    <id_tienda>1</id_tienda>
+</libro>
+
+<libro>
+    <id>2</id>
+    <autor>Joe Abercrombie</autor>
+    <nombre>Tierras Rojas</nombre>
+    <id_editorial>1</id_editorial>
+    <isbn>9788491810681</isbn>
+    <fecha_pub>03/08/2018</fecha_pub>
+    <precio>14.5</precio>
+    <id_categoria>2</id_categoria>
+    <id_tienda>1</id_tienda>
+</libro>

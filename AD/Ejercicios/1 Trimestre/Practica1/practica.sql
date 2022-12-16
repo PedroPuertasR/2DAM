@@ -52,6 +52,8 @@ begin
             rollback;
 end;
 
+exec bajar_precio_libro;
+
 /*
 Inserción de un libro comprobando que la editorial, la categoria y la tienda existan. Además comprueba
 que el ISBN no se repita, que su longitud no sea diferente de 13 y que el precio del libro no sea 
