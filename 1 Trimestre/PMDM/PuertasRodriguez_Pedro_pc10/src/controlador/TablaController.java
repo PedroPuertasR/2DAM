@@ -69,9 +69,9 @@ public class TablaController {
             
             st = con.createStatement();
             
-            int filas = st.executeUpdate("INSERT INTO MENSAJE VALUES(" + j.getNumero() 
-                    + ", '" + j.getAsunto() + "', " 
-                    + ", '" + j.getContenido() + "', " 
+            int filas = st.executeUpdate("INSERT INTO MENSAJE VALUES (" + j.getNumero() 
+                    + ", '" + j.getAsunto()
+                    + "', '" + j.getContenido() + "', " 
                     + j.getLeido() + ", " 
                     + "'" + Herramienta.gregorianCalendarToString(j.getFecha()) + "', " 
                     + j.getCuentaOrigen() + ", " 
