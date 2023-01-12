@@ -3,17 +3,79 @@
     src: url(../fonts/Mohave-Regular.ttf);
 }
 
+.container{
+    width: 90%;
+}
+
 section{
-    background-color: coral;
+    background-image: linear-gradient(to bottom, rgb(247,224,24), rgb(209, 190, 22), black);
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
 }
 
-h1, h2, h3{
+h2{
     font-family: MiFuente, Arial, sans-serif;
+    background-color: rgb(247,224,24);
     color: black;
-    word-spacing: 0.5cm;
-    font-weight: 500;
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    border-color: rgb(170, 154, 14);
+    border-style: solid;
+    border-width: 5px;
     text-align: center;
-    margin: auto;
-    margin-top: 200mm;
 }
 
+h3{
+    font-family: MiFuente, Arial, sans-serif;
+    color: rgba(247,224,24,255);
+    word-spacing: 0.2cm;
+    text-align: center;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+p{
+    color: rgba(247,224,24,255);
+    margin-left: 150px;
+    margin-right: 150px;
+    padding: 10px;
+}
+
+article{
+    margin-top: 20px;
+    background-color: black;
+    border-style: solid;
+    border-width: 10px;
+    border-color: rgb(170, 154, 14);
+    border-radius: 10px;
+    text-align: left;
+    text-shadow: 10px;
+    padding-bottom: 50px;
+}
+
+.parrafo > ul{
+    color: rgba(247,224,24,255);
+    margin-left: 150px;
+    text-align: left;
+}
+
+img{
+    width: 10%;
+}
+
+.parrafo{
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-width: 5px;
+    border-color: rgb(247,224,24);
+    border-radius: 10px;
+    border-style: solid;
+    padding-top: 10px;
+}
