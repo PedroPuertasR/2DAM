@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="authors"
+        content="Guillermo Pernas, Inmaculada Rueda, Pedro Puertas, Carlos Calvo, Jorge Elias Alkhoury">
+    <meta name="description" content="Manual for different tools">
+	
+    <title>PROWEB</title>
+	
+    <!-- Enlace a hoja de estilos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <!-- Enlace a hoja de iconos -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!-- Icono de la pestaña -->
+    <link rel="shortcut icon" href="favicon.svg" />
+</head>
+
+<body>
+
+    <header class="d-flex">
+        
+        <a href="../index.html" class="d-flex align-items-center me-md-auto text-decoration-none">
+            <i id="logo-main" class="bi bi-github"></i>
+            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+            <h1>HLC-Practica1</h1>
+        </a>
+        <nav>
+            <ul class="nav nav-pills pt-4">
+                <li class="nav-item"><a href="../Pedro/js.html" class="nav-link enlace-nav" title="JavaScript section by Pedro">JavaScript</a></li>
+                <li class="nav-item"><a href="../Inma_Web/Intellij.html" class="nav-link enlace-nav" title="Intellij section by Inma">Intellij</a></li>
+                <li class="nav-item"><a href="github.html" class="nav-link enlace-nav active" title="Github section by Guillermo">Github</a></li>
+                <li class="nav-item"><a href="#" class="nav-link enlace-nav" title="nameApartado section by Carlos">Google / Firefox devtools</a></li>
+                <li class="nav-item"><a href="#" class="nav-link enlace-nav" title="nameApartado section by Jorge">Frameworks: Back End / Front End</a></li>
+            </ul>
+        </nav>
+    </header>
+	
+    <section id="seccion-main">
+        <h2>GITHUB</h2>
+        <article>
+            <h3>Que es Github</h3>
+            <p>
+                Github es un sistema de control de versiones gratuito y de código abierto, creado originalmente por
+                Linus Torvalds en 2005. A diferencia de los antiguos sistemas centralizados de control de versiones,
+                como SVN y CVS, Git se distribuye: cada desarrollador tiene el historial completo
+                de su repositorio de código localmente. Esto hace que la clonación inicial del repositorio
+                más lento, pero las operaciones subsiguientes como cometer, culpar, diferenciar, fusionar y registrar son
+                mucho mas rápido
+            </p>
+            <p>
+                Git incluye las capacidades de bifurcación y fusión y reescritura del historial del 
+                repositorio, lo que da como resultado muchas herramientas y flujos de trabajo innovadores y potentes.
+                Las solicitudes de subida son una herramienta popular con la que los equipos pueden colaborar en las ramas de Git
+                y revisar efectivamente el código de cada uno. Git es el más utilizado sistema de control de versiones
+                en el mundo de hoy, y se considera el modelo a seguir en desarrollo de software.
+                
+            </p>
+        </article>
+        <article>
+            <h3>Como funciona Github</h3>
+            <p>Funciona de la siguiente manera:</p>
+            <ol>
+                <li>Crea un "repositorio" (proyecto) usando una herramienta de hosteo</li>
+                <li>Copia (clone) el repositorio a tu maquina local</li>
+                <li>Añade un archivo a tu repositorio local y crea una "instantanea"(commit, confirmacion) de los cambios</li>
+                <li>"Sube" (push) los cambios a la rama principal</li>
+                <li>Haz cambios a tus ficheros con un editor compatible con Git y subelos</li>
+                <li>Extrae (pull) los cambios a tu maquina local</li>
+                <li>Crea una rama (branch), realiza cambios y subelos</li>
+                <li>Abre una solicitud de subida (pull request: sugiere cambios sobre la rama principal)</li>
+                <li>Combina (merge) tu rama con la rama principal</li>
+            </ol>
+        </article>
+        <article>
+            <h3>Aprendiendo a usar <a href="https://github.com/">GitHub</a></h3>
+            <h4>Crear un repositorio GitHub</h4>
+            <p>
+                El repositorio sera el eje central de tu proyecto. Puede ser un archivo o conjunto de archivos
+                contenedores de codigo, imagenes, texto, o otras cosas. Para comenzar el proceso, sigue estos pasos:
+            </p>
+                <ol>
+                    <li>Haz click en crear un repositorio para iniciar un nuevo proyectos</li>
+                </ol>
+                    <img src="img/create-repository-step-1-github.png" width="600" alt="create repository step one"/>
+                <ol start="2">
+                    <li>La seccion del propietario tendra tu nombre de usuario. Crea un nombre para el repositorio.
+                        Comprueba que estge definido como Publico para hacerlo de codigo abierto, y marca la opcion de añadir
+                        archivo README. Por ultimo haz click en crear repositorio.</li>
+                </ol>
+                <img src="img/create-repository-github.png" width="600" alt="create repository"/>
+            
+            
+            <h4>Cerrando ramas en GitHub</h4>
+            <p>
+                Con las ramas, generas diferentes versiones de un repositorio. Haciendo cambios en el proyecto sobre
+                la rama actual, el desarrollador puede ver como afectará al proyecto principal cuando sean integrados.
+                Asi es como puedes generar una rama independiente: Ve a tu nuevo repositorio. Pulsa sobre el boton 
+                principal e ingresa el nombre de tu nueva rama. Click en crear rama.
+                
+                <img src="img/create-branch.png" width="600" alt="create branch"/>
+            </p>
+
+            <h4>Comprendiendo los commit de Github</h4>
+            <p>
+                Los commits son la forma en que se denominan los cambios guardados en GitHub. 
+                Cada vez que cambies el archivo de la rama de características, tendrás que hacer un 
+                Commit para mantenerlo.
+                A continuación te explicamos cómo hacer y confirmar un cambio:
+            </p>
+                <ol>
+                    <li>Accede a tu rama clickando en main y seleccionando tu recien creada rama del "dropdown".</li>
+                </ol>
+                <img src="img/commiy-changes-tep-one-github.png" width="600" alt="commit changes step one"/>
+                <ol start="2">
+                    <li>Haz click en el icono de lapiz para comenzar a editar el archivo. Cuando termines, escribe 
+                        una breve descripcion de los cambios que has hecho. Click en confirmar cambios.</li>
+                </ol>
+                <img src="img/commit-changes-github.png" width="600" alt="commit changes github"/>
+            
+
+            <h4>Creando solicitudes de subida en GitHub</h4>
+            <p>
+                Para proponer los cambios a otros developers trabajando en el mismo proyecto, debes crear una
+                "pull request". Estos facilitan el trabajo en equipo, tambien son la pricipal herramienta de
+                colaboracion de GitHub. Estas solicitudes permiten ver las diferencias entre el proyecto pricipal
+                y una rama. Es una manera de consultar a tus compañeros que revisen tu trabajo. Si el resto de los
+                developers lo aprueban, pueden combinar la solicitud, lo que aplicara esos cambios al main branch.
+                Para hacer una pull request sigue estos pasos:
+            </p>
+                
+                <ol>
+                    <li>Click Pull requests -> Nueva pull request. Por ejemplo, elige la rama en la que estas trabajando.</li>
+                </ol>
+                    <img src="img/compare-changes-github.png" width="600" alt="compare changes github"/>
+                <ol start="2">
+                    <li>Revisa los cambios una vez mas y pulsa Crear pull request. En la nueva pagina, escribe el titulo y
+                        una breve descripcion de lo que ha trabajado para promover la fusión. Click en crear pull request.</li>
+                </ol>
+                <img src="img/open-pulll-request-github.png" width="600" alt="open pull request"/>
+        </article>
+    </section>
+
+    <aside class="flex-column flex-shrink-0 p-3">
+        <a href="../index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+            <span class="fs-4">Integrantes</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="github.html" class="nav-link active" aria-current="page">
+                    Guillermo
+                </a>
+            </li>
+            <li>
+                <a href="../Inma_Web/Intellij.html" class="nav-link text-white">
+                    Inma
+                </a>
+            </li>
+            <li>
+                <a href="../Pedro/js.html" class="nav-link text-white">
+                    Pedro
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link text-white">
+                    Carlos
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link text-white">
+                    Jorge
+                </a>
+            </li>
+        </ul>
+        <hr>
+    </aside>
+
+    <footer class="bg-dark text-center text-white ">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+                <h4>Redes Sociales</h4>
+                <!-- Facebook -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                   <i class="bi bi-facebook"></i>
+                </a>
+        
+                <!-- Twitter -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                    <i class="bi bi-twitter"></i>
+                </a>
+        
+                <!-- Google -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                    <i class="bi bi-google"></i>
+                </a>
+        
+                <!-- Instagram -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                    <i class="bi bi-instagram"></i>
+                </a>
+        
+                <!-- Linkedin -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                    <i class="bi bi-linkedin"></i>
+                </a>
+        
+                <!-- Github -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                    <i class="bi bi-github"></i>
+                </a>
+            </section>
+        </div>
+      
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2023 Copyright:
+            <a class="text-white" href="../index.html">HLC-Practica1.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    
+</body>
+
+</html>
