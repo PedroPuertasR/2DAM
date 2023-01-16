@@ -50,8 +50,8 @@ h3{
 
 p{
     color: rgba(247,224,24,255);
-    margin-left: 150px;
-    margin-right: 150px;
+    margin-left: 100px;
+    margin-right: 100px;
     padding: 10px;
 }
 
@@ -68,7 +68,8 @@ article{
 
 .parrafo > ul{
     color: rgba(247,224,24,255);
-    margin-left: 150px;
+    margin-left: 100px;
+    margin-right: 100px;
     text-align: left;
 }
 
