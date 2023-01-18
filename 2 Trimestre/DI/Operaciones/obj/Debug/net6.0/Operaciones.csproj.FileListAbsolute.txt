@@ -1,0 +1,15 @@
+Z:\2 Trimestre\DI\Operaciones\bin\Debug\net6.0\Operaciones.exe
+Z:\2 Trimestre\DI\Operaciones\bin\Debug\net6.0\Operaciones.deps.json
+Z:\2 Trimestre\DI\Operaciones\bin\Debug\net6.0\Operaciones.runtimeconfig.json
+Z:\2 Trimestre\DI\Operaciones\bin\Debug\net6.0\Operaciones.dll
+Z:\2 Trimestre\DI\Operaciones\bin\Debug\net6.0\Operaciones.pdb
+Z:\2 Trimestre\DI\Operaciones\obj\Debug\net6.0\Operaciones.csproj.AssemblyReference.cache
+Z:\2 Trimestre\DI\Operaciones\obj\Debug\net6.0\Operaciones.GeneratedMSBuildEditorConfig.editorconfig
+Z:\2 Trimestre\DI\Operaciones\obj\Debug\net6.0\Operaciones.AssemblyInfoInputs.cache
+Z:\2 Trimestre\DI\Operaciones\obj\Debug\net6.0\Operaciones.AssemblyInfo.cs
+Z:\2 Trimestre\DI\Operaciones\obj\Debug\net6.0\Operaciones.csproj.CoreCompileInputs.cache
+Z:\2 Trimestre\DI\Operaciones\obj\Debug\net6.0\Operaciones.dll
+Z:\2 Trimestre\DI\Operaciones\obj\Debug\net6.0\refint\Operaciones.dll
+Z:\2 Trimestre\DI\Operaciones\obj\Debug\net6.0\Operaciones.pdb
+Z:\2 Trimestre\DI\Operaciones\obj\Debug\net6.0\Operaciones.genruntimeconfig.cache
+Z:\2 Trimestre\DI\Operaciones\obj\Debug\net6.0\ref\Operaciones.dll

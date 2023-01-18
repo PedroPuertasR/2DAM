@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Operaciones
 {
-    internal class Operacion
+    public class Operacion
     {
         private int opr1;
         private int opr2;
