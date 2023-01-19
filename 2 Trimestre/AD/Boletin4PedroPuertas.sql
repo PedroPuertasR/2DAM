@@ -114,26 +114,31 @@ create table estadisticas (
     total_libros number(10) not null
 );
 
-create or replace trigger trg_update_estadisticas
-after insert or update or delete on libros
+create or replace trigger t8
+after insert or delete on libros
 for each row
 declare
-    num_libros number;
+    vgenero varchar2(20) := 'null';
+    cursor c1 is select genero from estadisticas;
 begin
+
+    for v1 in c1 loop
+        if v1.genero = :new.genero then
+            vgenero := v1.genero;
+        end if;
+    end loop;
+
     if inserting then
 
-        select count(*) into num_libros from libros where genero = :new.genero;
-        insert into estadisticas (genero, total_libros) values (:new.genero, num_libros);
+        if vgenero <> 'null' then
+            update estadisticas set total_libros = total_libros + 1 where genero = :new.genero;
+        else
+            insert into estadisticas values (:new.genero, 1);
+        end if;
 
-    elsif updating then
+    else
 
-        select count(*) into num_libros from libros where genero = :new.genero;
-        update estadisticas set total_libros = num_libros where genero = :new.genero;
-
-    elsif deleting then
-
-        select count(*) into num_libros from libros where genero = :old.genero;
-        update estadisticas set total_libros = num_libros where genero = :old.genero;
+        update estadisticas set total_libros = total_libros - 1 where genero = :old.genero;
 
     end if;
 end;
