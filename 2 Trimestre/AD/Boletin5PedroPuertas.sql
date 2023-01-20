@@ -21,6 +21,8 @@ begin
     dbms_output.put_line('Empleado añadido.');
 end;
 
+update emple set dept_no = 30 where emp_no = 7369;
+update emple set dept_no = 30 where emp_no = 7566;
 
 -- Ejercicio 2
 
@@ -45,6 +47,8 @@ begin
     dbms_output.put_line('Añadido correctamente.');
 end;
 
+update emple set salario = 160000 where emp_no = 7902;
+
 -- Ejercicio 3
 
 create or replace trigger t1
@@ -68,22 +72,56 @@ begin
 
 end;
 
+update emple set dir = 7698 where emp_no = 7902;
+
 -- Ejercicio 4
 
 create or replace trigger t1
 after insert or update on emple
 declare
-    cursor c1 is select emp_no, salario
-                from emple
-                where emp_no in (select dir
-                                from emple
-                                group by dir);
+    vsal number;
+    cursor c1 is select emp_no, salario, dir
+                from emple;
 begin
     for v1 in c1 loop
-        if :new.dir = v1.emp_no then
-            if :new.salario > v1.salario then
-                raise_application_error(-20003, 'El salario no puede ser mayor que el del jefe.');
-            end if;
+        select salario into vsal 
+        from emple
+        where emp_no = v1.dir;
+
+        if v1.salario > vsal then
+            raise_application_error(-20004, 'El salario no puede ser mayor que el del jefe.');
         end if;
     end loop;
 end;
+
+update emple set salario = 400000 where emp_no = 7902;
+
+-- Ejercicio 5
+
+create or replace trigger t1
+after insert or update on emple
+declare
+    vdept number;
+    vjefe number;
+    cursor c1 is select *
+                 from emple;
+begin
+    for v1 in c1 loop
+        select dept_no into vjefe
+        from emple
+        where emp_no = v1.dir;
+    
+        select dept_no into vdept
+        from emple
+        where emp_no = v1.emp_no;
+
+        if vdept <> vjefe then
+            raise_application_error(-20004, 'El empleado no puede tener un departamento diferente al jefe.');
+        end if;
+
+    end loop;
+
+    dbms_output.put_line('Tabla actualizada.');
+end;
+
+update emple set dept_no = 30 where emp_no = 7902;
