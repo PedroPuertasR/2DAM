@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ejercicio;
+package ejercicio1;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
