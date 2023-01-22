@@ -16,22 +16,25 @@ public class Principal {
 
     public static void main(String[] args) {
         try {
+            //Instanciamos las URL
             URL url1 = new URL("https://www.youtube.com/");
-            URL url2 = new URL("https", "youtube", "/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley");
-            URL url3 = new URL("https", "youtube", 25565, "/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley");
-            URL url4 = new URL(url1, "/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley");
+            URL url2 = new URL("https", "youtube", "/watch?v=bl_Jy7Q7l7s");
+            URL url3 = new URL("https", "youtube", "/watch?v=oGX59A28QQg");
+            URL url4 = new URL(url1, "/watch?v=bl_Jy7Q7l7s");
 
-            Visualizar(url1);
-            Visualizar(url2);
-            Visualizar(url3);
-            Visualizar(url4);
+            //Visualizamos cada una de ellas
+            visualizar(url1);
+            visualizar(url2);
+            visualizar(url3);
+            visualizar(url4);
 
         } catch (MalformedURLException ex) {
-            System.out.println("ERROR - Error al crear alguna URL.");
+            System.out.println("Error al crear la URL.");
         }
     }
 
-    private static void Visualizar(URL url) {
+    //Con este método visualizamos toda la información de la URL
+    private static void visualizar(URL url) {
         System.out.println("------------------------------------------");
         System.out.println(url.toString());
         System.out.println(url.getProtocol());

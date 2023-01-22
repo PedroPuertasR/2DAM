@@ -18,9 +18,11 @@ public class Principal {
 
     public static void main(String[] args) {
         try {
-            URL url = new URL("http://www.elaltozano.es");
+            //Instanciamos el URL y el InputStream de esta
+            URL url = new URL("http://www.elaltonazo.es");
             InputStream lector = url.openStream();
 
+            //Mostramos en pantalla sus bytes
             for (byte b : lector.readAllBytes())
                 System.out.print((char) b);
         } catch (MalformedURLException ex) {
