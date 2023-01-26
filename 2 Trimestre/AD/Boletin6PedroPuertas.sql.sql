@@ -107,22 +107,6 @@ Diseñar disparadores que permitan:
 - Cambiar el departamento del empleado.
 - Cambiar el jefe del empleado.
 - Borrar un empleado. (Puede que sea jefe de otro)
-
-CREATE TABLE EMPLE (
- EMP_NO    NUMBER(4) NOT NULL,
- APELLIDO  VARCHAR2(10)  ,
- OFICIO    VARCHAR2(10)  ,
- DIR       NUMBER(4) ,
- FECHA_ALT DATE      ,
- SALARIO   NUMBER(7),
- COMISION  NUMBER(7),
- DEPT_NO   NUMBER(2) NOT NULL) ;
-
- CREATE TABLE DEPART (
- DEPT_NO  NUMBER(2) NOT NULL,
- DNOMBRE  VARCHAR2(14), 
- LOC      VARCHAR2(14) ) ;
-
 */
 
 --2.1
@@ -136,6 +120,7 @@ create or replace trigger t1
 instead of insert on v1
 declare
     vdir emple.dir%type;
+    vemp emple.emp_no%type;
     vdept depart.dept_no%type;
 begin
     select emp_no into vdir
@@ -146,5 +131,112 @@ begin
     from depart
     where dnombre = :new.dnombre;
 
-    insert into 
+    select * into vemp
+    from (select emp_no + 1
+          from emple
+          order by emp_no desc)
+    where rownum = 1;
+
+    insert into emple (emp_no, apellido, dir, fecha_alt, dept_no) values (vemp, :new.apeemp, vdir, sysdate, vdept);
 end;
+
+--2.2
+
+create or replace trigger t1
+instead of update on v1
+declare
+    vdept depart.dept_no%type;
+begin
+    select dept_no into vdept
+    from depart
+    where dnombre = :new.dnombre;
+
+    update emple set dept_no = vdept where apellido = :old.apeemp;
+end;
+
+--2.3
+
+create or replace trigger t1
+instead of update on v1
+declare
+    vdir emple.dir%type;
+begin
+    select emp_no into vdir
+    from emple
+    where apellido = :new.apedir;
+
+    update emple set dir = vdir where apellido = :new.apeemp;
+end;
+
+--2.4
+
+create or replace trigger t1
+instead of delete on v1
+declare
+    vdir emple.emp_no%type;
+begin
+
+    select emp_no into vdir
+    from emple
+    where apellido = :old.apeemp;
+
+    update emple set dir = null where dir = vdir;
+    delete from emple where apellido = :old.apeemp;
+end;
+
+/*
+3.- Dadas las tablas, Clientes,Productos,Ventas, crear una vista que
+muestre:
+Nombre del cliente,Descripción del producto, Fecha de
+venta,unidades,PrecioUnitario, Subtotal(precio*unidades)
+Diseñar disparadores para:
+ - Insertar una venta.
+ - Borrar una venta.
+ - Modificar las unidades de una venta.
+ - Borrar todas las ventas de un cliente.
+ - Borrar todas las ventas de un producto. 
+
+CREATE TABLE clientes
+	(nif		VARCHAR2(10) NOT NULL,
+	nombre		VARCHAR2(15) NOT NULL,
+	domicilio	VARCHAR2(15),
+     CONSTRAINT pk_clientes
+	PRIMARY KEY (nif)
+	);
+
+CREATE TABLE productos
+	(cod_producto	NUMBER(4) 	NOT NULL,
+	descripcion	VARCHAR2(15) 	NOT NULL,
+	linea_producto	VARCHAR2(6) 	NOT NULL,
+ 	precio_uni	NUMBER(6) 	NOT NULL,
+	stock		NUMBER(5)	NOT NULL,	
+  CONSTRAINT pk_productos	
+	PRIMARY KEY (cod_producto),
+  CONSTRAINT ck_precio
+	CHECK (precio_uni > 0)	
+	);
+
+    CREATE TABLE ventas
+	(nif		VARCHAR2(10) NOT NULL,
+	cod_producto	NUMBER(4)	NOT NULL,
+	fecha		DATE		NOT NULL,
+	unidades	NUMBER(3)	DEFAULT 1 NOT NULL,
+    CONSTRAINT pk_ventas
+	PRIMARY KEY (nif, cod_producto, fecha),
+    CONSTRAINT fk_ventas_cliente
+	FOREIGN KEY (nif)
+	REFERENCES Clientes(nif) 
+	ON DELETE CASCADE,
+    CONSTRAINT fk_ventas_producto
+	FOREIGN KEY (cod_producto)
+	REFERENCES Productos(cod_producto)
+	ON DELETE CASCADE,
+    CONSTRAINT ck_unidades
+	CHECK (unidades > 0)
+	);
+*/
+
+create view as select nombre, descripcion, fecha, unidades, precio_uni, precio_uni * unidades as subtotal
+               from clientes, productos, ventas
+               where ventas.nif = clientes.nif
+                     and ventas.cod_producto = productos.cod_producto;
