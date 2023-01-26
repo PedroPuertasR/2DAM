@@ -342,11 +342,11 @@ registros, creada previamente, con la siguiente información:
 - Nombre del usuario, hora, 'Salida' si finaliza la conexión.
 */
 
-CREATE TABLE control_conexiones (usuario VARCHAR2(20),
-momento VARCHAR2(20), evento VARCHAR2(20));
-
-create view v1 as select USER as usuario, TO_CHAR(SYSDATE, 'HH24:MI:SS') as hora, ORA_SYSEVENT as evento
-                  from dual;
+CREATE TABLE control_conexiones (
+    usuario VARCHAR2(20),
+    momento VARCHAR2(20), 
+    evento VARCHAR2(20)
+);
 
 --4.1
 
