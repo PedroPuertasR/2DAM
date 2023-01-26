@@ -227,7 +227,7 @@ create view v1 as select nombre, descripcion, fecha, unidades, precio_uni, preci
                 where ventas.nif = clientes.nif
                         and ventas.cod_producto = productos.cod_producto;
 
---3.1 NO FUNCIONA
+--3.1
 
 create or replace trigger t1
 instead of insert on v1
@@ -235,13 +235,13 @@ declare
     vnif clientes.nif%type;
     vcod productos.cod_producto%type;
 begin
-    select clientes.nif, productos.cod_producto into vnif, vcod
-    from ventas, clientes, productos
-    where ventas.nif = clientes.nif
-          and ventas.cod_producto = productos.cod_producto
-          and descripcion = :new.descripcion
-          and nombre = :new.nombre
-          and fecha = :new.fecha;
+    select nif into vnif
+    from clientes
+    where nombre = :new.nombre;
+
+    select cod_producto into vcod
+    from productos 
+    where descripcion = :new.descripcion;
 
     insert into ventas (nif, cod_producto, fecha, unidades) values (vnif, vcod, :new.fecha, :new.unidades);
 
