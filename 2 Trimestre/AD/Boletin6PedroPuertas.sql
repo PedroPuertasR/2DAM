@@ -340,6 +340,9 @@ delete from v1 where descripcion = 'PLACA BASE VX';
 registros, creada previamente, con la siguiente información:
 - Nombre del usuario, hora, 'Entrada' si se conecta a la BD
 - Nombre del usuario, hora, 'Salida' si finaliza la conexión.
+
+system
+manager
 */
 
 CREATE TABLE control_conexiones (
