@@ -4,17 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#494949"
     tools:context=".MainActivity">
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="7dp"
         android:background="#000000"
+        android:stretchColumns="0,1,2,3"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        android:stretchColumns="0,1,2,3">
+        app:layout_constraintTop_toBottomOf="parent">
 
         <TableRow
             android:layout_width="match_parent"
@@ -27,6 +29,7 @@
                 android:layout_height="match_parent"
                 android:layout_span="4"
                 android:gravity="bottom|end"
+                android:layout_margin="5dp"
                 android:paddingHorizontal="30dp"
                 android:text="0"
                 android:textColor="#FFFFFF"
@@ -45,6 +48,7 @@
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="AC"
+                android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textColor="#FF5722"
                 android:textSize="24sp"
@@ -56,6 +60,7 @@
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="←"
+                android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textColor="#FF5722"
                 android:textSize="24sp"
@@ -67,6 +72,7 @@
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="%"
+                android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textColor="#FF5722"
                 android:textSize="24sp"
@@ -78,6 +84,7 @@
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="÷"
+                android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textColor="#FF5722"
                 android:textSize="24sp"
@@ -95,6 +102,7 @@
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="7"
+                android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -105,6 +113,7 @@
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="8"
+                android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -115,6 +124,7 @@
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="9"
+                android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -125,6 +135,7 @@
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="×"
+                android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textColor="#FF5722"
                 android:textSize="24sp"
@@ -142,6 +153,7 @@
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="4"
+                android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -152,6 +164,7 @@
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="5"
+                android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -162,6 +175,7 @@
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="6"
+                android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -172,6 +186,7 @@
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="-"
+                android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textColor="#FF5722"
                 android:textSize="24sp"
@@ -189,6 +204,7 @@
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="1"
+                android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -199,6 +215,7 @@
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="2"
+                android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -209,6 +226,7 @@
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="3"
+                android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -219,6 +237,7 @@
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="+"
+                android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textColor="#FF5722"
                 android:textSize="24sp"
@@ -237,6 +256,7 @@
                 android:layout_span="2"
                 android:background="#00FFFFFF"
                 android:text="0"
+                android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -247,6 +267,7 @@
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text=","
+                android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -255,14 +276,14 @@
                 android:id="@+id/button18"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="10dp"
                 android:background="@drawable/round_button"
-                android:backgroundTint="#FF5722"
-                android:padding="5dp"
                 android:text="="
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:backgroundTint="#FF5722" />
         </TableRow>
     </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
