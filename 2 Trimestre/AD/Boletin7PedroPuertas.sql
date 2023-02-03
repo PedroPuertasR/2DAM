@@ -1,239 +1,126 @@
--- Caso práctico 3
+-- Ejercicio 1
 
-declare
-    cursor c_depar is select dnombre, count(emp_no) numemple
-                      from depart, emple
-                      where depart.dept_no = emple.dept_no
-                      group by depart.dept_no, dnombre;
+create or replace package gest_emple as
 
-    type tr_depto is record (nombredep depart.dnombre%type,
-                             numemple integer
-                            );
-                    
-    type tv_depto is varray (6) of tr_depto;
+    procedure insertar_nuevo_emple(num emple.emp_no%type, vdept depart.dept_no%type);
+    procedure borrar_emple(num emple.emp_no%type);
+    procedure modificar_oficio_emple(num emple.emp_no%type, ofi emple.oficio%type);
+    procedure modificar_dept_emple(num emple.emp_no%type, vdept emple.dept_no%type);
+    procedure modificar_dir_emple(num emple.emp_no%type, dire emple.emp_no%type);
+    procedure modificar_salario_emple(num emple.emp_no%type, sal emple.salario%type);
+    procedure modificar_comision_emple(num emple.emp_no%type, comi emple.comision%type);
+    procedure visualizar_datos_emple(num emple.emp_no%type);
+    procedure visualizar_datos_emple(ape emple.apellido%type);
+    function buscar_emple_por_dnombre (ape emple.apellido%type) return number;
+    procedure subida_salario_pct(sal number);
+    procedure subida_salario_imp(sal emple.salario%type);
 
-    va_departamentos tv_depto := tv_depto();
+end gest_emple;
 
-    n integer := 0;
+create or replace package body gest_emple as
 
-begin
-        for vc in c_depar loop
-            n := c_depar%rowcount;
-            va_departamentos(n) := vc;
-        end loop;
-
-        for i in 1..n loop
-            dbms_output.put_line(' * dnombre:' || va_departamentos(i).nombredep ||
-            ' * noempleados: ' || va_departamentos(i).numemple );
-        end loop;
-end;
-
--- Caso práctico 4
-
-declare
-    cursor c_depar is select depart.dept_no, dnombre, count(emp_no) numemple
-                      from depart, emple
-                      where depart.dept_no = emple.dept_no
-                      group by depart.dept_no, dnombre;
-    type tr_depto is record (nombredep depart.dnombre%type,
-                             numemple integer
-                            );
-
-    type ti_depto is table of tr_depto index by BINARY_INTEGER;
-    va_departamentos ti_depto;
-    n pls_integer := 0; 
-
-begin
-    for vc in c_depar loop
-        va_departamentos(vc.dept_no).nombredep := vc.dnombre;
-        va_departamentos(vc.dept_no).numemple := vc.numemple;
-    end loop;
-
-    n := va_departamentos.first;
-
-    while va_departamentos.exists(n) loop
-        dbms_output.put_line(' * dep no :' || n ||
-        ' * dnombre:' || va_departamentos(n).nombredep ||
-        ' * noempleados: ' || va_departamentos(n).numemple );
-
-        n := va_departamentos.next(n);
-    end loop;
-end;
-
--- Actividad propuesta 3
-
-declare
-    cursor c_depar is select dnombre, count(emp_no) numemple
-                      from depart, emple
-                      where depart.dept_no = emple.dept_no
-                      group by depart.dept_no, dnombre;
-
-    type tr_depto is record (nombredep depart.dnombre%type,
-                             numemple integer
-                            );
-                    
-    type tv_depto is table of tr_depto;
-
-    va_departamentos tv_depto := tv_depto();
-
-    n integer := 0;
-
-begin
-        for vc in c_depar loop
-            va_departamentos.extend;
-            n := c_depar%rowcount;
-            va_departamentos(n) := vc;
-        end loop;
-
-        for i in 1..n loop
-            dbms_output.put_line(' * dnombre:' || va_departamentos(i).nombredep ||
-            ' * noempleados: ' || va_departamentos(i).numemple );
-        end loop;
-end;
-
--- Actividad complementaria 4
-
-create or replace package gest_depart as
-    procedure insertar_nuevo_depart(nom depart.dnombre%type, localidad depart.loc%type);
-    procedure borrar_depart(num1 depart.dept_no%type, num2 depart.dept_no%type);
-    procedure modificar_loc_depart(num1 depart.dept_no%type, localidad depart.loc%type);
-    procedure visualizar_datos_depart(num depart.dept_no%type);
-    procedure visualizar_datos_depart(nom depart.dnombre%type);
-    function buscar_depart_por_nombre(nom depart.dnombre%type) return number;
-end;
-
-create or replace package body gest_depart is
-
-    --Procedimiento insertar_nuevo_depart
-
-    procedure insertar_nuevo_depart(nom depart.dnombre%type, localidad depart.loc%type) is
-        num number;
-        cursor c1 is select dnombre, dept_no from depart order by dept_no;
+    procedure insertar_nuevo_emple(num emple.emp_no%type, vdept depart.dept_no%type) is
     begin
-        for v1 in c1 loop
-            if v1.dnombre = nom then
-                raise_application_error(-20001, 'El nombre del departamento no puede repetirse.');
-            end if;
-            num := v1.dept_no;
-        end loop;
+        insert into emple (emp_no, dept_no) values (num, vdept);
+    end insertar_nuevo_emple;
 
-        num := num + 10;
-
-        insert into depart (dept_no, dnombre, loc) values (num, nom, localidad);
-    end insertar_nuevo_depart;
-
-    --Procedimiento borrar_depart
-
-    procedure borrar_depart(num1 depart.dept_no%type, num2 depart.dept_no%type) is
+    procedure borrar_emple(num emple.emp_no%type) is
+        dire emple.dir%type;
     begin
-        update emple set dept_no = num2 where dept_no = num1;
-        delete from depart where dept_no = num1;
-    end borrar_depart;
-
-    --Procedimiento modificar_loc_depart
-
-    procedure modificar_loc_depart(num1 depart.dept_no%type, localidad depart.loc%type) is
-    begin
-        update depart set loc = localidad where dept_no = num1;
-    end modificar_loc_depart;
-
-    --Procedimiento visualizar_datos_depart 1
-
-    procedure visualizar_datos_depart(num depart.dept_no%type) is
-        vnom depart.dnombre%type;
-        vloc depart.loc%type;
-        num_emple number;
-    begin
-        select dnombre, loc into vnom, vloc
-        from depart
-        where dept_no = num;
-
-        select count(*) into num_emple
+        select dir into dire
         from emple
-        where dept_no = num;
+        where emp_no = num;
 
-        dbms_output.put_line('Número: ' || num || '. Nombre: ' || vnom || '. Localidad: ' || vloc);
-        dbms_output.put_line('Número de empleados: ' || num_emple);
-    end visualizar_datos_depart;
+        update emple set dir = dire where dir = num;
+        delete from emple where emp_no = num;
+    end borrar_emple;
 
-    --Procedimiento visualizar_datos_depart 2
-
-    procedure visualizar_datos_depart(nom depart.dnombre%type) is
-        num_emple number;
-        vdept depart.dept_no%type;
-        vloc depart.loc%type;
+    procedure modificar_oficio_emple(num emple.emp_no%type, ofi emple.oficio%type) is
     begin
-        vdept := buscar_depart_por_nombre(nom);
+        update emple set oficio = ofi where emp_no = num;
+    end modificar_oficio_emple;
 
-        select loc into vloc
-        from depart
-        where dept_no = vdept;
+    procedure modificar_dept_emple(num emple.emp_no%type, vdept emple.dept_no%type) is
+    begin
+        update emple set dept_no = vdept where emp_no = num;
+    end modificar_dept_emple;
+    
+    procedure modificar_dir_emple(num emple.emp_no%type, dire emple.emp_no%type) is
+    begin
+        update emple set dir = dire where emp_no = num;
+    end modificar_dir_emple;
+    
+    procedure modificar_salario_emple(num emple.emp_no%type, sal emple.salario%type) is
+    begin
+        update emple set salario = sal where emp_no = num;
+    end modificar_salario_emple;
 
-        select count(*) into num_emple
+    procedure modificar_comision_emple(num emple.emp_no%type, comi emple.comision%type) is
+    begin
+        update emple set comision = comi where emp_no = num;
+    end modificar_comision_emple;
+    
+    procedure visualizar_datos_emple(num emple.emp_no%type) is
+        cursor c1(numero emple.emp_no%type) is select * from emple where emp_no = numero;
+    begin
+        for v1 in c1(num) loop
+            dbms_output.put_line('Num: ' || v1.emp_no || '. Apellido: ' || v1.apellido || '. Oficio: ' || v1.oficio || chr(10));
+            dbms_output.put_line('Salario: ' || v1.salario || '€. Comisión: ' || v1.comision || '. Jefe: ' || v1.dir || chr(10));
+            dbms_output.put_line('Fecha alta: ' || v1.fecha_alt || '. Departamento: ' || v1.dept_no);
+        end loop;
+    end visualizar_datos_emple;
+
+    procedure visualizar_datos_emple(ape emple.apellido%type) is 
+        vemp emple.emp_no%type;
+        cursor c1(numero emple.emp_no%type) is select * from emple where emp_no = numero;
+    begin
+        vemp := buscar_emple_por_dnombre(ape);
+
+        for v1 in c1(vemp) loop
+            dbms_output.put_line('Num: ' || v1.emp_no || '. Apellido: ' || v1.apellido || '. Oficio: ' || v1.oficio || chr(10));
+            dbms_output.put_line('Salario: ' || v1.salario || '€. Comisión: ' || v1.comision || '. Jefe: ' || v1.dir || chr(10));
+            dbms_output.put_line('Fecha alta: ' || v1.fecha_alt || '. Departamento: ' || v1.dept_no);
+        end loop;
+    end visualizar_datos_emple;
+
+    function buscar_emple_por_dnombre (ape emple.apellido%type) return number is
+    vemp emple.emp_no%type;
+    begin
+        select emp_no into vemp
         from emple
-        where dept_no = vdept;
+        where apellido = ape;
 
-        dbms_output.put_line('Número: ' || vdept || '. Nombre: ' || nom || '. Localidad: ' || vloc);
-        dbms_output.put_line('Número de empleados: ' || num_emple);
-    end visualizar_datos_depart;
+        return vemp;
+    end buscar_emple_por_dnombre;
 
-    --Función buscar_depart_por_nombre
-
-    function buscar_depart_por_nombre(nom depart.dnombre%type)
-    return number
-    is
-    vdept depart.dept_no%type;
+    procedure subida_salario_pct(sal number) is
     begin
-        select dept_no into vdept
-        from depart
-        where dnombre = nom;
+        if sal > 25 then
+            raise_application_error(-20001, 'El porcentaje no puede ser mayor de 25.');
+        end if;
 
-        return vdept;
-    end buscar_depart_por_nombre;
+        update emple set salario = salario + (salario * sal/100);
+    end subida_salario_pct;
 
-end gest_depart;
+    procedure subida_salario_imp(sal emple.salario%type) is 
+        vsal emple.salario%type;
+    begin
+        select avg(salario) into vsal
+        from emple;
 
+        vsal := vsal * 0.25;
 
+        if vsal < sal then
+            raise_application_error(-20002, 'El aumento no puede ser mayor que el 25% del salario medio.');
+        end if;
 
--- Usos de los procedimientos
+        update emple set salario = salario + sal;
+    end subida_salario_imp;
 
-declare
-  nom depart.dnombre%type;
-  localidad depart.loc%type;
-begin
-  nom := 'HOLA';
-  localidad := 'SEVILLA';
-  gest_depart.insertar_nuevo_depart(nom, localidad);
-end;
+end gest_emple;
 
-declare
-  num1 depart.dept_no%type;
-  num2 depart.dept_no%type;
-begin
-  num1 := 10;
-  num2 := 20;
-  gest_depart.borrar_depart(num1, num2);
-end;
+-- Ejercicio 2
 
-declare
-  num1 depart.dept_no%type;
-  localidad depart.loc%type;
-begin
-  num1 := 10;
-  localidad := 'SEVILLA';
-  gest_depart.modificar_loc_depart(num1, localidad);
-end;
-
-declare
-  num1 depart.dept_no%type;
-begin
-  num1 := 10;
-  gest_depart.visualizar_datos_depart(num1);
-end;
-
-declare
-  nom depart.dnombre%type;
-begin
-  nom := 'VENTAS';
-  gest_depart.visualizar_datos_depart(nom);
-end;
+create or replace package pq_provincia as
+    
+end pq_provincia;
