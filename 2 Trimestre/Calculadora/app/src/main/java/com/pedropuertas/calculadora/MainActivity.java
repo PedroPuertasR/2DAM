@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     float total = 0.0f;
     float memo = 0.0f;
     String operacion = "";
+    boolean coma = false;
 
    @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +34,40 @@ public class MainActivity extends AppCompatActivity {
         if(operacion.equals("")){
             num1 = Float.parseFloat(resultado.getText().toString());
             if(num1 == 0.0f){
-                resultado.setText("0");
+                if(coma){
+                    resultado.setText(resultado.getText() + "0");
+                }else{
+                    resultado.setText("0");
+                }
             }else{
-                resultado.setText(resultado.getText() + "0");
+                if(resultado.getText().toString().length() == 6){
+                    resultado.setTextSize(50);
+                    resultado.setText(resultado.getText() + "0");
+                }else if(resultado.getText().toString().length() >= 9){
+                    Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                            , Toast.LENGTH_SHORT).show();
+                }else if(resultado.getText().toString().length() < 9){
+                    resultado.setText(resultado.getText() + "0");
+                }
             }
         }else{
             num2 = Float.parseFloat(resultado.getText().toString());
             if(num2 == 0.0f){
-                resultado.setText("0");
+                if(coma){
+                    resultado.setText(resultado.getText() + "0");
+                }else{
+                    resultado.setText("0");
+                }
             }else{
-                resultado.setText(resultado.getText() + "0");
+                if(resultado.getText().toString().length() == 6){
+                    resultado.setTextSize(50);
+                    resultado.setText(resultado.getText() + "0");
+                }else if(resultado.getText().toString().length() >= 9){
+                    Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                            , Toast.LENGTH_SHORT).show();
+                }else if(resultado.getText().toString().length() < 9){
+                    resultado.setText(resultado.getText() + "0");
+                }
             }
         }
     }
@@ -51,30 +76,48 @@ public class MainActivity extends AppCompatActivity {
         if(operacion.equals("")){
             num1 = Float.parseFloat(resultado.getText().toString());
             if(num1 == 0.0f){
-                resultado.setText("1");
+                if(coma){
+                    resultado.setText(resultado.getText() + "1");
+                }else{
+                    resultado.setText("1");
+                }
             }else{
                 if(num1 == 0.0f){
-                    resultado.setText("1");
+                    if(coma){
+                        resultado.setText(resultado.getText() + "1");
+                    }else{
+                        resultado.setText("1");
+                    }
                 }else{
                     if(resultado.getText().toString().length() == 6){
                         resultado.setTextSize(50);
                         resultado.setText(resultado.getText() + "1");
-                    }else if(resultado.getText().toString().length() >= 11){
+                    }else if(resultado.getText().toString().length() >= 9){
                         Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
                                 , Toast.LENGTH_SHORT).show();
-                    }else if(resultado.getText().toString().length() < 11){
+                    }else if(resultado.getText().toString().length() < 9){
                         resultado.setText(resultado.getText() + "1");
                     }
-
-
                 }
             }
         }else{
             num2 = Float.parseFloat(resultado.getText().toString());
             if(num2 == 0.0f){
-                resultado.setText("1");
+                if(coma){
+                    resultado.setText(resultado.getText() + "1");
+                }else{
+                    resultado.setText("1");
+                }
             }else{
-                resultado.setText(resultado.getText() + "1");
+                if(resultado.getText().toString().length() == 6){
+                    resultado.setTextSize(50);
+                    resultado.setText(resultado.getText() + "1");
+                }else if(resultado.getText().toString().length() >= 9){
+                    Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                            , Toast.LENGTH_SHORT).show();
+                }else if(resultado.getText().toString().length() < 9){
+                    resultado.setText(resultado.getText() + "1");
+                }
             }
         }
     }
@@ -82,16 +125,40 @@ public class MainActivity extends AppCompatActivity {
         if(operacion.equals("")){
             num1 = Float.parseFloat(resultado.getText().toString());
             if(num1 == 0.0f){
-                resultado.setText("2");
+                if(coma){
+                    resultado.setText(resultado.getText() + "2");
+                }else{
+                    resultado.setText("2");
+                }
             }else{
-                resultado.setText(resultado.getText() + "2");
+                if(resultado.getText().toString().length() == 6){
+                    resultado.setTextSize(50);
+                    resultado.setText(resultado.getText() + "2");
+                }else if(resultado.getText().toString().length() >= 9){
+                    Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                            , Toast.LENGTH_SHORT).show();
+                }else if(resultado.getText().toString().length() < 9){
+                    resultado.setText(resultado.getText() + "2");
+                }
             }
         }else{
             num2 = Float.parseFloat(resultado.getText().toString());
             if(num2 == 0.0f){
-                resultado.setText("2");
+                if(coma){
+                    resultado.setText(resultado.getText() + "2");
+                }else{
+                    resultado.setText("2");
+                }
             }else{
-                resultado.setText(resultado.getText() + "2");
+                if(resultado.getText().toString().length() == 6){
+                    resultado.setTextSize(50);
+                    resultado.setText(resultado.getText() + "2");
+                }else if(resultado.getText().toString().length() >= 9){
+                    Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                            , Toast.LENGTH_SHORT).show();
+                }else if(resultado.getText().toString().length() < 9){
+                    resultado.setText(resultado.getText() + "2");
+                }
             }
         }
     }
@@ -100,16 +167,40 @@ public class MainActivity extends AppCompatActivity {
         if(operacion.equals("")){
             num1 = Float.parseFloat(resultado.getText().toString());
             if(num1 == 0.0f){
-                resultado.setText("3");
+                if(coma){
+                    resultado.setText(resultado.getText() + "3");
+                }else{
+                    resultado.setText("3");
+                }
             }else{
-                resultado.setText(resultado.getText() + "3");
+                if(resultado.getText().toString().length() == 6){
+                    resultado.setTextSize(50);
+                    resultado.setText(resultado.getText() + "3");
+                }else if(resultado.getText().toString().length() >= 9){
+                    Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                            , Toast.LENGTH_SHORT).show();
+                }else if(resultado.getText().toString().length() < 9){
+                    resultado.setText(resultado.getText() + "3");
+                }
             }
         }else{
             num2 = Float.parseFloat(resultado.getText().toString());
             if(num2 == 0.0f){
-                resultado.setText("3");
+                if(coma){
+                    resultado.setText(resultado.getText() + "3");
+                }else{
+                    resultado.setText("3");
+                }
             }else{
-                resultado.setText(resultado.getText() + "3");
+                if(resultado.getText().toString().length() == 6){
+                    resultado.setTextSize(50);
+                    resultado.setText(resultado.getText() + "3");
+                }else if(resultado.getText().toString().length() >= 9){
+                    Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                            , Toast.LENGTH_SHORT).show();
+                }else if(resultado.getText().toString().length() < 9){
+                    resultado.setText(resultado.getText() + "3");
+                }
             }
         }
     }
@@ -118,16 +209,40 @@ public class MainActivity extends AppCompatActivity {
         if(operacion.equals("")){
             num1 = Float.parseFloat(resultado.getText().toString());
             if(num1 == 0.0f){
-                resultado.setText("4");
+                if(coma){
+                    resultado.setText(resultado.getText() + "4");
+                }else{
+                    resultado.setText("4");
+                }
             }else{
-                resultado.setText(resultado.getText() + "4");
+                if(resultado.getText().toString().length() == 6){
+                    resultado.setTextSize(50);
+                    resultado.setText(resultado.getText() + "4");
+                }else if(resultado.getText().toString().length() >= 9){
+                    Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                            , Toast.LENGTH_SHORT).show();
+                }else if(resultado.getText().toString().length() < 9){
+                    resultado.setText(resultado.getText() + "4");
+                }
             }
         }else{
             num2 = Float.parseFloat(resultado.getText().toString());
             if(num2 == 0.0f){
-                resultado.setText("4");
+                if(coma){
+                    resultado.setText(resultado.getText() + "4");
+                }else{
+                    resultado.setText("4");
+                }
             }else{
-                resultado.setText(resultado.getText() + "4");
+                if(resultado.getText().toString().length() == 6){
+                    resultado.setTextSize(50);
+                    resultado.setText(resultado.getText() + "4");
+                }else if(resultado.getText().toString().length() >= 9){
+                    Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                            , Toast.LENGTH_SHORT).show();
+                }else if(resultado.getText().toString().length() < 9){
+                    resultado.setText(resultado.getText() + "4");
+                }
             }
         }
     }
@@ -136,16 +251,40 @@ public class MainActivity extends AppCompatActivity {
         if(operacion.equals("")){
             num1 = Float.parseFloat(resultado.getText().toString());
             if(num1 == 0.0f){
-                resultado.setText("5");
+                if(coma){
+                    resultado.setText(resultado.getText() + "5");
+                }else{
+                    resultado.setText("5");
+                }
             }else{
-                resultado.setText(resultado.getText() + "5");
+                if(resultado.getText().toString().length() == 6){
+                    resultado.setTextSize(50);
+                    resultado.setText(resultado.getText() + "5");
+                }else if(resultado.getText().toString().length() >= 9){
+                    Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                            , Toast.LENGTH_SHORT).show();
+                }else if(resultado.getText().toString().length() < 9){
+                    resultado.setText(resultado.getText() + "5");
+                }
             }
         }else{
             num2 = Float.parseFloat(resultado.getText().toString());
             if(num2 == 0.0f){
-                resultado.setText("5");
+                if(coma){
+                    resultado.setText(resultado.getText() + "5");
+                }else{
+                    resultado.setText("5");
+                }
             }else{
-                resultado.setText(resultado.getText() + "5");
+                if(resultado.getText().toString().length() == 6){
+                    resultado.setTextSize(50);
+                    resultado.setText(resultado.getText() + "5");
+                }else if(resultado.getText().toString().length() >= 9){
+                    Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                            , Toast.LENGTH_SHORT).show();
+                }else if(resultado.getText().toString().length() < 9){
+                    resultado.setText(resultado.getText() + "5");
+                }
             }
         }
     }
@@ -154,16 +293,40 @@ public class MainActivity extends AppCompatActivity {
         if(operacion.equals("")){
             num1 = Float.parseFloat(resultado.getText().toString());
             if(num1 == 0.0f){
-                resultado.setText("6");
+                if(coma){
+                    resultado.setText(resultado.getText() + "6");
+                }else{
+                    resultado.setText("6");
+                }
             }else{
-                resultado.setText(resultado.getText() + "6");
+                if(resultado.getText().toString().length() == 6){
+                    resultado.setTextSize(50);
+                    resultado.setText(resultado.getText() + "6");
+                }else if(resultado.getText().toString().length() >= 9){
+                    Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                            , Toast.LENGTH_SHORT).show();
+                }else if(resultado.getText().toString().length() < 9){
+                    resultado.setText(resultado.getText() + "6");
+                }
             }
         }else{
             num2 = Float.parseFloat(resultado.getText().toString());
             if(num2 == 0.0f){
-                resultado.setText("6");
+                if(coma){
+                    resultado.setText(resultado.getText() + "6");
+                }else{
+                    resultado.setText("6");
+                }
             }else{
-                resultado.setText(resultado.getText() + "6");
+                if(resultado.getText().toString().length() == 6){
+                    resultado.setTextSize(50);
+                    resultado.setText(resultado.getText() + "6");
+                }else if(resultado.getText().toString().length() >= 9){
+                    Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                            , Toast.LENGTH_SHORT).show();
+                }else if(resultado.getText().toString().length() < 9){
+                    resultado.setText(resultado.getText() + "6");
+                }
             }
         }
     }
@@ -172,16 +335,40 @@ public class MainActivity extends AppCompatActivity {
         if(operacion.equals("")){
             num1 = Float.parseFloat(resultado.getText().toString());
             if(num1 == 0.0f){
-                resultado.setText("7");
+                if(coma){
+                    resultado.setText(resultado.getText() + "7");
+                }else{
+                    resultado.setText("7");
+                }
             }else{
-                resultado.setText(resultado.getText() + "7");
+                if(resultado.getText().toString().length() == 6){
+                    resultado.setTextSize(50);
+                    resultado.setText(resultado.getText() + "7");
+                }else if(resultado.getText().toString().length() >= 9){
+                    Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                            , Toast.LENGTH_SHORT).show();
+                }else if(resultado.getText().toString().length() < 9){
+                    resultado.setText(resultado.getText() + "7");
+                }
             }
         }else{
             num2 = Float.parseFloat(resultado.getText().toString());
             if(num2 == 0.0f){
-                resultado.setText("7");
+                if(coma){
+                    resultado.setText(resultado.getText() + "7");
+                }else{
+                    resultado.setText("7");
+                }
             }else{
-                resultado.setText(resultado.getText() + "7");
+                if(resultado.getText().toString().length() == 6){
+                    resultado.setTextSize(50);
+                    resultado.setText(resultado.getText() + "7");
+                }else if(resultado.getText().toString().length() >= 9){
+                    Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                            , Toast.LENGTH_SHORT).show();
+                }else if(resultado.getText().toString().length() < 9){
+                    resultado.setText(resultado.getText() + "7");
+                }
             }
         }
     }
@@ -190,16 +377,40 @@ public class MainActivity extends AppCompatActivity {
         if(operacion.equals("")){
             num1 = Float.parseFloat(resultado.getText().toString());
             if(num1 == 0.0f){
-                resultado.setText("8");
+                if(coma){
+                    resultado.setText(resultado.getText() + "8");
+                }else{
+                    resultado.setText("8");
+                }
             }else{
-                resultado.setText(resultado.getText() + "8");
+                if(resultado.getText().toString().length() == 6){
+                    resultado.setTextSize(50);
+                    resultado.setText(resultado.getText() + "8");
+                }else if(resultado.getText().toString().length() >= 9){
+                    Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                            , Toast.LENGTH_SHORT).show();
+                }else if(resultado.getText().toString().length() < 9){
+                    resultado.setText(resultado.getText() + "8");
+                }
             }
         }else{
             num2 = Float.parseFloat(resultado.getText().toString());
             if(num2 == 0.0f){
-                resultado.setText("8");
+                if(coma){
+                    resultado.setText(resultado.getText() + "8");
+                }else{
+                    resultado.setText("8");
+                }
             }else{
-                resultado.setText(resultado.getText() + "8");
+                if(resultado.getText().toString().length() == 6){
+                    resultado.setTextSize(50);
+                    resultado.setText(resultado.getText() + "8");
+                }else if(resultado.getText().toString().length() >= 9){
+                    Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                            , Toast.LENGTH_SHORT).show();
+                }else if(resultado.getText().toString().length() < 9){
+                    resultado.setText(resultado.getText() + "8");
+                }
             }
         }
     }
@@ -208,21 +419,46 @@ public class MainActivity extends AppCompatActivity {
         if(operacion.equals("")){
             num1 = Float.parseFloat(resultado.getText().toString());
             if(num1 == 0.0f){
-                resultado.setText("9");
+                if(coma){
+                    resultado.setText(resultado.getText() + "9");
+                }else{
+                    resultado.setText("9");
+                }
             }else{
-                resultado.setText(resultado.getText() + "9");
+                if(resultado.getText().toString().length() == 6){
+                    resultado.setTextSize(50);
+                    resultado.setText(resultado.getText() + "9");
+                }else if(resultado.getText().toString().length() >= 9){
+                    Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                            , Toast.LENGTH_SHORT).show();
+                }else if(resultado.getText().toString().length() < 9){
+                    resultado.setText(resultado.getText() + "9");
+                }
             }
         }else{
             num2 = Float.parseFloat(resultado.getText().toString());
             if(num2 == 0.0f){
-                resultado.setText("9");
+                if(coma){
+                    resultado.setText(resultado.getText() + "9");
+                }else{
+                    resultado.setText("9");
+                }
             }else{
-                resultado.setText(resultado.getText() + "9");
+                if(resultado.getText().toString().length() == 6){
+                    resultado.setTextSize(50);
+                    resultado.setText(resultado.getText() + "9");
+                }else if(resultado.getText().toString().length() >= 9){
+                    Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                            , Toast.LENGTH_SHORT).show();
+                }else if(resultado.getText().toString().length() < 9){
+                    resultado.setText(resultado.getText() + "9");
+                }
             }
         }
     }
 
     public void pulsarME(View view){
+        coma = false;
         if(btnMemo.getText().toString().equals("M")){
             resultado.setText("" + memo);
             btnMemo.setText("ME");
@@ -239,31 +475,35 @@ public class MainActivity extends AppCompatActivity {
         num1 = 0.0f;
         num2 = 0.0f;
         operacion = "";
-
+        coma = false;
     }
 
     public void dividirNum(View view) {
         num1 = Float.parseFloat(resultado.getText().toString());
         operacion = "/";
         resultado.setText("0");
+        coma = false;
     }
 
     public void multiNum(View view){
         num1 = Float.parseFloat(resultado.getText().toString());
         operacion = "*";
         resultado.setText("0");
+        coma = false;
     }
 
     public void restarNum(View view){
         num1 = Float.parseFloat(resultado.getText().toString());
         operacion = "-";
         resultado.setText("0");
+        coma = false;
     }
 
     public void sumarNum(View view){
         num1 = Float.parseFloat(resultado.getText().toString());
         operacion = "+";
         resultado.setText("0");
+        coma = false;
     }
 
     public void ponerComa(View view){
@@ -271,6 +511,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "NO PUEDES PONER DOS COMAS", Toast.LENGTH_LONG).show();
         }else{
             resultado.setText(resultado.getText() + ".");
+            coma = true;
         }
     }
 
@@ -287,6 +528,7 @@ public class MainActivity extends AppCompatActivity {
                 String result = decimalFormat.format(total);
                 resultado.setText(result);
             }
+            coma = false;
         } else if (operacion.equals("-")) {
             total = num1 - num2;
             if (total % 1 == 0) {
@@ -297,6 +539,7 @@ public class MainActivity extends AppCompatActivity {
                 String result = decimalFormat.format(total);
                 resultado.setText(result);
             }
+            coma = false;
         } else if (operacion.equals("/")) {
             if (num2 == 0.0f) {
                 resultado.setText("0");
@@ -312,6 +555,7 @@ public class MainActivity extends AppCompatActivity {
                     resultado.setText(result);
                 }
             }
+            coma = false;
         } else if (operacion.equals("*")) {
             total = num1 * num2;
             if (total % 1 == 0) {
@@ -322,6 +566,7 @@ public class MainActivity extends AppCompatActivity {
                 String result = decimalFormat.format(total);
                 resultado.setText(result);
             }
+            coma = false;
         }else{
             Toast.makeText(this, "REALICE UNA OPERACIÓN VÁLIDA", Toast.LENGTH_LONG).show();
         }
@@ -336,7 +581,18 @@ public class MainActivity extends AppCompatActivity {
     public void borrarNum(View view){
        if(resultado.equals("0")){
            Toast.makeText(this, "NO HAY NINGÚN NÚMERO", Toast.LENGTH_LONG).show();
-       }else{
+       } else if (resultado.getText().toString().charAt(resultado.getText().toString().length() - 1) == ',') {
+           String cadena = resultado.getText().toString();
+
+           cadena = cadena.substring(0, cadena.length() - 1);
+
+           if(cadena.equals("")){
+               resultado.setText("0");
+           }else {
+               resultado.setText(cadena);
+           }
+           coma = false;
+       } else{
            String cadena = resultado.getText().toString();
 
            cadena = cadena.substring(0, cadena.length() - 1);
