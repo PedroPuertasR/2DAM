@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+
 public class MainActivity extends AppCompatActivity {
 
     TextView resultado;
@@ -214,6 +216,7 @@ public class MainActivity extends AppCompatActivity {
         }else{
             memo = Float.parseFloat(resultado.getText().toString());
             btnMemo.setText("M");
+            resultado.setText("0");
         }
     }
 
@@ -222,6 +225,7 @@ public class MainActivity extends AppCompatActivity {
         num1 = 0.0f;
         num2 = 0.0f;
         operacion = "";
+
     }
 
     public void dividirNum(View view) {
@@ -248,10 +252,12 @@ public class MainActivity extends AppCompatActivity {
         resultado.setText("0");
     }
 
-    public void porcenNum(View view){
-        num1 = Float.parseFloat(resultado.getText().toString());
-        operacion = "%";
-        resultado.setText("0");
+    public void ponerComa(View view){
+        if(resultado.getText().toString().contains(".")){
+            Toast.makeText(this, "NO PUEDES PONER DOS COMAS", Toast.LENGTH_LONG).show();
+        }else{
+            resultado.setText(resultado.getText() + ".");
+        }
     }
 
     public void mostrarResultado(View view) {
@@ -259,24 +265,49 @@ public class MainActivity extends AppCompatActivity {
 
         if (operacion.equals("+")) {
             total = num1 + num2;
-            resultado.setText("" + total);
+            if (total % 1 == 0) {
+                int entero = (int)total;
+                resultado.setText("" + entero);
+            } else {
+                DecimalFormat decimalFormat = new DecimalFormat("#.##");
+                String result = decimalFormat.format(total);
+                resultado.setText(result);
+            }
         } else if (operacion.equals("-")) {
             total = num1 - num2;
-            resultado.setText("" + total);
+            if (total % 1 == 0) {
+                int entero = (int)total;
+                resultado.setText("" + entero);
+            } else {
+                DecimalFormat decimalFormat = new DecimalFormat("#.##");
+                String result = decimalFormat.format(total);
+                resultado.setText(result);
+            }
         } else if (operacion.equals("/")) {
             if (num2 == 0.0f) {
                 resultado.setText("0");
-                Toast.makeText(this, "OPERACIÓN NO VÁLIDA", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "NO SE PUEDE DIVIDIR ENTRE 0", Toast.LENGTH_LONG).show();
             } else {
                 total = num1 / num2;
-                resultado.setText("" + total);
+                if (total % 1 == 0) {
+                    int entero = (int)total;
+                    resultado.setText("" + entero);
+                } else {
+                    DecimalFormat decimalFormat = new DecimalFormat("#.##");
+                    String result = decimalFormat.format(total);
+                    resultado.setText(result);
+                }
             }
         } else if (operacion.equals("*")) {
             total = num1 * num2;
-            resultado.setText("" + total);
-        } else if(operacion.equals("%")){
-            total = num1 % num2;
-            resultado.setText("" + total);
+            if (total % 1 == 0) {
+                int entero = (int)total;
+                resultado.setText("" + entero);
+            } else {
+                DecimalFormat decimalFormat = new DecimalFormat("#.##");
+                String result = decimalFormat.format(total);
+                resultado.setText(result);
+            }
         }else{
             Toast.makeText(this, "REALICE UNA OPERACIÓN VÁLIDA", Toast.LENGTH_LONG).show();
         }
@@ -296,8 +327,11 @@ public class MainActivity extends AppCompatActivity {
 
            cadena = cadena.substring(0, cadena.length() - 1);
 
-           resultado.setText(cadena);
+           if(cadena.equals("")){
+               resultado.setText("0");
+           }else {
+               resultado.setText(cadena);
+           }
        }
-
     }
 }
