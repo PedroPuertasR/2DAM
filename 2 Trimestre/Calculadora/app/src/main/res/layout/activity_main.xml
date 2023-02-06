@@ -24,7 +24,7 @@
             android:layout_weight="2">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/resultado"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_span="4"
@@ -43,11 +43,12 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/btnAC"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="AC"
+                android:onClick="borrarDatos"
                 android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textColor="#FF5722"
@@ -55,11 +56,12 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/btnME"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
-                android:text="←"
+                android:text="ME"
+                android:onClick="pulsarME"
                 android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textColor="#FF5722"
@@ -67,23 +69,25 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btnPorcen"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:background="#00FFFFFF"
                 android:text="%"
-                android:layout_margin="5dp"
+                android:onClick="porcenNum"
                 android:textAlignment="center"
                 android:textColor="#FF5722"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnDiv"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="÷"
+                android:onClick="dividirNum"
                 android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textColor="#FF5722"
@@ -97,44 +101,48 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button9"
+                android:id="@+id/btn7"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="7"
+                android:onClick="pulsar7"
                 android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/btn8"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="8"
+                android:onClick="pulsar8"
                 android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/btn9"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="9"
+                android:onClick="pulsar9"
                 android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/btnMulti"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="×"
+                android:onClick="multiNum"
                 android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textColor="#FF5722"
@@ -148,44 +156,48 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button13"
+                android:id="@+id/btn4"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="4"
+                android:onClick="pulsar4"
                 android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button12"
+                android:id="@+id/btn5"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="5"
+                android:onClick="pulsar5"
                 android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button11"
+                android:id="@+id/btn6"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="6"
+                android:onClick="pulsar6"
                 android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button10"
+                android:id="@+id/btnMenos"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="-"
+                android:onClick="restarNum"
                 android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textColor="#FF5722"
@@ -199,44 +211,48 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button17"
+                android:id="@+id/btn1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="1"
+                android:onClick="pulsar1"
                 android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button16"
+                android:id="@+id/btn2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="2"
+                android:onClick="pulsar2"
                 android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button15"
+                android:id="@+id/btn3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="3"
+                android:onClick="pulsar3"
                 android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button14"
+                android:id="@+id/btnMas"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:text="+"
+                android:onClick="sumarNum"
                 android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textColor="#FF5722"
@@ -250,35 +266,39 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button20"
+                android:id="@+id/btn0"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_span="2"
                 android:background="#00FFFFFF"
                 android:text="0"
+                android:onClick="pulsar0"
                 android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button19"
+                android:id="@+id/btnBorrar"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#00FFFFFF"
-                android:text=","
+                android:text="←"
+                android:onClick="borrarNum"
+                android:textColor="#FF5722"
                 android:layout_margin="5dp"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button18"
+                android:id="@+id/btnIgual"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:background="@drawable/round_button"
                 android:text="="
+                android:onClick="mostrarResultado"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
