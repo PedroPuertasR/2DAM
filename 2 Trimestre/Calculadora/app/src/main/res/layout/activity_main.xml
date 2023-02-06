@@ -74,8 +74,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:background="#00FFFFFF"
-                android:text="%"
-                android:onClick="porcenNum"
+                android:onClick="borrarNum"
+                android:text="←"
                 android:textAlignment="center"
                 android:textColor="#FF5722"
                 android:textSize="24sp"
@@ -279,15 +279,15 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/btnBorrar"
+                android:id="@+id/btnComa"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="#00FFFFFF"
-                android:text="←"
-                android:onClick="borrarNum"
-                android:textColor="#FF5722"
                 android:layout_margin="5dp"
+                android:background="#00FFFFFF"
+                android:onClick="ponerComa"
+                android:text=","
                 android:textAlignment="center"
+                android:textColor="#FF5722"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
