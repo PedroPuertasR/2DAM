@@ -53,7 +53,21 @@ public class MainActivity extends AppCompatActivity {
             if(num1 == 0.0f){
                 resultado.setText("1");
             }else{
-                resultado.setText(resultado.getText() + "1");
+                if(num1 == 0.0f){
+                    resultado.setText("1");
+                }else{
+                    if(resultado.getText().toString().length() == 6){
+                        resultado.setTextSize(50);
+                        resultado.setText(resultado.getText() + "1");
+                    }else if(resultado.getText().toString().length() >= 11){
+                        Toast.makeText(this, "NO SE PUEDEN PONER MAS NÚMEROS"
+                                , Toast.LENGTH_SHORT).show();
+                    }else if(resultado.getText().toString().length() < 11){
+                        resultado.setText(resultado.getText() + "1");
+                    }
+
+
+                }
             }
         }else{
             num2 = Float.parseFloat(resultado.getText().toString());
