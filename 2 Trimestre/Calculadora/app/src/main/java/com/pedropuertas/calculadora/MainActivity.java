@@ -461,12 +461,16 @@ public class MainActivity extends AppCompatActivity {
         coma = false;
         if(btnMemo.getText().toString().equals("M")){
             resultado.setText("" + memo);
+            if(resultado.getText().toString().length >= 6){
+                resultado.setTextSize(50);
+            }
             btnMemo.setText("ME");
             memo = 0.0f;
         }else{
             memo = Float.parseFloat(resultado.getText().toString());
             btnMemo.setText("M");
             resultado.setText("0");
+            resultado.setTextSize(96);
         }
     }
 
@@ -476,6 +480,7 @@ public class MainActivity extends AppCompatActivity {
         num2 = 0.0f;
         operacion = "";
         coma = false;
+        resultado.setTextSize(96);
     }
 
     public void dividirNum(View view) {
@@ -483,6 +488,7 @@ public class MainActivity extends AppCompatActivity {
         operacion = "/";
         resultado.setText("0");
         coma = false;
+        resultado.setTextSize(96);
     }
 
     public void multiNum(View view){
@@ -490,6 +496,7 @@ public class MainActivity extends AppCompatActivity {
         operacion = "*";
         resultado.setText("0");
         coma = false;
+        resultado.setTextSize(96);
     }
 
     public void restarNum(View view){
@@ -497,6 +504,7 @@ public class MainActivity extends AppCompatActivity {
         operacion = "-";
         resultado.setText("0");
         coma = false;
+        resultado.setTextSize(96);
     }
 
     public void sumarNum(View view){
@@ -504,6 +512,7 @@ public class MainActivity extends AppCompatActivity {
         operacion = "+";
         resultado.setText("0");
         coma = false;
+        resultado.setTextSize(96);
     }
 
     public void ponerComa(View view){
@@ -517,6 +526,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void mostrarResultado(View view) {
         num2 = Float.parseFloat(resultado.getText().toString());
+
+        if(resultado.getText().toString().length >= 6){
+                resultado.setTextSize(50);
+        }
 
         if (operacion.equals("+")) {
             total = num1 + num2;
@@ -602,6 +615,12 @@ public class MainActivity extends AppCompatActivity {
            }else {
                resultado.setText(cadena);
            }
+       }
+
+       if(resultado.getText().toString().length >= 6){
+                resultado.setTextSize(50);
+       }else{
+                resultado.setTextSize(96);
        }
     }
 }
