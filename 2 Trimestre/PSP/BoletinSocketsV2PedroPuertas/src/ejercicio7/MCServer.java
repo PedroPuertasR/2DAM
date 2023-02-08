@@ -10,7 +10,7 @@ import java.net.MulticastSocket;
 public class MCServer {
 
     public static void main(String[] args) throws IOException {
-        int port = 12345;
+        int port = 6000;
         InetAddress mcGroup = InetAddress.getByName("225.0.0.1");
         DatagramPacket send = new DatagramPacket(new byte[0], 0, mcGroup, port);
         MulticastSocket socket = new MulticastSocket();

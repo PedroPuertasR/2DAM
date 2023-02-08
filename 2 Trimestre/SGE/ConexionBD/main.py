@@ -85,11 +85,11 @@ while True:
         cursor = conn.cursor()
 
         # Borramos la tabla si existe
-        cursor.execute("DROP TABLE IF EXISTS ejemplo_python")
+        cursor.execute("DROP TABLE IF EXISTS PEDROPUERTAS")
 
         # Creamos la tabla
         cursor.execute("""
-        CREATE TABLE ejemplo_python (
+        CREATE TABLE PEDROPUERTAS(
             id INT AUTO_INCREMENT PRIMARY KEY,
             nombre TEXT,
             salario FLOAT,
@@ -99,7 +99,7 @@ while True:
 
         # Insertamos datos
         cursor.execute("""
-        INSERT INTO ejemplo_python (nombre, salario, fecha_alta)
+        INSERT INTO PEDROPUERTAS (nombre, salario, fecha_alta, inscrito)
         VALUES ('Juan', 30000, '2022-01-01'), ('Ana', 35000, '2022-02-01'), ('Pedro', 40000, '2022-03-01');
         """)
 
@@ -109,7 +109,7 @@ while True:
         conn.commit()
 
         # Hacemos el select para mostrar los datos
-        cursor.execute("SELECT * FROM ejemplo_python")
+        cursor.execute("SELECT * FROM PEDROPUERTAS")
 
         # Mostramos las filas por pantalla
         rows = cursor.fetchall()
@@ -117,8 +117,8 @@ while True:
             print(i)
 
         # Borramos filas
-        cursor.execute("DELETE FROM ejemplo_python WHERE ID = 1")
-        cursor.execute("DELETE FROM ejemplo_python WHERE ID = 2")
+        cursor.execute("DELETE FROM PEDROPUERTAS WHERE ID = 1")
+        cursor.execute("DELETE FROM PEDROPUERTAS WHERE ID = 2")
 
         print("\nFilas borradas.\n")
 
@@ -126,7 +126,7 @@ while True:
         conn.commit()
 
         # Mostramos todas las filas restantes
-        cursor.execute("SELECT * FROM ejemplo_python")
+        cursor.execute("SELECT * FROM PEDROPUERTAS")
         rows = cursor.fetchall()
         for i in rows:
             print(i)
@@ -143,17 +143,31 @@ while True:
         cursor = conn.cursor()
 
         # Creamos la tabla
-        cursor.execute('''CREATE TABLE IF NOT EXISTS ejemplo (id INTEGER PRIMARY KEY, nombre TEXT)''')
+        cursor.execute('''CREATE TABLE IF NOT EXISTS PEDROPUERTAS (id INTEGER PRIMARY KEY, nombre TEXT, 
+        salario REAL, fecha_alta DATE, inscrito BOOLEAN)''')
 
         # Insertamos algunos datos
-        cursor.execute("INSERT INTO ejemplo (nombre) VALUES ('Pedro'), ('Alejandro'), ('José'), ('Natalia')")
-
+        cursor.execute(
+            "INSERT INTO PEDROPUERTAS (nombre, salario, fecha_alta, inscrito) "
+            "VALUES ('Juan', 5000.0, '2022-01-01', 1)")
+        cursor.execute(
+            "INSERT INTO PEDROPUERTAS (nombre, salario, fecha_alta, inscrito) "
+            "VALUES ('Ana', 6000.0, '2022-02-01', 0)")
+        cursor.execute(
+            "INSERT INTO PEDROPUERTAS (nombre, salario, fecha_alta, inscrito) "
+            "VALUES ('Pedro', 7000.0, '2022-03-01', 1)")
+        cursor.execute(
+            "INSERT INTO PEDROPUERTAS (nombre, salario, fecha_alta, inscrito) "
+            "VALUES ('Sofia', 8000.0, '2022-04-01', 0)")
+        cursor.execute(
+            "INSERT INTO PEDROPUERTAS (nombre, salario, fecha_alta, inscrito) "
+            "VALUES ('Lucas', 9000.0, '2022-05-01', 1)")
         conn.commit()
 
         print("Filas añadidas.\n")
 
         # Hacemos el select de las filas
-        cursor.execute("SELECT * FROM ejemplo")
+        cursor.execute("SELECT * FROM PEDROPUERTAS")
 
         # Las guardamos en rows y las mostramos con el bucle for
         rows = cursor.fetchall()
@@ -162,13 +176,13 @@ while True:
             print(i)
 
         # Borramos algunas filas
-        cursor.execute("DELETE FROM ejemplo WHERE id = 1")
-        cursor.execute("DELETE FROM ejemplo WHERE id = 2")
+        cursor.execute("DELETE FROM PEDROPUERTAS WHERE id = 1")
+        cursor.execute("DELETE FROM PEDROPUERTAS WHERE id = 2")
 
         print("\nFilas borradas.\n")
 
         # Hacemos el select y las mostramos con el for
-        cursor.execute("SELECT * FROM ejemplo")
+        cursor.execute("SELECT * FROM PEDROPUERTAS")
 
         rows = cursor.fetchall()
 
