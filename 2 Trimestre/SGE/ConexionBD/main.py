@@ -12,9 +12,10 @@ lectura = int(lectura)
 
 while True:
     if lectura == 1:
+        # Creamos la conexión
         conn = psycopg2.connect(
             host="localhost",
-            database="basedatos_odoo",
+            database="bdpython",
             user="openpg",
             password="openpgpwd"
         )
@@ -26,26 +27,33 @@ while True:
 
         # Creamos la tabla de ejemplo
         cursor.execute("""
-        CREATE TABLE ejemplo_python (
+        CREATE TABLE PEDROPUERTAS (
             id serial PRIMARY KEY,
-            nombre text,
+            nombre varchar(50),
             salario real,
-            fecha_alta date
+            fecha_alta date,
+            inscrito boolean
         );
         """)
 
         # Hacemos el insert de algunas filas
         cursor.execute("""
-        INSERT INTO ejemplo_python (nombre, salario, fecha_alta)
-        VALUES ('Juan', 30000, '2022-01-01'), ('Ana', 35000, '2022-02-01'), ('Pedro', 40000, '2022-03-01');
+        INSERT INTO PEDROPUERTAS (nombre, salario, fecha_alta, inscrito)
+        VALUES
+            ('Juan', 5000, '2022-01-01', True),
+            ('María', 6000, '2022-02-01', True),
+            ('Pedro', 7000, '2022-03-01', False),
+            ('Ana', 8000, '2022-04-01', True),
+            ('Lucía', 9000, '2022-05-01', False);
         """)
+
 
         print("Filas añadidas.\n")
 
         # Guardamos los cambios
         conn.commit()
 
-        cursor.execute("SELECT * FROM ejemplo_python;")
+        cursor.execute("SELECT * FROM PEDROPUERTAS;")
 
         # Guardamos en la variable rows todas las filas seleccionadas
         rows = cursor.fetchall()
@@ -53,8 +61,8 @@ while True:
         for i in rows:
             print(i)
 
-        cursor.execute("DELETE FROM ejemplo_python WHERE ID = 1;")
-        cursor.execute("DELETE FROM ejemplo_python WHERE ID = 2;")
+        cursor.execute("DELETE FROM PEDROPUERTAS WHERE ID = 1;")
+        cursor.execute("DELETE FROM PEDROPUERTAS WHERE ID = 2;")
 
         print("\nFilas borradas.\n")
 
@@ -62,7 +70,7 @@ while True:
         conn.commit()
 
         # Hacemos el select de las filas y mostramos con el bucle for
-        cursor.execute("SELECT * FROM ejemplo_python;")
+        cursor.execute("SELECT * FROM PEDROPUERTAS;")
 
         rows = cursor.fetchall()
 
@@ -75,11 +83,13 @@ while True:
         break
 
     elif lectura == 2:
+
+        # Creamos la conexión
         conn = mariadb.connect(
             host="localhost",
             user="root",
             password="usuario",
-            database="reportes"
+            database="bdpython"
         )
 
         cursor = conn.cursor()
@@ -93,15 +103,22 @@ while True:
             id INT AUTO_INCREMENT PRIMARY KEY,
             nombre TEXT,
             salario FLOAT,
-            fecha_alta DATE
+            fecha_alta DATE,
+            inscrito BOOLEAN
         );
         """)
 
         # Insertamos datos
         cursor.execute("""
         INSERT INTO PEDROPUERTAS (nombre, salario, fecha_alta, inscrito)
-        VALUES ('Juan', 30000, '2022-01-01'), ('Ana', 35000, '2022-02-01'), ('Pedro', 40000, '2022-03-01');
+        VALUES
+            ('Juan', 5000, '2022-01-01', True),
+            ('María', 6000, '2022-02-01', True),
+            ('Pedro', 7000, '2022-03-01', False),
+            ('Ana', 8000, '2022-04-01', True),
+            ('Lucía', 9000, '2022-05-01', False);
         """)
+
 
         print("Filas añadidas.\n")
 
@@ -139,7 +156,7 @@ while True:
     elif lectura == 3:
 
         # Creamos la conexión en memoria
-        conn = sqlite3.connect(':memory:')
+        conn = sqlite3.connect('bdpython.db')
         cursor = conn.cursor()
 
         # Creamos la tabla
