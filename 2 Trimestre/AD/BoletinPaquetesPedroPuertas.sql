@@ -99,10 +99,11 @@ create or replace package gest_depart as
     procedure modificar_loc_depart(num1 depart.dept_no%type, localidad depart.loc%type);
     procedure visualizar_datos_depart(num depart.dept_no%type);
     procedure visualizar_datos_depart(nom depart.dnombre%type);
-    function buscar_depart_por_nombre(nom depart.dnombre%type) return number;
 end;
 
 create or replace package body gest_depart is
+
+    function buscar_depart_por_nombre(nom depart.dnombre%type) return number;
 
     --Procedimiento insertar_nuevo_depart
 
