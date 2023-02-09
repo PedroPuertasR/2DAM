@@ -461,7 +461,7 @@ public class MainActivity extends AppCompatActivity {
         coma = false;
         if(btnMemo.getText().toString().equals("M")){
             resultado.setText("" + memo);
-            if(resultado.getText().toString().length >= 6){
+            if(resultado.getText().toString().length() >= 6){
                 resultado.setTextSize(50);
             }
             btnMemo.setText("ME");
@@ -527,7 +527,7 @@ public class MainActivity extends AppCompatActivity {
     public void mostrarResultado(View view) {
         num2 = Float.parseFloat(resultado.getText().toString());
 
-        if(resultado.getText().toString().length >= 6){
+        if(resultado.getText().toString().length() >= 6){
                 resultado.setTextSize(50);
         }
 
@@ -617,7 +617,7 @@ public class MainActivity extends AppCompatActivity {
            }
        }
 
-       if(resultado.getText().toString().length >= 6){
+       if(resultado.getText().toString().length() >= 6){
                 resultado.setTextSize(50);
        }else{
                 resultado.setTextSize(96);

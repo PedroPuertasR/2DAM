@@ -122,5 +122,55 @@ end gest_emple;
 -- Ejercicio 2
 
 create or replace package pq_provincia as
-    
+
+  type t_provincias is record (
+    mat varchar2(2),
+    prov varchar2(11),
+    cp varchar(2)
+  );
+
+  type tipo1 is varray(50) of t_provincias;
+
+  function provincia (p_matricula varchar2) return varchar2;
+  function matricula (p_provincia varchar2) return varchar2;
+  function cp (p_provincia varchar2) return varchar2;
+  procedure borrar_prov;
+
+end pq_provincia;
+
+create or replace package body pq_provincia as
+  function provincia (p_matricula varchar2) return varchar2 as
+      l_prov varchar2(11);
+  begin
+      select prov into l_prov
+      from provincias
+      where mat = p_matricula;
+
+      return l_prov;
+  end provincia;
+
+  function matricula (p_provincia varchar2) return varchar2 as
+      l_mat varchar2(2);
+  begin
+      select mat into l_mat
+      from provincias
+      where prov = p_provincia;
+
+      return l_mat;
+  end matricula;
+
+  function cp (p_provincia varchar2) return varchar2 as
+      l_cp varchar2(2);
+  begin
+      select cp into l_cp
+      from provincias
+      where prov = p_provincia;
+
+      return l_cp;
+  end cp;
+
+  procedure borrar_prov as
+  begin
+      execute immediate 'drop table provincias';
+  end borrar_prov;
 end pq_provincia;
