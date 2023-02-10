@@ -133,7 +133,7 @@ create or replace package pq_provincia as
 
   v1 tipo1;
 
-  cursor c1 return tipo1%rowtype;
+  cursor c1 return provincias%rowtype;
 
   function provincia (p_matricula varchar2) return varchar2;
   function matricula (p_provincia varchar2) return varchar2;
@@ -144,41 +144,51 @@ end pq_provincia;
 
 create or replace package body pq_provincia as
 
-    cursor c1 return t_provincias%rowtype is select *
-                                             from v1;
+    cursor c1 return provincias%rowtype is select *
+                                           from provincias;
 
-    function provincia (p_matricula varchar2) return varchar2 as
-        l_prov varchar2(11);
+    function provincia (p_matricula varchar2) return varchar2 is
+        v_prov varchar2(11);
     begin
-        select prov into l_prov
+        select prov into v_prov
         from provincias
         where mat = p_matricula;
-
-        return l_prov;
+        return v_prov;
     end provincia;
 
-    function matricula (p_provincia varchar2) return varchar2 as
-        l_mat varchar2(2);
+    function matricula (p_provincia varchar2) return varchar2 is
+        v_mat varchar2(2);
     begin
-        select mat into l_mat
+        select mat into v_mat
         from provincias
         where prov = p_provincia;
-
-        return l_mat;
+        return v_mat;
     end matricula;
 
-    function cp (p_provincia varchar2) return varchar2 as
-        l_cp varchar2(2);
+    function cp (p_provincia varchar2) return varchar2 is
+        v_cp varchar2(2);
     begin
-        select cp into l_cp
+        select cp into v_cp
         from provincias
         where prov = p_provincia;
-
-        return l_cp;
+        return v_cp;
     end cp;
 
-    procedure borrar_prov as
+    procedure insertar_prov is
+        contador number := 1;
     begin
-        execute immediate 'drop table provincias';
+        for i in c1 loop
+            v1(contador).mat := i.mat;
+            v1(contador).prov := i.prov;
+            v1(contador).cp := i.cp;
+            contador := contador + 1;
+        end loop;
+    end insertar_prov;
+
+    procedure borrar_prov is
+    begin
+        delete from v1;
+        commit;
     end borrar_prov;
+
 end pq_provincia;
