@@ -131,8 +131,6 @@ create or replace package pq_provincia as
 
     type tipo1 is table of t_provincias INDEX BY BINARY_INTEGER;
 
-    v1 tipo1;
-
     cursor c1 return provincias%rowtype;
 
     function provincia (p_matricula varchar2) return varchar2;
@@ -143,6 +141,8 @@ create or replace package pq_provincia as
 end pq_provincia;
 
 create or replace package body pq_provincia as
+
+    v1 tipo1;
 
     cursor c1 return provincias%rowtype is select *
                                            from (select *
