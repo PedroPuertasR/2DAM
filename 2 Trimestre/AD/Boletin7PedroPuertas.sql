@@ -123,29 +123,31 @@ end gest_emple;
 
 create or replace package pq_provincia as
 
-  type t_provincias is record (
-    mat varchar2(2),
-    prov varchar2(11),
-    cp varchar(2)
-  );
+    type t_provincias is record (
+        mat varchar2(2),
+        prov varchar2(11),
+        cp varchar(2)
+    );
 
-  type tipo1 is table of t_provincias INDEX BY BINARY_INTEGER;
+    type tipo1 is table of t_provincias INDEX BY BINARY_INTEGER;
 
-  v1 tipo1;
+    v1 tipo1;
 
-  cursor c1 return provincias%rowtype;
+    cursor c1 return provincias%rowtype;
 
-  function provincia (p_matricula varchar2) return varchar2;
-  function matricula (p_provincia varchar2) return varchar2;
-  function cp (p_provincia varchar2) return varchar2;
-  procedure borrar_prov;
+    function provincia (p_matricula varchar2) return varchar2;
+    function matricula (p_provincia varchar2) return varchar2;
+    function cp (p_provincia varchar2) return varchar2;
+    procedure borrar_prov;
 
 end pq_provincia;
 
 create or replace package body pq_provincia as
 
     cursor c1 return provincias%rowtype is select *
-                                           from provincias;
+                                           from (select *
+                                                 from provincias)
+                                           where rownum <= 50;
 
     function provincia (p_matricula varchar2) return varchar2 is
         v_prov varchar2(11);
