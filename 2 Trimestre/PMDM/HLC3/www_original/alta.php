@@ -29,27 +29,12 @@
 				$apellidos = 'class="entrada_datos error"';
 			}
 		}
-		else{
-			$error = TRUE;
-		}
 		
 		if (isset($_POST['fecha'])) {
 			if (comprobar_introduccion_fecha($_POST['fecha']) == TRUE)
 			{
 				$error = TRUE;
 				$fecha = 'class="entrada_datos error"';
-			}
-		}
-		else
-		{
-			$error = TRUE;
-		}
-
-		if (isset($_POST['email'])){
-			if(comprobar_introduccion_email($_POST['email']) == TRUE)
-			{
-				$error = TRUE;
-				$email = 'class="entrada_datos error"';
 			}
 		}
 		else
@@ -119,18 +104,6 @@
         return $error;
 	}
 	
-	function comprobar_introduccion_email($campo)
-	{
-		$error = comprobar_sql_injection($campo);
-		if ($error == FALSE) {
-			if (!filter_var($campo, FILTER_VALIDATE_EMAIL)) {
-				$error = TRUE;
-			}
-		}
-		return $error;
-	}
-
-
 	function comprobar_sql_injection($valor)
 	{
 		$error = FALSE;
