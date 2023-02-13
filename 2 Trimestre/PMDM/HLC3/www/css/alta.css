@@ -1,13 +1,19 @@
+@font-face {
+	font-family: Roboto;
+	src: url(../fonts/Roboto-Regular.ttf);
+}
+
 html, body{
     margin: 0px;
     padding: 0px;
+	background: linear-gradient(90deg, #091379, #9c00ff);
 }
 
 /* Titulos de los formularios */
 legend{
 	padding-left: 0px;
     padding-right: 4px;
-	font-family: 'Solway', cursive;
+	font-family: Roboto, cursive;
 	font-weight: bold;
 	font-size: 30px;
 	text-align: center;
@@ -38,9 +44,10 @@ fieldset {
 p{
 	margin-left: 20px;
 	margin-right: 20px;
-	margin-bottom: 5px;
+	margin-bottom: 15px;
+	margin-top: 15px;
 	font-weight: bold;
-	font-family: "Times New Roman", Times, serif;
+	font-family: Roboto, Times, serif;
     text-justify: inter-word;	
 	color: white;
 }
@@ -57,8 +64,8 @@ div{
 	width: 300px;
 	float: none;
 	display: block;
-	background-color: #75CA5B;
 	box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.5);
+	background: linear-gradient(90deg, #060c5172, #7400bc72);
 }
 
 /* Campos del formulario */
@@ -92,9 +99,9 @@ td{
 }
 
 #enviar{
-	color: white;
+	color: black;
 	border: 0px;
-    background-color: rgb(19, 180, 255);
+    background-color: white;
 	font-size: 20px;
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -106,5 +113,5 @@ td{
 }
 
 #enviar:hover{
-	background-color: #75CA5B;
+	background-color: #cb005f;
 }

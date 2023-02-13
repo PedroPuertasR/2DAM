@@ -24,7 +24,7 @@ article {
 	padding: 10px;
 	text-decoration: none;
 	color: white;
-    transition: all 0.9s linear;
+    transition: all 0.2s linear;
     font-family: 'Bebas Neue';
 	font-size: 13px;
 	width: 200px;
@@ -119,5 +119,5 @@ li a{
 }
 
 li:hover{
-	
+	background-color: aqua;
 }

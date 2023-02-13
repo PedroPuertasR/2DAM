@@ -1,3 +1,22 @@
+<?php  
+include 'conexionbd.php';
+session_start();
+//isset — Determina si una variable está definida y no es null
+if (isset($_SESSION['masControl']))
+{
+	$con=conexion();
+	$sql="UPDATE USUARIOS SET GANADAS=" . $_SESSION['victorias'] .", PERDIDAS=" . $_SESSION['perdidas'] . " WHERE EMAIL='" . $_SESSION['email'] . "';";
+	$resultado=mysqli_query($con, $sql);
+	mysqli_close($con);
+}
+else
+{
+	session_destroy();
+	header("location:./verDatos.php");
+}
+?>
+
+
 <html>
 <head>
     <title>Adivina el número</title>
@@ -24,14 +43,14 @@
 
         $respuesta = (int) $_POST["respuesta"];
 
-        if ($respuesta === $numero_a_adivinar) {
-            echo "¡Felicidades, has adivinado el número en $intentos intentos!<br>";
+        if ($respuesta == $numero_a_adivinar) {
+            echo "<p>¡Felicidades, has adivinado el número en $intentos intentos!</p>";
             echo '<form action="juego.php" method="post">';
             echo '<input type="submit" name="reset" value="Jugar de nuevo">';
             echo '</form>';
             exit;
         } else{
-            echo "El número es mayor<br>";
+            echo "<p>Número incorrecto</p>";
             $sumar = random_int(1, 15);
             $limite_inferior = $numero_a_adivinar - $sumar;
             if($limite_inferior < 1){

@@ -211,8 +211,8 @@
     <body class="bg-dark">
         <form action="./alta.php" method="post">
 			<div>
-				<fieldset id="formulario_alta" class="bg-warning">
-					<legend id="hola">Nuevo jugador</legend>
+				<fieldset id="formulario_alta">
+					<legend id="hola" class="mt-3">Registro</legend>
 					<table>
 						<tr>
 							<td>
@@ -235,7 +235,7 @@
 							</td>
 						</tr>
 					</table>
-					<div id="caja_boton" class="mb-4">
+					<div id="caja_boton" class="mt-5 mb-4">
 						<input id="enviar" type="submit" value="Crear">
 					</div>
 				</fieldset>

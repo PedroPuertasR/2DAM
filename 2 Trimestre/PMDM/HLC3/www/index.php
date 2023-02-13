@@ -7,7 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="./css/lista.css">
 		<title>Lista</title>
 	</head>
-	<body>
+	<body class="bg-primary">
 		<header>
 			<ul class="nav nav-tabs d-flex">
 				<li class="nav-item flex-fill text-center bg-warning">
@@ -17,13 +17,14 @@
 					<a class="nav-link text-black font-weight-bold" data-bs-toggle="tab" href="#menu1">Iniciar sesión</a>
 				</li>
 				<li class="nav-item flex-fill text-center bg-warning">
-					<a class="nav-link text-black font-weight-bold" data-bs-toggle="tab" href="#menu2">Registrarse</a>
+					<a class="nav-link text-black font-weight-bold" href="./alta.php">Registrarse</a>
 				</li>
 			</ul>
 
 			<div class="tab-content">
-			<div class="tab-pane container active" id="info">
-				
+			<div class="tab-pane container active text-center m-5" id="info">
+				<h1>Autor: Pedro Puertas Rodríguez</h1>
+				<h1>Curso: 2ºDAM</h1>
 			</div>
 			<div class="tab-pane container fade d-flex justify-content-center mt-5" id="menu1">
 				<?php
@@ -31,7 +32,6 @@
 				include 'consultasTablaUsuarios.php';
 
 				$jugadores=obtenerTodosUsuarios();
-
 
 				foreach($jugadores as $jugador)
 				{
@@ -41,16 +41,13 @@
 					$envioJugador = $jugador['email'];
 					
 					
-					echo '<article>';
+					echo '<article class="m-4">';
 					echo '<a class="enlace" href="iniciarSesion.php?datosJugador=' .$envioJugador. '">';
 					echo '<table><tr><td class="td_imagen"><figure><img class="imagen" src="./imagenes/jugador.png"></figure></td></tr><tr><td><h1 class="titulo">';
 					echo $jugador['nombre'] . ' ' . $jugador['apellido'] . ' ' . $edad . ' años';
 					echo '</td></tr></table></a></article>';
 				}
-					
-
-
-					
+										
 				?>
 			</div>
 			<div class="tab-pane container fade" id="menu2">...</div>
