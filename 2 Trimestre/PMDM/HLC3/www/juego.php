@@ -4,13 +4,20 @@
 </head>
 <body>
     <?php
+
+    $sumar = 0;
+    $fecha_actual = date("Y-m-d");
+
     if (!isset($_POST["respuesta"]) || isset($_POST["reset"])) {
-        $numero_a_adivinar = rand(1, 100);
+        
+        $numero_a_adivinar = random_int(1, 100);
+        echo "<script>console.log('Variable: ', ".json_encode($numero_a_adivinar).");</script>";
         $limite_inferior = 1;
         $limite_superior = 100;
         $intentos = 0;
     } else {
         $numero_a_adivinar = $_POST["numero_a_adivinar"];
+        echo "<script>console.log('Variable: ', ".json_encode($numero_a_adivinar).");</script>";
         $limite_inferior = $_POST["limite_inferior"];
         $limite_superior = $_POST["limite_superior"];
         $intentos = $_POST["intentos"];
@@ -23,12 +30,18 @@
             echo '<input type="submit" name="reset" value="Jugar de nuevo">';
             echo '</form>';
             exit;
-        } elseif ($respuesta < $numero_a_adivinar) {
+        } else{
             echo "El número es mayor<br>";
-            $limite_inferior = $respuesta + 1;
-        } else {
-            echo "El número es menor<br>";
-            $limite_superior = $respuesta - 1;
+            $sumar = random_int(1, 15);
+            $limite_inferior = $numero_a_adivinar - $sumar;
+            if($limite_inferior < 1){
+                $limite_inferior = 1;
+            }
+            $sumar = random_int(1, 15);
+            $limite_superior = $numero_a_adivinar + $sumar;
+            if($limite_superior > 100){
+                $limite_superior = 100;
+            }
         }
 
         $intentos++;
@@ -40,7 +53,7 @@
         <input type="hidden" name="limite_superior" value="<?php echo $limite_superior; ?>">
         <input type="hidden" name="intentos" value="<?php echo $intentos; ?>">
         Adivine un número entre <?php echo $limite_inferior; ?> y <?php echo $limite_superior; ?>:
-        <input type="text" name="respuesta" size="5">
+        <input type="number" name="respuesta" size="5">
         <input type="submit" value="Adivinar">
     </form>
 </body>
