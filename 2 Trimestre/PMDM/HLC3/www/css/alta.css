@@ -13,7 +13,7 @@ html, body{
 legend{
 	padding-left: 0px;
     padding-right: 4px;
-	font-family: Roboto, cursive;
+	font-family: Roboto, Arial, sans-serif;
 	font-weight: bold;
 	font-size: 30px;
 	text-align: center;
@@ -47,7 +47,7 @@ p{
 	margin-bottom: 15px;
 	margin-top: 15px;
 	font-weight: bold;
-	font-family: Roboto, Times, serif;
+	font-family: Roboto, Arial, sans-serif;
     text-justify: inter-word;	
 	color: white;
 }
