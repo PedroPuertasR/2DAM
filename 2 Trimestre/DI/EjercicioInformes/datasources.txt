@@ -1,0 +1,10 @@
+Para realizar un DataSource debemos seguir los siguientes pasos:
+
+1. Vamos a la zona de outline y pulsamos click derecho en nuestro reporte.
+2. Pulsamos en "create DataSet".
+3. Una vez dentro le ponemos un nombre y pulsamos en "next".
+4. Ahora seleccionamos nuestro Data Adapter o lo creamos si es necesario.
+5. Una vez seleccionado se nos desplegará un menu. 
+   En este podemos incluir la consulta de los campos que queramos incluir.
+6. Una vez hecha la consulta le damos a "next" y seleccionamos los campos y darle a las dos flechas >>.
+7. Por último pulsamos en "finish" y ya estaría creado.
