@@ -28,8 +28,6 @@
                 $_SESSION['nombre']=$jug['nombre'];
                 $_SESSION['email']=$jug['email'];
                 $_SESSION['apellido']=$jug['apellido'];
-                $_SESSION['victorias']=$jug['IFNULL(ganadas,0)'];
-                $_SESSION['perdidas']=$jug['IFNULL(perdidas,0)'];
 				$_SESSION['intentos']=$jug['IFNULL(intentos,0)'];
 				$_SESSION['record']=$jug['fecha_record'];
                 $_SESSION['jugando']=false;
@@ -57,7 +55,7 @@
 	{
 		$con=conexion();
 
-		$sql="select email, nombre, fecha_nacimiento, apellido, IFNULL(ganadas,0), IFNULL(perdidas,0), IFNULL(intentos, 0), fecha_record from USUARIOS where email = '" . $email . "';";
+		$sql="select email, nombre, fecha_nacimiento, apellido, IFNULL(intentos, 0), fecha_record from USUARIOS where email = '" . $email . "';";
 		$resultado=mysqli_query($con, $sql);
         $datos=mysqli_fetch_assoc($resultado);
         

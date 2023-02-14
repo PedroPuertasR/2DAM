@@ -6,7 +6,7 @@
 	{
 		$con=conexion();
 
-		$sql="select email, nombre, fecha_nacimiento, apellido, IFNULL(ganadas,0), IFNULL(perdidas,0), IFNULL(intentos,0), fecha_record from USUARIOS";
+		$sql="select email, nombre, fecha_nacimiento, apellido, IFNULL(intentos,0) as inten, fecha_record from USUARIOS";
 		$resultado=mysqli_query($con, $sql);		
 		
 		$jugadores=obtenerJugadores($resultado);

@@ -1,56 +1,87 @@
+<?php
+	session_start();
+	session_destroy();
+?>
 
 <html>
 	<head>
 		<meta charset="UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="./css/lista.css">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="./css/lista.css">
-		<title>Lista</title>
+		<title>Home</title>
 	</head>
-	<body class="bg-primary">
+	<body>
 		<header>
 			<ul class="nav nav-tabs d-flex">
-				<li class="nav-item flex-fill text-center bg-warning">
+				<li class="nav-item flex-fill text-center">
 					<a class="nav-link text-black font-weight-bold active" data-bs-toggle="tab" href="#info">Info</a>
 				</li>
-				<li class="nav-item flex-fill text-center bg-warning">
+				<li class="nav-item flex-fill text-center">
 					<a class="nav-link text-black font-weight-bold" data-bs-toggle="tab" href="#menu1">Iniciar sesión</a>
 				</li>
-				<li class="nav-item flex-fill text-center bg-warning">
+				<li class="nav-item flex-fill text-center">
 					<a class="nav-link text-black font-weight-bold" href="./alta.php">Registrarse</a>
 				</li>
 			</ul>
 
 			<div class="tab-content">
-			<div class="tab-pane container active text-center m-5" id="info">
-				<h1>Autor: Pedro Puertas Rodríguez</h1>
-				<h1>Curso: 2ºDAM</h1>
-			</div>
-			<div class="tab-pane container fade d-flex justify-content-center mt-5" id="menu1">
-				<?php
+				<div class="tab-pane container active text-center m-5" id="info">
+					<h1>Autor: Pedro Puertas Rodríguez</h1>
+					<h1>Curso: 2ºDAM</h1>
 
-				include 'consultasTablaUsuarios.php';
+					<div class="container mt-3 p-5">
+						<h2 class="mb-4">Tabla de records</h2>
+						<table class="table table-bordered border-light text-center text-light">
+							<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Apellidos</th>
+								<th>Intentos</th>
+								<th>Fecha record</th>
+							</tr>
+							</thead>
+							<tbody>
+								<?php
 
-				$jugadores=obtenerTodosUsuarios();
+								include 'consultasTablaUsuarios.php';
 
-				foreach($jugadores as $jugador)
-				{
-					$segundosEdadUsuario=strtotime($jugador['fecha_nacimiento']);
-					$segundosFechaActual=time();
-					$edad=floor(($segundosFechaActual-$segundosEdadUsuario)/31536000);
-					$envioJugador = $jugador['email'];
-					
-					
-					echo '<article class="m-4">';
-					echo '<a class="enlace" href="iniciarSesion.php?datosJugador=' .$envioJugador. '">';
-					echo '<table><tr><td class="td_imagen"><figure><img class="imagen" src="./imagenes/jugador.png"></figure></td></tr><tr><td><h1 class="titulo">';
-					echo $jugador['nombre'] . ' ' . $jugador['apellido'] . ' ' . $edad . ' años';
-					echo '</td></tr></table></a></article>';
-				}
-										
-				?>
-			</div>
-			<div class="tab-pane container fade" id="menu2">...</div>
+								$jugadores=obtenerTodosUsuarios();
+
+								foreach($jugadores as $jugador)
+								{
+									echo '<tr>';
+									echo '<td>' . $jugador['nombre'] . '</td>';
+									echo '<td>' . $jugador['apellido'] . '</td>';
+									echo '<td>' . $jugador['inten'] . '</td>';
+									echo '<td>' . $jugador['fecha_record'] . '</td>';
+									echo '</tr>';
+								}
+														
+								?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="tab-pane container fade d-flex justify-content-center mt-5" id="menu1">
+					<?php
+
+					foreach($jugadores as $jugador)
+					{
+						$segundosEdadUsuario=strtotime($jugador['fecha_nacimiento']);
+						$segundosFechaActual=time();
+						$edad=floor(($segundosFechaActual-$segundosEdadUsuario)/31536000);
+						$envioJugador = $jugador['email'];
+						
+
+						echo '<a class="enlace" href="iniciarSesion.php?datosJugador=' .$envioJugador. '">';
+						echo '<table><tr><td class="td_imagen"><figure><img class="imagen" src="./imagenes/jugador.png"></figure></td></tr><tr><td><h1 class="titulo">';
+						echo $jugador['nombre'] . ' ' . $jugador['apellido'] . ' ' . $edad . ' años';
+						echo '</td></tr></table></a>';
+					}
+											
+					?>
+				</div>
 			</div>
 		</header>
 		<main id="main">

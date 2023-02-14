@@ -190,7 +190,7 @@
 	function insertar_usuario($email, $nombre, $fecha, $apellido)
 	{
 		$con=conexion();
-		$sql='INSERT INTO USUARIOS VALUES ("' . $email . '", "' . $nombre . '", "' . $fecha . '", "' . $apellido . '", NULL, NULL, NULL, NULL);';
+		$sql='INSERT INTO USUARIOS VALUES ("' . $email . '", "' . $nombre . '", "' . $fecha . '", "' . $apellido . '", NULL, NULL);';
 		$resultado=mysqli_multi_query($con, $sql);
 	}
 

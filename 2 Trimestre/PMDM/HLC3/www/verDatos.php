@@ -15,8 +15,9 @@ if (isset($_SESSION['masControl']))
 			</script>";
 	}
 	$con=conexion();
-	$sql="UPDATE USUARIOS SET GANADAS=" . $_SESSION['victorias'] .", PERDIDAS=" . $_SESSION['perdidas'] . " WHERE EMAIL='" . $_SESSION['email'] . "';";
+	$sql="SELECT * FROM USUARIOS WHERE EMAIL='" . $_SESSION['email'] . "';";
 	$resultado=mysqli_query($con, $sql);
+
 	mysqli_close($con);
 }
 else
@@ -33,55 +34,33 @@ else
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <title>Inicio</title>
+        <title>Ver datos</title>
 	</head>
-	<body>
-		<div class="caja_usuario">
+	<body class="bg-primary">
+		<div class="d-flex flex-column">
 			<div class="datos_usuario">
-				<h1 class="text-center m-5"><?php echo ' ' .$_SESSION['nombre'] . ' ' . $_SESSION['apellido'];?></h1> 
+				<h1 class="text-center m-5">
+					<?php echo ' ' .$_SESSION['nombre'] . ' ' . $_SESSION['apellido'];?>
+				</h1> 
 			</div>
-			<div class="puntuacion_usuario">
-				<p class="victorias">Victorias: <?php echo $_SESSION['victorias'];?> </p>
+			<div class="d-flex justify-content-center flex-row text-center mt-5">
+				<?php
+
+					echo '<p class="mx-5 text-light">Intentos</p>';
+					echo '<br/>';
+					echo '<p class="mx-5 text-light">Fecha del record</p>';
+				?>
+			</div>
+			<div class="d-flex justify-content-center flex-row text-center mt-5">
+				
+				<p class="mx-5"><?php echo $_SESSION['inten'];?></p>
 				<br/>
-				<p class="derrotas">Derrotas: <?php echo $_SESSION['perdidas'];?> </p>
+				<p class="mx-5"><?php echo $_SESSION['fecha_record'];?></p>
+			</div>
+			<div class="d-flex justify-content-center flex-row text-center mt-5">
+				<a class="btn btn-success mx-5" href="./juego.php">Jugar</a>
+				<a class="btn btn-warning mx-5" href="./index.php">Volver</a>
 			</div>
 		</div>	
-		
-		<div class="container mt-3">
-			<h2>Tabla de records</h2>
-			<table class="table table-bordered">
-				<thead>
-				<tr>
-					<th>Nombre</th>
-					<th>Apellidos</th>
-					<th>Ganadas</th>
-					<th>Perdidas</th>
-					<th>Record</th>
-					<th>Fecha</th>
-				</tr>
-				</thead>
-				<tbody>
-					<?php
-
-					include 'consultasTablaUsuarios.php';
-
-					$jugadores=obtenerTodosUsuarios();
-
-					foreach($jugadores as $jugador)
-					{
-						echo '<tr>';
-						echo '<td>' . $jugador['nombre'] . '</td>';
-						echo '<td>' . $jugador['apellidos'] . '</td>';
-						echo '<td>' . $jugador['ganadas'] . '</td>';
-						echo '<td>' . $jugador['perdidas'] . '</td>';
-						echo '<td>' . $jugador['intentos'] . '</td>';
-						echo '<td>' . $jugador['fecha_record'] . '</td>';
-						echo '</tr>';
-					}
-											
-					?>
-				</tbody>
-			</table>
-			</div>
 	</body>
 </html> 

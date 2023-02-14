@@ -113,11 +113,23 @@ input[type=text] {
 	float: left;
 }
 
-li a{
+li{
 	color: black;
 	font-weight: 700;
+	font-size: 16pt;
+	background-color: blue;
 }
 
 li:hover{
-	background-color: aqua;
+	background-color: rgb(104, 2, 221);
+}
+
+.tab-content{
+	background-color: rgb(50, 0, 108);
+	color: white;
+}
+
+#menu1{
+	padding: 10%;
+	padding-bottom: 35%;
 }
