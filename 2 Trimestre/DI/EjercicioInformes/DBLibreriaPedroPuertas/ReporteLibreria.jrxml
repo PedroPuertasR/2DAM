@@ -20,21 +20,24 @@
 			<property name="com.jaspersoft.studio.field.tree.path" value="libros"/>
 		</field>
 	</subDataset>
-	<subDataset name="LibrosAutor" uuid="2eb9d76a-5d95-4a4b-a0c5-0cc18325621e">
+	<subDataset name="VentasAutor" uuid="bfecd18b-89ef-46fc-bd40-679b69918bfb">
 		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MariaDBLibreria"/>
 		<queryString language="SQL">
-			<![CDATA[select count(*) as cantidad, autor from libros]]>
+			<![CDATA[select autor, count(*) as cantidad from libros group by autor]]>
 		</queryString>
-		<field name="cantidad" class="java.lang.Long">
-			<property name="com.jaspersoft.studio.field.name" value="cantidad"/>
-			<property name="com.jaspersoft.studio.field.label" value="cantidad"/>
-		</field>
 		<field name="autor" class="java.lang.String">
 			<property name="com.jaspersoft.studio.field.name" value="autor"/>
 			<property name="com.jaspersoft.studio.field.label" value="autor"/>
 			<property name="com.jaspersoft.studio.field.tree.path" value="libros"/>
 		</field>
+		<field name="cantidad" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="cantidad"/>
+			<property name="com.jaspersoft.studio.field.label" value="cantidad"/>
+		</field>
+		<group name="cantidad">
+			<groupExpression><![CDATA[$F{cantidad}]]></groupExpression>
+		</group>
 		<group name="autor">
 			<groupExpression><![CDATA[$F{autor}]]></groupExpression>
 		</group>
@@ -186,9 +189,9 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="77" splitType="Stretch">
+		<band height="108" splitType="Stretch">
 			<textField>
-				<reportElement x="10" y="30" width="100" height="30" uuid="9d420d4f-20d8-46b6-9ddd-cf0c2b3792ea">
+				<reportElement x="10" y="39" width="100" height="30" uuid="9d420d4f-20d8-46b6-9ddd-cf0c2b3792ea">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a49a153e-660c-4648-8673-9f22ef1a5ec3"/>
 				</reportElement>
 				<box>
@@ -203,7 +206,7 @@
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="110" y="30" width="100" height="30" uuid="fe36290c-d762-4973-83bb-c87e5d438ad2">
+				<reportElement x="110" y="39" width="100" height="30" uuid="fe36290c-d762-4973-83bb-c87e5d438ad2">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1c515f25-1d25-47b4-b5c4-0f9e71eb3ab5"/>
 				</reportElement>
 				<box>
@@ -219,7 +222,7 @@
 				<patternExpression><![CDATA["dd-MM-Y"]]></patternExpression>
 			</textField>
 			<textField>
-				<reportElement x="210" y="30" width="100" height="30" uuid="5afa3cf9-e280-4026-b557-a3608d8e7410">
+				<reportElement x="210" y="39" width="100" height="30" uuid="5afa3cf9-e280-4026-b557-a3608d8e7410">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e16a65d6-e114-4973-ad4f-6fbc3ce2bed3"/>
 				</reportElement>
 				<box>
@@ -234,7 +237,7 @@
 				<textFieldExpression><![CDATA[$F{precio} + "€"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="310" y="30" width="100" height="30" uuid="6b8bf9b8-7040-4274-8db1-106823d546fb">
+				<reportElement x="310" y="39" width="100" height="30" uuid="6b8bf9b8-7040-4274-8db1-106823d546fb">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="27570a97-d720-4d5c-8656-264f2e2f0c35"/>
 				</reportElement>
 				<box>
@@ -248,6 +251,10 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ventas}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="455" y="20" width="80" height="70" uuid="1b892ce9-95f4-408a-b0dc-f75534e29d1a"/>
+				<imageExpression><![CDATA[$F{foto}]]></imageExpression>
+			</image>
 		</band>
 	</detail>
 	<columnFooter>
@@ -266,37 +273,11 @@
 	</pageFooter>
 	<summary>
 		<band height="684" splitType="Stretch">
-			<pie3DChart>
-				<chart evaluationTime="Report">
-					<reportElement x="10" y="35" width="540" height="310" uuid="bb49892a-8d00-4616-b45a-6ea55277eab4"/>
-					<chartTitle/>
-					<chartSubtitle/>
-					<chartLegend/>
-				</chart>
-				<pieDataset>
-					<dataset resetType="Report">
-						<datasetRun subDataset="LibrosAutor" uuid="1af75291-9c95-43b2-b4a5-ad13f9ae3948">
-							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-						</datasetRun>
-					</dataset>
-					<pieSeries>
-						<keyExpression><![CDATA[$F{cantidad}]]></keyExpression>
-						<valueExpression><![CDATA[$F{cantidad}]]></valueExpression>
-						<labelExpression><![CDATA[$F{autor}]]></labelExpression>
-					</pieSeries>
-					<pieSeries>
-						<keyExpression><![CDATA[$F{autor}]]></keyExpression>
-						<valueExpression><![CDATA[0]]></valueExpression>
-					</pieSeries>
-				</pieDataset>
-				<pie3DPlot>
-					<plot/>
-					<itemLabel/>
-				</pie3DPlot>
-			</pie3DChart>
 			<barChart>
 				<chart evaluationTime="Report">
-					<reportElement x="80" y="430" width="430" height="200" uuid="1cee3263-dcd6-4187-9173-4477e5afdee7"/>
+					<reportElement key="Ventas" x="80" y="430" width="430" height="200" uuid="1cee3263-dcd6-4187-9173-4477e5afdee7">
+						<property name="com.jaspersoft.studio.element.name" value="Libro"/>
+					</reportElement>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
@@ -330,6 +311,42 @@
 					</valueAxisFormat>
 				</barPlot>
 			</barChart>
+			<pieChart>
+				<chart evaluationTime="Report">
+					<reportElement x="80" y="60" width="430" height="298" uuid="073619ef-0494-4b50-b1e5-a0ac87c1f8a1"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<dataset resetType="Report">
+						<datasetRun subDataset="VentasAutor" uuid="0db602c9-b9de-409a-ac7e-afec704cbe5d">
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+					</dataset>
+					<keyExpression><![CDATA[$F{autor}]]></keyExpression>
+					<valueExpression><![CDATA[$F{cantidad}]]></valueExpression>
+					<labelExpression><![CDATA[$F{autor}]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+			<textField evaluationTime="Page">
+				<reportElement x="241" y="10" width="109" height="40" uuid="30f453de-6b4d-42e5-99d2-0253742448e5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Libros a la venta por autor"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="216" y="380" width="123" height="40" uuid="61116186-9720-483c-9bdf-6cdf3910081a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Ventas por libro"]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>
