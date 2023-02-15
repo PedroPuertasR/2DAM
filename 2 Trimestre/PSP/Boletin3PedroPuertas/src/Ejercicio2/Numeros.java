@@ -7,7 +7,7 @@ public class Numeros implements Serializable {
     private int numero;
     private long cuadrado;
     private long cubo;
-
+    
     public Numeros(int n) {
         this.numero = n;
     }

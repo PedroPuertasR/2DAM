@@ -11,7 +11,7 @@ public class Client {
      */
     public static void main(String[] args) throws IOException {
         try {
-            Socket localConn = new Socket("192.168.8.10", 6000);
+            Socket localConn = new Socket("192.168.8.11", 6000);
             
             System.out.println("Conexión realizada.");
 

@@ -10,10 +10,10 @@ public class Client {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         int sendPort = 12345;
         int myPort = 34567;
-        InetAddress address = InetAddress.getByName("192.168.8.10");
+        InetAddress address = InetAddress.getByName("192.168.8.11");
         
         // Creamos el objeto y extraemos el array de bytes
-        Persona p = new Persona("Pedro", 24);
+        Persona p = new Persona("Pedro", 27);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutputStream out = new ObjectOutputStream(bos);
         out.writeObject(p);

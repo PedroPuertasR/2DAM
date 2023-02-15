@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "R1IPqueEwdlx9QuErQoMcFAjI5nRH2IXrPbJBYWrTkVZ9DJncBcBx1AX8q8KosZpywUnApazcAKLg84HhdK0/Q==",
+  "dgSpecHash": "zajlsd/pjQWgE4tef9tOAXLhvey3bmCN19O+KCwaaPEuXxdcBOCdq9BAEgwDmX9TEEc/x+y4H8tEOIdKaq38HQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Administrador\\source\\repos\\EjemploAutomatizacion\\EjemploAutomatizacion.csproj",
+  "projectFilePath": "C:\\Users\\Administrador\\Desktop\\Testing\\EjemploAutomatizacion\\EjemploAutomatizacion.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrador\\.nuget\\packages\\flaui.core\\4.0.0\\flaui.core.4.0.0.nupkg.sha512",
     "C:\\Users\\Administrador\\.nuget\\packages\\flaui.uia2\\4.0.0\\flaui.uia2.4.0.0.nupkg.sha512",

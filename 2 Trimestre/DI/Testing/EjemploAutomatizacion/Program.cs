@@ -23,22 +23,20 @@ namespace EjemploAutomatizacion
                     if (ventana != null)
                     {
                         /* A través de las variables hijo iremos encontrando los menús de la aplicación
-                         * notepad.exe , tendremos que movernos entre los hijos hasta encontrar el
-                         * menú de ayuda.
+                         * notepad.exe , tendremos que movernos buscando por el nombre los diferentes menús.
                          */
-                        var hijo = ventana.FindAllChildren();
 
-                        hijo[3].Click();
+                        Keyboard.Type("Accediendo al menu de acerca de...\n");
 
-                        var hijo2 = hijo[3].FindAllChildren();
+                        Thread.Sleep(1500);
 
-                        hijo2[4].Click();
+                        var hijo = ventana!.FindFirstDescendant(e => e.ByName("Ayuda"));
 
-                        var hijo3 = hijo2[4].FindAllChildren();
-                        var hijo4 = hijo3[0].FindAllChildren();
+                        hijo!.Click();
 
-                        //Haciendo click en esta posición del hijo4 abriremos el panel Acerca de...
-                        hijo4[2].Click();
+                        hijo = ventana!.FindFirstDescendant(e => e.ByName("Acerca del Bloc de notas"));
+
+                        hijo!.Click();
 
                         //Esperamos un segundo para realizar la captura
                         Thread.Sleep(3000);
@@ -48,12 +46,26 @@ namespace EjemploAutomatizacion
                         //La guardamos con el nombre captura.png
                         captura.ToFile("captura.png");
 
+                        Thread.Sleep(2000);
+
+                        //Cerramos la ventana de acerca de...
+                        hijo = ventana!.FindFirstDescendant(e => e.ByName("Cerrar"));
+
+                        hijo!.Click();
+
+                        Keyboard.Type("Captura realizada. Introduciendo frase celebre:\n");
+
+                        Thread.Sleep(2000);
+
                         //Justo después escribimos la frase celebre a través del método type de Keyboard
                         Keyboard.Type("Frase celebre: " + texto);
 
                         //Esperamos 3 segundos para guardar el texto y salir de la aplicación
-                        Thread.Sleep(3000);
+                        Thread.Sleep(1000);
 
+                        Keyboard.Type("\nGuardando y cerrando...");
+
+                        Thread.Sleep(3000);
                         /* Realizamos las combinaciones de teclas que nos permitan guardar el archivo y
                          * salir. En nuestro caso un Alt + F4, escritura del nombre, ENTER para guardar
                          * y en caso de que tengamos que sobreescribir TAB + ENTER para pulsar en Sí

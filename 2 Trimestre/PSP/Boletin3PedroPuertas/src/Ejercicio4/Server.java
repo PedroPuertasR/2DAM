@@ -43,8 +43,8 @@ public class Server {
                 System.out.println("Datos recibidos: " + num);
 
                 // Modificamos los datos
-                num.setCuadrado(n * n);
-                num.setCubo(n * n * n);
+                num.setCuadrado((int) Math.pow(n, 2));
+                num.setCubo((int) Math.pow(n, 3));
                 System.out.println("Datos a enviar: " + num);
                 bos = new ByteArrayOutputStream();
                 out = new ObjectOutputStream(bos);

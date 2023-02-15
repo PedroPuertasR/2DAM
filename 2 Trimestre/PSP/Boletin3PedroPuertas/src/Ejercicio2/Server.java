@@ -21,7 +21,7 @@ public class Server {
             
             System.out.println("El server está escuchando en el puerto "
                         + server.getLocalPort());
-                client = server.accept();
+            client = server.accept();
             
             do {
                 // Una vez hemos conectado con algún cliente, recibimos el objeto Numero
@@ -31,8 +31,8 @@ public class Server {
                 
                 System.out.println("Calculando datos...");
                 n = num.getNumero();
-                num.setCuadrado(n * n);
-                num.setCubo(n * n * n);
+                num.setCuadrado((int) Math.pow(n, 2));
+                num.setCubo((int) Math.pow(n, 3));
                 
                 out = new ObjectOutputStream(client.getOutputStream());
                 out.writeObject(num);

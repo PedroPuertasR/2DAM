@@ -85,6 +85,15 @@
 		<property name="com.jaspersoft.studio.field.label" value="foto"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="libros"/>
 	</field>
+	<group name="AgrupacionAutor">
+		<groupExpression><![CDATA[$F{autor}]]></groupExpression>
+		<groupHeader>
+			<band height="50"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -139,23 +148,7 @@
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="110" y="10" width="100" height="30" backcolor="#FFFFFF" uuid="96d00c8b-b7fd-4054-96c0-f2a6f501f1cf">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1c515f25-1d25-47b4-b5c4-0f9e71eb3ab5"/>
-				</reportElement>
-				<box>
-					<pen lineWidth="2.0" lineStyle="Solid" lineColor="#080808"/>
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[Fecha alta]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="210" y="10" width="100" height="30" backcolor="#FFFFFF" uuid="9eca0ed7-13f4-47b5-aa2c-1264ad214b5e">
+				<reportElement mode="Opaque" x="241" y="10" width="69" height="30" backcolor="#FFFFFF" uuid="9eca0ed7-13f4-47b5-aa2c-1264ad214b5e">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e16a65d6-e114-4973-ad4f-6fbc3ce2bed3"/>
 				</reportElement>
 				<box>
@@ -186,12 +179,27 @@
 				</textElement>
 				<text><![CDATA[Ventas]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="110" y="10" width="131" height="30" uuid="c3b48308-ca31-4ea3-9e85-b332ed43a104">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9cee3c2c-6b6b-49e2-ae02-93dea528344c"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Autor]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="108" splitType="Stretch">
 			<textField>
-				<reportElement x="10" y="39" width="100" height="30" uuid="9d420d4f-20d8-46b6-9ddd-cf0c2b3792ea">
+				<reportElement x="10" y="39" width="100" height="41" uuid="9d420d4f-20d8-46b6-9ddd-cf0c2b3792ea">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a49a153e-660c-4648-8673-9f22ef1a5ec3"/>
 				</reportElement>
 				<box>
@@ -206,23 +214,7 @@
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="110" y="39" width="100" height="30" uuid="fe36290c-d762-4973-83bb-c87e5d438ad2">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1c515f25-1d25-47b4-b5c4-0f9e71eb3ab5"/>
-				</reportElement>
-				<box>
-					<topPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{fechaAlta}]]></textFieldExpression>
-				<patternExpression><![CDATA["dd-MM-Y"]]></patternExpression>
-			</textField>
-			<textField>
-				<reportElement x="210" y="39" width="100" height="30" uuid="5afa3cf9-e280-4026-b557-a3608d8e7410">
+				<reportElement x="241" y="39" width="69" height="41" uuid="5afa3cf9-e280-4026-b557-a3608d8e7410">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e16a65d6-e114-4973-ad4f-6fbc3ce2bed3"/>
 				</reportElement>
 				<box>
@@ -237,7 +229,7 @@
 				<textFieldExpression><![CDATA[$F{precio} + "€"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="310" y="39" width="100" height="30" uuid="6b8bf9b8-7040-4274-8db1-106823d546fb">
+				<reportElement x="310" y="39" width="100" height="41" uuid="6b8bf9b8-7040-4274-8db1-106823d546fb">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="27570a97-d720-4d5c-8656-264f2e2f0c35"/>
 				</reportElement>
 				<box>
@@ -251,10 +243,25 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ventas}]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="455" y="20" width="80" height="70" uuid="1b892ce9-95f4-408a-b0dc-f75534e29d1a"/>
-				<imageExpression><![CDATA[$F{foto}]]></imageExpression>
+			<image onErrorType="Blank">
+				<reportElement x="440" y="19" width="100" height="89" uuid="1b892ce9-95f4-408a-b0dc-f75534e29d1a"/>
+				<imageExpression><![CDATA[$F{foto} == null ? "T:/default.jpg" : $F{foto}]]></imageExpression>
 			</image>
+			<textField>
+				<reportElement x="110" y="39" width="131" height="41" uuid="737513bb-67be-4a3f-b48c-65f4fc3a6f2f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e16a65d6-e114-4973-ad4f-6fbc3ce2bed3"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{autor}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>

@@ -888,11 +888,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrador\\source\\repos\\EjemploAutomatizacion\\EjemploAutomatizacion.csproj",
+      "projectUniqueName": "C:\\Users\\Administrador\\Desktop\\Testing\\EjemploAutomatizacion\\EjemploAutomatizacion.csproj",
       "projectName": "EjemploAutomatizacion",
-      "projectPath": "C:\\Users\\Administrador\\source\\repos\\EjemploAutomatizacion\\EjemploAutomatizacion.csproj",
+      "projectPath": "C:\\Users\\Administrador\\Desktop\\Testing\\EjemploAutomatizacion\\EjemploAutomatizacion.csproj",
       "packagesPath": "C:\\Users\\Administrador\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrador\\source\\repos\\EjemploAutomatizacion\\obj\\",
+      "outputPath": "C:\\Users\\Administrador\\Desktop\\Testing\\EjemploAutomatizacion\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Administrador\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -950,7 +950,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

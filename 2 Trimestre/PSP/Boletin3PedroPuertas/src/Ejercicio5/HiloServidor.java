@@ -28,6 +28,8 @@ public class HiloServidor extends Thread {
 
             // Modificamos la cadena y la enviamos
             enviarCadena();
+            
+            System.out.println(cad);
 
             System.out.println("Finalizado: " + client.toString());
             in.close();
@@ -46,6 +48,7 @@ public class HiloServidor extends Thread {
     }
 
     public synchronized void enviarCadena() throws IOException {
-        out.writeObject(cad.toLowerCase());
+        cad = cad.toUpperCase();
+        out.writeObject(cad);
     }
 }

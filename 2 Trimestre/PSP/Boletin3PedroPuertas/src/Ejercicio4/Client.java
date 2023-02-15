@@ -12,7 +12,7 @@ public class Client {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         int sendPort = 12345;
         int myPort = 34567;
-        InetAddress address = InetAddress.getByName("192.168.8.10");
+        InetAddress address = InetAddress.getByName("192.168.8.11");
         Scanner reader = new Scanner(System.in);
         Numeros num;
         int n;
