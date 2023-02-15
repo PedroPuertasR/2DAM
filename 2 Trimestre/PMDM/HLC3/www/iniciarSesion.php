@@ -1,8 +1,6 @@
 <?php
     include 'conexionbd.php';
-	// Iniciar una nueva sesión o reanudar la existente
     session_start();
-	//isset — Determina si una variable está definida y no es null
     if (isset($_GET['datosJugador'])) {
         echo($email);
         $email = $_GET['datosJugador'];
@@ -25,11 +23,11 @@
             if ($cantidad > 0)
             {
                 $jug = obtener_datos_usuario($email);
-                $_SESSION['nombre']=$jug['nombre'];
-                $_SESSION['email']=$jug['email'];
-                $_SESSION['apellido']=$jug['apellido'];
-				$_SESSION['intentos']=$jug['IFNULL(intentos,0)'];
-				$_SESSION['record']=$jug['fecha_record'];
+                $_SESSION['nombre']=$jug['NOMBRE'];
+                $_SESSION['email']=$jug['EMAIL'];
+                $_SESSION['apellido']=$jug['APELLIDO'];
+				$_SESSION['intentos']=$jug['INTENTOS'];
+				$_SESSION['record']=$jug['FECHA_RECORD'];
                 $_SESSION['jugando']=false;
                 $_SESSION['sesionJuego']=true;
                 header("location:./testSesion.php");
@@ -55,7 +53,7 @@
 	{
 		$con=conexion();
 
-		$sql="select email, nombre, fecha_nacimiento, apellido, IFNULL(intentos, 0), fecha_record from USUARIOS where email = '" . $email . "';";
+		$sql="select * from USUARIOS where email = '" . $email . "';";
 		$resultado=mysqli_query($con, $sql);
         $datos=mysqli_fetch_assoc($resultado);
         

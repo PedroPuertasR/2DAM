@@ -53,9 +53,9 @@ else
 			</div>
 			<div class="d-flex justify-content-center flex-row text-center mt-5">
 				
-				<p class="mx-5"><?php echo $_SESSION['inten'];?></p>
+				<p class="mx-5 text-white"><?php echo $_SESSION['intentos'];?></p>
 				<br/>
-				<p class="mx-5"><?php echo $_SESSION['fecha_record'];?></p>
+				<p class="mx-5 text-white"><?php echo $_SESSION['record'];?></p>
 			</div>
 			<div class="d-flex justify-content-center flex-row text-center mt-5">
 				<a class="btn btn-success mx-5" href="./juego.php">Jugar</a>
