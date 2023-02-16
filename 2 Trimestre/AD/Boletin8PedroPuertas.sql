@@ -151,19 +151,19 @@ create or replace trigger t3
 after insert or update or delete on emple
 declare
     i number;
-    num_emple number;
+    vmedia number;
 begin
     
-    i := pk1.tipo.first;
+    i := pk1.tipo1.first;
 
     while i is not null loop
-        select count(*) into num_emple
+        select avg(salario) into vmedia
         from emple
-        where dept_no = pk1.tipo(i);
+        where dept_no = pk1.tipo1(i);
 
-        update depart set media_salario = media_salario + media_salario * num_emple / 100 where dept_no = pk1.tipo1(i);
+        update depart set media_salario = vmedia where dept_no = pk1.tipo1(i);
 
-        i := pk1.tipo.next(i);
+        i := pk1.tipo1.next(i);
     end loop;
 
 end;
