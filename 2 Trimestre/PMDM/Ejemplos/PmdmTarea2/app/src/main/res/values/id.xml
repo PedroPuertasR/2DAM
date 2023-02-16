@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="respuestasConfirmacion">
+        <item>@id/respuesta1</item>
+        <item>@id/respuesta2</item>
+        <item>@id/respuesta3</item>
+        <item>@id/respuesta4</item>
+        <item>@id/respuesta5</item>
+        <item>@id/respuesta6</item>
+        <item>@id/respuesta7</item>
+        <item>@id/respuesta8</item>
+    </array>
+</resources>

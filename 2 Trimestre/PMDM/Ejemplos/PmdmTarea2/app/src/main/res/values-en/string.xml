@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PmdmTarea2</string>
+    <!--Pantalla bienvenida-->
+    <string name="texto_bienvenida">Help us improve our products and services.</string>
+    <string name="texto_imagen">App Image</string>
+    <!--Pantalla datos-->
+    <string name="lista">List of Provinces</string>
+    <string name="texto_datos">Some information about you</string>
+    <string name="edad">Age:</string>
+    <string name="genero_hombre">Man</string>
+    <string name="genero_mujer">Woman</string>
+    <string name="genero_otro">Other</string>
+    <string name="label_genero">Genre:</string>
+    <string name="texto_scrollview_legal">legal text</string>
+    <string name="texto_legal">The elaboration about this questionnaire is completely anonymous. The collected information will be only used for statistical purposes and formative purposes. In any moment the collected information will be used or provided to third parties. If you have any question, you can contact with us sending an email to our account info@diariotrassierra.com".</string>
+    <string-array name="provincias">
+        <item>Jaén</item>
+        <item>Córdoba</item>
+        <item>Sevilla</item>
+        <item>Huelva</item>
+        <item>Cádiz</item>
+        <item>Málaga</item>
+        <item>Granada</item>
+        <item>Almería</item>
+    </string-array>
+    <!--pantalla cuestionario-->
+    <!--Preguntas 1-->
+    <string name="pregunta_1">How long have you been using Diario de Trassierra products and services?</string>
+    <string name="pregunta_1_respuesta_1">Less a month</string>
+    <string name="pregunta_1_respuesta_2">about six months and one year</string>
+    <string name="pregunta_1_respuesta_3">about one and three years</string>
+    <string name="pregunta_1_respuesta_4">More than three years</string>
+    <!--Preguntas 2-->
+    <string name="pregunta_2">How did you discover Diario de Trassierra web?</string>
+    <string name="pregunta_2_respuesta_1">Radio</string>
+    <string name="pregunta_2_respuesta_2">Internet</string>
+    <string name="pregunta_2_respuesta_3">Our magazines and newspaper products</string>
+    <string name="pregunta_2_respuesta_4">Friends or contacts</string>
+    <!--Preguntas 3-->
+    <string name="pregunta_3">Will you enter in Diario de Trassierra web again?</string>
+    <string name="pregunta_3_respuesta_1">Yes</string>
+    <string name="pregunta_3_respuesta_2">Probably yes</string>
+    <string name="pregunta_3_respuesta_3">Probably no</string>
+    <string name="pregunta_3_respuesta_4">No</string>
+    <!--Preguntas 4-->
+    <string name="pregunta_4">¿Wich device do you usuallly use to see our electronic services?</string>
+    <string name="pregunta_4_respuesta_1">Smartphone</string>
+    <string name="pregunta_4_respuesta_2">Tablet</string>
+    <string name="pregunta_4_respuesta_3">Personal Computer</string>
+    <string name="pregunta_4_respuesta_4">Others</string>
+    <!--Preguntas 5-->
+    <string name="pregunta_5">Would you be willing to hire a premium digital subscription?</string>
+    <string name="pregunta_5_respuesta_1">No, I will not buy it.</string>
+    <string name="pregunta_5_respuesta_2">Yes, I can mensually pay between 5 euros and 10 euros</string>
+    <string name="pregunta_5_respuesta_3">Yes, I can mensually pay more than 10 euros mensually</string>
+    <string name="pregunta_5_respuesta_4">I\'m not sure</string>
+    <!--Preguntas 6-->
+    <string name="pregunta_6">What do you think about our paper subscription service?</string>
+    <string name="pregunta_6_respuesta_1">I don\'t use it, it is an obsolete medium that is doomed to disappear</string>
+    <string name="pregunta_6_respuesta_2">I don\'t use it, but several people close to me continue to use this format</string>
+    <string name="pregunta_6_respuesta_3">I use it on specific occasions</string>
+    <string name="pregunta_6_respuesta_4">I always use it and for me is much better than the electronic way</string>
+    <!--Preguntas 7-->
+    <string name="pregunta_7">Please, tell us your overall satisfaction with the Diario de Trassierra web</string>
+    <string name="pregunta_7_respuesta_1">Bad</string>
+    <string name="pregunta_7_respuesta_2">Medium</string>
+    <string name="pregunta_7_respuesta_3">Good</string>
+    <string name="pregunta_7_respuesta_4">Very Good</string>
+    <!--Preguntas 8-->
+    <string name="pregunta_8">Do you recomend Diario de Trassierra services to your family and friends?</string>
+    <string name="pregunta_8_respuesta_1">Yes</string>
+    <string name="pregunta_8_respuesta_2">Probably sí</string>
+    <string name="pregunta_8_respuesta_3">Probably no</string>
+    <string name="pregunta_8_respuesta_4">No</string>
+    <!--pantalla Confirmación-->
+    <string name="label_provincia">Province:</string>
+    <string name="label_preguntas">Result:</string>
+
+    <!--pantalla acerca de-->
+    <string name="nombre_app_label">App name:</string>
+    <string name="nombre_autor_label">Creator Name:</string>
+    <string name="anio_label">Creation Year:</string>
+    <string name="autor">Rui Jorge Goncalves Pinto</string>
+    <string name="anio_creacion_app">2022</string>
+    <!--pantalla ayuda-->
+    <string name="explicacion_pantalla_1">Home screen of the app it contains the app logo. We can press the start button to go to the next screen.</string>
+    <string name="explicacion_pantalla_2">Screen to introduce our personal data. Contains age, genre and province. We must enter our data before continue. When data is introduced we can go to the next screen pressing continue button.</string>
+    <string name="explicacion_pantalla_3_1">Screen with the questionnaire, made-up by 8 questions that we need to answer by selecting the response to continue, if we press on next it will change to the next question.</string>
+    <string name="explicacion_pantalla_3_2">The number 4 question is La pregunta número 4 is multiple choice. As we go further the questions, you can see down a bar that shows us the progress. In the questionnaire final you have a continue button to go to the result screen.</string>
+    <string name="explicacion_pantalla_4">Screen that show us questionnaire result and your personal data. We can finish the app pressing finish button or go back Home Screen by pressing back button</string>
+    <string name="explicacion_pantalla_5">If we press about option in the menu of the app it will show the app data like name, creator, creation year.</string>
+
+    <!--variados-->
+    <string name="menu_ayuda">Help</string>
+    <string name="menu_acerca">About</string>
+    <string name="menu_image">Menu image</string>
+    <string name="start">Start</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="continu">Continue</string>
+    <string name="finish">Finish</string>
+    <!--errores-->
+    <string name="error_sin_texto">You didn\'t entered any data!</string>
+    <string name="error_radio_button_no_seleccionado">You didn\'t selected any factor!</string>
+
+</resources>

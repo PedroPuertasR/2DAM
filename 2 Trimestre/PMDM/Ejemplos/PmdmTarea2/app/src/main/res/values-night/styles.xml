@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ColorText">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="ImageMenu" parent="@style/ImageNoBackground">
+        <item name="srcCompat">@drawable/ic_menu_dark</item>
+    </style>
+</resources>

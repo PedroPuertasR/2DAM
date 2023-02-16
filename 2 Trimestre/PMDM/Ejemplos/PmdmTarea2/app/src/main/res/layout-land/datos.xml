@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Datos">
+
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-68dp" />
+
+    <TextView
+        android:id="@+id/textoDatos"
+        style="@style/TextBigSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="40dp"
+        android:text="@string/texto_datos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/botones_genero"
+        android:layout_width="124dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toEndOf="@+id/include"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/labelGenero"
+            style="@style/TextMediumSize"
+            android:layout_width="124dp"
+            android:layout_height="19dp"
+            android:layout_marginBottom="5dp"
+            android:labelFor="@+id/botones_genero"
+            android:text="@string/label_genero"
+            android:textAlignment="center" />
+
+        <RadioButton
+            android:id="@+id/button_hombre"
+            style="@style/TextSmallSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/genero_hombre"
+            tools:ignore="TextContrastCheck" />
+
+        <RadioButton
+            android:id="@+id/button_mujer"
+            style="@style/TextSmallSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/genero_mujer"
+            tools:ignore="TextContrastCheck" />
+
+        <RadioButton
+            android:id="@+id/button_otro"
+            style="@style/TextSmallSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@string/genero_otro"
+            tools:ignore="TextContrastCheck" />
+    </RadioGroup>
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="255dp"
+        android:layout_height="114dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:stretchColumns="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoDatos">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3">
+
+            <TextView
+                android:id="@+id/textoEdad"
+                style="@style/TextMediumSize"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:labelFor="@+id/edadInput"
+                android:text="@string/edad" />
+
+            <EditText
+                android:id="@+id/edadInput"
+                style="@style/TextMediumSize"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textAlignment="center"
+                tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0">
+
+            <Spinner
+                android:id="@+id/listaProvincias"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_span="2"
+                android:contentDescription="@string/lista" />
+        </TableRow>
+
+    </TableLayout>
+
+    <ScrollView
+        android:id="@+id/textoLegal"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="40dp"
+        android:contentDescription="@string/texto_scrollview_legal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textoLegalView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:text="@string/texto_legal"
+                tools:targetApi="o" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/botonDatos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="40dp"
+        android:text="@string/continu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoLegal" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,107 @@
+<resources>
+    <string name="app_name">PmdmTarea2</string>
+    <!--Pantalla bienvenida-->
+    <string name="texto_bienvenida">Ayúdanos a mejorar nuestros productos y servicios.</string>
+    <string name="texto_imagen">Imagen de la aplicación</string>
+    <!--Pantalla datos-->
+    <string name="lista">Lista Provincias</string>
+    <string name="texto_datos">Algunos datos sobre ti</string>
+    <string name="edad">Edad:</string>
+    <string name="genero_hombre">Hombre</string>
+    <string name="genero_mujer">Mujer</string>
+    <string name="genero_otro">Otro</string>
+    <string name="label_genero">Género:</string>
+    <string name="texto_scrollview_legal">Texto legal</string>
+    <string name="texto_legal">La elaboración de este cuestionario es completamente anónima. La información recabada solo se utilizará con fines estadísticos y formativos. En ningún momento se utilizará ni se facilitará a terceros cualquier información obtenida. Para cualquier aclaración puede ponerse en contacto con Diario de Trassierra a través de la cuenta de correo info@diariotrassierra.com".</string>
+    <string-array name="provincias">
+        <item>Jaén</item>
+        <item>Córdoba</item>
+        <item>Sevilla</item>
+        <item>Huelva</item>
+        <item>Cádiz</item>
+        <item>Málaga</item>
+        <item>Granada</item>
+        <item>Almería</item>
+    </string-array>
+    <!--pantalla cuestionario-->
+    <!--Preguntas 1-->
+    <string name="pregunta_1">¿Cuánto tiempo llevas utilizado los productos/servicios de Diario de Trassierra?</string>
+    <string name="pregunta_1_respuesta_1">Menos de un mes</string>
+    <string name="pregunta_1_respuesta_2">Entre seis meses y un año</string>
+    <string name="pregunta_1_respuesta_3">Entre uno y tres años</string>
+    <string name="pregunta_1_respuesta_4">Más de tres años</string>
+    <!--Preguntas 2-->
+    <string name="pregunta_2">¿Cómo conoció la página web de Diario de Trassierra?</string>
+    <string name="pregunta_2_respuesta_1">Radio</string>
+    <string name="pregunta_2_respuesta_2">Internet</string>
+    <string name="pregunta_2_respuesta_3">Nuestros productos de prensa y revistas</string>
+    <string name="pregunta_2_respuesta_4">Amigos, colegas o contactos</string>
+    <!--Preguntas 3-->
+    <string name="pregunta_3">¿Volverá a entrar en la página web de Diario de Trassierra de nuevo?</string>
+    <string name="pregunta_3_respuesta_1">Seguro que sí</string>
+    <string name="pregunta_3_respuesta_2">Probablemente sí</string>
+    <string name="pregunta_3_respuesta_3">Probablemente no</string>
+    <string name="pregunta_3_respuesta_4">Seguro que no</string>
+    <!--Preguntas 4-->
+    <string name="pregunta_4">¿Desde qué dispositivo suele consultar nuestros servicios electrónicos?</string>
+    <string name="pregunta_4_respuesta_1">Smartphone</string>
+    <string name="pregunta_4_respuesta_2">Tablet</string>
+    <string name="pregunta_4_respuesta_3">Ordenador personal</string>
+    <string name="pregunta_4_respuesta_4">Otros</string>
+    <!--Preguntas 5-->
+    <string name="pregunta_5">¿Estaría dispuesto a contratar una subscripción digital premium?</string>
+    <string name="pregunta_5_respuesta_1">No, no estoy dispuesto a pagar</string>
+    <string name="pregunta_5_respuesta_2">Sí, estaría dispuesto a pagar entre 5 y 10 euros mensuales</string>
+    <string name="pregunta_5_respuesta_3">Sí, estaría dispuesto a pagar más de 10 euros mensuales</string>
+    <string name="pregunta_5_respuesta_4">No estoy seguro</string>
+    <!--Preguntas 6-->
+    <string name="pregunta_6">¿Qué opina de nuestro servicio de subscripción en formato papel?</string>
+    <string name="pregunta_6_respuesta_1">No lo utilizo, es un medio obsoleto que está condenado a desaparecer</string>
+    <string name="pregunta_6_respuesta_2">No lo utilizo, pero varias personas cercanas a mi siguen utilizando este formato</string>
+    <string name="pregunta_6_respuesta_3">Lo utilizo en ocasiones puntuales</string>
+    <string name="pregunta_6_respuesta_4">Lo utilizo a diario y me parece mucho mejor que el formato electrónico</string>
+    <!--Preguntas 7-->
+    <string name="pregunta_7">Por favor, indíquenos su grado de satisfacción general con la página web de Diario de Trassierra</string>
+    <string name="pregunta_7_respuesta_1">Mala</string>
+    <string name="pregunta_7_respuesta_2">Regular</string>
+    <string name="pregunta_7_respuesta_3">Buena</string>
+    <string name="pregunta_7_respuesta_4">Muy buena</string>
+    <!--Preguntas 8-->
+    <string name="pregunta_8">¿Recomendaría los servicios de Diario de Trassierra a sus familiares o amigos?</string>
+    <string name="pregunta_8_respuesta_1">Seguro que sí</string>
+    <string name="pregunta_8_respuesta_2">Probablemente sí</string>
+    <string name="pregunta_8_respuesta_3">Probablemente no</string>
+    <string name="pregunta_8_respuesta_4">Seguro que no</string>
+    <!--pantalla Confirmación-->
+    <string name="label_provincia">Provincia:</string>
+    <string name="label_preguntas">Resultado Cuestionario:</string>
+
+    <!--pantalla acerca de-->
+    <string name="nombre_app_label">Nombre Aplicación:</string>
+    <string name="nombre_autor_label">Nombre Autor:</string>
+    <string name="anio_label">Año creación:</string>
+    <string name="autor">Rui Jorge Goncalves Pinto</string>
+    <string name="anio_creacion_app">2022</string>
+    <!--pantalla ayuda-->
+    <string name="explicacion_pantalla_1">Pantalla inicial de la aplicación contiene el logo de la aplicación. Podemos pulsar en el botón empezar para continuar a la siguiente pantalla</string>
+    <string name="explicacion_pantalla_2">Pantalla para introducir datos personales. Nos pide la edad, el género y la provincia. Debemos introducir todos los datos antes de continuar. Una vez introducidos los datos podemos seguir a la siguiente pantalla pulsando en el botón continuar</string>
+    <string name="explicacion_pantalla_3_1">Pantalla con el cuestionario, compuesto por 8 preguntas debemos seleccionar alguna opción para poder continuar, si pulsamos en siguiente se cambia a la siguiente pregunta.</string>
+    <string name="explicacion_pantalla_3_2">La pregunta número 4 es de elección multiple. Conforme vayamos avanzado en las preguntas abajo nos indicará el progreso actual. Al final del cuestionario tendremos un botón continuar para pasar a la pantalla de resultados</string>
+    <string name="explicacion_pantalla_4">Pantalla que muestra los resultados del cuestionario y tus datos personales. Podemos finalizar la aplicación pulsando en el botón finalizar o volver a la pantalla bienvenida pulsando en el botón volver</string>
+    <string name="explicacion_pantalla_5">Si pulsamos en la opcioón acerca de del menu de la aplicación podremos ver los datos de la misma, nombre , autor y año de creación</string>
+
+    <!--variados-->
+    <string name="menu_ayuda">Ayuda</string>
+    <string name="menu_acerca">Acerca de</string>
+    <string name="menu_image">Imagen del menu</string>
+    <string name="start">Empezar</string>
+    <string name="next">Siguiente</string>
+    <string name="back">Volver</string>
+    <string name="continu">Continuar</string>
+    <string name="finish">Finalizar</string>
+    <!--errores-->
+    <string name="error_sin_texto">No has introducido ningun dato!</string>
+    <string name="error_radio_button_no_seleccionado">No has seleccionado ningun elemento!</string>
+
+
+</resources>

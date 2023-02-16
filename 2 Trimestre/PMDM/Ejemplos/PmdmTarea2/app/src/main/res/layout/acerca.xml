@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Acerca">
+
+    <include
+        android:id="@+id/include4"
+        layout="@layout/toolbar"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/labelAppName"
+        style="@style/TextMediumSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:labelFor="@+id/textAppName"
+        android:text="@string/nombre_app_label"
+        app:layout_constraintBottom_toBottomOf="@+id/textAppName"
+        app:layout_constraintEnd_toStartOf="@+id/textAppName"
+        app:layout_constraintHorizontal_bias="0.96"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textAppName" />
+
+    <TextView
+        android:id="@+id/labelNombreAutor"
+        style="@style/TextMediumSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:labelFor="@+id/textNombreAutor"
+        android:text="@string/nombre_autor_label"
+        app:layout_constraintBottom_toBottomOf="@+id/textNombreAutor"
+        app:layout_constraintEnd_toStartOf="@+id/textNombreAutor"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textNombreAutor"
+        app:layout_constraintVertical_bias="0.428" />
+
+    <TextView
+        android:id="@+id/labelAnio"
+        style="@style/TextMediumSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:labelFor="@+id/textoAnio"
+        android:text="@string/anio_label"
+        app:layout_constraintBottom_toBottomOf="@+id/textoAnio"
+        app:layout_constraintEnd_toStartOf="@+id/textoAnio"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textoAnio" />
+
+    <EditText
+        android:id="@+id/textNombreAutor"
+        style="@style/TextMediumSize"
+        android:layout_width="181dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="48dp"
+        android:clickable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:text="@string/autor"
+        app:layout_constraintBottom_toTopOf="@+id/textoAnio"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/textAppName"
+        style="@style/TextMediumSize"
+        android:layout_width="128dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="50dp"
+        android:clickable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:text="@string/app_name"
+        app:layout_constraintBottom_toTopOf="@+id/textNombreAutor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.871" />
+
+    <EditText
+        android:id="@+id/textoAnio"
+        android:layout_width="69dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="116dp"
+        android:layout_marginBottom="100dp"
+        android:clickable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="@string/anio_creacion_app"
+        app:layout_constraintBottom_toTopOf="@+id/botonVolver"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <Button
+        android:id="@+id/botonVolver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:text="@string/back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

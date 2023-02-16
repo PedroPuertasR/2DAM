@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Confirmacion">
+
+
+    <include
+        android:id="@+id/include3"
+        layout="@layout/toolbar"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <ScrollView
+        android:id="@+id/preguntasResultado"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/provinciaResultado">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/pregunta1Label"
+                    style="@style/TextSmallSize"
+                    android:layout_width="270dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/pregunta_1"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/respuesta1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:textAlignment="center" />
+            </TableRow>
+
+            <TableRow android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/pregunta2Label"
+                    style="@style/TextSmallSize"
+                    android:layout_width="270dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/pregunta_2"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/respuesta2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:textAlignment="center" />
+            </TableRow>
+
+            <TableRow android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/pregunta3Label"
+                    style="@style/TextSmallSize"
+                    android:layout_width="270dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/pregunta_3"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/respuesta3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:textAlignment="center" />
+            </TableRow>
+
+            <TableRow android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/pregunta4Label"
+                    style="@style/TextSmallSize"
+                    android:layout_width="270dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/pregunta_4"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/respuesta4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:textAlignment="center" />
+            </TableRow>
+
+            <TableRow android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/pregunta5Label"
+                    style="@style/TextSmallSize"
+                    android:layout_width="270dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/pregunta_5"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/respuesta5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:textAlignment="center" />
+            </TableRow>
+
+            <TableRow android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/pregunta6Label"
+                    style="@style/TextSmallSize"
+                    android:layout_width="270dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/pregunta_6"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/respuesta6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:textAlignment="center" />
+            </TableRow>
+
+            <TableRow android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/pregunta7Label"
+                    style="@style/TextSmallSize"
+                    android:layout_width="270dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/pregunta_7"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/respuesta7"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:textAlignment="center" />
+            </TableRow>
+
+            <TableRow android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/pregunta8Label"
+                    style="@style/TextSmallSize"
+                    android:layout_width="270dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/pregunta_8"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/respuesta8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:textAlignment="center" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/botonVolverConfirm"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/preguntasResultado" />
+
+    <Button
+        android:id="@+id/botonFinalizar"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="140dp"
+        android:text="@string/finish"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/preguntasResultado" />
+
+    <TextView
+        android:id="@+id/edadResultadoLabel"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/edadResultado"
+        android:text="@string/edad"
+        app:layout_constraintBottom_toBottomOf="@+id/edadResultado"
+        app:layout_constraintEnd_toStartOf="@+id/edadResultado"
+        app:layout_constraintTop_toTopOf="@+id/edadResultado" />
+
+    <TextView
+        android:id="@+id/provinciaResultadoLabel"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/provinciaResultado"
+        android:text="@string/label_provincia"
+        app:layout_constraintBottom_toBottomOf="@+id/provinciaResultado"
+        app:layout_constraintEnd_toStartOf="@+id/provinciaResultado"
+        app:layout_constraintTop_toTopOf="@+id/provinciaResultado"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/generoLabel"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/generoResultado"
+        android:text="@string/label_genero"
+        app:layout_constraintBottom_toBottomOf="@+id/generoResultado"
+        app:layout_constraintEnd_toStartOf="@+id/generoResultado"
+        app:layout_constraintTop_toTopOf="@+id/generoResultado" />
+
+    <TextView
+        android:id="@+id/labelCuestionario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:labelFor="@+id/preguntasResultado"
+        android:text="@string/label_preguntas"
+        app:layout_constraintBottom_toTopOf="@+id/preguntasResultado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/preguntasResultado" />
+
+    <TextView
+        android:id="@+id/generoResultado"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/edadResultado"
+        app:layout_constraintTop_toBottomOf="@+id/edadResultado" />
+
+    <TextView
+        android:id="@+id/provinciaResultado"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/generoResultado"
+        app:layout_constraintTop_toBottomOf="@+id/generoResultado" />
+
+    <TextView
+        android:id="@+id/edadResultado"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imagenCuestionarioCompletado"
+        android:layout_width="223dp"
+        android:layout_height="113dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="57dp"
+        android:contentDescription="@string/texto_imagen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cuestionario_completado" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
