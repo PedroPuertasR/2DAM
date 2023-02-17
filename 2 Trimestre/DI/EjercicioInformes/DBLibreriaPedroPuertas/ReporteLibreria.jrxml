@@ -43,7 +43,7 @@
 		</group>
 	</subDataset>
 	<queryString language="SQL">
-		<![CDATA[select * from libros]]>
+		<![CDATA[select * from libros order by autor]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="id"/>
@@ -85,13 +85,83 @@
 		<property name="com.jaspersoft.studio.field.label" value="foto"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="libros"/>
 	</field>
+	<sortField name="autor"/>
+	<variable name="ventas1" class="java.lang.Integer" resetType="Group" resetGroup="GroupAutor" calculation="Sum">
+		<variableExpression><![CDATA[$F{ventas}]]></variableExpression>
+	</variable>
+	<variable name="precio1" class="java.math.BigDecimal" resetType="Group" resetGroup="GroupAutor" calculation="Average">
+		<variableExpression><![CDATA[$F{precio}]]></variableExpression>
+	</variable>
+	<variable name="ventas2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{ventas}]]></variableExpression>
+	</variable>
+	<variable name="precio2" class="java.math.BigDecimal" calculation="Average">
+		<variableExpression><![CDATA[$F{precio}]]></variableExpression>
+	</variable>
 	<group name="AgrupacionAutor">
+		<groupExpression><![CDATA[$F{autor}]]></groupExpression>
+	</group>
+	<group name="GroupAutor">
 		<groupExpression><![CDATA[$F{autor}]]></groupExpression>
 		<groupHeader>
 			<band height="50"/>
 		</groupHeader>
 		<groupFooter>
-			<band height="50"/>
+			<band height="88">
+				<textField>
+					<reportElement x="310" y="12" width="100" height="30" uuid="4f7c5dfe-6957-4143-a8ec-a8d30247be3c"/>
+					<box>
+						<pen lineWidth="2.0" lineStyle="Solid"/>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{ventas1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="10" y="12" width="400" height="30" uuid="b75b0aee-66c6-4f78-890c-8a8715226601"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ Total ventas:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="310" y="42" width="100" height="30" uuid="727ec9bb-5d4b-4795-96d0-733410b56e78"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{precio1} + "€"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="10" y="42" width="400" height="30" uuid="66dbbd82-87be-4199-bb46-44363c792ff0"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ Precio medio:]]></text>
+				</staticText>
+			</band>
 		</groupFooter>
 	</group>
 	<background>
@@ -197,9 +267,9 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="108" splitType="Stretch">
+		<band height="72" splitType="Stretch">
 			<textField>
-				<reportElement x="10" y="39" width="100" height="41" uuid="9d420d4f-20d8-46b6-9ddd-cf0c2b3792ea">
+				<reportElement x="10" y="14" width="100" height="33" uuid="9d420d4f-20d8-46b6-9ddd-cf0c2b3792ea">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a49a153e-660c-4648-8673-9f22ef1a5ec3"/>
 				</reportElement>
 				<box>
@@ -214,7 +284,7 @@
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="241" y="39" width="69" height="41" uuid="5afa3cf9-e280-4026-b557-a3608d8e7410">
+				<reportElement x="241" y="14" width="69" height="33" uuid="5afa3cf9-e280-4026-b557-a3608d8e7410">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e16a65d6-e114-4973-ad4f-6fbc3ce2bed3"/>
 				</reportElement>
 				<box>
@@ -229,7 +299,7 @@
 				<textFieldExpression><![CDATA[$F{precio} + "€"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="310" y="39" width="100" height="41" uuid="6b8bf9b8-7040-4274-8db1-106823d546fb">
+				<reportElement x="310" y="14" width="100" height="33" uuid="6b8bf9b8-7040-4274-8db1-106823d546fb">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="27570a97-d720-4d5c-8656-264f2e2f0c35"/>
 				</reportElement>
 				<box>
@@ -244,11 +314,11 @@
 				<textFieldExpression><![CDATA[$F{ventas}]]></textFieldExpression>
 			</textField>
 			<image onErrorType="Blank">
-				<reportElement x="440" y="19" width="100" height="89" uuid="1b892ce9-95f4-408a-b0dc-f75534e29d1a"/>
+				<reportElement x="440" y="0" width="70" height="60" uuid="1b892ce9-95f4-408a-b0dc-f75534e29d1a"/>
 				<imageExpression><![CDATA[$F{foto} == null ? "T:/default.jpg" : $F{foto}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="110" y="39" width="131" height="41" uuid="737513bb-67be-4a3f-b48c-65f4fc3a6f2f">
+				<reportElement x="110" y="14" width="131" height="33" uuid="737513bb-67be-4a3f-b48c-65f4fc3a6f2f">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e16a65d6-e114-4973-ad4f-6fbc3ce2bed3"/>
 				</reportElement>
 				<box>
@@ -279,10 +349,10 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="684" splitType="Stretch">
+		<band height="772" splitType="Stretch">
 			<barChart>
 				<chart evaluationTime="Report">
-					<reportElement key="Ventas" x="80" y="430" width="430" height="200" uuid="1cee3263-dcd6-4187-9173-4477e5afdee7">
+					<reportElement key="Ventas" x="80" y="540" width="430" height="200" uuid="1cee3263-dcd6-4187-9173-4477e5afdee7">
 						<property name="com.jaspersoft.studio.element.name" value="Libro"/>
 					</reportElement>
 					<chartTitle/>
@@ -320,7 +390,7 @@
 			</barChart>
 			<pieChart>
 				<chart evaluationTime="Report">
-					<reportElement x="80" y="60" width="430" height="298" uuid="073619ef-0494-4b50-b1e5-a0ac87c1f8a1"/>
+					<reportElement x="80" y="170" width="430" height="298" uuid="073619ef-0494-4b50-b1e5-a0ac87c1f8a1"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
@@ -341,18 +411,70 @@
 				</piePlot>
 			</pieChart>
 			<textField evaluationTime="Page">
-				<reportElement x="241" y="10" width="109" height="40" uuid="30f453de-6b4d-42e5-99d2-0253742448e5"/>
+				<reportElement x="241" y="120" width="109" height="40" uuid="30f453de-6b4d-42e5-99d2-0253742448e5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Libros a la venta por autor"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="216" y="380" width="123" height="40" uuid="61116186-9720-483c-9bdf-6cdf3910081a"/>
+				<reportElement x="216" y="490" width="123" height="40" uuid="61116186-9720-483c-9bdf-6cdf3910081a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Ventas por libro"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="20" width="100" height="30" uuid="e7ecb2d6-31a1-429a-9ea0-f415419e9196"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{ventas2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="50" width="400" height="30" uuid="f089034b-7d93-45d0-b94e-00de2115432e"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Precio medio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="20" width="400" height="30" uuid="70794e6f-a48c-4f73-bfa1-9bab28d9cab1"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Total ventas:]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="310" y="50" width="100" height="30" uuid="4f2af8a8-e85e-4a71-8f3b-4689eab806c4"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{precio2}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
