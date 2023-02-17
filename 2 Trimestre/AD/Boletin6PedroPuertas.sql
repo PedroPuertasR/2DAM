@@ -37,7 +37,7 @@ insert into vnotas values ('Alcalde García, Elena', 'Análisis', 8);
 --1.2
 
 create or replace trigger t1
-instead of update of nota on vnotas
+instead of update on vnotas
 declare
     vdni alumnos.dni%type;
     vcod asignaturas.cod%type;
