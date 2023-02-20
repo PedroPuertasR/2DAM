@@ -7,30 +7,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class AltasActivity extends AppCompatActivity implements View.OnClickListener {
+public class ProgressActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button botonVolver;
-    private Button botonAceptar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_altas);
+        setContentView(R.layout.activity_progress);
 
-        botonAceptar = findViewById(R.id.btnAceptar);
-        botonVolver = findViewById(R.id.btnVolver);
+        botonVolver = findViewById(R.id.btnVolverP);
 
-        botonAceptar.setOnClickListener(this);
         botonVolver.setOnClickListener(this);
     }
-
 
     @Override
     public void onClick(View v) {
 
         Intent inte;
 
-        if(v.getId() == R.id.btnVolver){
+        if(v.getId() == R.id.btnVolverP){
             inte = new Intent(this, MainActivity.class);
             startActivity(inte);
         }else{
