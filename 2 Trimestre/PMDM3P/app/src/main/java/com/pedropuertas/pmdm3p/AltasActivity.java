@@ -44,28 +44,31 @@ public class AltasActivity extends AppCompatActivity implements View.OnClickList
 
                 if(getIntent() != null){
                     Intent intent = getIntent();
-                    lista = intent.getStringArrayListExtra("arraylist");
+                    lista = intent.getStringArrayListExtra("lista");
 
-                    lista.set(0, nombre);
-                    lista.set(1, email);
-                    lista.set(2, fecha);
+                    if(lista != null){
+                        lista.set(0, nombre);
+                        lista.set(1, email);
+                        lista.set(2, fecha);
 
-                    inte = new Intent(AltasActivity.this, MainActivity.class);
-
-                    inte.putExtra("arraylist", lista);
+                        inte = new Intent(AltasActivity.this, MainActivity.class);
+                        inte.putStringArrayListExtra("lista", lista);
+                    }else{
+                        inte = new Intent(AltasActivity.this, MainActivity.class);
+                    }
 
                     startActivity(inte);
                 }else{
 
                     lista = new ArrayList<String>();
 
-                    lista.add(0, nombre);
-                    lista.add(1, email);
-                    lista.add(2, fecha);
+                    lista.add(nombre);
+                    lista.add(email);
+                    lista.add(fecha);
 
                     inte = new Intent(AltasActivity.this, MainActivity.class);
 
-                    inte.putExtra("arraylist", lista);
+                    inte.putStringArrayListExtra("lista", lista);
 
                     startActivity(inte);
                 }

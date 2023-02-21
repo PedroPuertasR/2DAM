@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button botonCheck;
     private Button botonRadio;
     private Button botonProgress;
+
     private ArrayList<String> lista;
 
     @Override
@@ -48,18 +51,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent inte;
 
         if (view.getId() == R.id.btnAlta){
-            inte = new Intent(this,AltasActivity.class);
+            if(getIntent() != null){
+                Intent intent = getIntent();
+                lista = intent.getStringArrayListExtra("lista");
+                inte = new Intent(MainActivity.this,AltasActivity.class);
+                if(lista != null){
+                    inte.putStringArrayListExtra("lista", lista);
+                }
+            }else{
+                inte = new Intent(MainActivity.this, AltasActivity.class);
+            }
             startActivity(inte);
         }else if(view.getId() == R.id.btnVer){
             if(getIntent() != null){
                 Intent intent = getIntent();
-                lista = intent.getStringArrayListExtra("arraylist");
+                lista = intent.getStringArrayListExtra("lista");
 
                 inte = new Intent(MainActivity.this, VerActivity.class);
-                inte.putExtra("arraylist", lista);
+
+                if(lista != null){
+                    inte.putStringArrayListExtra("lista", lista);
+                }
+
                 startActivity(inte);
             }else{
-                inte = new Intent(this, VerActivity.class);
+                inte = new Intent(MainActivity.this, VerActivity.class);
                 startActivity(inte);
             }
         }else if(view.getId() == R.id.btnCheck){
