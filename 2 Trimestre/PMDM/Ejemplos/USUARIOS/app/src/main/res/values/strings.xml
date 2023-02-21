@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">USUARIOS</string>
+    <string-array name="opciones">
+        <item>1, no me ha gustado demasiado</item>
+        <item>2, no está mapeor no me convence</item>
+        <item>3, aceptable</item>
+        <item>4, me gusta bastante</item>
+        <item>5, muy funcional</item>
+    </string-array>
+	
+</resources>
+

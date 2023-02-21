@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:text="ACCESO PARA USUARIOS"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.548"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.073"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btnAlta"
+        android:layout_width="172dp"
+        android:layout_height="59dp"
+        android:text="Alta"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:onClick="alta"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="189dp" />
+
+    <Button
+        android:id="@+id/btnValoracion"
+        android:layout_width="172dp"
+        android:layout_height="59dp"
+        android:text="Valoracion"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:onClick="valoracion"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="224dp"
+        tools:layout_editor_absoluteY="186dp" />
+
+    <Button
+        android:id="@+id/btnAficiones"
+        android:layout_width="172dp"
+        android:layout_height="59dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="aficiones"
+        android:onClick="aficiones"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="303dp" />
+
+    <Button
+        android:id="@+id/btnRecomendarias"
+        android:layout_width="172dp"
+        android:layout_height="59dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="recomendacion"
+        android:onClick="recomendacion"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="210dp"
+        tools:layout_editor_absoluteY="303dp" />
+
+
+    <Button
+        android:id="@+id/btnSalir"
+        android:layout_width="182dp"
+        android:layout_height="65dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="abandonar"
+        android:onClick="cerrar"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="127dp"
+        tools:layout_editor_absoluteY="609dp" />
+
+    <Button
+        android:id="@+id/btnVerDatos"
+        android:layout_width="182dp"
+        android:layout_height="65dp"
+        android:text="VER DATOS"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:onClick="verDatos"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="114dp"
+        tools:layout_editor_absoluteY="444dp" />
+
+</LinearLayout>

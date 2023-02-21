@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_Recomendacion"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="324dp"
+        android:layout_height="49dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+
+        android:text="¿Recomendarías esta APP?"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="70dp" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <RadioButton
+        android:id="@+id/rdbtnSI"
+        android:layout_width="260dp"
+        android:layout_height="48dp"
+        android:text="SÍ, SIN DUDARLO"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="195dp"
+        tools:ignore="MissingConstraints" />
+
+    <RadioButton
+        android:id="@+id/rdbtnNO"
+        android:layout_width="263dp"
+        android:layout_height="59dp"
+        android:text="NO, NO ME HA GUSTADO"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="306dp"
+        tools:ignore="MissingConstraints" />
+
+    <RadioButton
+        android:id="@+id/rdbtnQUIZAS"
+        android:layout_width="266dp"
+        android:layout_height="62dp"
+        android:text="DEPENDE COMO ME PILLE EL DÍA"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="412dp"
+        tools:ignore="MissingConstraints" />
+    </RadioGroup>
+    <Button
+        android:id="@+id/btnGuardarRecomendacion"
+        android:layout_width="151dp"
+        android:layout_height="61dp"
+        android:text="GUARDAR"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        tools:layout_editor_absoluteX="80dp"
+        tools:layout_editor_absoluteY="577dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="151dp"
+        android:layout_height="61dp"
+        android:text="VOLVER"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:onClick="volver"
+        tools:layout_editor_absoluteX="80dp"
+        tools:layout_editor_absoluteY="577dp"
+        tools:ignore="MissingConstraints" />
+
+
+</LinearLayout>

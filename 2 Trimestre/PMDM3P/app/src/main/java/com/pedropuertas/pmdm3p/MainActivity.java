@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button botonAlta;
@@ -16,19 +18,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button botonCheck;
     private Button botonRadio;
     private Button botonProgress;
+    private ArrayList<String> lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        botonAlta = findViewById(R.id.btnAlta);
-        botonSalir = findViewById(R.id.btnSalir);
-        botonVer = findViewById(R.id.btnVer);
-        botonSpinner = findViewById(R.id.btnSpinner);
-        botonProgress = findViewById(R.id.btnProgress);
-        botonCheck = findViewById(R.id.btnCheck);
-        botonRadio = findViewById(R.id.btnRadio);
+        botonAlta = (Button) findViewById(R.id.btnAlta);
+        botonSalir = (Button) findViewById(R.id.btnSalir);
+        botonVer = (Button) findViewById(R.id.btnVer);
+        botonSpinner = (Button) findViewById(R.id.btnSpinner);
+        botonProgress =(Button) findViewById(R.id.btnProgress);
+        botonCheck = (Button) findViewById(R.id.btnCheck);
+        botonRadio = (Button) findViewById(R.id.btnRadio);
 
         botonAlta.setOnClickListener(this);
         botonSalir.setOnClickListener(this);
@@ -48,8 +51,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             inte = new Intent(this,AltasActivity.class);
             startActivity(inte);
         }else if(view.getId() == R.id.btnVer){
-            inte = new Intent(this,VerActivity.class);
-            startActivity(inte);
+            if(getIntent() != null){
+                Intent intent = getIntent();
+                lista = intent.getStringArrayListExtra("arraylist");
+
+                inte = new Intent(MainActivity.this, VerActivity.class);
+                inte.putExtra("arraylist", lista);
+                startActivity(inte);
+            }else{
+                inte = new Intent(this, VerActivity.class);
+                startActivity(inte);
+            }
         }else if(view.getId() == R.id.btnCheck){
             inte = new Intent(this,CheckActivity.class);
             startActivity(inte);

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PMDM3P</string>
+    <string name="etNombre" />
+    <string name="etEmail">email</string>
+    <string name="etFecha">fecha</string>
+    <string name="etNom">Nombre</string>
 </resources>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_Aficiones"
+    android:orientation="vertical">
+
+    <CheckBox
+        android:id="@+id/c1"
+        android:layout_width="278dp"
+        android:layout_height="56dp"
+        android:text="MUSICA"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        tools:layout_editor_absoluteX="57dp"
+        tools:layout_editor_absoluteY="86dp"
+        tools:ignore="MissingConstraints" />
+
+    <CheckBox
+        android:id="@+id/c2"
+        android:layout_width="278dp"
+        android:layout_height="52dp"
+        android:text="DEPORTES"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        tools:layout_editor_absoluteX="57dp"
+        tools:layout_editor_absoluteY="182dp"
+        tools:ignore="MissingConstraints" />
+
+    <CheckBox
+        android:id="@+id/c3"
+        android:layout_width="279dp"
+        android:layout_height="59dp"
+        android:text="CUIDADO PERSONAL"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        tools:layout_editor_absoluteX="57dp"
+        tools:layout_editor_absoluteY="293dp"
+        tools:ignore="MissingConstraints" />
+
+    <CheckBox
+        android:id="@+id/c4"
+        android:layout_width="282dp"
+        android:layout_height="51dp"
+        android:text="VIAJES"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        tools:layout_editor_absoluteX="57dp"
+        tools:layout_editor_absoluteY="404dp"
+        tools:ignore="MissingConstraints" />
+
+    <CheckBox
+        android:id="@+id/c5"
+        android:layout_width="275dp"
+        android:layout_height="56dp"
+        android:text="LECTURA"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        tools:layout_editor_absoluteX="60dp"
+        tools:layout_editor_absoluteY="501dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnGuardarAficiones"
+        android:layout_width="151dp"
+        android:layout_height="61dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:text="GUARDAR"
+        android:onClick="guardar"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="63dp"
+        tools:layout_editor_absoluteY="620dp" />
+
+    <Button
+        android:id="@+id/btnVolverAficiones"
+        android:layout_width="151dp"
+        android:layout_height="61dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="VOLVER"
+        android:onClick="volver"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="63dp"
+        tools:layout_editor_absoluteY="620dp" />
+</LinearLayout>

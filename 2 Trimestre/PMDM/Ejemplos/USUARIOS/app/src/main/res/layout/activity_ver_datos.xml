@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_VerDatos"
+    tools:ignore="ExtraText"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtnombre"
+        android:layout_width="302dp"
+        android:layout_height="37dp"
+        android:text=""
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="72dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/txtfecha"
+        android:layout_width="302dp"
+        android:layout_height="37dp"
+        android:text=""
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="72dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/txtemail"
+        android:layout_width="302dp"
+        android:layout_height="37dp"
+        android:text=""
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        tools:layout_editor_absoluteX="51dp"
+        tools:layout_editor_absoluteY="205dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textAficiones"
+        android:layout_width="302dp"
+        android:layout_height="37dp"
+        android:text=""
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="288dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textValoracion"
+        android:layout_width="302dp"
+        android:layout_height="37dp"
+        android:text=""
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="408dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textRecomendacion"
+        android:layout_width="302dp"
+        android:layout_height="37dp"
+        android:text=""
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="493dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnVolverDatos"
+        android:layout_width="151dp"
+        android:layout_height="61dp"
+        android:text="VOLVER"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:onClick="volver"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="624dp"
+        tools:ignore="MissingConstraints" />
+
+</LinearLayout>
