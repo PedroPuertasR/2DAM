@@ -52,7 +52,7 @@ public class VerActivity extends AppCompatActivity implements View.OnClickListen
                     email = lista.get(2);
                 }
 
-                if(lista.get(3) != null){
+                if(lista.get(3) != ""){
                     reco = lista.get(3);
                 }
             }
