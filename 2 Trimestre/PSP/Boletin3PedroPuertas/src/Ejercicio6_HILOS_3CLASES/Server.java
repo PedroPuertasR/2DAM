@@ -1,4 +1,4 @@
-package Ejercicio6;
+package Ejercicio6_HILOS_3CLASES;
 
 import java.io.*;
 import java.net.*;

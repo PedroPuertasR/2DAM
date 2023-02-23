@@ -23,7 +23,7 @@ public class Principal {
             InputStream lector = url.openStream();
 
             //Mostramos en pantalla sus bytes
-            for (byte b : lector.readAllBytes())
+            for (byte b :  lector.readAllBytes())
                 System.out.print((char) b);
             
         } catch (MalformedURLException ex) {
