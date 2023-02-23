@@ -1,0 +1,24 @@
+1. IP es un protocolo:
+	d) Todas las respuestas anteriores son correctas.
+2. Los protocolos de transporte de la pila de protocolos TCP/IP son:
+	b) TCP y UDP
+3. UDP proporciona un servicio:
+	a) No orientado a conexión
+4. TCP proporciona un servicio de entrega de segmentos de datos:
+	d) Todas las respuestas anteriores son correctas.
+5. Los datagramas de UDP se suelen enviar:
+	d) Entre un puerto del sistema o registrado del servidor y uno efímero del cliente.
+6. Una petición de conexión de TCP :
+	b) Se suele enviar a un puerto del sistema o registrado del servidor.
+7. La clase InterfaceAddress permite obtener:
+	d) Todas las respuestas anteriores son correctas
+8. Cuando un programa recibe un DatagramPacket, es decir, un datagrama de UDP, puede obtener la dirección IP y puerto del emisor.
+	b) A partir del propio datagrama , que contiene ambas cosas.
+9. El tamaño máximo de un datagrama de UDP que se puede recibir:
+	c) Es la MTU de la interfaz de red
+10. Una vez establecida una conexión de TCP entre un proceso cliente y un proceso servidor:
+	c) Se realiza la comunicación con el cliente desde un puerto efímero , determinado en el momento en que se acepta la conexión.
+11. De los siguientes , ¿cuál es el elemento fundamental de la comunicación entre aplicaciones?
+	b) Paquete.
+12. En Java , cuando el método accept() de un ServerSocket termina, ¿qué devuelve?
+	c) Un objeto de clase Socket, conectado al socket del cliente.
