@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }else{
                 inte = new Intent(MainActivity.this, AltasActivity.class);
             }
+
             startActivity(inte);
         }else if(view.getId() == R.id.btnVer){
             if(getIntent() != null){

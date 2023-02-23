@@ -48,23 +48,47 @@ public class CheckActivity extends AppCompatActivity implements View.OnClickList
                 Intent intent = getIntent();
                 lista = intent.getStringArrayListExtra("lista");
 
-                if (lista != null){
-                    if(lista.get(3) != null){
-                        lista.set(3, check);
-                    }else{
-                        lista.add(3, check);
-                    }
+                if(lista != null){
+                    lista.set(3, check);
+
+                    inte = new Intent(CheckActivity.this, MainActivity.class);
+                    inte.putStringArrayListExtra("lista", lista);
+                }else{
+                    lista = new ArrayList<String>();
+
+                    lista.add("");
+                    lista.add("");
+                    lista.add("");
+                    lista.add(check);
+                    lista.add("");
+                    lista.add("");
+                    lista.add("");
+
+                    inte = new Intent(CheckActivity.this, MainActivity.class);
+
+                    inte.putStringArrayListExtra("lista", lista);
                 }
 
+                startActivity(inte);
             }else{
+
                 lista = new ArrayList<String>();
-                lista.add(3, check);
+
+                lista.add("");
+                lista.add("");
+                lista.add("");
+                lista.add(check);
+                lista.add("");
+                lista.add("");
+                lista.add("");
+
+                inte = new Intent(CheckActivity.this, MainActivity.class);
+
+                inte.putStringArrayListExtra("lista", lista);
+
+                startActivity(inte);
             }
 
-            inte = new Intent(CheckActivity.this, MainActivity.class);
-            inte.putStringArrayListExtra("lista", lista);
-
-            startActivity(inte);
         }else{
             inte = new Intent(this, MainActivity.class);
             startActivity(inte);

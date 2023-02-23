@@ -14,11 +14,9 @@ public class AltasActivity extends AppCompatActivity implements View.OnClickList
 
     private Button botonVolver;
     private Button botonAceptar;
-
     private EditText etNombre;
     private EditText etFecha;
     private EditText etEmail;
-
     private ArrayList<String> lista;
 
     @Override
