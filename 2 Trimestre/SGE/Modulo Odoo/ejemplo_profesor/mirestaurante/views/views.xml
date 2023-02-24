@@ -1,0 +1,121 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="mirestaurante.cliente_tree">
+      <field name="name">Datos del cliente</field>
+      <field name="model">mirestaurante.cliente</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="email"/>
+          <field name="asiduo"/>
+          <field name="reservas"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="mirestaurante.cliente_form">
+      <field name="name">Formulario del cliente</field>
+      <field name="model">mirestaurante.cliente</field>
+      <field name="arch" type="xml">
+        <form>
+          <group colspan="2" col="2">
+            <field name="name"/>
+            <field name="email"/>
+            <field name="asiduo"/>
+            <field name="reservas">
+            <tree>
+              <field name="codigo"/>
+              <field name="fecha"/>
+              <field name="tipo"/>
+              <field name="consideraciones"/>
+            </tree>
+          </field>
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="mirestaurante.reserva_tree">
+      <field name="name">Datos de la reserva</field>
+      <field name="model">mirestaurante.reserva</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="codigo"/>
+          <field name="fecha"/>
+          <field name="tipo"/>
+          <field name="consideraciones"/>
+          <field name="cliente"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="mirestaurante.reserva_form">
+      <field name="name">Formulario de la reserva</field>
+      <field name="model">mirestaurante.reserva</field>
+      <field name="arch" type="xml">
+        <form>
+          <group colspan="2" col="2">
+            <field name="codigo"/>
+            <field name="fecha"/>
+            <field name="tipo"/>
+            <field name="consideraciones"/>
+            <field name="cliente">
+            <tree>
+              <field name="name"/>
+              <field name="email"/>
+              <field name="asiduo"/>
+            </tree>
+          </field>
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="mirestaurante.cliente_search_view">
+      <field name="name">Búsqueda de cliente</field>
+      <field name="model">mirestaurante.cliente</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" string="Nombre"/>
+          <field name="email" string="Email"/>
+          <filter name="es_asiduo" domain="[('asiduo','=',True)]"/>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="mirestaurante.reserva_search_view">
+      <field name="name">Búsqueda de reserva</field>
+      <field name="model">mirestaurante.reserva</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="codigo" string="Código"/>
+          <field name="fecha" string="Fecha"/>
+          <field name="tipo" string="Tipo"/>
+          <field name="cliente" string="Cliente"/>
+        </search>
+      </field>
+    </record>
+
+<!-- actions que abren las vistas de los modelos -->
+
+    <record model="ir.actions.act_window" id="mirestaurante.cliente_action_window">
+      <field name="name">Datos clientes</field>
+      <field name="res_model">mirestaurante.cliente</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="mirestaurante.reserva_action_window">
+      <field name="name">Datos reservas</field>
+      <field name="res_model">mirestaurante.reserva</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menús principales (En este caso solo uno) -->
+    <menuitem name="mirestaurante" id="mirestaurante.menu_root" groups="mirestaurante_manager"/>
+
+        <!-- Menús de categorías (Tienen como padre (parent) alguno de los anteriores) -->
+    <menuitem name="Datos" id="mirestaurante.menu_datos" parent="mirestaurante.menu_root" groups="mirestaurante_manager" action="mirestaurante.cliente_action_window"/>
+    <menuitem name="Reservas" id="mirestaurante.menu_reservas" parent="mirestaurante.menu_root" groups="mirestaurante_manager" action="mirestaurante.reserva_action_window"/>
+   
+  </data>
+</odoo>

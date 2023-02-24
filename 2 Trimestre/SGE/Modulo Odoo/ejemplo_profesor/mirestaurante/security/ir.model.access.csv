@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+permisos_mirestaurante_cliente,mirestaurante.cliente,model_mirestaurante_cliente,mirestaurante_manager,1,1,1,1
+permisos_mirestaurante_reservas,mirestaurante.reserva,model_mirestaurante_reserva,mirestaurante_manager,1,1,1,1

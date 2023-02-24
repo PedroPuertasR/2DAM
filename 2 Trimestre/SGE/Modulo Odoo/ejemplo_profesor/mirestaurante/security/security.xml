@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+        <record id="mirestaurante_manager" model="res.groups">
+            <field name="name">mirestaurante / Administrador</field>
+        </record>
+    </data>
+</odoo>

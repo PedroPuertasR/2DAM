@@ -8,3 +8,23 @@ Para realizar un DataSource debemos seguir los siguientes pasos:
    En este podemos incluir la consulta de los campos que queramos incluir.
 6. Una vez hecha la consulta le damos a "next" y seleccionamos los campos y darle a las dos flechas >>.
 7. Por último pulsamos en "finish" y ya estaría creado.
+
+
+Datasource general:
+
+select *
+from libros
+order by autor;
+
+
+Datasource primer gráfica:
+
+select nombre, ventas 
+from libros;
+
+
+Datasource segunda gráfica:
+
+select autor, count(*) as cantidad 
+from libros 
+group by autor;
