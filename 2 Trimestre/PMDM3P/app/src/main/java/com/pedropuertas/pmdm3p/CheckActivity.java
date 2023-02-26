@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -53,6 +54,7 @@ public class CheckActivity extends AppCompatActivity implements View.OnClickList
 
                     inte = new Intent(CheckActivity.this, MainActivity.class);
                     inte.putStringArrayListExtra("lista", lista);
+                    Log.i("AL", "Transportando lista a otro activity.");
                 }else{
                     lista = new ArrayList<String>();
 
@@ -67,6 +69,7 @@ public class CheckActivity extends AppCompatActivity implements View.OnClickList
                     inte = new Intent(CheckActivity.this, MainActivity.class);
 
                     inte.putStringArrayListExtra("lista", lista);
+                    Log.i("AL", "Transportando lista a otro activity.");
                 }
 
                 startActivity(inte);
@@ -85,12 +88,24 @@ public class CheckActivity extends AppCompatActivity implements View.OnClickList
                 inte = new Intent(CheckActivity.this, MainActivity.class);
 
                 inte.putStringArrayListExtra("lista", lista);
+                Log.i("AL", "Transportando lista a otro activity.");
 
                 startActivity(inte);
             }
 
         }else{
-            inte = new Intent(this, MainActivity.class);
+            if(getIntent() != null){
+                inte = new Intent(CheckActivity.this, MainActivity.class);
+                Intent intent = getIntent();
+                lista = intent.getStringArrayListExtra("lista");
+                if(lista != null){
+                    inte.putStringArrayListExtra("lista", lista);
+                    Log.i("AL", "Transportando lista a otro activity.");
+                }
+            }else{
+                inte = new Intent(CheckActivity.this, MainActivity.class);
+            }
+
             startActivity(inte);
         }
     }

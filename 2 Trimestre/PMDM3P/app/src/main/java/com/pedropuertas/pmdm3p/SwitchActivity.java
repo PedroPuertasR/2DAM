@@ -7,36 +7,30 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
-public class ProgressActivity extends AppCompatActivity implements View.OnClickListener {
+public class SwitchActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button botonVolver;
-    private Button botonGuardar;
-    private ProgressBar pgBarra;
-
+    private Button botonAceptar;
+    private Switch swVip;
     private ArrayList<String> lista;
-    private int contador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_progress);
+        setContentView(R.layout.activity_switch);
 
-        botonVolver = (Button) findViewById(R.id.btnVolverP);
-        botonGuardar = (Button) findViewById(R.id.btnGuardar);
-        pgBarra = (ProgressBar) findViewById(R.id.pbBarra);
-
-        contador = 0;
-        prog();
+        botonVolver = (Button) findViewById(R.id.btnVolverS);
+        botonAceptar = (Button) findViewById(R.id.btnAceptarS);
+        swVip = (Switch) findViewById(R.id.swVip);
 
         botonVolver.setOnClickListener(this);
-        botonGuardar.setOnClickListener(this);
+        botonAceptar.setOnClickListener(this);
     }
 
     @Override
@@ -44,9 +38,9 @@ public class ProgressActivity extends AppCompatActivity implements View.OnClickL
 
         Intent inte;
 
-        if(v.getId() == R.id.btnVolverP){
+        if(v.getId() == R.id.btnVolverS){
             if(getIntent() != null){
-                inte = new Intent(ProgressActivity.this, MainActivity.class);
+                inte = new Intent(SwitchActivity.this, MainActivity.class);
                 Intent intent = getIntent();
                 lista = intent.getStringArrayListExtra("lista");
                 if(lista != null){
@@ -54,19 +48,20 @@ public class ProgressActivity extends AppCompatActivity implements View.OnClickL
                     Log.i("AL", "Transportando lista a otro activity.");
                 }
             }else{
-                inte = new Intent(ProgressActivity.this, MainActivity.class);
+                inte = new Intent(SwitchActivity.this, MainActivity.class);
             }
 
             startActivity(inte);
-        }else{
-            String completado = "";
+        }else {
 
-            if(pgBarra.getProgress() == 100){
-                completado = "Completado";
+            String vip = "";
+
+            if(swVip.isChecked()){
+                vip = "Sí";
+                Log.e("CHK", "Check pulsado");
             }else{
-                completado = "No completado";
-                Toast.makeText(ProgressActivity.this, "El progreso no ha terminado", Toast.LENGTH_SHORT).show();
-                Log.i("PB", "Cuenta atras no terminada");
+                vip = "No";
+                Log.e("CHK", "Check no pulsado");
             }
 
             if(getIntent() != null){
@@ -74,9 +69,9 @@ public class ProgressActivity extends AppCompatActivity implements View.OnClickL
                 lista = intent.getStringArrayListExtra("lista");
 
                 if(lista != null){
-                    lista.set(4, completado);
+                    lista.set(6, vip);
 
-                    inte = new Intent(ProgressActivity.this, MainActivity.class);
+                    inte = new Intent(SwitchActivity.this, MainActivity.class);
                     inte.putStringArrayListExtra("lista", lista);
                     Log.i("AL", "Transportando lista a otro activity.");
                 }else{
@@ -86,11 +81,11 @@ public class ProgressActivity extends AppCompatActivity implements View.OnClickL
                     lista.add("");
                     lista.add("");
                     lista.add("");
-                    lista.add(completado);
                     lista.add("");
                     lista.add("");
+                    lista.add(vip);
 
-                    inte = new Intent(ProgressActivity.this, MainActivity.class);
+                    inte = new Intent(SwitchActivity.this, MainActivity.class);
 
                     inte.putStringArrayListExtra("lista", lista);
                     Log.i("AL", "Transportando lista a otro activity.");
@@ -105,11 +100,11 @@ public class ProgressActivity extends AppCompatActivity implements View.OnClickL
                 lista.add("");
                 lista.add("");
                 lista.add("");
-                lista.add(completado);
                 lista.add("");
                 lista.add("");
+                lista.add(vip);
 
-                inte = new Intent(ProgressActivity.this, MainActivity.class);
+                inte = new Intent(SwitchActivity.this, MainActivity.class);
 
                 inte.putStringArrayListExtra("lista", lista);
                 Log.i("AL", "Transportando lista a otro activity.");
@@ -117,23 +112,5 @@ public class ProgressActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(inte);
             }
         }
-
-    }
-
-    public void prog(){
-        final Timer t = new Timer();
-        TimerTask tt = new TimerTask() {
-            @Override
-            public void run() {
-                contador++;
-                pgBarra.setProgress(contador);
-
-                if(contador == 100){
-                    t.cancel();
-                }
-            }
-        };
-
-        t.schedule(tt, 0, 100);
     }
 }

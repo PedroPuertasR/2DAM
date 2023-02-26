@@ -4,67 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProgressActivity">
+    tools:context=".SwitchActivity">
 
     <Button
-        android:id="@+id/btnVolverP"
+        android:id="@+id/btnVolverS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tvVolver"
-        app:layout_constraintBottom_toTopOf="@+id/guideline17"
+        app:layout_constraintBottom_toTopOf="@+id/guideline31"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.762"
+        app:layout_constraintHorizontal_bias="0.753"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline16"
+        app:layout_constraintTop_toTopOf="@+id/guideline30"
         app:layout_constraintVertical_bias="1.0" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="482dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="530dp" />
+
     <Button
-        android:id="@+id/btnGuardar"
+        android:id="@+id/btnAceptarS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnAceptar"
-        app:layout_constraintBottom_toTopOf="@+id/guideline17"
-        app:layout_constraintEnd_toStartOf="@+id/btnVolverP"
+        app:layout_constraintBottom_toTopOf="@+id/guideline31"
+        app:layout_constraintEnd_toStartOf="@+id/btnVolverS"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline16" />
+        app:layout_constraintTop_toTopOf="@+id/guideline30" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="484dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="532dp" />
-
-    <ProgressBar
-        android:id="@+id/pbBarra"
-        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
-        android:layout_width="103dp"
-        android:layout_height="102dp"
-        android:max="100"
-        app:layout_constraintBottom_toTopOf="@+id/guideline19"
+    <Switch
+        android:id="@+id/swVip"
+        android:layout_width="91dp"
+        android:layout_height="49dp"
+        android:text="@string/"
+        app:layout_constraintBottom_toTopOf="@+id/guideline33"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline18" />
+        app:layout_constraintTop_toTopOf="@+id/guideline32" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline18"
+        android:id="@+id/guideline32"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="206dp" />
+        app:layout_constraintGuide_begin="227dp" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline19"
+        android:id="@+id/guideline33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="308dp" />
-
+        app:layout_constraintGuide_begin="276dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

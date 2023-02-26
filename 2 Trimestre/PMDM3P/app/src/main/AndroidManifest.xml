@@ -15,7 +15,7 @@
             android:name=".ProgressActivity"
             android:exported="false" />
         <activity
-            android:name=".SpinnerActivity"
+            android:name=".SwitchActivity"
             android:exported="false" />
         <activity
             android:name=".CheckActivity"
