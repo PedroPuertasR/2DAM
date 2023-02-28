@@ -56,7 +56,7 @@ public class Client {
     }//main
 
     private static boolean validarCadena(String cadena) {
-//comprueba si la cadena es numerica
+    //comprueba si la cadena es numerica
         boolean valor = false;
         try {
             Integer.parseInt(cadena);
@@ -64,5 +64,5 @@ public class Client {
         } catch (NumberFormatException e) {
         }
         return valor;
-    }//validarCadena
+    }
 }
