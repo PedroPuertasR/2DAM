@@ -78,16 +78,16 @@ create or replace type body t_libro as
       return number
       is
             iva number := 21;
-            precio_antes number := 0;
+            precio_act number := 0;
       begin
-            precio_antes := self.precio - (self.precio * iva / 100);
-            return precio_antes;
+            precio_act := self.precio - (self.precio * iva / 100);
+            return precio_act;
       end devolver_precio_noiva;
 
       member procedure modi_precio(porc number)
       is
       begin
-            self.precio = self.precio * porc / 100;
+            self.precio := self.precio * porc / 100;
       end;
 
 end;
@@ -227,7 +227,7 @@ where id = 5;
 -- Creación de paquete
 
 create or replace package pk_libro as
-      procedure alta(vid integer, vautor varchar2, vnombre varchar2, visbn varchar2, vprecio number, vcat varchar2, vedi varchar2);
+      procedure alta(vautor varchar2, vnombre varchar2, visbn varchar2, vtienda number, vprecio number, vcat varchar2, vedi varchar2);
       procedure baja(vtienda integer);
       procedure modi_cat(vcat varchar2, vlibro varchar2);
       procedure modi_edi(vedi varchar2, vlibro varchar2);
@@ -237,15 +237,38 @@ create or replace package pk_libro as
 end pk_libro;
 
 create or replace package body pk_libro as
-      procedure alta(vid integer, vautor varchar2, vnombre varchar2, visbn varchar2, vprecio number, vcat varchar2, vedi varchar2) is
+      procedure alta(vautor varchar2, vnombre varchar2, visbn varchar2, vtienda number, vprecio number, vcat varchar2, vedi varchar2) is
+            vid libro.id%type;
+            vidcat categoria.id%type;
+            videdi editorial.id%type;
       begin
+            select * into vid
+            from(select id
+                 from libro
+                 order by id desc)
+            where rownum = 1;
 
+            vid := vid + 1;
+
+            select id into vidcat
+            from categoria
+            where nombre = vcat;
+
+            select id into videdi
+            from editorial
+            where nombre = vedi;
+
+            insert into libro select vid, vautor, vnombre, ref(e), visbn, sysdate, vprecio, ref(c), ref(t)
+                              from tienda t, editorial e, categoria c
+                              where e.id = videdi
+                                    and c.id = vidcat
+                                    and t.id = vtienda;
       end;
 
       procedure baja(vtienda integer) is
             cursor c1(tie integer) is select *
-                                      from libro
-                                      where ptienda.id = tie;
+                                      from libro l
+                                      where l.ptienda.id = tie;
             contador number := 0;
       begin
 
@@ -255,7 +278,7 @@ create or replace package body pk_libro as
             end loop;
 
             if contador = 0 then
-                  raise_application_error(-20002, 'El número de tienda no existe, o no existe ninguna fila con esa tienda.');
+                  raise_application_error(-20002, 'No existe ninguna fila con esa tienda.');
             else
                   dbms_output.put_line('Se han borrado ' || contador || ' filas.');
             end if;
@@ -263,62 +286,182 @@ create or replace package body pk_libro as
       end;
 
       procedure modi_cat(vcat varchar2, vlibro varchar2) is
-            vid categoria.id%type;
+            vid ref t_categoria;
             vid_libro libro.id%type;
       begin
-            select id into vid
-            from categoria
+            select ref(c) into vid
+            from categoria c
             where nombre = vcat;
 
-            select 
+            select id into vid_libro
+            from libro
+            where nombre = vlibro;
 
+            update libro set pcat = vid where id = vid_libro;
 
       end;
 
       procedure modi_edi(vedi varchar2, vlibro varchar2) is
+            vid ref t_editorial;
+            vid_libro libro.id%type;
       begin
-            select 
+            select ref(e) into vid
+            from editorial e
+            where nombre = vedi;
+
+            select id into vid_libro
+            from libro
+            where nombre = vlibro;
+
+            update libro l set pedi = vid where id = vid_libro;
       end;
 
-      procedure dia_sin_iva (vdir varchar2) is
+      procedure dia_sin_iva (vtie varchar2) is
             cursor c1(dir varchar2) is select * 
-                         from libro
-                         where ptienda.id = (select id
-                                             from tienda
-                                             where direccion = dir);
-            vlibro t_libro;
+                         from libro l
+                         where l.ptienda.id = (select id
+                                               from tienda
+                                               where direccion = dir);
+            vnuevo libro.precio%type;
+            contador number := 0;
       begin
-            for v1 in c1(vdir) loop
+            for v1 in c1(vtie) loop
                   if v1.precio > 15 then
-                        select deref()
+                        select l.devolver_precio_noiva into vnuevo
+                        from libro l
+                        where id = v1.id;
+
+                        update libro set precio = vnuevo where id = v1.id;
+                        contador := contador + 1;
                   end if;
             end loop;
+
+            dbms_output.put_line('Se han actualizado: ' || contador || ' precios.');
       end;
 
       procedure consulta_autor(vautor varchar2) is
-            cursor c1 is select *
+            cursor c1 is select nombre, isbn, precio, l.ptienda.direccion as tienda, l.pcat.nombre as cat, l.pedi.nombre as edi, fecha_pub
+                         from libro l
+                         where autor = vautor;
+            contador number := 0;
       begin
+
+            dbms_output.put_line('Autor: ' || vautor || chr(10));
+
+            for v1 in c1 loop
+                  dbms_output.put_line('Nombre: ' || v1.nombre || '. ISBN: ' || v1.isbn || '. Precio: ' || v1.precio || '€.');
+                  dbms_output.put_line('Tienda: ' || v1.tienda || '. Categoría: ' || v1.cat || '. Editorial: ' || v1.edi || '. Fecha: ' || v1.fecha_pub || chr(10));
+                  contador := contador + 1;
+            end loop;
+
+            dbms_output.put_line('Libros totales del autor: ' || contador);
 
       end;
 
       procedure consulta_tienda(vtienda varchar2) is
             vid tienda.id%type;
+            cursor c1(vtie number) is select nombre, isbn, precio, l.ptienda.direccion as tienda, l.pcat.nombre as cat, l.pedi.nombre as edi, fecha_pub
+                                      from libro l
+                                      where l.ptienda.id = vtie;
+            contador number := 0;
       begin
             select id into vid
             from tienda
             where direccion = vtienda;
 
+            dbms_output.put_line('Tienda: ' || vtienda || chr(10));
 
+            for v1 in c1(vid) loop
+                  dbms_output.put_line('Nombre: ' || v1.nombre || '. ISBN: ' || v1.isbn || '. Precio: ' || v1.precio || '€.');
+                  dbms_output.put_line('Tienda: ' || v1.tienda || '. Categoría: ' || v1.cat || '. Editorial: ' || v1.edi || '. Fecha: ' || v1.fecha_pub || chr(10));
+                  contador := contador + 1;
+            end loop;
+
+            dbms_output.put_line('Libros totales en la tienda: ' || contador);
       end;
 end pk_libro;
 
+-- Prueba alta
+declare
+begin
+  pk_libro.alta('Brandon Sanderson', 'Arcanum ilimitado', '9788466658922', 1, 16.3, 'Fantasía', 'Nova Editorial');
+end;
+
+-- Prueba baja
+declare
+begin
+  pk_libro.baja(1);
+end;
+
+-- Prueba cambio cat
+declare
+begin
+  pk_libro.modi_cat('Cómic', 'El pozo de la ascensión');
+end;
+
+-- Prueba cambio edi
+declare
+begin
+  pk_libro.modi_edi('Alianza Editorial', 'El pozo de la ascensión');
+end;
+
+-- Prueba dia_sin_iva
+declare
+begin
+  pk_libro.dia_sin_iva('Calle El Greco 50');
+end;
+
+-- Prueba consulta por autor
+declare
+begin
+  pk_libro.consulta_autor('Brandon Sanderson');
+end;
+
+-- Prueba consulta por tienda
+declare
+begin
+  pk_libro.consulta_tienda('Calle El Greco 50');
+end;
+
+
+-- Creación de los triggers
+
+/*
+Con este trigger nos aseguramos de que cada editorial tenga al menos 1 libro.
+*/
+create or replace trigger t1
+after insert or update or delete on libro
+declare
+      cursor c1 is select id
+                   from editorial;
+      cuenta number;
+begin
+      for v1 in c1 loop
+            select count(*) into cuenta
+            from libro l
+            where l.pedi.id = v1.id;
+
+            if(cuenta <= 0) then
+                  raise_application_error(-20003, 'No puede haber una editorial sin libros.');
+            end if;
+      end loop;
+
+end;
+
+-- Prueba trigger t1
 
 declare
-  vtrab t_trabajador;
+      vedi ref t_editorial;
+      vedi_dos ref t_editorial;
 begin
-  select ref(t) into vtrab
-  from trabajador t
-  where id = 1;
-  
-  dbms_output.put_line('Nombre: ' || DEREF(vtrab).nombre);
+      select ref(e) into vedi
+      from editorial e
+      where id = 1;
+
+      select ref(e) into vedi_dos
+      from editorial e
+      where id = 4;
+
+      update libro l set l.pedi = vedi_dos where l.pedi = vedi;
 end;
+
