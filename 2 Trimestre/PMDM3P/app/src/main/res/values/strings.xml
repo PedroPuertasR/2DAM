@@ -12,11 +12,11 @@
     <string name="btnSalir">Salir</string>
     <string name="btnAlta">Alta</string>
     <string name="textNombre">\"Pedro\"</string>
-    <string name="textEmail">info@android.es</string>
-    <string name="textFecha">\"01/01/1970\"</string>
+    <string name="textEmail" translatable="false">info@android.es</string>
+    <string name="textFecha" translatable="false">\"01/01/1970\"</string>
     <string name="btnCancelar">Cancelar</string>
     <string name="stFecha">Fecha de nacimiento:</string>
-    <string name="stEmail">Email:</string>
+    <string name="stEmail" translatable="false">Email:</string>
     <string name="stNombre">Nombre:</string>
     <string name="ckRecomendado">Recomendado</string>
     <string name="opPerros">Perros</string>
@@ -25,5 +25,5 @@
     <string name="btnProgress">Cuenta atras</string>
     <string name="stReco">Recomendado:</string>
     <string name="stCuenta">Cuenta atras:</string>
-    <string name="textAnimal">Animal:</string>
+    <string name="textAnimal" translatable="false">Animal:</string>
 </resources>

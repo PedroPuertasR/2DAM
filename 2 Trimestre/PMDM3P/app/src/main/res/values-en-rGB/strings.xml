@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PMDM3P</string>
+    <string name="etNom">Name</string>
+    <string name="VIP">VIP</string>
+    <string name="tvVolver">Back</string>
+    <string name="btnAceptar">Accept</string>
+    <string name="tvVIP">VIP:</string>
+    <string name="btnReco">Recommended</string>
+    <string name="btnAnimal">Favorite animal</string>
+    <string name="btnVIP">VIP</string>
+    <string name="btnVer">Watch list</string>
+    <string name="btnSalir">Exit</string>
+    <string name="btnAlta">Sign up</string>
+    <string name="textNombre">\"Peter\"</string>
+    <string name="btnCancelar">Cancel</string>
+    <string name="stFecha">Date of birth:</string>
+    <string name="stNombre">Name:</string>
+    <string name="ckRecomendado">Recommended</string>
+    <string name="opPerros">Dogs</string>
+    <string name="opGatos">Cats</string>
+    <string name="stAnimal">Which animal do you prefer?</string>
+    <string name="btnProgress">Countdown</string>
+    <string name="stReco">Recommended:</string>
+    <string name="stCuenta">Countdown:</string>
+</resources>
