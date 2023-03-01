@@ -119,9 +119,6 @@
     </Component>
     <Component class="javax.swing.JLabel" name="idLabel">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="ID Jugador:"/>
       </Properties>
     </Component>
@@ -132,9 +129,6 @@
     </Component>
     <Component class="javax.swing.JLabel" name="intentosLabel">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Intentos:"/>
       </Properties>
     </Component>

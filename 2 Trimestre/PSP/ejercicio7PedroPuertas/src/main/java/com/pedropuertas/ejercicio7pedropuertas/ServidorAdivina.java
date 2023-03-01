@@ -29,8 +29,9 @@ public class ServidorAdivina {
         
         ObjetoCompartido partida = new ObjetoCompartido(numero);
         
-        //NUMERO PARA IDENTIFICAR A LOS JUGADORES
-        int id=0;
+        //Número para identificar a los jugadores
+        int id = 0;
+        
         while (true) {
             id++;
             

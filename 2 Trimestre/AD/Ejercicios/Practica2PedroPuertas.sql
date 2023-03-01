@@ -465,3 +465,131 @@ begin
       update libro l set l.pedi = vedi_dos where l.pedi = vedi;
 end;
 
+
+/*
+Triggers con paquete, registro y tabla indexada para actualizar los libros que tengan una tienda
+que se va a eliminar
+*/
+
+create or replace package pk1 as
+      type t_tienda_rec is record{
+            id INTEGER
+      }
+
+      type tipo1 is table of t_tienda_rec index by BINARY_INTEGER;
+      contador number;
+end;
+
+create or replace trigger t2
+before delete on tienda
+begin
+      pk1.tipo1.delete;
+      pk1.contador := 0;
+end;
+
+create or replace trigger t3
+before delete on tienda
+for each row
+begin
+      pk1.contador := pk1.contador + 1;
+      pk1.tipo1(pk1.contador).id := :old.id;
+end;
+
+create or replace trigger t4
+after delete on tienda
+declare
+      i number;
+      cursor c1(tie number) is select id
+                               from libro l
+                               where l.ptienda.id = tie;
+begin
+      i := pk1.tipo1.first;
+
+      while i is not null loop
+
+            for v1 in c1(pk1.tipo1(i).id) loop
+                  update libro set ptienda = null where id = v1.id;
+            end loop;
+
+      end loop;
+end;
+
+/*
+Trigger que a través de una vista inserta un libro
+*/
+
+create view v1 as select l.id as idlib, l.nombre as nom, autor, isbn, e.nombre as edi, c.nombre as cat, precio, fecha_pub
+                  from libro l, editorial e, categoria c
+                  where l.pcat.id = c.id
+                        and l.pedi.id = e.id;
+
+create or replace trigger t5
+instead of insert on v1
+declare
+      videdi editorial.id%type;
+      vidcat categoria.id%type;
+      vid libro.id%type;
+      bandera number := 0;
+begin
+
+      select id into videedi
+      from editorial
+      where nombre = :new.edi;
+
+      bandera := 1;
+
+      select id into vidcat
+      from categoria
+      where nombre = :new.cat;
+
+      bandera := 2
+
+      select * into vid
+      from (select id
+            from libro
+            order by id desc)
+      where rownum = 1;
+
+      vid := vid + 1;
+
+      insert into libro (id, nombre, autor, fecha_pub, isbn, pedi, pcat, ptienda, precio)
+      select vid, :new.nom, :new.autor, sysdate, :new.isbn, ref(e), ref(c), null, :new.precio
+      from editorial e, categoria c
+      where e.id = videdi
+            and c.id = vidcat;
+
+      exception
+            when no_data_found then
+                  if bandera = 0 then
+                        raise_application_error(-20001, 'No se ha encontrado la editorial.');
+                  elif bandera = 1 then
+                        raise_application_error(-20001, 'No se ha encontrado la categoría.');
+                  elif bandera = 2 then
+                        raise_application_error(-20001, 'No se ha encontrado un id de libro válido.');
+                  else
+                        raise_application_error(-20001, 'Error en el select into.');
+                  end if;
+            when others then
+                  raise_application_error(sqlcode, sqlerrm);
+end;
+
+/*
+Trigger para modificar la categoría y editorial de un libro a través de una vista pasandole la nueva categoría, la nueva editorial
+el nombre del autor y la fecha de publicación
+*/
+
+create or replace trigger t6
+instead of update on v1
+declare
+      vcat ref t_categoria;
+begin
+      select ref(c) into vcat
+      from categoria c
+      where nombre = :new.cat;
+
+      select ref(e) into vedi
+      from editorial e
+      where nombre = :new.edi;
+
+      update libro set pcat = vcat, pedi = vedi where autor = :old.autor and fecha_pub = :old.fecha_pub;
+end;

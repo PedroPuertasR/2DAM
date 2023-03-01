@@ -28,7 +28,7 @@ public class JugadorAdivina extends javax.swing.JFrame {
     private static OutputStreamWriter flujoSalEscrituraAServidor;
     private static BufferedWriter bufferEscrituraAServidor;
     private static ObjectInputStream fentrada;
-    
+
     private final static String COD_TEXTO = "UTF-8";
     static String host = "localhost";
     static int puerto = 6000;
@@ -36,20 +36,23 @@ public class JugadorAdivina extends javax.swing.JFrame {
     public JugadorAdivina() {
         initComponents();
         try {
-            
+
             socketComunicacion = new Socket(host, puerto);
+            // Inicializa un objeto ObjectInputStream para leer los datos enviados desde el servidor
             fentrada = new ObjectInputStream(socketComunicacion.getInputStream());
-            
+
+            // Inicializa un objeto BufferedWriter para escribir datos al servidor,
+            // usando una OutputStreamWriter
             flujoSalEscrituraAServidor = new OutputStreamWriter(socketComunicacion.getOutputStream(), COD_TEXTO);
             bufferEscrituraAServidor = new BufferedWriter(flujoSalEscrituraAServidor);
-            
+
             System.out.println("Conectado al servidor");
+            // Lee el objeto Datos enviado por el servidor
             Datos datos = (Datos) fentrada.readObject();
 
+            // Obtiene el identificador del jugador proporcionado por el servidor
             identificador = datos.getIdentificador();
             idField.setText("" + identificador);
-            
-            
 
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(JugadorAdivina.class.getName()).log(Level.SEVERE, null, ex);
@@ -164,6 +167,7 @@ public class JugadorAdivina extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
+        //Cierra la ventana actual y liberara todos los recursos asociados
         dispose();
     }//GEN-LAST:event_btSalirActionPerformed
 
@@ -175,24 +179,33 @@ public class JugadorAdivina extends javax.swing.JFrame {
 
         try {
             int numero = Integer.parseInt(texto);
-            
+
+            // Escribe el número en el buffer de escritura del cliente para enviarlo al servidor
             bufferEscrituraAServidor.write(texto);
             bufferEscrituraAServidor.newLine();
             bufferEscrituraAServidor.flush();
 
+            // Lee los datos del objeto compartido enviado por el servidor
             Datos datos = (Datos) fentrada.readObject();
 
+            // Actualiza la etiqueta del resultado con la cadena de texto devuelta por el servidor
             resultadoLabel.setText(datos.getCadena());
-            intentosField.setText(String.valueOf(datos.getIntentos()));
-            
-            if(String.valueOf(datos.getIntentos()).equals("5") || datos.ganador())
-                btEnviar.setEnabled(false);
-            
-            String mensaje = datos.getCadena();
 
+            // Actualiza la etiqueta del número de intentos con el valor devuelto por el servidor
+            intentosField.setText(String.valueOf(datos.getIntentos()));
+
+            // Si el número de intentos es igual a 5 o si hay un ganador, se desactiva el botón Enviar
+            if (String.valueOf(datos.getIntentos()).equals("5") || datos.ganador()) {
+                btEnviar.setEnabled(false);
+            }
+
+            // Muestra el estado del juego y los intentos actuales en la consola
+            String mensaje = datos.getCadena();
             System.out.println("Estado del juego: " + mensaje + " \nIntentos: " + datos.getIntentos());
-            
+
+            // Cambia el color del campo de texto a blanco
             numeroField.setBackground(Color.white);
+
         } catch (NumberFormatException ex) {
 
             numeroField.setBackground(Color.red);
@@ -208,13 +221,11 @@ public class JugadorAdivina extends javax.swing.JFrame {
      * @throws java.io.IOException
      */
     public static void main(String args[]) throws IOException {
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new JugadorAdivina().setVisible(true);
         });
-
-        
 
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -232,34 +243,8 @@ public class JugadorAdivina extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(JugadorAdivina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
-        //</editor-fold>
-//
-//        try {
-//            
-////            socketComunicacion.close();
-////            System.out.println("JUEGO FINALIZADO");
-//
-//        } catch (IOException ex) {
-//            System.out.println("Fallo en el socket cliente " + identificador);
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(JugadorAdivina.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        //</editor-fold>
-        
-        //</editor-fold>
-//
-//        try {
-//            
-////            socketComunicacion.close();
-////            System.out.println("JUEGO FINALIZADO");
-//
-//        } catch (IOException ex) {
-//            System.out.println("Fallo en el socket cliente " + identificador);
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(JugadorAdivina.class.getName()).log(Level.SEVERE, null, ex);
-//        }
 
+        //</editor-fold>
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

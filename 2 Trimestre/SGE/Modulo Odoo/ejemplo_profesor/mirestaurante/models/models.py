@@ -19,5 +19,3 @@ class mirestaurante_reserva(models.Model):
     tipo = fields.Selection([('0', 'Carta'), ('1', 'Menú'), ('2', 'Petición')], required=True, help="Tipo de reserva")
     consideraciones = fields.Text(string="Consideraciones", default="Ninguna", help="Consideraciones a tener en cuenta sobre la reserva")
     cliente = fields.Many2one("mirestaurante.cliente", required=True, string="Cliente", ondelete="cascade")
-    
-

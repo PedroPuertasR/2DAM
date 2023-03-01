@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_ejemplo_odoo_ejemplo_odoo,ejemplo_odoo.ejemplo_odoo,model_ejemplo_odoo_ejemplo_odoo,base.group_user,1,1,1,1
+permisos_ejemplo_odoo_cliente,ejemplo_odoo.cliente,model_ejemplo_odoo_cliente,ejemplo_odoo_manager,1,1,1,1
+permisos_ejemplo_odoo_comentario,ejemplo_odoo.comentario,model_ejemplo_odoo_comentario,ejemplo_odoo_manager,1,1,1,1
