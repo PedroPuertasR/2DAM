@@ -7,10 +7,6 @@ package com.pedropuertas.ejercicio7pedropuertas;
 
 import java.io.Serializable;
 
-/**
- *
- * @author Javir
- */
 public class Datos implements Serializable {
 
     String cadena; //cadena que se intercambia con el servidor

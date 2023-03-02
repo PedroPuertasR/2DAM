@@ -241,12 +241,17 @@ create or replace package body pk_libro as
             vid libro.id%type;
             vidcat categoria.id%type;
             videdi editorial.id%type;
+            bandera number := 0;
       begin
+            commit;
+
             select * into vid
             from(select id
                  from libro
                  order by id desc)
             where rownum = 1;
+
+            bandera := 1;
 
             vid := vid + 1;
 
@@ -254,15 +259,35 @@ create or replace package body pk_libro as
             from categoria
             where nombre = vcat;
 
+            bandera := 2;
+
             select id into videdi
             from editorial
             where nombre = vedi;
+
+            bandera := 3;
 
             insert into libro select vid, vautor, vnombre, ref(e), visbn, sysdate, vprecio, ref(c), ref(t)
                               from tienda t, editorial e, categoria c
                               where e.id = videdi
                                     and c.id = vidcat
                                     and t.id = vtienda;
+
+            commit;
+
+            exception
+                  when no_data_found then
+                        if bandera = 0 then
+                              raise_application_error(-20001, 'Error al encontrar el id del libro.');
+                        elsif bandera = 1 then
+                              raise_application_error(-20001, 'Error al encontrar la referencia de la categoría.');
+                        elsif bandera = 2 then
+                              raise_application_error(-20001, 'Error al encontrar la referencia de la editorial.');
+                        else
+                              raise_application_error(-20001, 'Error al encontrar un valor en la tabla.');
+                        end if;
+                  when others then
+                        raise_application_error(sqlcode, sqlerrm);
       end;
 
       procedure baja(vtienda integer) is
@@ -271,6 +296,8 @@ create or replace package body pk_libro as
                                       where l.ptienda.id = tie;
             contador number := 0;
       begin
+
+            commit;
 
             for v1 in c1(vtienda) loop
                   delete from libro where id = v1.id;
@@ -283,15 +310,22 @@ create or replace package body pk_libro as
                   dbms_output.put_line('Se han borrado ' || contador || ' filas.');
             end if;
 
+            commit;
+
       end;
 
       procedure modi_cat(vcat varchar2, vlibro varchar2) is
             vid ref t_categoria;
             vid_libro libro.id%type;
+            bandera number := 0;
       begin
+            commit;
+
             select ref(c) into vid
             from categoria c
             where nombre = vcat;
+
+            bandera := 1;
 
             select id into vid_libro
             from libro
@@ -299,21 +333,54 @@ create or replace package body pk_libro as
 
             update libro set pcat = vid where id = vid_libro;
 
+            commit;
+
+            exception
+                  when no_data_found then
+                        if bandera = 0 then
+                              raise_application_error(-20001, 'Error al encontrar la referencia de la categoría.');
+                        elsif bandera = 1 then
+                              raise_application_error(-20001, 'Error al encontrar el id.');
+                        else
+                              raise_application_error(-20001, 'Error al encontrar un valor en la tabla.');
+                        end if;
+                  when others then
+                        raise_application_error(sqlcode, sqlerrm);
+
       end;
 
       procedure modi_edi(vedi varchar2, vlibro varchar2) is
             vid ref t_editorial;
             vid_libro libro.id%type;
+            bandera number := 0;
       begin
+            commit;
+
             select ref(e) into vid
             from editorial e
             where nombre = vedi;
+
+            bandera := 1;
 
             select id into vid_libro
             from libro
             where nombre = vlibro;
 
             update libro l set pedi = vid where id = vid_libro;
+
+            commit;
+
+            exception
+                  when no_data_found then
+                        if bandera = 0 then
+                              raise_application_error(-20001, 'Error al encontrar la referencia de la editorial.');
+                        elsif bandera = 1 then
+                              raise_application_error(-20001, 'Error al encontrar el id.');
+                        else
+                              raise_application_error(-20001, 'Error al encontrar un valor en la tabla.');
+                        end if;
+                  when others then
+                        raise_application_error(sqlcode, sqlerrm);
       end;
 
       procedure dia_sin_iva (vtie varchar2) is
@@ -325,6 +392,8 @@ create or replace package body pk_libro as
             vnuevo libro.precio%type;
             contador number := 0;
       begin
+            commit;
+
             for v1 in c1(vtie) loop
                   if v1.precio > 15 then
                         select l.devolver_precio_noiva into vnuevo
@@ -335,6 +404,8 @@ create or replace package body pk_libro as
                         contador := contador + 1;
                   end if;
             end loop;
+
+            commit;
 
             dbms_output.put_line('Se han actualizado: ' || contador || ' precios.');
       end;
