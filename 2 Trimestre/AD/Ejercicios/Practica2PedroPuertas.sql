@@ -237,6 +237,9 @@ create or replace package pk_libro as
 end pk_libro;
 
 create or replace package body pk_libro as
+      
+      -- Alta de un libro pasandole los datos principales y los nombres de la categoría y la editorial.
+      
       procedure alta(vautor varchar2, vnombre varchar2, visbn varchar2, vtienda number, vprecio number, vcat varchar2, vedi varchar2) is
             vid libro.id%type;
             vidcat categoria.id%type;
@@ -290,6 +293,8 @@ create or replace package body pk_libro as
                         raise_application_error(sqlcode, sqlerrm);
       end;
 
+      -- Baja de los libros de una tienda pasandole el id de la tienda.
+
       procedure baja(vtienda integer) is
             cursor c1(tie integer) is select *
                                       from libro l
@@ -313,6 +318,8 @@ create or replace package body pk_libro as
             commit;
 
       end;
+
+      -- Modificación de la categoría de un libro de el cual pasamos el nombre por parámetros.
 
       procedure modi_cat(vcat varchar2, vlibro varchar2) is
             vid ref t_categoria;
@@ -349,6 +356,8 @@ create or replace package body pk_libro as
 
       end;
 
+      -- Modificación de la editorial de un libro de el cual pasamos el nombre por parámetros.
+
       procedure modi_edi(vedi varchar2, vlibro varchar2) is
             vid ref t_editorial;
             vid_libro libro.id%type;
@@ -383,6 +392,10 @@ create or replace package body pk_libro as
                         raise_application_error(sqlcode, sqlerrm);
       end;
 
+      /*Procedimientos que utiliza uno de los métodos de t_libro para realizar un dia sin iva en una tienda. 
+      De esta pasamos la dirección de la tienda por parámetro.
+      */
+
       procedure dia_sin_iva (vtie varchar2) is
             cursor c1(dir varchar2) is select * 
                          from libro l
@@ -410,6 +423,8 @@ create or replace package body pk_libro as
             dbms_output.put_line('Se han actualizado: ' || contador || ' precios.');
       end;
 
+      -- Consulta de los libros de un autor, el cual pasamos por parámetro.
+
       procedure consulta_autor(vautor varchar2) is
             cursor c1 is select nombre, isbn, precio, l.ptienda.direccion as tienda, l.pcat.nombre as cat, l.pedi.nombre as edi, fecha_pub
                          from libro l
@@ -428,6 +443,8 @@ create or replace package body pk_libro as
             dbms_output.put_line('Libros totales del autor: ' || contador);
 
       end;
+
+      -- Consulta de los libros de una tienda, la cual pasamos por parámetro en forma de dirección (varchar2).
 
       procedure consulta_tienda(vtienda varchar2) is
             vid tienda.id%type;
@@ -449,13 +466,13 @@ create or replace package body pk_libro as
             end loop;
 
             dbms_output.put_line('Libros totales en la tienda: ' || contador);
-      end;
 
-      exception
+            exception
             when no_data_found then
                   raise_application_error(-20001, 'Error al buscar un dato en la tabla.');
             when others then
                   raise_application_error(sqlcode, sqlerrm);
+      end;  
 end pk_libro;
 
 -- Prueba alta
