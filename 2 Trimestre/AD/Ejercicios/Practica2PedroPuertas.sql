@@ -379,6 +379,12 @@ create or replace package body pk_libro as
 
             dbms_output.put_line('Libros totales en la tienda: ' || contador);
       end;
+
+      exception
+            when no_data_found then
+                  raise_application_error(-20001, 'Error al buscar un dato en la tabla.');
+            when others then
+                  raise_application_error(sqlcode, sqlerrm);
 end pk_libro;
 
 -- Prueba alta
@@ -445,7 +451,6 @@ begin
                   raise_application_error(-20003, 'No puede haber una editorial sin libros.');
             end if;
       end loop;
-
 end;
 
 -- Prueba trigger t1
@@ -596,16 +601,34 @@ instead of update on v1
 declare
       vcat ref t_categoria;
       vedi ref t_editorial;
+      bandera number := 0;
 begin
       select ref(c) into vcat
       from categoria c
       where nombre = :new.cat;
 
+      bandera := 1;
+
       select ref(e) into vedi
       from editorial e
       where nombre = :new.edi;
 
+      bandera := 2;
+
       update libro set pcat = vcat, pedi = vedi where autor = :new.autor and fecha_pub = :new.fecha_pub;
+
+      exception
+            when no_data_found then
+                  if bandera = 0 then
+                        raise_application_error(-20001, 'No se ha encontrado la referencia de la categoría.');
+                  elsif bandera = 1 then
+                        raise_application_error(-20001, 'No se ha encontrado la referencia de la editorial.');
+                  else 
+                        raise_application_error(-20001, 'No se ha encontrado el dato del select into.');
+                  end if;
+            when others then
+                  raise_application_error(sqlcode, sqlerrm);
+
 end;
 
 -- Prueba trigger t6
