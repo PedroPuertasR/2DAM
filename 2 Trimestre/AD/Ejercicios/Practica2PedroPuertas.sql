@@ -430,7 +430,7 @@ end;
 Con este trigger nos aseguramos de que cada editorial tenga al menos 1 libro.
 */
 create or replace trigger t1
-after insert or update or delete on libro
+after update or delete on libro
 declare
       cursor c1 is select id
                    from editorial;
@@ -472,47 +472,48 @@ que se va a eliminar
 */
 
 create or replace package pk1 as
-      type t_tienda_rec is record{
-            id INTEGER
-      }
-
-      type tipo1 is table of t_tienda_rec index by BINARY_INTEGER;
-      contador number;
+    type t_tienda_rec is record(
+        id INTEGER
+    );
+    
+    type v1 is table of t_tienda_rec index by BINARY_INTEGER;
+    tipo1 v1;
 end;
 
 create or replace trigger t2
 before delete on tienda
 begin
-      pk1.tipo1.delete;
-      pk1.contador := 0;
+    pk1.tipo1.delete;
 end;
 
 create or replace trigger t3
-before delete on tienda
+after delete on tienda
 for each row
 begin
-      pk1.contador := pk1.contador + 1;
-      pk1.tipo1(pk1.contador).id := :old.id;
+    pk1.tipo1(:old.id).id := :old.id;
 end;
 
 create or replace trigger t4
 after delete on tienda
 declare
-      i number;
-      cursor c1(tie number) is select id
-                               from libro l
-                               where l.ptienda.id = tie;
+    i number;
 begin
       i := pk1.tipo1.first;
 
       while i is not null loop
-
-            for v1 in c1(pk1.tipo1(i).id) loop
-                  update libro set ptienda = null where id = v1.id;
-            end loop;
-
+            update libro l set ptienda = null where l.ptienda.id = i;
+            
+            i := pk1.tipo1.next(i);
       end loop;
 end;
+
+-- Prueba trigger con paquete
+
+delete from tienda where id = 1;
+
+select nombre, nvl(l.ptienda.id, 0)
+from libro l;
+
 
 /*
 Trigger que a través de una vista inserta un libro
@@ -532,7 +533,7 @@ declare
       bandera number := 0;
 begin
 
-      select id into videedi
+      select id into videdi
       from editorial
       where nombre = :new.edi;
 
@@ -542,7 +543,7 @@ begin
       from categoria
       where nombre = :new.cat;
 
-      bandera := 2
+      bandera := 2;
 
       select * into vid
       from (select id
@@ -551,6 +552,10 @@ begin
       where rownum = 1;
 
       vid := vid + 1;
+
+      if :new.idlib < vid then
+            raise_application_error(-20002, 'El id no puede ser uno ya existente.');
+      end if;
 
       insert into libro (id, nombre, autor, fecha_pub, isbn, pedi, pcat, ptienda, precio)
       select vid, :new.nom, :new.autor, sysdate, :new.isbn, ref(e), ref(c), null, :new.precio
@@ -562,9 +567,9 @@ begin
             when no_data_found then
                   if bandera = 0 then
                         raise_application_error(-20001, 'No se ha encontrado la editorial.');
-                  elif bandera = 1 then
+                  elsif bandera = 1 then
                         raise_application_error(-20001, 'No se ha encontrado la categoría.');
-                  elif bandera = 2 then
+                  elsif bandera = 2 then
                         raise_application_error(-20001, 'No se ha encontrado un id de libro válido.');
                   else
                         raise_application_error(-20001, 'Error en el select into.');
@@ -572,6 +577,14 @@ begin
             when others then
                   raise_application_error(sqlcode, sqlerrm);
 end;
+
+-- Prueba trigger t5
+
+insert into v1 values (9, 'Arcanum ilimitado', 'Brandon Sanderson','9788466658922', 'Nova Editorial', 'Fantasía', 16.3, sysdate);
+
+select id, nombre, autor 
+from libro 
+where id = 9;
 
 /*
 Trigger para modificar la categoría y editorial de un libro a través de una vista pasandole la nueva categoría, la nueva editorial
@@ -582,6 +595,7 @@ create or replace trigger t6
 instead of update on v1
 declare
       vcat ref t_categoria;
+      vedi ref t_editorial;
 begin
       select ref(c) into vcat
       from categoria c
@@ -591,5 +605,13 @@ begin
       from editorial e
       where nombre = :new.edi;
 
-      update libro set pcat = vcat, pedi = vedi where autor = :old.autor and fecha_pub = :old.fecha_pub;
+      update libro set pcat = vcat, pedi = vedi where autor = :new.autor and fecha_pub = :new.fecha_pub;
 end;
+
+-- Prueba trigger t6
+
+update v1 set edi = 'Editorial Planeta SA', cat = 'Suspense' where autor = 'Brandon Sanderson' and fecha_pub = '07/08/2021';
+
+select nombre, autor, l.pedi.nombre, l.pcat.nombre
+from libro l
+where l.id = 3;
