@@ -25,6 +25,14 @@ public class Comida {
         this.foto = foto;
     }
 
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -39,10 +47,6 @@ public class Comida {
 
     public int getCalorias() {
         return calorias;
-    }
-
-    public String getFecha() {
-        return foto;
     }
 
     public void setNombre(String nombre) {
@@ -61,13 +65,9 @@ public class Comida {
         this.calorias = calorias;
     }
 
-    public void setFecha(String fecha) {
-        this.foto = fecha;
-    }
-
     @Override
     public String toString() {
         return "Comida{" + "nombre=" + nombre + ", pais=" + pais + ", fecha_inv=" + fecha_inv + ", calorias=" + calorias + ", foto=" + foto + '}';
     }
-    
+
 }
