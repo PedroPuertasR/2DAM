@@ -1,0 +1,37 @@
+select *
+from mensaje
+where cueCodigoOrigen=1;
+
+select *
+from mensaje
+where cueCodigoDestino=1;
+
+select count(*)
+from mensaje 
+where cueCodigoOrigen=1;
+
+select count(*), c.MAXIMOMENSAJES, c.COSTEMENSAJEEXTRA
+from cuenta c, mensaje m 
+where c.codigo= m.cueCodigoOrigen
+and cueCodigoOrigen=1
+group by c.MAXIMOMENSAJES, c.COSTEMENSAJEEXTRA;
+
+select count(*)-c.MAXIMOMENSAJES
+from cuenta c, mensaje m 
+where c.codigo= m.cueCodigoOrigen
+and cueCodigoOrigen=1
+group by c.MAXIMOMENSAJES;
+
+select ((count(*)-c.MAXIMOMENSAJES) * c.COSTEMENSAJEEXTRA)
+from cuenta c, mensaje m 
+where c.codigo= m.cueCodigoOrigen
+and cueCodigoOrigen=1
+group by c.MAXIMOMENSAJES, c.COSTEMENSAJEEXTRA;
+
+SELECT cueCodigoOrigen, count(*) 
+FROM mensaje GROUP BY cueCodigoOrigen
+ORDER BY cueCodigoOrigen;
+
+SELECT cueCodigoDestino, count(*) 
+FROM mensaje GROUP BY cueCodigoDestino
+ORDER BY cueCodigoDestino;
