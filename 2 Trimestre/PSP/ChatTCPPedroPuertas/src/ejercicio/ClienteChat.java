@@ -1,20 +1,12 @@
-package envioficherosporsockets_ruedabautistainmaculada;
+package ejercicio;
 
-/**
- *
- * @author Inmaculada Rueda Bautista
- */
 import java.awt.event.*;
 import java.io.*;
 import java.net.*;
 import javax.swing.*;
 
-/*La clase ClienteChat es una extensión de la clase JFrame y, por tanto, representa una ventana de la interfaz gráfica de usuario (GUI).
-implementa las interfaces ActionListener y Runnable, lo que significa que puede actuar como un escuchador 
-de eventos de acción y como un hilo de ejecución*/
 public class ClienteChat extends JFrame implements ActionListener, Runnable {
 
-    /*Las variables nombre, seRepite, UID y socket se utilizan en el programa para almacenar información relacionada con la conexión del cliente al servidor*/
     String nombre;
     boolean seRepite = true;
     private static final long UID = 1L;

@@ -1,11 +1,6 @@
-package envioficherosporsockets_ruedabautistainmaculada;
+package ejercicio;
 
 import java.net.Socket;
-
-/**
- *
- * @author Inmaculada Rueda Bautista
- */
 
 public class ComunHilos {
 

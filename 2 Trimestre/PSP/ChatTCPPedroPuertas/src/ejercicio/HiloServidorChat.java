@@ -1,12 +1,7 @@
-package envioficherosporsockets_ruedabautistainmaculada;
+package ejercicio;
 
 import java.io.*;
 import java.net.*;
-
-/**
- *
- * @author Inmaculada Rueda Bautista
- */
 
 public class HiloServidorChat extends Thread {
     //Estas líneas de código definen tres variables de instancia para la clase HiloServidorChat: entrada, socket y comunHilo
