@@ -7,6 +7,7 @@
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>
+          <field name="media_gastado"/>
           <field name="email"/>
           <field name="club_lectura"/>
           <field name="comentario"/>
@@ -21,10 +22,13 @@
         <form>
           <group colspan="2" col="2">
             <field name="name"/>
+            <field name="media_gastado"/>
             <field name="email"/>
             <field name="club_lectura"/>
             <field name="comentario">
             <tree>
+              <field name="min_gastado"/>
+              <field name="max_gastado"/>
               <field name="codigo"/>
               <field name="fecha"/>
               <field name="tipo"/>
@@ -40,6 +44,8 @@
       <field name="model">ejemplo_odoo.comentario</field>
       <field name="arch" type="xml">
         <tree>
+          <field name="min_gastado"/>
+          <field name="max_gastado"/>
           <field name="codigo"/>
           <field name="fecha"/>
           <field name="tipo"/>
@@ -54,12 +60,15 @@
       <field name="arch" type="xml">
         <form>
           <group colspan="2" col="2">
+            <field name="min_gastado"/>
+            <field name="max_gastado"/>
             <field name="codigo"/>
             <field name="fecha"/>
             <field name="tipo"/>
             <field name="cliente">
             <tree>
               <field name="name"/>
+              <field name="media_gastado"/>
               <field name="email"/>
               <field name="club_lectura"/>
             </tree>
