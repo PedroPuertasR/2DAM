@@ -3,98 +3,116 @@ package ejercicio;
 import java.awt.event.*;
 import java.io.*;
 import java.net.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 public class ClienteChat extends JFrame implements ActionListener, Runnable {
 
     String nombre;
-    boolean seRepite = true;
+    boolean rep = true;
     private static final long UID = 1L;
     Socket socket = null;
-    /*La variable mensaje representa un cuadro de texto donde el cliente puede ingresar el mensaje que desea enviar al servidor*/
-    private static JTextField mensaje = new JTextField();
-    /*Las variables scrollpane1 y textarea1 representan un panel de desplazamiento y un área de texto respectivamente, donde se muestran los mensajes enviados y recibidos*/
-    private JScrollPane scrollpane1;
-    private static JTextArea textarea1;
-    /*Las variables btnEnviar y botonSalir son botones que permiten al cliente enviar un mensaje al servidor y salir del chat, respectivamente.*/
-    private JButton btnEnviar = new JButton("Enviar");
-    private JButton botonSalir = new JButton("Salir");
-    /*Las variables datoEntrada y datoSalida son flujos de datos de entrada y salida respectivamente, que permiten la comunicación entre el cliente y el servidor.*/
-    private DataInputStream datoEntrada;
-    private DataOutputStream datoSalida;
 
-    /*El constructor de la clase ClienteChat se encarga de inicializar la GUI y los flujos de datos de entrada y salida*/
+    /*Mensaje es un cuadro de texto donde el cliente puede 
+    * escribir el mensaje que se enviará al servidor
+    */
+    private static JTextField mensaje = new JTextField();
+    /* Para realizar el historial de mensajes creamos un scrollpane con un 
+    * JTextArea dentro, para que podamos utilizar la barra lateral en caso
+    * de que haya muchos mensajes.
+     */
+    private JScrollPane scrollpane1;
+    private static JTextArea historial;
+    /*Las variables btnEnviar y btnSalir son botones que permiten al cliente 
+    * enviar un mensaje al servidor y salir del chat.
+    */
+    private JButton btnEnviar = new JButton("Enviar");
+    private JButton btnSalir = new JButton("Salir");
+    /*Las variables entrada y salida son flujos que permiten la comunicación 
+    * cliente/servidor.
+    */
+    private DataInputStream entrada;
+    private DataOutputStream salida;
+
+    /*Con el constructor montamos el layout de la interfaz y los diferentes
+    * botones y textfields.
+     */
     public ClienteChat(Socket s, String nombre) {
-        super("CONEXIÓN DEL CLIENTE CHAT: " + nombre);
+        super("Conectándose al chat como: " + nombre + "...");
         setLayout(null);
         mensaje.setBounds(15, 15, 450, 40);
         add(mensaje);
-        textarea1 = new JTextArea();
-        scrollpane1 = new JScrollPane(textarea1);
+        historial = new JTextArea();
+        scrollpane1 = new JScrollPane(historial);
         scrollpane1.setBounds(15, 60, 500, 400);
         add(scrollpane1);
-        btnEnviar.setBounds(450, 15, 150, 40);
+        btnEnviar.setBounds(550, 15, 150, 40);
         add(btnEnviar);
-        botonSalir.setBounds(450, 60, 150, 40);
-        add(botonSalir);
-        textarea1.setEditable(false);
+        btnSalir.setBounds(550, 60, 150, 40);
+        add(btnSalir);
+        historial.setEditable(false);
         btnEnviar.addActionListener(this);
-        botonSalir.addActionListener(this);
+        btnSalir.addActionListener(this);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         socket = s;
         this.nombre = nombre;
         try {
-            datoEntrada = new DataInputStream(socket.getInputStream());
-            datoSalida = new DataOutputStream(socket.getOutputStream());
-            String texto = " > Entra en el Chat ... " + nombre;
-            datoSalida.writeUTF(texto);
-        } catch (IOException e) {
-            System.out.println("ERROR DE E/S");
+            entrada = new DataInputStream(socket.getInputStream());
+            salida = new DataOutputStream(socket.getOutputStream());
+            String texto = "\tUn usuario entra al chat: " + nombre;
+            salida.writeUTF(texto);
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteChat.class.getName()).log(Level.SEVERE, null, ex);
             System.exit(0);
         }
     }
 
-    /*El método actionPerformed se encarga de detectar los eventos de acción de los botones btnEnviar y botonSalir, y realizar las acciones correspondientes*/
+    /*Con este método detectamos el click en los botones Enviar y Salir, lo que
+    * hará que realicen las acciones pertinentes.
+    */
     public void actionPerformed(ActionEvent e) {
+        //En caso de que sea enviar comprobamos que el mensaje no esté vacío
         if (e.getSource() == btnEnviar) {
-            if (mensaje.getText().trim().length() == 0) {
-                return;
+            if (mensaje.getText().equalsIgnoreCase("")) {
+                System.out.println("No hay mensaje.");
+            } else {
+                String texto = nombre + ": " + mensaje.getText();
+                try {
+                    mensaje.setText("");
+                    salida.writeUTF(texto);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
-            String texto = nombre + "> " + mensaje.getText();
+        }else if (e.getSource() == btnSalir) {
+            String texto = "\t" + nombre + "abandona el chat... ";
             try {
-                mensaje.setText("");
-                datoSalida.writeUTF(texto);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        }
-        if (e.getSource() == botonSalir) {
-            String texto = " > Abandona el Chat ... " + nombre;
-            try {
-                datoSalida.writeUTF(texto);
-                datoSalida.writeUTF("*");
-                seRepite = false;
+                salida.writeUTF(texto);
+                salida.writeUTF("*");
+                rep = false;
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
         }
     }
 
-    /*El método run se encarga de ejecutar el hilo de ejecución del cliente y recibir los mensajes enviados por el servidor.*/
+    /*El método run se encarga de ejecutar el hilo de ejecución del cliente y 
+    * recibir los mensajes enviados por el servidor.
+    */
     @Override
     public void run() {
         String texto = "";
-        while (seRepite) {
+        while (rep) {
             try {
-                texto = datoEntrada.readUTF();
-                textarea1.setText(texto);
+                texto = entrada.readUTF();
+                historial.setText(texto);
             } catch (IOException e) {
 
-                JOptionPane.showMessageDialog(null, "IMPOSIBLE CONECTAR CON EL SERVIDOR\n" + e.getMessage(),
-                        "<<MENSAJE DE ERROR:2>>",
-                        JOptionPane.ERROR_MESSAGE
-                );
-                seRepite = false;
+                JOptionPane.showMessageDialog(null, "No se ha podido conectar "
+                        + "con el servidor\n" + e.getMessage(), "Error: 2", 
+                        JOptionPane.ERROR_MESSAGE);
+                rep = false;
             }
         }
         try {
@@ -105,9 +123,12 @@ public class ClienteChat extends JFrame implements ActionListener, Runnable {
         }
     }
 
-    /*El método main es el punto de entrada del programa y se encarga de crear una instancia de la clase ClienteChat y conectarla al servidor mediante un socket*/
+    /*El método main es el punto de entrada del programa y se encarga de crear
+    * una instancia de la clase ClienteChat y conectarla al servidor 
+    * mediante un socket.
+    */
     public static void main(String args[]) {
-        int puerto = 44444;
+        int puerto = 6000;
         Socket s = null;
         String nombre = JOptionPane.showInputDialog("Introduce tu nombre o nick:");
         if (nombre.trim().length() == 0) {
@@ -122,7 +143,7 @@ public class ClienteChat extends JFrame implements ActionListener, Runnable {
             new Thread(cliente).start();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "No se puede conectar con el servidor\n" + e.getMessage(),
-                    "<<MENSAJE DE ERROR:1>>",JOptionPane.ERROR_MESSAGE
+                    "<<MENSAJE DE ERROR:1>>", JOptionPane.ERROR_MESSAGE
             );
         }
     }
