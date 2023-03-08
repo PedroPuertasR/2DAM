@@ -4,7 +4,6 @@ import java.io.*;
 import java.net.*;
 
 public class HiloServidorChat extends Thread {
-    //Estas líneas de código definen tres variables de instancia para la clase HiloServidorChat: entrada, socket y comunHilo
     DataInputStream entrada;
     Socket socket = null;
     ComunHilos comunHilo;

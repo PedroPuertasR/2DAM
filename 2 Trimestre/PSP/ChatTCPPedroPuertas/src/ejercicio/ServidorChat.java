@@ -25,7 +25,7 @@ public class ServidorChat {
         */
         while (comun.getNumConexiones() < maxCon) {
             
-            Socket socket = new Socket();
+            Socket socket;
             socket = servidor.accept();
             
             //Se añade el socket del cliente al array y se le asigna un índice en el array.
