@@ -1,0 +1,146 @@
+body{
+    background-color: lightblue;
+}
+
+header{
+    background-color: rgba(0, 184, 251, 0.385);
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20pt;
+}
+
+h1{
+    color: white;
+}
+
+.loginInicio, .formCol{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.formFil{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.formFil input{
+    margin-left: 10px;
+}
+
+.formLogin{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+}
+
+#botonLog{
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+.centrar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.bienve{
+    display: flex;
+    flex-direction: row;
+    border: 7px solid white;
+    border-radius: 20px;
+}
+
+.bienve h1{
+    margin-top: 15%;
+    padding-right: 2%;
+    font-size: 20pt;
+    color: black;
+}
+
+.bienve img{
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+}
+
+.header-center{
+    display: flex;
+    flex-direction: row;
+}
+
+.headerH1{
+    margin-left: 200px;
+    margin-right: 100px;
+}
+
+.centrar input, .centrar button{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin: 20px;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    background-color: #f5f5f5;
+    border-collapse: collapse;
+}
+
+table th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+table tr:hover {
+    background-color: #ddd;
+}
+
+a, a:visited{
+    color: white;
+    font-weight: 900;
+}
+
+article{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background-color: gray;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding: 20px;
+    border: 10px solid white;
+    border-radius: 20px;
+}
+
+footer{
+    background-color: rgba(0, 184, 251, 0.385);
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2%;
+    padding-bottom: 20px; 
+    padding-top: 10px;
+}
