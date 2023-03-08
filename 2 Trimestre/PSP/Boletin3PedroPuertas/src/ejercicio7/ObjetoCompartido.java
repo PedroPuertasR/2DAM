@@ -26,9 +26,9 @@ public class ObjetoCompartido {
         //Si el juego no ha acabado comprobamos el número elegido
         if (!acabado()) {
             if (elegido > numero) {
-                resultado = "Numero mayor";
+                resultado = "Numero menor que el escrito";
             }else if (elegido < numero) {
-                resultado = "Numero menor";
+                resultado = "Numero mayor que el escrito";
             }else{
                 resultado = "Jugador " + jugador + " ha adivinado el número: "
                         + numero;

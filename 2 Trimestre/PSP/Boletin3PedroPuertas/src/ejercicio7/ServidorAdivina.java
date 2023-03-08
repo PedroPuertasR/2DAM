@@ -22,7 +22,7 @@ public class ServidorAdivina {
         //los hilos
         while (true) {
 
-            Socket jugador = new Socket();
+            Socket jugador;
 
             jugador = servidor.accept();
 

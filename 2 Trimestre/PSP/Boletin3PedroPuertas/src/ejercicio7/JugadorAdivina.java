@@ -11,8 +11,8 @@ public class JugadorAdivina extends javax.swing.JFrame {
         String host = "localhost";
         int puerto = 6000;
         Socket jugador;
-        ObjectOutputStream objectSalida;
-        ObjectInputStream objectEntrada;
+        ObjectOutputStream salida;
+        ObjectInputStream entrada;
         Scanner sc;
         String cadena = "";
         Datos datos;
@@ -23,10 +23,10 @@ public class JugadorAdivina extends javax.swing.JFrame {
         try {
             //Instancia del socket, el id, la lectura y los flujos
             jugador = new Socket(host, puerto);
-            objectSalida = new ObjectOutputStream(jugador.getOutputStream());
-            objectEntrada = new ObjectInputStream(jugador.getInputStream());
+            salida = new ObjectOutputStream(jugador.getOutputStream());
+            entrada = new ObjectInputStream(jugador.getInputStream());
             sc = new Scanner(System.in);
-            datos = (Datos) objectEntrada.readObject();
+            datos = (Datos) entrada.readObject();
             identificador = datos.getIdentificador();
         } catch (ClassNotFoundException ex) {
             System.out.println("El flujo no leyó los datos correctamente");
@@ -148,13 +148,11 @@ public class JugadorAdivina extends javax.swing.JFrame {
                 if (validarCadena(cadena)) {
                     d.setCadena(cadena);
                     try {
-                        objectSalida.reset();
+                        salida.reset();
                         //Escribimos los datos en el flujo de salida y lo recogemos con la variable Datos
-                        objectSalida.writeObject(d);
-                        datos = (Datos) objectEntrada.readObject();
-                    } catch (IOException ex) {
-                        Logger.getLogger(JugadorAdivina.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (ClassNotFoundException ex) {
+                        salida.writeObject(d);
+                        datos = (Datos) entrada.readObject();
+                    } catch (IOException | ClassNotFoundException ex) {
                         Logger.getLogger(JugadorAdivina.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     lblInfo.setText(datos.getCadena());
@@ -185,8 +183,8 @@ public class JugadorAdivina extends javax.swing.JFrame {
                 /*Cerramos todos los flujos, el socket, la ventana actual y 
                 * liberamos todos los recursos asociados con dispose()
                 */
-                objectSalida.close();
-                objectEntrada.close();
+                salida.close();
+                entrada.close();
                 System.out.println("Fin del juego.");
                 sc.close();
                 jugador.close();
