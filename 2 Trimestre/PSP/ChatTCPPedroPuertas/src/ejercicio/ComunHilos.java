@@ -17,11 +17,11 @@ public class ComunHilos {
     Socket[] socket = new Socket[maxConexiones];
 
     //constructores
-    public ComunHilos(int maximo, int actuales, int conexiones, Socket[] tabla) {
+    public ComunHilos(int maximo, int actuales, int conexiones, Socket[] array) {
         maxConexiones = maximo;
         numconexionesActuales = actuales;
         numConexiones = conexiones;
-        this.socket = tabla;
+        this.socket = array;
         mensajes = "";
     }
 
@@ -29,7 +29,6 @@ public class ComunHilos {
         super();
     }
 
-    //métodos getter/setter
     public String getMensajes() {
         return mensajes;
     }
@@ -62,11 +61,11 @@ public class ComunHilos {
         this.maxConexiones = maxConexiones;
     }
 
-    public synchronized void addTabla(Socket s, int i) {
+    public synchronized void aniadirArray(Socket s, int i) {
         socket[i] = s;
     }
 
-    public Socket getElementoTabla(int i) {
+    public Socket getElementoArray(int i) {
         return socket[i];
     }
 }

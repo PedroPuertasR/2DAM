@@ -1,0 +1,148 @@
+
+
+body{
+    background-image: url("../fotos/background.jpg");
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+a{
+    color: white;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding: 10px;
+}
+
+h1 {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button {
+    width: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img{
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer {
+    margin-top: auto;
+    background: gray;
+    border: 5px solid black;
+}
+
+input[type=submit] {
+    background-color: #66cc00;
+    border: 2px solid green;
+    opacity: 75%;
+    border-radius:30%;
+    padding:5px;
+}
+
+button {
+    background-color: #66cc00;
+    border: 2px solid green;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 75%;
+    border-radius:30%;
+    padding:5px;
+}
+
+
+table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+}
+
+th, td {
+    padding: 12px 15px;
+}
+tbody tr:first-of-type {
+    
+}
+tbody tr {
+    border-bottom: 1px solid #dddddd;
+    color: #666666;
+    background-color:#dddddd;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+tbody tr:hover {
+    color: #009879;
+    font-weight: bold;
+}
+
+article{
+    width: 100px;
+    height: 100px;
+    background-color: #66cc00;
+    border: 2px solid green;
+    margin: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 75%;
+}
+
+.list {
+    display:flex;
+    flex-wrap: wrap;
+}
+span {
+    width:500px;
+    height:500px;
+}
+
+#mensaje{
+    width:auto;
+    height:auto;
+    max-width: 50%
+}
+
+.option {
+    font-size:large;
+    padding-left:30px;
+    padding-right:100px;
+    
+}
+
+@media screen and (max-width: 1000px){
+    .cartas-espana{
+        width: 100%
+    }
+}
