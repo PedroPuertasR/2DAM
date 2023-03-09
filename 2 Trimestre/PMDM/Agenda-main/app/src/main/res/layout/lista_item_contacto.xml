@@ -59,6 +59,14 @@
                     android:layout_gravity="left"
                     android:paddingLeft="8dp"
                     android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/viewFecha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"
+                    android:paddingLeft="8dp"
+                    android:textSize="16sp" />
             </LinearLayout>
 
         </LinearLayout>

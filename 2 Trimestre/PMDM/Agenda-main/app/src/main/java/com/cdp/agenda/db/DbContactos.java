@@ -20,7 +20,7 @@ public class DbContactos extends DbHelper {
         this.context = context;
     }
 
-    public long insertarContacto(String nombre, String telefono, String correo_electronico) {
+    public long insertarContacto(String nombre, String telefono, String correo_electronico, String fecha) {
 
         long id = 0;
 
@@ -32,6 +32,7 @@ public class DbContactos extends DbHelper {
             values.put("nombre", nombre);
             values.put("telefono", telefono);
             values.put("correo_electronico", correo_electronico);
+            values.put("fecha_nacimiento", fecha);
 
             id = db.insert(TABLE_CONTACTOS, null, values);
         } catch (Exception ex) {

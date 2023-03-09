@@ -17,7 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class EditarActivity extends AppCompatActivity {
 
-    EditText txtNombre, txtTelefono, txtCorreo;
+    EditText txtNombre, txtTelefono, txtCorreo, txtFecha;
     Button btnGuarda;
     FloatingActionButton fabEditar, fabEliminar;
     boolean correcto = false;
@@ -33,6 +33,7 @@ public class EditarActivity extends AppCompatActivity {
         txtNombre = findViewById(R.id.txtNombre);
         txtTelefono = findViewById(R.id.txtTelefono);
         txtCorreo = findViewById(R.id.txtCorreoElectronico);
+        txtFecha = findViewById(R.id.txtFecha);
         btnGuarda = findViewById(R.id.btnGuarda);
         fabEditar = findViewById(R.id.fabEditar);
         fabEditar.setVisibility(View.INVISIBLE);
@@ -57,6 +58,7 @@ public class EditarActivity extends AppCompatActivity {
             txtNombre.setText(contacto.getNombre());
             txtTelefono.setText(contacto.getTelefono());
             txtCorreo.setText(contacto.getCorreo_electornico());
+            txtFecha.setText(contacto.getFecha());
         }
 
         btnGuarda.setOnClickListener(new View.OnClickListener() {

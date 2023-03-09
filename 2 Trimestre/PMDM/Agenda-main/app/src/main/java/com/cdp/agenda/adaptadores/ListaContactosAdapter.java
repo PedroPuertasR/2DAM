@@ -41,6 +41,7 @@ public class ListaContactosAdapter extends RecyclerView.Adapter<ListaContactosAd
         holder.viewNombre.setText(listaContactos.get(position).getNombre());
         holder.viewTelefono.setText(listaContactos.get(position).getTelefono());
         holder.viewCorreo.setText(listaContactos.get(position).getCorreo_electornico());
+        holder.viewFecha.setText(listaContactos.get(position).getFecha());
     }
 
     public void filtrado(final String txtBuscar) {
@@ -73,7 +74,7 @@ public class ListaContactosAdapter extends RecyclerView.Adapter<ListaContactosAd
 
     public class ContactoViewHolder extends RecyclerView.ViewHolder {
 
-        TextView viewNombre, viewTelefono, viewCorreo;
+        TextView viewNombre, viewTelefono, viewCorreo, viewFecha;
 
         public ContactoViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -81,6 +82,7 @@ public class ListaContactosAdapter extends RecyclerView.Adapter<ListaContactosAd
             viewNombre = itemView.findViewById(R.id.viewNombre);
             viewTelefono = itemView.findViewById(R.id.viewTelefono);
             viewCorreo = itemView.findViewById(R.id.viewCorreo);
+            viewFecha = itemView.findViewById(R.id.viewFecha);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

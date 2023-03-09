@@ -10,9 +10,11 @@ import android.widget.Toast;
 
 import com.cdp.agenda.db.DbContactos;
 
+import java.text.SimpleDateFormat;
+
 public class NuevoActivity extends AppCompatActivity {
 
-    EditText txtNombre, txtTelefono, txtCorreoElectronico;
+    EditText txtNombre, txtTelefono, txtCorreoElectronico, txtFecha;
     Button btnGuarda;
 
     @Override
@@ -23,6 +25,7 @@ public class NuevoActivity extends AppCompatActivity {
         txtNombre = findViewById(R.id.txtNombre);
         txtTelefono = findViewById(R.id.txtTelefono);
         txtCorreoElectronico = findViewById(R.id.txtCorreoElectronico);
+        txtFecha = findViewById(R.id.txtFecha);
         btnGuarda = findViewById(R.id.btnGuarda);
 
         btnGuarda.setOnClickListener(new View.OnClickListener() {
@@ -31,8 +34,10 @@ public class NuevoActivity extends AppCompatActivity {
 
                 if(!txtNombre.getText().toString().equals("") && !txtTelefono.getText().toString().equals("")) {
 
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
                     DbContactos dbContactos = new DbContactos(NuevoActivity.this);
-                    long id = dbContactos.insertarContacto(txtNombre.getText().toString(), txtTelefono.getText().toString(), txtCorreoElectronico.getText().toString());
+                    long id = dbContactos.insertarContacto(txtNombre.getText().toString(), txtTelefono.getText().toString(), txtCorreoElectronico.getText().toString(), sdf.format(txtFecha.getText().toString()));
 
                     if (id > 0) {
                         Toast.makeText(NuevoActivity.this, "REGISTRO GUARDADO", Toast.LENGTH_LONG).show();
@@ -51,5 +56,6 @@ public class NuevoActivity extends AppCompatActivity {
         txtNombre.setText("");
         txtTelefono.setText("");
         txtCorreoElectronico.setText("");
+        txtFecha.setText("");
     }
 }

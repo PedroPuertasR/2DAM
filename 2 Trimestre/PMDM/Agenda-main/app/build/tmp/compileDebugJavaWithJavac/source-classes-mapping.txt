@@ -1,0 +1,27 @@
+com/cdp/agenda/db/DbHelper.java
+ com.cdp.agenda.db.DbHelper
+com/cdp/agenda/BuildConfig.java
+ com.cdp.agenda.BuildConfig
+com/cdp/agenda/entidades/Contactos.java
+ com.cdp.agenda.entidades.Contactos
+com/cdp/agenda/EditarActivity.java
+ com.cdp.agenda.EditarActivity
+ com.cdp.agenda.EditarActivity$1
+com/cdp/agenda/NuevoActivity.java
+ com.cdp.agenda.NuevoActivity
+ com.cdp.agenda.NuevoActivity$1
+com/cdp/agenda/db/DbContactos.java
+ com.cdp.agenda.db.DbContactos
+com/cdp/agenda/adaptadores/ListaContactosAdapter.java
+ com.cdp.agenda.adaptadores.ListaContactosAdapter
+ com.cdp.agenda.adaptadores.ListaContactosAdapter$ContactoViewHolder
+ com.cdp.agenda.adaptadores.ListaContactosAdapter$ContactoViewHolder$1
+com/cdp/agenda/MainActivity.java
+ com.cdp.agenda.MainActivity
+ com.cdp.agenda.MainActivity$1
+com/cdp/agenda/VerActivity.java
+ com.cdp.agenda.VerActivity
+ com.cdp.agenda.VerActivity$1
+ com.cdp.agenda.VerActivity$2
+ com.cdp.agenda.VerActivity$2$1
+ com.cdp.agenda.VerActivity$2$2

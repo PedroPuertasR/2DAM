@@ -25,7 +25,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:labelFor="@+id/viewNombre"
-            android:textSize="18sp" />
+            android:textSize="62sp" />
 
         <TextView
             android:id="@+id/viewTelefono"
@@ -40,7 +40,7 @@
             android:ems="10"
             android:inputType="phone"
             android:labelFor="@+id/viewTelefono"
-            android:textSize="18sp" />
+            android:textSize="62sp" />
 
         <TextView
             android:id="@+id/viewCorreo"
@@ -55,7 +55,22 @@
             android:ems="10"
             android:inputType="textEmailAddress"
             android:labelFor="@+id/viewCorreo"
-            android:textSize="18sp" />
+            android:textSize="62sp" />
+
+        <TextView
+            android:id="@+id/viewFecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hint_fecha_nacimiento"/>
+
+        <EditText
+            android:id="@+id/txtFecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+            android:labelFor="@+id/viewFecha"
+            android:textSize="62sp" />
 
         <Button
             android:id="@+id/btnGuarda"
@@ -81,20 +96,4 @@
             android:src="@drawable/ic_delete" />
 
     </LinearLayout>
-<!--
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
-        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        tools:ignore="BottomAppBar">
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_edit" />
-
-    </com.google.android.material.bottomappbar.BottomAppBar>-->
 </LinearLayout>
