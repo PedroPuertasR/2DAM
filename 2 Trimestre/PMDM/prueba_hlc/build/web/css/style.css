@@ -1,0 +1,181 @@
+header{
+    background-color: deepskyblue;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20pt;
+}
+
+header form{
+    margin-top: 5%;
+    margin-right: 20px;
+}
+
+h1{
+    color: black;
+}
+
+.formCol{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.formFil{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.formFil input{
+    margin-left: 10px;
+}
+
+.formLogin{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+}
+
+.centrar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#botonLog{
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+.bienve{
+    display: flex;
+    flex-direction: row;
+    border: 7px solid black;
+    border-radius: 20px;
+}
+
+.bienve h1{
+    margin-top: 20px;
+    margin-left: 20px;
+    padding-right: 2%;
+    font-size: 20pt;
+    color: black;
+}
+
+.bienve img{
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+}
+
+.divCol{
+    display: flex;
+    flex-direction: column;
+}
+
+.divCol form{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+article{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+article img{
+    width: 100px;
+    heigh: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.detalle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.detalle img{
+    width: 100px;
+    heigh: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header-center{
+    display: flex;
+    flex-direction: row;
+}
+
+.header-center h1{
+    margin-left: 200px;
+    margin-right: 100px;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    background-color: #f5f5f5;
+    border-collapse: collapse;
+}
+
+table th, td {
+    padding: 10px;
+    border: 4px solid #ddd;
+}
+
+table th {
+    background-color: deepskyblue;
+    color: white;
+}
+
+table tr:hover {
+    background-color: #ddd;
+}
+
+footer{
+    background-color: deepskyblue;
+    width: 100%;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    padding-bottom: 20px; 
+    padding-top: 10px;
+}
+
+a{
+    color: green;
+    text-decoration: none;
+    background-color: white;
+    padding: 10px;
+}
+
+a:visited{
+    color: green;
+    text-decoration: none;
+    background-color: white;
+    padding: 10px;
+}

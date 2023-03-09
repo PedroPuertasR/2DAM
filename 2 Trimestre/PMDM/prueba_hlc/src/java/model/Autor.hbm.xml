@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 07-mar-2023 20:24:21 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Autor" table="AUTOR" schema="HLC23" optimistic-lock="version">
+        <id name="numero" type="int">
+            <column name="NUMERO" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="30" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="APELLIDO" length="30" />
+        </property>
+        <property name="passowrd" type="string">
+            <column name="PASSOWRD" length="30" />
+        </property>
+        <property name="foto" type="string">
+            <column name="FOTO" length="30" />
+        </property>
+        <property name="nacimiento" type="date">
+            <column name="NACIMIENTO" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

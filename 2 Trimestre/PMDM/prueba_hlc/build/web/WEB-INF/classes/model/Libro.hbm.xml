@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 07-mar-2023 20:24:21 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Libro" table="LIBRO" schema="HLC23" optimistic-lock="version">
+        <id name="codigo" type="int">
+            <column name="CODIGO" />
+            <generator class="assigned" />
+        </id>
+        <property name="titulo" type="string">
+            <column name="TITULO" length="30" />
+        </property>
+        <property name="fechapublicacion" type="date">
+            <column name="FECHAPUBLICACION" length="10" />
+        </property>
+        <property name="precio" type="java.lang.Double">
+            <column name="PRECIO" precision="52" scale="0" />
+        </property>
+        <property name="imagen" type="string">
+            <column name="IMAGEN" length="30" />
+        </property>
+        <property name="autnumero" type="java.lang.Integer">
+            <column name="AUTNUMERO" />
+        </property>
+    </class>
+</hibernate-mapping>
