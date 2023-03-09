@@ -1,0 +1,2786 @@
+Objetivos
+Mapa conceptual
+Glosario
+    1. Introducción
+    2. Orígenes de la programación
+    3. Paradigmas de programación
+        3.1. Programación estructurada
+        3.2. Programación modular
+    4. Pseudocódigo
+        4.1. Operadores , palabras reservadas y tipos de datos
+        4.2. Estructuras de control
+    5. Diagramas de flujo
+        5.1. Simbología 
+        5.2. Estructuras de control
+Resumen
+Ejercicios 
+Supuestos 
+
+
+1.- Introducción
+
+En este tema haremos una introducción a la programación desde sus orígenes hasta los tiempos actuales, presentando conceptos generales de programación y se abordarán los diferentes paradigmas de programación ( programación modular y programación estructurada). Finalmente expondremos los diagramas de flujo y el pseudocódigo como técnicas de introducción a la programación.
+
+2.- Orígenes de la programación
+El término programación hace referencia al proceso mediante el cual se diseña y codifica un conjunto de instrucciones que implementan un determinado algoritmo.
+La programación surgió ante la necesidad de automatizar determinadas tareas que se realizaban de forma manual. La programación tiene sus orígenes en las primeras calculadoras de operaciones matemáticas elementales, las cuales llevaban los algoritmos implementados en su estructura física, y en los telares automáticos , que recibían los datos sobre el trabajo a realizar a través de tarjetas perforadas.
+No se puede hablar de programación como tal , hasta que apareció el diseño de la maquina analítica de Charles Babbage (esta máquina se considera como el primer ordenador de la historia) y la aportación posterior de Augusta Ada Byron (La primera programadora de la historia).
+
+
+
+
+
+
+
+
+
+
+
+
+En las primeras computadoras las instrucciones de los programas eran escritas en código binario. Dada la complicación asociada a esta técnica de programación , los científicos que estudiaban esta nueva ciencia decidieron sustituir determinadas secuencias binarias por palabras que permitieron representar más fácilmente; este proceso dio lugar al conocido lenguaje ensamblador.
+Conforme las necesidades fueron creciendo y se fue depurando la técnica aparecieron los lenguajes de alto nivel , que añadían una nueva capa de abstracción al proceso de programación y que permitían el desarrollo de programas cada vez más sofisticados y más fáciles de desarrollar.
+
+3.- Paradigmas de programación
+Un paradigma de programación es un conjunto de reglas y costumbres que son aceptadas como modelo de referencia para generar un código de calidad.
+Aunque cada paradigma de programación tiene unas características concretas, es cierto, que en la vida real , los programadores pueden basarse en varios de ellos al mismo tiempo para el desarrollo de sus programas. La inclusión de dos o más paradigmas de programación en el mismo programa se denomina “programación multiparadigma” y generalmente es la que mejores resultados obtiene.
+Utilizar un paradigma de programación , aceptando y siguiendo sus reglas, derivará en un código fuente fácil de mantener , entender y corregir.
+En este curso veremos el paradigma de programación estructurada , el paradigma de programación modular y el paradigma de programación orientada a objetos.
+
+3.1.- Programación estructurada.
+La programación estructurada se basa en el teorema del programa estructurado propuesto por Corrado Böhm y Giuseppe Jacopini, según el cual todo programa se puede escribir empleando únicamente tres tipos de estructuras de control.
+
+    1. Secuencial: las instrucciones se ejecutan una detrás de otra siguiendo un orden (secuencialidad).
+    2. Alternativa: las expresiones son evaluadas y, dependiendo del resultado, se decide cuál será la siguiente instrucción a ejecutar.
+    3. Iterativa: se repetirá un conjunto de instrucciones hasta que una condición sea cierta, permitiéndose de esta manera el salto a otra instrucción.
+Los lenguajes de programación también ofrecen instrucciones de salto incondicional (go to) , pero su uso está totalmente desaconsejado porque complica el seguimiento y trazabilidad de los programas , generando un código espagueti más difícil de modificar y corregir. El por lo que este tipo de estructuras deben evitarse en la medida de lo posible.
+Hay que reseñar que la programación estructurada presenta grandes dificultades a la hora de abordar proyectos de gran tamaño , para los cuales es más eficiente el empleo de la programación orientada a objetos.
+
+En la programación estructurada los datos y las funciones que los manejan se definen separados.
+La programación estructurada no ofrece garantías para abordar proyectos de gran tamaño, en cuyo caso es más recomendable emplear programación orientada a objetos.
+
+3.2.- Programación modular
+La programación modular propone como solución la descomposición del problema en subproblemas de menor tamaño, los cuales serán descompuestos sucesivamente en otros de menor tamaño hasta que el resultado de dichas descomposiciones permita obtener problemas fáciles de resolver. A esta técnica de resolución de problemas se le denomina “divide y venceras” y permite poner en practica un proceso de desarrollo software top-down ( de arriba a abajo)
+
+
+
+
+
+
+
+
+
+
+
+Cada bloque de código que se ocupará de resolver un problema de menor tamaño se denomina módulo o subprograma, y estará compuesto por un conjunto de sentencias físicamente unidas y delimitadas. Dicho módulo será referenciado por un nombre y podrá hacer uso de otros módulos. La comunicación entre módulos se realizará a través de interfaces de comunicación claramente definidas.
+Los elementos empleados para llevar a cabo la modularización puede ser muy distintos dependiendo del nivel de abstracción:
+    1. A un alto nivel serán las unidades, en diseños estructurados, y los paquetes y librerías, en diseños orientados a objetos.
+    2. A más bajo nivel serán los procedimientos y las funciones , en diseños estructurados, y las clases con sus correspondientes métodos, en diseños orientados a objetos.
+
+Para llevar a cabo una correcta modularización del programa, es necesario realizar un diseño de calidad que tenga en cuenta los siguientes criterios:
+    • El módulo debe de tener un único punto de entrada y un único punto de salida.
+    • Cada módulo debe realizar una única función bien definida.
+    • Cada módulo debe comportarse como una caja negra, de manera que dependa únicamente de las entradas.
+    • Módulos trazables en una pantalla (tamaño ideal 20-50 líneas de código por módulo)
+    • Máxima cohesión y mínimo acoplamiento. Ambos criterios están relacionados entre si de manera que, a mayor cohesión en los módulos , menor será el acoplamiento entre ellos.
+
+
+
+    A) Cohesión
+       Se denomina cohesión de un módulo al nivel de relación existente entre los elementos software contenidos en él, entendiéndose como elementos software las instrucciones , definiciones de datos o las llamadas a otros módulos.
+       Los diferentes tipos de cohesión son:
+    I. Cohesión funcional: los elementos del módulo contribuyen a la realizazión de una única tarea. Es decir, cada elemento es una parte integral de la estructura del módulo. El módulo se representa mediante un identificador simple. Por ejemplo: módulos matemáticos suma, seno , potencia, ……
+    II. Cohesión secuencial: se da cuando el módulo realiza varias tareas según una secuencia que establece que la salida de una actividad es la entrada necesaria de la siguiente.
+       Ejemplo:
+		Progresivamente el módulo se ocupará de buscar información a partir de un dato de 		entrada y , con ella, generar un informe formateado que devolverá como dato de 		salida. Podrían encadenarse más acciones.
+
+
+
+
+
+
+
+    III. Cohesión comunicacional: contiene actividades paralelas (sin orden) que comparten los mismos datos (de entrada o salida). Se recomienda su descomposición en módulos independientes de cohesión funcional.
+		Ejemplo:
+		El módulo se ocupará de buscar información a partir de un dato de entrada y devolverá como 		salida información de diverso tipo. El orden de las actividades no es relevante.
+
+
+
+
+
+
+
+    IV. Cohesión procedural: los elementos realizan diferentes actividades posiblemente no relacionadas entre si. También es posible que no exista relación alguna entre los datos de entrada y de la salida de los módulos. El control fluye de una actividad a la siguiente.
+		Ejemplo
+		El módulo eliminará del sistema los datos relativos al libro cuyo código recibe como dato de 		entrada; posteriormente retornará como datos de salida un listado de los socios de la 			biblioteca 
+
+
+
+
+
+
+
+
+
+
+    V. Cohesión temporal: los elementos están implicados en la realización de actividades relacionadas por el momento en el cual se llevan a cabo.
+		Ejemplo
+		Un ejemplo típico son los módulos de inicialización y finalización de sistema (arranca 	sistema, apagar sistema, resetear sistema, inicializar sistema, …..). Es posible que no manejen 	ningún dato de entrada o salida.
+
+    VI.  Cohesión lógica: los elementos están destinados a que realicen actividades de una misma categoría general, pero la selección de la actividad concreta tiene lugar desde fuera del módulo
+		Ejemplo
+		El módulo se encargará de efectuar un pago que podrá realizarse en efectivo o por 	transferencia (el medio de pago se seleccionará desde fuera del módulo)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    VII. Cohesión casual: los elementos no guardan ninguna relación observable y son fruto de una organización caótica.
+	Ejemplo
+		Dentro del módulo se realizarán tareas de diverso tipo pero sin relación alguna. La selección 	de la tarea en cuestión se realiza mediante un flag creado para tal efecto. Algunas tareas pueden 	devolver datos mientras que otras no.
+
+
+
+
+
+
+
+
+
+
+Se tiende a pensar que , a mayor cohesión , mejor será el diseño de un programa, hay que tener en cuenta que no todos los tipos de cohesión son deseables. 
+
+Esquema de los diferentes tipos de cohesión y cómo estos afectan al mantenimiento.
+
+
+
+
+Escala de cohesión
+
+    • Cohesión funcional
+    • Cohesión secuencial
+    • Cohesión comunicacional
+    • Cohesión procedural
+    • Cohesión temporal
+    • Cohesión lógica
+    • Cohesión casual
+
+Mediante el siguiente árbol de cohesión se podrá identificar el tipo de cohesión ante el que un programador puede encontrarse.
+
+A partir de una serie de preguntas situadas en los nodos se determina la cohesión dominante del módulo.
+
+
+
+
+
+    B) Acoplamiento
+	El término acoplamiento hace referencia al grado y forma de dependencia entre los módulos. A menor cantidad de información compartida entre diferentes módulos , menor acoplamiento y por tanto mejor será el diseño.
+	El acoplamiento es una medida del grado de interdependencia entre los módulos de un sistema. Lo deseable es tener módulos con poco acoplamiento (o independiente entre si), para ser capaz de realizar el mantenimiento de un módulo sin tener que cambiar otros módulos
+
+
+
+
+
+
+
+
+
+
+
+    1. Acoplamiento normal : se da en aquellos casos en los que un módulo (A) invoca a otro módulo (B)
+	Ejemplo:
+	El módulo A invoca al módulo B, el cual tras realizar su función , retorna el control al módulo A
+
+
+
+
+
+	Toda la información que comparten la realizan a través de los parámetros presentes en la llamada. En este caso, y atendiendo al tipo de información , se definen tres subtipos:
+
+        a) Acoplamiento normal por datos: si los parámetros intercambiados son datos elementales sin estructura interna (tipo básicos)
+
+
+
+
+El módulo “Producir Factura” pide unos datos simples al usuario (Cadena y número en este caso) y los almacena. Posteriormente invoca al módulo “Calcular alquiler coche” pasándole como parámetros los datos solicitados.
+El módulo “Calcular alquiler coche” hace la operación indicada y devuelve el resultado
+
+
+
+
+
+        b) Acoplamiento normal por marca o estampado: si los parámetros intercambiados son un dato compuesto (registro) de datos de tipo básicos.
+
+El módulo “Producir Factura” solicita datos simples al usuario y los almacena en forma de datos compuesto (registro). Posteriormente invoca al módulo “Calcular alquiler coche” pasándole como parámetro el dato compuesto.
+El módulo “Calcular alquiler coche” calcula el valor para cada uno de los registros y devuelve el valor del importe.
+
+
+        c) Acoplamiento normal de control: cuando un módulo le pasa al otro un parámetro con la intención de controlar su lógica de funcionamiento interna.
+		Ejemplo:
+El módulo jefe (“Obtener transacción y registro”) controla, a través del dato “Flag de selección” , la lógica del módulo subordinado. Si fuera al revés se dice que hay una inversión de autoridad.
+Valores del Flag de selección:
+    1. Obtiene registro maestro
+    2. Obtiene registro transacción
+    3. Obtiene ambos
+    4. Imprime cabecera
+    5. Etc…..
+    2. Acoplamiento externo: se da cuando dos o más módulos utilizan las mismas fuentes externas de datos (interfaces de dispositivos o de programas externos).
+    3. Acoplamiento global : presente cuando los módulos utilizan los mismos datos globales (variables globales, memoria compartida, ficheros o bases de datos).
+    4. Acoplamiento patológico o por contenido: un módulo lee o modifica los datos internos de otro módulo o bien salta al interior de su código.
+
+La programación modular intenta solventar el crecimiento desmesurado que se plantea con la programación estructurada mediante la descomposición en módulos o subprogramas de menor tamaño.
+
+
+4.- Pseudocódigo
+El pseudocódigo es un lenguaje cercano a un lenguaje de programación cuyo objetivo es el desarrollo de algoritmos fácilmente interpretables por un programador, independientemente del lenguaje de programación del que provenga. En si mismo no se trata de un lenguaje de programación pero si que utiliza un conjunto limitado de expresiones que permiten representar las estructuras de control y los módulos descritos en los paradigmas de programación estructurada y modular.
+Mediante pseudocódigo se puede escribir aquellos algoritmos que tengan solución finita y que comiencen desde un único punto de partida. La escritura de un algoritmo o programa en pseudocódigo debería favorecer la posterior traducción al lenguaje de programación elegido.
+
+
+
+
+
+4.1.- Operadores , palabras reservadas y tipos de datos.
+A pesar de que no existe una norma rígida que establezca cómo realizar la escritura de programas en pseudocódigo, es recomendable seguir una serie de recomendaciones que permitan transcribir el programa al lenguaje de programación que va a usarse con la mayor facilidad.
+Operadores Aritméticos
+Aritméticos
++
+Suma
+-
+Resta
+*
+Multiplicación
+/
+División real
+div
+División entera
+%  o mod 
+Resto de la división
+^
+Potencia
+
+
+
+
+
+
+
+
+
+
+
+Lógicos
+AND (&&)
+Y lógico
+OR (| | )
+O lógico
+NOT ( ! )
+Negación
+Especiales 
+? 
+Asignación
+//
+Comentario de una sola línea
+/* …..*/
+Comentario de varias líneas
+
+
+Prioridad de operadores
+
+
+
+
+
+
+
+
+
+
+Palabras reservadas
+
+Inicio
+Si no
+Otro
+Para 
+En
+Fin
+Según
+Mientras
+Hasta
+Procedimiento
+Si
+Hacer
+Repetir
+Incremento
+Función
+Entonces
+Caso
+Hasta que
+Cada
+Imprimir
+Leer 
+Retornar
+
+
+
+Carácter
+Cadena
+Entero
+Real
+Booleano
+
+4.2.- Estructuras de controla
+El pseudocódigo utiliza las estructuras de control propias de la programación estructurada. Por este motivo se emplearán secuencias que representen las estructuras de control secuencial, alternativa e iterativa.
+    A) Estructura de control secuencial
+	Describen bloques de instrucciones que son ejecutadas en orden de aparición (secuencialmente). Los 	bloques pueden estar delimitados por las expresiones Inicio-Fin o bien estar contenidos en otras 	estructuras.
+
+
+
+
+
+    B) Estructuras de control alternativa
+	La estructura de control alternativa o selectiva encauza el flujo de ejecución hacia un bloque de 	instrucciones u otro bloque en función de la evaluación que se realiza sobre una condición 	determinada.
+	Hay diferentes subtipos de este tipo de estructura de control:
+    1. Alternativa simple: establece un conjunto de instrucciones que se ejecutarán si se cumple una condición que retornará un valor booleano.
+
+
+
+
+
+
+    2. Alternativa doble: añade otro bloque de instrucciones que se ejecuta en caso de que no se cumpla la condición
+
+
+
+
+
+
+
+
+    3. Alternativa múltiple: permite ejecutar diferentes bloques de instrucciones según el valor que tome una expresión que es comparada con los valores de cada caso o bien mediante el anidamiento de diferentes estructuras de alternativa doble cuyas condiciones son excluyentes.
+
+
+
+
+
+
+
+
+	Ejemplo de dos bloques equivalente
+BLOQUES EQUIVALENTES
+
+
+
+
+
+
+
+
+
+
+
+
+    C) Estructuras de control iterativa
+
+	La estructura de control iterativa permite que un bloque de instrucciones sea ejecutado mientras se cumpla una condición.
+	Hay diferentes subtipos de este tipo de estructura de control:
+    1. Iteración con salida al principio (while): primeramente , evalúa la condición y en caso de cumplirse ejecuta el bloque de instrucciones. La condición deberá cambiar de valor según las instrucciones contenidas para evitar bucles infinitos. También es posible que nunca llegue a ejecutarse el bloque de instrucciones .
+
+
+
+
+
+    2. Iteración con salida al final (repeat y do while): primeramente , ejecuta el bloque de instrucciones y posteriormente evalúa la condición. La condición deberá cambiar de valor según las instrucciones contenidas para evitar bucles infinitos.
+	El bloque de instrucciones se ejecutará, como mínimo, una vez. La versión que hace uso de repeat ejecutará las 	instrucciones hasta que se cumpla la condición mientras que la variante do while ejecutará las instrucciones 	mientras se cumpla la condición.
+
+
+
+
+
+
+    3. Iteración con contador (for) : ejecuta el bloque de instrucciones un número determinado de iteraciones. Hace uso de una variable que irá incrementando o decrementando por cada iteración hasta que se cumpla la condición de salida. La condición de control , que se traducirá a 1= =N o bien i= = 1 según sea el incremento , deberá ser falsa para que sigan ejecutándose las instrucciones.
+
+	Ejemplo de for incremental y decremental
+
+    4. Iteración para cada (for each): ejecutará el bloque de instrucciones para cada elemento contenido en un conjunto .
+
+    D) Estructuras modulares
+	También es posible describir mediante pseudocódigo la descomposición modular de los programas representando los procedimientos y las funciones encargados de realizar las tareas.
+        1. Procedimientos
+	Cada bloque de código contenido en un procedimiento se ocupará de llevar a cabo un conjunto de instrucciones cuando este sea invocado. Podrá recibir argumentos con los que trabajar a la hora de ser llamado si se ha definido el parámetro correspondiente, pero en ningún caso retornará un valor de salida .
+
+	Ejemplo de pseudocódigo para un procedimiento
+
+
+Ejemplos típicos de programación correspondientes a HolaMundo y a un programa Saludo:
+
+
+    2. Funciones
+	Al igual que los procedimientos, una función podrán recibir argumentos o parámetros de entrada con los que trabajar a la hora de ser llamada si se ha definido el parámetro correspondiente, pero , a diferencia de los procedimientos, retornará un valor de salida.
+Ejemplo de pseudocódigo para una función
+
+
+
+Ejemplo típico de programación
+
+Ejercicio 
+
+Empleando pseudocódigo desarrolla un programa que solicite la introducción de dos números por teclado (num1 y num2) y muestre por pantalla la suma, resta, multiplicación y división entera (siendo num2 el divisor). Ten en consideración que sin num2 = 0 , el resultado será infinito 
+
+5.- Diagramas de flujo
+Un diagrama de flujo , ordinograma o flujograma es una representación gráfica de un algoritmo o proceso. Son utilizados en informática , aunque tambien se emplean en otros ámbitos diferentes. 
+Facilita la comprensión del algoritmo gracias a la descripción visual que aporta sobre el flujo de ejecución de este.
+
+5.1.- Simbología
+Los diagramas de flujo se construyen utilizando un conjunto de símbolos que se van enlazando entre si para dar significado al proceso.
+
+    • Todo diagrama de flujo comienza y finaliza con un terminal representado mediante un óvalo o elipse.
+    • El trapecio rectángulo representa la entrada de datos desde el teclado. Indica la detención del proceso a la espera de que el usuario teclee los datos.
+    • La comunicación con los periféricos para la entrada o salida de datos se representa mediante paralelogramo.
+    • En todo algoritmo existe un orden en el que se realizan sus operaciones. En los diagramas de flujo ese orden se indica mediante una flecha.
+    • Las decisiones se representan mediante un rombo del que salen tantas líneas de flujo como alternativas sean posibles.
+    • Si el algoritmo a representar es muy grande , puede ser complejo diseñar su diagrama en un único bloque y lo más conveniente será dividir el diagrama en bloques más pequeños. Para ello se pueden emplear conectores que representarán el punto al cual saltar una vez se llegue a ese punto. Los saltos se representarán mediante una circunferencia si son en la misma página, o con un pentágono irregular si son en otra.
+    • Los procesos que llevan a cabo las operaciones internas de cálculo se representan mediante un rectángulo.
+    • Es posible que haya determinadas tareas que, por su complejidad, no puedan ser representadas como un proceso. En ese caso serán descompuestas en subprocesos que estarán definidos en otro lugar y que están representados por un rectángulo con doble línea en cada lado.
+    • Las bases de datos con las que se intercambia información tienen su propio símbolo (cilindro).
+    • Los documentos impresos también tienen sus propios símbolos de representación.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5.2.- Estructuras de control
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cada función o procedimiento (estructuras modulares) quedará descrito por un diagrama independiente y la invocación a dicho subprograma se realizará desde el diagrama principal.
+    • En el caso de invocar un procedimiento , lo representaremos mediante una llamada al subproceso que queda identificado por el rectángulo de lados dobles. .
+	Diagramas correspondientes a los ejemplos realizados en pseudocódigo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Para invocar una función bastará con indicar la llamada en el proceso
+
+
+
+Actividad del tema:
+Realiza un documento de texto con las siguientes cuestiones:
+
+    1. Define el concepto de paradigma de programación
+    2. Describe las diferencias existentes entre una función y un procedimiento.
+    3. ¿Qué diferencia hay entre cohesión y acoplamiento?
+    4. Enumera y describe los tipos de estructuras de control que son empleados en programación estructurada.
+    5. ¿En que consiste el concepto de divide y vencerás que permite poner en practica  un procedo de desarrollo top-down?
+
+Practicas
+
+1.- Implementa mediante pseudocódigo un algoritmo que determine si un año es bisiesto. 
+NOTA: un año es bisiesto si es divisible entre 4 , a excepción de aquellos años que son divisibles entre 100 pero no entre 400
+
+2.- Realiza la instalación de una aplicación que permita realizar diagramas de flujo. Una alternativa muy utilizada es Microsoft Visio, Libre Office Draw , Dia Diagram Editor, o bien alguna herramienta de diseño online como Lucidchart.
+(Realiza un pequeño manual de instalación de dicha aplicación)
+
+3.- Usando una de las herramientas indicadas en el ejercicio anterior, realiza el diagrama de un algoritmo que determine si un año es bisiesto.
+
+4.- Completa los apartados 1 y 3 creando un programa principal que sea el encargado de solicitar al usuario el año del cual se pretende conocer si es o no bisiesto y que invoque el algoritmo representado en los apartados anteriormente mencionados para conocer el resultado.
+
+Ejemplo 1
+
+De manera intrínseca, la programación concurrente tiene dos características que pueden ser fuentes de errores: los recursos compartidos y el orden de ejecución
+
+En este ejemplo vemos estos problemas. En este ejemplo, creamos 1000 hilos que incrementan en 1000 unidades una variable estática común. La variable debería obtener como resultado 1000000.
+
+
+public class VariableCompartida extends Thread{
+	private static int contador=0;
+	
+	@Override
+	public void run() {
+		for (int i=0 ; i<1000; i++) {
+			contador++;
+		}
+	}
+	public static void main (String [] args) {
+		for (int i=0 ; i<1000; i++) {
+			new VariableCompartida().start();
+		}
+		try {
+				Thread.sleep(10);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("Valor de contador: " +contador);
+	}
+}
+
+Ejemplo 2: Sicronización básica : wait, notify y notifyAll
+
+Estos métodos (wait, notify y notifyAll) pertenecen a la clase Object. Deben de invocarse desde segmentos de código de un hilo que disponga de un monitor (ejemplo, un bloque o segmento sincronizados) y es obligatorio capturar la excepción InterruptedException.
+
+En este ejemplo se crean dos hilos  a  partir del mismo objeto , que ejecutan dos métodos distintos.
+
+El primer hilo , al realizar la mitad de la tarea entra en espera hasta que el segundo de los hilos finaliza y notifica que del primero puede reanudar la ejecución.
+
+
+public class WaitNotifySimple implements Runnable{
+    private volatile boolean ejecutandoMetodo_1=false;
+    
+    public synchronized void metodo_1(){
+        for (int j=0; j<10; j++){
+            System.out.printf ("Ejecucion %d\n",j);
+            if(j==5){
+                try{
+                    this.wait();
+                    }catch (InterruptedException e){
+                      e.printStackTrace();
+                    }
+            }
+        }
+    }
+    
+    public synchronized void metodo_2(){
+        for (int j=10; j<20; j++){
+            System.out.printf ("Ejecucion %d\n",j);
+        }
+        this.notifyAll();
+        
+    }
+    
+    @Override
+    public void run (){
+        if(!ejecutandoMetodo_1){
+            ejecutandoMetodo_1=true;
+            metodo_1();
+        }else{
+            metodo_2();
+        }
+    }
+    
+    public static void main (String [] args){
+        WaitNotifySimple objWNS = new WaitNotifySimple();
+        new Thread (objWNS).start();
+        new Thread (objWNS).start();
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ejemplo 3: Sincronización básica con el método join
+
+El método join le indica a un hilo que debe suspender su ejecución hasta que termine el otro hilo de referencia. El método se debe ejecutar dentro del bloque asíncrono del código.
+
+
+En este ejemplo se crean dos hilos que ejecutarán un bucle con 3 iteraciones  que en ausencia de sincronización daría una salida como se muestra en la figura, si cada hilo tiene la misma prioridad y el mismo código escribirán simultáneamente la salida programada.
+
+
+
+
+
+
+
+
+
+
+
+En el ejemplo siguiente, después de arrancar los dos hilos, se le indica al hilo “hilo2” que suspenda su ejecución hasta que el hilo1 termine su ejecución. Para hacer esto, es necesario que hilo2 tenga una referencia a hilo1 para invocar al método join
+
+public class JoinBasico extends Thread{
+    private int id;
+    private boolean suspender=false;
+    private Thread hiloReferencia;
+    
+    public JoinBasico (int id){
+        this.id=id;
+    }
+    
+    public void suspenderHilo(Thread hiloReferencia){
+        this.suspender=true;
+        this.hiloReferencia=hiloReferencia;
+    }
+    
+    @Override
+    public void run (){
+        try{
+            for (int i=0; i<3;i++){
+                if (suspender){
+                    hiloReferencia.join();
+                }
+                System.out.printf("Hilo %d  Iteracion %d\n",id , i);
+                Thread.sleep(1000);
+            }
+        }catch (Exception e ){
+            e.printStackTrace();
+        }
+    }
+    public static void main (String[] args){
+       JoinBasico hilo_1=new JoinBasico(1);
+       JoinBasico hilo_2=new JoinBasico(2);
+       hilo_1.start();
+       hilo_2.start();
+       hilo_2.suspenderHilo(hilo_1);
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ejemplo 4: Sincronizacion avanzada : exclusión mutua, synchronized y monitores
+
+A nivel de método sería:
+
+	public synchronized void calcula ()
+
+Con esto , para una instancia de objeto , solo un hilo puede estar ejecutando el método sincronizado en un momento dado.
+
+A nivel de segmento de código sería:
+
+	public void calcular(){
+
+		// sentencias no sincronizadas
+
+		synchronized (objetoBloqueo){
+		
+			// Bloque de sentencias sincronizadas
+
+		}
+
+		//Sentencias no sincronizadas
+	}
+
+En este ejemplo usaremos sincronización de métodos. En este caso se usa como monitor el objeto en el que están. Esto supone que cuando un método sincronizado de un objeto se está ejecutando ningún otro método sincronizado de este objeto se puede ejecutar. 
+
+public class SincronizacionMetodos implements Runnable {
+	
+	public synchronized void metodo_1() {
+		System.out.println("Comienzo del metodo 1");
+		try {
+			Thread.sleep(1000);
+		}catch (InterruptedException ie) {
+			return;
+		}
+		System.out.println("Fin del metodo 1") ;
+	}
+
+	public synchronized void metodo_2() {
+		System.out.println("Comienzo del metodo 2");
+		try {
+			Thread.sleep(1000);
+		}catch (InterruptedException ie) {
+			return;
+		}
+		System.out.println("Fin del metodo 2") ;
+	}
+	@Override
+	public void run() {
+		metodo_1();
+		metodo_2();
+	}
+	
+	public static void main (String [] args) {
+		SincronizacionMetodos sm = new SincronizacionMetodos();
+		new Thread (sm).start();
+		new Thread (sm).start();
+	}
+		
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+En la salida podemos observar que los métodos se ejecutan de uno en uno, pese a que se dispone de dos hilos distintos.
+
+Si los métodos no estuviesen sincronizados los dos hilos ejecutarían simultáneamente el primer método y, tras su finalización, el segundo. La salida habría resultado la siguiente:
+
+
+
+
+
+
+
+
+
+
+
+
+
+El comportamiento de los métodos sincronizados del ejemplo se debe a que se ejecutan sobre la misma instancia del objeto que implementa Runnable, por lo que utilizan dicho objeto como monitor provocando el bloqueo.
+
+Si en cambio se utilizase objetos distintos, el resultado sería el mismo que al no marcar los métodos como synchronized,ya que utilizan bloqueos diferentes.
+
+
+
+public class SincronizacionMetodosIncorrecta extends Thread {
+	
+	public synchronized void metodo_1() {
+		System.out.println("Comienzo del metodo 1");
+		try {
+			Thread.sleep(1000);
+		}catch (InterruptedException ie) {
+			return;
+		}
+		System.out.println("Fin del metodo 1") ;
+	}
+
+	public synchronized void metodo_2() {
+		System.out.println("Comienzo del metodo 2");
+		try {
+			Thread.sleep(1000);
+		}catch (InterruptedException ie) {
+			return;
+		}
+		System.out.println("Fin del metodo 2") ;
+	}
+	@Override
+	public void run() {
+		metodo_1();
+		metodo_2();
+	}
+	
+	public static void main (String [] args) {
+		new SincronizacionMetodosIncorrecta().start();
+		new SincronizacionMetodosIncorrecta().start();
+	}
+		
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+La sincronización a nivel de segmento necesita también un monitor, pero al no depender del objeto en el que se está ejecutando es más flexible. 
+
+Utilizando bloques sincronizados no es necesario bloquear todos los segmentos de un objeto como ocurre con los métodos de objeto, sino que se pueden agrupar en monitores distintos.
+
+Ejemplo 5: Sincronización a nivel de bloque
+
+Se utilizará dos bloqueos distintos en cada uno de los métodos del ejemplo anterior. De esta forma, los métodos no son exclusivos entre si. La sincronización se realiza a nivel de método ( cada uno de los métodos solo puede estar siendo ejecutado por un objeto simultaneamente, pero ambos métodos se pueden estar ejecutando al mismo tiempo por dos objetos distintos).
+
+public class SincronizacionSegmento extends Thread{
+	int id;
+	static Object bloqueo_1 = new Object();
+	static Object bloqueo_2 = new Object();
+	
+	public SincronizacionSegmento (int id) {
+		this.id=id;
+	}
+	public void metodo_1(){
+		synchronized (bloqueo_1) {
+			System.out.println("Comienzo del metodo 1 del hilo" + id);
+			try {
+				Thread.sleep(1000);
+			}catch (InterruptedException ie) {
+				return;
+			}
+			System.out.println("Fin del metodo 1 del hilo "+ id) ;
+		}
+	}
+	
+	public void metodo_2(){
+		synchronized (bloqueo_2) {
+			System.out.println("Comienzo del metodo 2: del hilo" + id);
+			try {
+				Thread.sleep(1000);
+			}catch (InterruptedException ie) {
+				return;
+			}
+			System.out.println("Fin del metodo 2 del hilo "+ id) ;
+		}
+	}
+	@Override
+	public void run() {
+		if (id==1) {
+			metodo_1();
+			metodo_2();
+		}else {
+			metodo_2();
+			metodo_1();
+		}
+	}
+	
+	public static void main (String[] args) {
+		new SincronizacionSegmento(1).start();
+		new SincronizacionSegmento(2).start();
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ejemplo 6: Sincronización con semaforos
+
+Los semáforos se suelen utilizar cuando un recurso tiene una capacidad limitada y se desea controlar el número de consumidores de dicho recurso. Es, por lo tanto, un elemento de sincronización.
+
+Al construir el semáforo se le proporciona a través del constructor una capacidad que hace referencia al número de hilos que puede estar ejecutando concurrentemente.
+
+Esta capacidad se convierte en número de permisos de acceso que Se conceden a los bloques de código que quieran hacer uso del recurso limitado. Si todos los permisos están concedidos, los hilos quedan en espera a que los propietarios de los permisos los liberen.
+
+
+
+
+
+
+
+En el ejemplo vamos a construir un semáforo con capacidad para tres permisos y cinco hilos a partir de la misma instancia de Runnable , para acceder a la sección crítica , solicitando el permiso , realizando los pasos de la actividad sincronizada y liberando el bloqueo posteriormente.
+
+
+import java.util.concurrent.Semaphore;
+
+public class SemaforoBasico implements Runnable{
+	
+	Semaphore semaforo=new Semaphore(3);
+	
+	@Override
+	public void run() {
+		try {
+			semaforo.acquire();
+			System.out.println("Paso 1");
+			Thread.sleep(1000);
+			System.out.println("Paso 2");
+			Thread.sleep(1000);
+			System.out.println("Paso 3");
+			Thread.sleep(1000);
+			semaforo.release();
+		}catch (InterruptedException ie) {
+			ie.printStackTrace();
+		}
+	}
+	
+	public static void mail (String[] args) {
+		SemaforoBasico sb=new SemaforoBasico();
+		for (int i=0; i<5; i++) {
+			new Thread (sb).start();
+		}
+	}
+}
+
+La salida muestra que los tres primeros hilos que han intentado acceder a la sección critica a través del bloqueo del semáforo se han ejecutado concurrentemente, y el resto de Ios hilos se han ejecutado cuando los primeros han terminado y liberado los bloqueos.
+
+No solo se pueden utilizar los semáforos cuando los recursos son limitados. En ocasiones es conveniente limitar el número de hilos que realizan determinadas tareas para no saturar el sistema o alguno de sus componentes. Por ejemplo, limitar el número de hilos que acceden a servicios web o a bases de datos puede ser una estrategia adecuada en muchos casos.
+
+
+Ejemplo 1
+
+De manera intrínseca, la programación concurrente tiene dos características que pueden ser fuentes de errores: los recursos compartidos y el orden de ejecución
+
+En este ejemplo vemos estos problemas. En este ejemplo, creamos 1000 hilos que incrementan en 1000 unidades una variable estática común. La variable debería obtener como resultado 1000000.
+
+
+public class VariableCompartida extends Thread{
+	private static int contador=0;
+	
+	@Override
+	public void run() {
+		for (int i=0 ; i<1000; i++) {
+			contador++;
+		}
+	}
+	public static void main (String [] args) {
+		for (int i=0 ; i<1000; i++) {
+			new VariableCompartida().start();
+		}
+		try {
+				Thread.sleep(10);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("Valor de contador: " +contador);
+	}
+}
+
+Ejemplo 2: Sicronización básica : wait, notify y notifyAll
+
+Estos métodos (wait, notify y notifyAll) pertenecen a la clase Object. Deben de invocarse desde segmentos de código de un hilo que disponga de un monitor (ejemplo, un bloque o segmento sincronizados) y es obligatorio capturar la excepción InterruptedException.
+
+En este ejemplo se crean dos hilos  a  partir del mismo objeto , que ejecutan dos métodos distintos.
+
+El primer hilo , al realizar la mitad de la tarea entra en espera hasta que el segundo de los hilos finaliza y notifica que del primero puede reanudar la ejecución.
+
+
+public class WaitNotifySimple implements Runnable{
+    private volatile boolean ejecutandoMetodo_1=false;
+    
+    public synchronized void metodo_1(){
+        for (int j=0; j<10; j++){
+            System.out.printf ("Ejecucion %d\n",j);
+            if(j==5){
+                try{
+                    this.wait();
+                    }catch (InterruptedException e){
+                      e.printStackTrace();
+                    }
+            }
+        }
+    }
+    
+    public synchronized void metodo_2(){
+        for (int j=10; j<20; j++){
+            System.out.printf ("Ejecucion %d\n",j);
+        }
+        this.notifyAll();
+        
+    }
+    
+    @Override
+    public void run (){
+        if(!ejecutandoMetodo_1){
+            ejecutandoMetodo_1=true;
+            metodo_1();
+        }else{
+            metodo_2();
+        }
+    }
+    
+    public static void main (String [] args){
+        WaitNotifySimple objWNS = new WaitNotifySimple();
+        new Thread (objWNS).start();
+        new Thread (objWNS).start();
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ejemplo 3: Sincronización básica con el método join
+
+El método join le indica a un hilo que debe suspender su ejecución hasta que termine el otro hilo de referencia. El método se debe ejecutar dentro del bloque asíncrono del código.
+
+
+En este ejemplo se crean dos hilos que ejecutarán un bucle con 3 iteraciones  que en ausencia de sincronización daría una salida como se muestra en la figura, si cada hilo tiene la misma prioridad y el mismo código escribirán simultáneamente la salida programada.
+
+
+
+
+
+
+
+
+
+
+
+En el ejemplo siguiente, después de arrancar los dos hilos, se le indica al hilo “hilo2” que suspenda su ejecución hasta que el hilo1 termine su ejecución. Para hacer esto, es necesario que hilo2 tenga una referencia a hilo1 para invocar al método join
+
+public class JoinBasico extends Thread{
+    private int id;
+    private boolean suspender=false;
+    private Thread hiloReferencia;
+    
+    public JoinBasico (int id){
+        this.id=id;
+    }
+    
+    public void suspenderHilo(Thread hiloReferencia){
+        this.suspender=true;
+        this.hiloReferencia=hiloReferencia;
+    }
+    
+    @Override
+    public void run (){
+        try{
+            for (int i=0; i<3;i++){
+                if (suspender){
+                    hiloReferencia.join();
+                }
+                System.out.printf("Hilo %d  Iteracion %d\n",id , i);
+                Thread.sleep(1000);
+            }
+        }catch (Exception e ){
+            e.printStackTrace();
+        }
+    }
+    public static void main (String[] args){
+       JoinBasico hilo_1=new JoinBasico(1);
+       JoinBasico hilo_2=new JoinBasico(2);
+       hilo_1.start();
+       hilo_2.start();
+       hilo_2.suspenderHilo(hilo_1);
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ejemplo 4: Sincronizacion avanzada : exclusión mutua, synchronized y monitores
+
+A nivel de método sería:
+
+	public synchronized void calcula ()
+
+Con esto , para una instancia de objeto , solo un hilo puede estar ejecutando el método sincronizado en un momento dado.
+
+A nivel de segmento de código sería:
+
+	public void calcular(){
+
+		// sentencias no sincronizadas
+
+		synchronized (objetoBloqueo){
+		
+			// Bloque de sentencias sincronizadas
+
+		}
+
+		//Sentencias no sincronizadas
+	}
+
+En este ejemplo usaremos sincronización de métodos. En este caso se usa como monitor el objeto en el que están. Esto supone que cuando un método sincronizado de un objeto se está ejecutando ningún otro método sincronizado de este objeto se puede ejecutar. 
+
+public class SincronizacionMetodos implements Runnable {
+	
+	public synchronized void metodo_1() {
+		System.out.println("Comienzo del metodo 1");
+		try {
+			Thread.sleep(1000);
+		}catch (InterruptedException ie) {
+			return;
+		}
+		System.out.println("Fin del metodo 1") ;
+	}
+
+	public synchronized void metodo_2() {
+		System.out.println("Comienzo del metodo 2");
+		try {
+			Thread.sleep(1000);
+		}catch (InterruptedException ie) {
+			return;
+		}
+		System.out.println("Fin del metodo 2") ;
+	}
+	@Override
+	public void run() {
+		metodo_1();
+		metodo_2();
+	}
+	
+	public static void main (String [] args) {
+		SincronizacionMetodos sm = new SincronizacionMetodos();
+		new Thread (sm).start();
+		new Thread (sm).start();
+	}
+		
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+En la salida podemos observar que los métodos se ejecutan de uno en uno, pese a que se dispone de dos hilos distintos.
+
+Si los métodos no estuviesen sincronizados los dos hilos ejecutarían simultáneamente el primer método y, tras su finalización, el segundo. La salida habría resultado la siguiente:
+
+
+
+
+
+
+
+
+
+
+
+
+
+El comportamiento de los métodos sincronizados del ejemplo se debe a que se ejecutan sobre la misma instancia del objeto que implementa Runnable, por lo que utilizan dicho objeto como monitor provocando el bloqueo.
+
+Si en cambio se utilizase objetos distintos, el resultado sería el mismo que al no marcar los métodos como synchronized,ya que utilizan bloqueos diferentes.
+
+
+
+public class SincronizacionMetodosIncorrecta extends Thread {
+	
+	public synchronized void metodo_1() {
+		System.out.println("Comienzo del metodo 1");
+		try {
+			Thread.sleep(1000);
+		}catch (InterruptedException ie) {
+			return;
+		}
+		System.out.println("Fin del metodo 1") ;
+	}
+
+	public synchronized void metodo_2() {
+		System.out.println("Comienzo del metodo 2");
+		try {
+			Thread.sleep(1000);
+		}catch (InterruptedException ie) {
+			return;
+		}
+		System.out.println("Fin del metodo 2") ;
+	}
+	@Override
+	public void run() {
+		metodo_1();
+		metodo_2();
+	}
+	
+	public static void main (String [] args) {
+		new SincronizacionMetodosIncorrecta().start();
+		new SincronizacionMetodosIncorrecta().start();
+	}
+		
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+La sincronización a nivel de segmento necesita también un monitor, pero al no depender del objeto en el que se está ejecutando es más flexible. 
+
+Utilizando bloques sincronizados no es necesario bloquear todos los segmentos de un objeto como ocurre con los métodos de objeto, sino que se pueden agrupar en monitores distintos.
+
+Ejemplo 5: Sincronización a nivel de bloque
+
+Se utilizará dos bloqueos distintos en cada uno de los métodos del ejemplo anterior. De esta forma, los métodos no son exclusivos entre si. La sincronización se realiza a nivel de método ( cada uno de los métodos solo puede estar siendo ejecutado por un objeto simultaneamente, pero ambos métodos se pueden estar ejecutando al mismo tiempo por dos objetos distintos).
+
+public class SincronizacionSegmento extends Thread{
+	int id;
+	static Object bloqueo_1 = new Object();
+	static Object bloqueo_2 = new Object();
+	
+	public SincronizacionSegmento (int id) {
+		this.id=id;
+	}
+	public void metodo_1(){
+		synchronized (bloqueo_1) {
+			System.out.println("Comienzo del metodo 1 del hilo" + id);
+			try {
+				Thread.sleep(1000);
+			}catch (InterruptedException ie) {
+				return;
+			}
+			System.out.println("Fin del metodo 1 del hilo "+ id) ;
+		}
+	}
+	
+	public void metodo_2(){
+		synchronized (bloqueo_2) {
+			System.out.println("Comienzo del metodo 2: del hilo" + id);
+			try {
+				Thread.sleep(1000);
+			}catch (InterruptedException ie) {
+				return;
+			}
+			System.out.println("Fin del metodo 2 del hilo "+ id) ;
+		}
+	}
+	@Override
+	public void run() {
+		if (id==1) {
+			metodo_1();
+			metodo_2();
+		}else {
+			metodo_2();
+			metodo_1();
+		}
+	}
+	
+	public static void main (String[] args) {
+		new SincronizacionSegmento(1).start();
+		new SincronizacionSegmento(2).start();
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ejemplo 6: Sincronización con semaforos
+
+Los semáforos se suelen utilizar cuando un recurso tiene una capacidad limitada y se desea controlar el número de consumidores de dicho recurso. Es, por lo tanto, un elemento de sincronización.
+
+Al construir el semáforo se le proporciona a través del constructor una capacidad que hace referencia al número de hilos que puede estar ejecutando concurrentemente.
+
+Esta capacidad se convierte en número de permisos de acceso que Se conceden a los bloques de código que quieran hacer uso del recurso limitado. Si todos los permisos están concedidos, los hilos quedan en espera a que los propietarios de los permisos los liberen.
+
+
+
+
+
+
+
+En el ejemplo vamos a construir un semáforo con capacidad para tres permisos y cinco hilos a partir de la misma instancia de Runnable , para acceder a la sección crítica , solicitando el permiso , realizando los pasos de la actividad sincronizada y liberando el bloqueo posteriormente.
+
+
+import java.util.concurrent.Semaphore;
+
+public class SemaforoBasico implements Runnable{
+	
+	Semaphore semaforo=new Semaphore(3);
+	
+	@Override
+	public void run() {
+		try {
+			semaforo.acquire();
+			System.out.println("Paso 1");
+			Thread.sleep(1000);
+			System.out.println("Paso 2");
+			Thread.sleep(1000);
+			System.out.println("Paso 3");
+			Thread.sleep(1000);
+			semaforo.release();
+		}catch (InterruptedException ie) {
+			ie.printStackTrace();
+		}
+	}
+	
+	public static void mail (String[] args) {
+		SemaforoBasico sb=new SemaforoBasico();
+		for (int i=0; i<5; i++) {
+			new Thread (sb).start();
+		}
+	}
+}
+
+La salida muestra que los tres primeros hilos que han intentado acceder a la sección critica a través del bloqueo del semáforo se han ejecutado concurrentemente, y el resto de Ios hilos se han ejecutado cuando los primeros han terminado y liberado los bloqueos.
+
+No solo se pueden utilizar los semáforos cuando los recursos son limitados. En ocasiones es conveniente limitar el número de hilos que realizan determinadas tareas para no saturar el sistema o alguno de sus componentes. Por ejemplo, limitar el número de hilos que acceden a servicios web o a bases de datos puede ser una estrategia adecuada en muchos casos.
+
+
+
+Ejemplo 1
+
+El siguiente ejemplo programado en Java ilustra cómo se comporta un programa que se ejecuta en un único hilo, asícomo las consecuencias que esto implica. El programa está compuesto por una única clase (representa un ratón) compuesta por dos atributos: el nombre y el tiempo en segundos que tarda en comer. En el método main se instancian varios objetos (ratones) y se invoca al método comer de cada uno de ellos. Este método muestra un texto por pantalla cuando comienza, realiza una pausa de la duración en segundos (con el método sleep de la clase Thread) que indica el parámetro tlempoAlimentacion y, finalmente, muestra otro texto por pantalla cuando finaliza.
+
+package Ejemplo_Hilos;
+
+public class HiloUnico {
+	private String nombre;
+	private int tiempoAlimentacion;
+	
+	
+	public HiloUnico(String nombre, int tiempoAlimentacion) {
+		super();
+		this.nombre = nombre;
+		this. tiempoAlimentacion = tiempoAlimentacion;
+	}
+	
+	public void comer() {
+		try {
+				System.out.printf("El raton %s ha comenzado a alimentarse%n" , nombre );
+				Thread.sleep(tiempoAlimentacion * 500) ;
+				System.out.printf("E1 raton %s ha terminado de alimentarse%n", nombre);
+				
+				}catch (InterruptedException e) {
+					
+					e.printStackTrace();
+				}
+	}
+		
+		public static void main(String[] args) {
+			
+			HiloUnico fievel = new HiloUnico("Fievel",4);
+			HiloUnico jerry = new HiloUnico("Jerry",5);
+			HiloUnico pinky = new HiloUnico("Pinky",3);
+			HiloUnico mickey = new HiloUnico("Mickey", 6);
+			fievel.comer();
+			jerry.comer();
+			pinky.comer();
+			mickey.comer();
+		}
+}
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cada ratón comienza a alimentarse, emplea la cantidad de tiempo indicada en la construcción del objeto (se puede observar haciendo una ejecuclón del ejemplo) y termina de comer.
+Este tipo de ejecución se conoce como secuencial o no concurrente: cada sentencia debe esperar a que se ejecute la sentencia anterior. Pese a que en el ejemplo no hay ninguna dependencia entre los procesos de alimentación de cada ratón, se están produciendo por cómo se ha programado la aplicación. Como consecuencia, cada ratón tardará en comenzar a comer tanto tiempo como tarden los ratones que comenzaron antes que él. El tiempo total del proceso es, por lo tanto, la suma de todos los tiempos parciales 
+
+¿Qué sucedería si una tienda de comercio online funsionase de forma secuencial?
+
+Ejemplo 2
+Programamos el ejemplo anterior de forma concurrente. En este caso es muy sencillo debido a que no hay recursos compartidos. Para hacerlo, solo es necesario convertir cada objeto ratón (Cambiamos el nombre de la clase a Ratón) en un hilo (thread) y programamos aquello que se desea que ocurra concurrentemente dentro del método run.. Una vez creada la instancias de cada hilo, se invoca al método start de cada una de ellas, lo que provocará la ejecución del contenido del método run en un hilo independiente.
+
+public class Raton extends Thread{
+	private String nombre;
+	private int tiempoAlimentacion;
+	
+	
+	public Raton(String nombre, int tiempoAlimentacion) {
+		super();
+		this.nombre = nombre;
+		this. tiempoAlimentacion = tiempoAlimentacion;
+	}
+	
+	public void comer() {
+		try {
+				System.out.printf("El raton %s ha comenzado a alimentarse%n" , nombre );
+				Thread.sleep(tiempoAlimentacion * 500) ;
+				System.out.printf("E1 raton %s ha terminado de alimentarse%n", nombre);
+				
+				}catch (InterruptedException e) {
+					
+					e.printStackTrace();
+				}
+	}
+	
+	@Override
+	public void run() {
+		this.comer();
+	}
+		
+		public static void main(String[] args) {
+			
+			Raton fievel = new Raton("Fievel",4);
+			Raton jerry = new Raton("Jerry",5);
+			Raton pinky = new Raton("Pinky",3);
+			Raton mickey = new Raton("Mickey", 6);
+			fievel.start();
+			jerry.start();
+			pinky.start();
+			mickey.start();
+		}		
+	}
+	
+
+
+
+
+
+
+
+
+
+
+Todos los ratones han comenzado a alimentarse de inmediato, sin esperar a que termine ninguno de los demás. El tiempo total del proceso será, aproximadamente, el tiempo del proceso más lento. La reducción del tiempo total de ejecución es evidente.
+
+La anotación @Override simplemente se utiliza, para forzar al compilador a comprobar en tiempo de compilación que estás sobrescribiendo correctamente un método, y de este modo evitar errores en tiempo de ejecución, los cuales serían mucho más difíciles de detectar. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+La implementación con la interfaz Runnable sería de la siguiente forma:
+
+public class Raton implements Runnable{
+	private String nombre;
+	private int tiempoAlimentacion;
+		
+	public Raton(String nombre, int tiempoAlimentacion) {
+		super();
+		this.nombre = nombre;
+		this. tiempoAlimentacion = tiempoAlimentacion;
+	}
+	
+	public void comer() {
+		try {
+			System.out.printf("El raton %s ha comenzado a alimentarse%n" , nombre );
+			Thread.sleep(tiempoAlimentacion * 500) ;
+			System.out.printf("E1 raton %s ha terminado de alimentarse%n", nombre);
+			}catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+	}
+	
+	@Override
+	public void run() {
+		this.comer();
+	}
+		
+	public static void main(String[] args) {
+		Raton fievel = new Raton("Fievel",4);
+		Raton jerry = new Raton("Jerry",5);
+		Raton pinky = new Raton("Pinky",3);
+		Raton mickey = new Raton("Mickey", 6);
+		new Thread (fievel).start();
+		new Thread (jerry).start();
+		new Thread (pinky).start();
+		new Thread (mickey).start();
+	}		
+}
+
+
+OBSERVACIONES
+
+La creación de HILOS mediante la implementación de la interface Runnable tiene una ventaja clara sobre la herencia de la clase Thread: al ser Java un lenguaje que no admIte herencia múltiple, heredar de dicha clase impide otro tipo de herencias, limitando las posibilidades de diseño del software.
+
+A través de la implementación mediante la interface Runnable se pueden lanzar muchos hilos de ejecución sobre un único objeto, frente a la herencia de Thread que creará un objeto por cada hilo.
+
+
+
+Ejemplo 3
+Ejemplo de implementación de un hilo con la interface Runnable para crear múltiples hilos a partir de un único objeto. En el hilo , un atributo de instancia llamado “alimentoConsumido se incrementa en 1 durante la ejecución del método comer, invocado en el método run. Se puede observar en el método main como se crea una única instancia de la clase Gato y se crea cuatro hilos que la ejecutan
+
+
+
+public class Gato implements Runnable{
+	private String nombre;
+	private int tiempoAlimentacion;
+	private int alimentoConsumido;
+	
+	public Gato(String nombre, int tiempoAlimentacion) {
+		super();
+		this.nombre = nombre;
+		this. tiempoAlimentacion = tiempoAlimentacion;
+	}
+	
+	public void comer() {
+		try {
+			System.out.printf("El gato %s ha comenzado a alimentarse%n" , nombre );
+			Thread.sleep(tiempoAlimentacion * 500) ;
+			alimentoConsumido++;
+			System.out.printf("E1 gato %s ha terminado de alimentarse%n", nombre);
+			System.out.printf("Alimento consumido %d%n",alimentoConsumido);	
+			}catch (InterruptedException e) {
+					
+				e.printStackTrace();
+			}
+	}
+	
+	@Override
+	public void run() {
+		this.comer();
+	}
+	public static void main(String[] args) {
+			
+		Gato meloso = new Gato("Meloso",4);
+			
+		new Thread (meloso).start();
+		new Thread (meloso).start();
+		new Thread (meloso).start();
+		new Thread (meloso).start();
+	}		
+}
+
+Los objetos Runnable deben «envolverse» en objetos Thread para poder ser arrancados.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cada hilo ha ejecutado el método run sobre los datos del mismo objeto. Es decir, se ha ejecutado simultáneamente cuatro veces un bloque de código de un único objeto, compartiendo sus atributos. De esta forma, en la salida se puede apreciar que el valor del atributo alimentoconsumido se ha incrementado en 1 por cada hilo. Esto se puede observar porque el valor de alimentoConsumido se ha incrementado varias veces durante la ejecución. 
+
+El hecho de que algunos valores intermedios no aparezcan en la  captura de la salida de la ejecución tiene que
+ver con la asincronía y el alto coste de ejecución que tienen las sentencias que escriben por pantalla.
+
+¿Por qué dan valores distintos?
+Los diferentes hilos están trabajando sobre una única copia del objeto en memoria, por lo que las variables (los atributos) son compartidas, pudiendo sufrir errores de concurrencia.
+
+Sin en lugar de y hacemos 1000 iteraciones lo normal es que el resultado sea erroneo.
+
+	public static void main(String[] args) {
+			
+			Gato meloso = new Gato("Meloso",4);
+			for (int  i=0; i<1000; i++) {
+				new Thread (meloso).start();
+			}
+		}	
+
+
+
+
+
+
+
+
+
+
+
+Ejemplo 4
+
+Almacenar en un ArrayList  los estados por los que pasa un hilo que contiene en su interior una llamada al método sleep .
+Reutilizamos la clase gato y modificamos el método main con el siguiente código:
+
+	public static void main(String[] args) {
+			
+			Gato meloso = new Gato("Meloso",4);
+			ArrayList <Thread.State> estadosHilo = new ArrayList();
+			Thread h = new Thread (meloso);
+			estadosHilo.add(h.getState());
+			h.start();
+			while(h.getState() != Thread.State.TERMINATED) {
+				if(!estadosHilo.contains(h.getState() ) ) {
+					estadosHilo.add(h.getState());
+				}
+			}
+			if ( !estadosHilo.contains (h.getState() ) ) {
+				estadosHilo.add(h.getState());
+			}
+			for (Thread.State estado : estadosHilo) {
+				System. out. println (estado) ;
+			}
+		}		
+
+
+
+
+
+
+
+
+
+
+
+
+Todos los hilos pasan por los estados NEW, RUNNABLE y TERMINATED. El resto de los estados están condicionados a circunstancias propias de la ejecución.
+
+PROBLEMAS DE CONCURRENCIA
+
+Estos problemas aparecen cuando los distintos hilos acceden a un recurso compartido y limitado. Cuando nada impide que los hilos accedan al recurso compartido y es donde aparecen este tipo de problemas.
+Los problemas de concurrencia no siempre provocan un error en tiempo de ejecución . Esto significa que en ejecuciones sucesivas del programa multihilo el error se producirá en algunas de ellas y en otras no.
+
+Ejemplo 5
+
+En el siguiente ejemplo se muestra un uso conjunto de las clases Timer y TimerTask. El programa simula controlar un sistema de regadío automático. Este sistema riega por primera vez transcurridos 1000 milisegundos desde el inicio de la ejecución y repite el riego cada 2000 milisegundos.
+
+import  java.util . Timer;
+import java.util. TimerTask;
+
+public class SistemaRiego extends TimerTask {
+	
+	public void run() {
+		System.out . println ( "Regando ....");
+	}
+		public static void main(String [] args) {
+		Timer temporizador = new Timer ();
+		temporizador.schedule (new SistemaRiego() , 1000, 2000) ;
+		}
+}
+
+La tarea del método consiste en programar el evento “Regando” en la cantidad de tiempo dada , para ello es necesario dos parámetros, instancia TimerTask y ek retardo, en este caso de 2000 milisegundos.
+
+Ejemplo 6
+Uso de ScheduleExecutorService como herramienta para la programación de ejecuciones de tareas.
+
+Mediante la clase Executors se obtiene una instancia de ScheduledExecutorService, que es la interface que permite programar tareas recurrentes en hllos independientes. Una vez obtenido el programador de tareas, se le indica qué tarea se quiere ejecutar (objeto sr), cuántas unidades de tiempo se desea esperar hasta que se inicie la primera tarea (1), cuántas unidades de tiempo se desea esperar entre cada repetición de la tarea (2) y en qué unidad están representadas las unidades de tiempo (TimeUnit.SECONDS).
+
+import java.util.concurrent.Executors;
+import java.util. concurrent. ScheduledExecutorService;
+import java.util. concurrent.TimeUnit;
+
+public class SistemaRiego implements Runnable {
+
+	public void run() {
+		System. out.println ( "Regando. " ) ;
+	}
+	public static void main(String[] args) {
+			SistemaRiego sr = new SistemaRiego();
+			ScheduledExecutorService stp = Executors.newSingleThreadScheduledExecutor() ;
+			stp.scheduleAtFixedRate(sr, 1, 2, TimeUnit.SECONDS) ;
+			System.out.println ("Sistema de riego configurado." );
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+Ejemplo 7
+
+Colas 
+Java proporciona componentes que resuelven todo el espectro de necesidades relacionado con las colas para crear entornos seguros de ejecución de soluciones de mensajería, gestión de colas de trabajo y sistemas basados en esquemas productor-consumidor en entornos concurrentes.
+
+
+Ejemplo de cola no concurrente
+
+En este primer ejemplo,una cola recibe escrituras y lecturas de un conjunto de hilos. Esta soIución utiliza una estructura de datos LinkedList como soporte. Al no ser esta estructura segura frente a múltiples hilos, la ejecución produce un error.
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class ColaNoConcurrente implements Runnable {
+	private static Queue<Integer> cola = new LinkedList<Integer> () ;
+	
+	@Override
+	public void run() {
+		cola.add(10);
+		for (Integer i : cola) {
+			System. out.print (i+" : " ) ;
+		}
+		System.out.println("Tamano cola:" + cola.size() ) ;
+	}
+	public static void main(String[] args) {
+		for (int i=0; i<10; i++) {
+			new Thread (new ColaNoConcurrente() ).start () ;
+		}
+	}
+	
+}
+
+Ejemplo de cola concurrentes
+Esta solución utiliza el mismo código cambiando la estructura de datos a ConcurrentLinkedDeque obteniendo una ejecución sin errores.
+
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedDeque;
+
+
+public class ColaConcurrente implements Runnable {
+	private static Queue<Integer> cola = new ConcurrentLinkedDeque<Integer>() ;
+	@Override
+	public void run() {
+		cola.add(10);
+		for (Integer i : cola) {
+			System. out.print (i+" :" ) ;
+		}
+		System.out.println("Tamano cola:" + cola.size() ) ;
+	}
+	public static void main(String[] args) {
+		for (int i=0; i<10; i++) {
+			new Thread (new ColaConcurrente() ).start() ;
+		}
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+Aunque de esta última ejecución no está ordenada debido a la concurrencia de los hilos, sí se puede observar que la ejecución ha generado una cola con 10 elementos correspondientes a los 10 hilos que estaban accediendo a leer y escribir en la estructura de datos
+
+
+
+
+
+
+Ejemplo 8  Sincronizadores
+
+El paquete java.util.concunent proporciona cinco clases específicas para conseguir que la concurrencia entre hilos se desarrolle de manera correcta.
+
+En este ejemplo se muestra el uso de Exchanger. Se crean dos clases que implementan Runnable,TareaA y TareaB. Ambas clases reciben una instancia de Exchanger en el constructor y la utilizan para intercambiar información entre sí. La llamada al método exchange por parte de una de las dos tareas producirá un bloqueo de espera hasta que la otra tarea haga lo propio, intercambiando en ese momento la información entre los dos hilos. Por su parte, la clase lntercambiador, construye tanto el objeto Exchanger como las dos tareas programadas en TareaA y TareaB. 
+
+Es importante darse cuenta  de que las tareas no tienen referencias la una de la otra, sino que tienen acceso al objeto que hace de "intercambiador, de información.
+
+import java.util.concurrent.Exchanger;
+
+public class TareaA implements Runnable {
+	private Exchanger<String> exchanger ;
+	
+	public TareaA(Exchanger<String> exchanger) {
+		super ( ) ;
+		this. exchanger = exchanger;
+	}
+	public void run() {
+		try { 
+			String mensajeRecibido =	exchanger.exchange ( "Mensaje enviado par TareaA" );
+			System.out.println ( "Mensaje recibido en tarea A:  "	+ mensajeRecibido) ; 
+			} catch (InterruptedException e) {
+				e.printStackTrace() ;
+			}
+	}
+}
+
+import java.util.concurrent.Exchanger;
+
+public class TareaB implements Runnable {
+	private Exchanger<String> exchanger ;
+	
+	public TareaB(Exchanger<String> exchanger) {
+		super ( ) ;
+		this. exchanger = exchanger;
+	}
+	public void run() {
+		try { 
+				String mensajeRecibido =	exchanger.exchange ( "Mensaje enviado par TareaB" );
+				System.out.println ( "Mensaje recibido en tarea B:  "	+ mensajeRecibido) ; 
+			} catch (InterruptedException e) {
+				e.printStackTrace() ;
+				}
+	}
+}
+
+import java.util.concurrent.Exchanger;
+
+public class Intercambiador {
+	
+	public static void main(String[] args) {
+		Exchanger<String> exchanger = new Exchanger<String> ( );
+		new Thread (new TareaA (exchanger) ) . start ( ) ;
+		new Thread (new TareaB (exchanger) ) . start ( );
+	}
+}
+
+
+
+
+
+
+
+Ejemplo 9: Estructuras de datos concurrentes
+
+Java tiene interfaces y clases para almacenar información (List, Map, Set, … ) estas implementaciones no están diseñadas para soportar que múltiples hilos lean y escriban simultáneamente en ellas, pudiendo provocar errores .
+
+En este ejemplo , compartimos un objeto ArrayList donde varios hilos leen y escriben provocando errores de concurrencia.
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class LectorEscritorNoSeguro extends Thread {
+	private static List<String> palabras = new ArrayList<String>();
+	
+@Override
+	public void run() {
+		palabras.add (new String ("Nueva palabra" ) ) ;
+		for(String palabra : palabras) {
+			palabras.size();
+		}
+		System.out.println(palabras.size());
+	}
+
+	public static void main(String[] args) {
+		for (int i=0; i<100; i++) {
+			new LectorEscritorNoSeguro().start();
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+En Traza de error de salida, aparecen referencias a excepciones que indican que han ocurrido errores de concurrencia en el acceso a la lista, como java.util.ConcurrentModificationException
+
+La clase Collections de Java proporciona métodos estáticos para convertir estructuras de datos en seguras respecto a hilos (thread-safe), como synchronizedList
+
+
+
+
+
+
+
+
+Un ArrayList, se convierte en thead-safe utilizando la clase CopyOnWriteArraySet en lugar de ArrayList,
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+public class LectorEscritorSeguro extends Thread{
+	private static List<String> palabras = new CopyOnWriteArrayList<String>();
+
+	@Override
+	public void run() {
+		palabras.add (new String ("Nueva palabra" ) ) ;
+		for(String palabra : palabras) {
+			palabras.size();
+		}
+		System.out.println(palabras.size());
+	}
+
+	public static void main(String[] args) {
+		for (int i=0; i<100; i++) {
+			new LectorEscritorSeguro().start();
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+Observamos que deja de producirse los errores de acceso.
+
+Ejemplo 10: Interfaces ExecutorService, Callable y Future
+
+Estas tres interfaces proporcionan mecanismos para ejecutar el código de manera asíncrona.
+
+En este ejemplo se lanza una tarea que se realiza de manera asíncrona y deja en espera el tratamiento de la respuesta.
+
+El proceso completo consiste en construir un objeto que implemente Callable y entregarlo a una instancia de ExecutorService. El resultado se almacena en un objeto Future mediante el método get, pudiendo evaluar si el proceso ha terminado correctamente o ha sido cancelado, mediante los métodos isDone o lsCanceled. Para finalizar, el ExecutorService es apagado utilizando el método shutdown, ya que de lo contrario quedaría a la espera de nuevas tareas.
+
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util. concurrent.Executors;
+import java.util.concurrent.Future;
+
+public class Lector implements Callable <String>{
+	@Override
+	public String call () throws Exception{
+		String textoLeido = "Me gustan las peliculas de accion";
+		Thread.sleep(1000);
+		return textoLeido;
+	}
+	
+	public static void main(String[] args) {
+		try {
+				Lector lector = new Lector();
+				ExecutorService servicioEjecucion =Executors.newSingleThreadExecutor();
+				Future<String> resultado=servicioEjecucion.submit (lector);
+				String texto = resultado.get();
+				if (resultado. isDone () ) {
+					System. out. println (texto);
+					System. out.println ("Proceso finalizado" );
+				}else if(resultado.isCancelled()) {
+					System.out.println("Proceso cancelado");
+				}
+				servicioEjecucion.shutdown();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+}
+
+
+
+
+
+
+
+La principal diferencia entre implementar Callable y Runnable es que la primera opción puede proporcionar un retorno. No obstante, con Runnable existen técnicas para transmitir valores mediante el uso de referencias
+a objetos.
+
+Ejemplo 1
+
+El siguiente ejemplo programado en Java ilustra cómo se comporta un programa que se ejecuta en un único hilo, asícomo las consecuencias que esto implica. El programa está compuesto por una única clase (representa un ratón) compuesta por dos atributos: el nombre y el tiempo en segundos que tarda en comer. En el método main se instancian varios objetos (ratones) y se invoca al método comer de cada uno de ellos. Este método muestra un texto por pantalla cuando comienza, realiza una pausa de la duración en segundos (con el método sleep de la clase Thread) que indica el parámetro tlempoAlimentacion y, finalmente, muestra otro texto por pantalla cuando finaliza.
+
+package Ejemplo_Hilos;
+
+public class HiloUnico {
+	private String nombre;
+	private int tiempoAlimentacion;
+	
+	
+	public HiloUnico(String nombre, int tiempoAlimentacion) {
+		super();
+		this.nombre = nombre;
+		this. tiempoAlimentacion = tiempoAlimentacion;
+	}
+	
+	public void comer() {
+		try {
+				System.out.printf("El raton %s ha comenzado a alimentarse%n" , nombre );
+				Thread.sleep(tiempoAlimentacion * 500) ;
+				System.out.printf("E1 raton %s ha terminado de alimentarse%n", nombre);
+				
+				}catch (InterruptedException e) {
+					
+					e.printStackTrace();
+				}
+	}
+		
+		public static void main(String[] args) {
+			
+			HiloUnico fievel = new HiloUnico("Fievel",4);
+			HiloUnico jerry = new HiloUnico("Jerry",5);
+			HiloUnico pinky = new HiloUnico("Pinky",3);
+			HiloUnico mickey = new HiloUnico("Mickey", 6);
+			fievel.comer();
+			jerry.comer();
+			pinky.comer();
+			mickey.comer();
+		}
+}
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cada ratón comienza a alimentarse, emplea la cantidad de tiempo indicada en la construcción del objeto (se puede observar haciendo una ejecuclón del ejemplo) y termina de comer.
+Este tipo de ejecución se conoce como secuencial o no concurrente: cada sentencia debe esperar a que se ejecute la sentencia anterior. Pese a que en el ejemplo no hay ninguna dependencia entre los procesos de alimentación de cada ratón, se están produciendo por cómo se ha programado la aplicación. Como consecuencia, cada ratón tardará en comenzar a comer tanto tiempo como tarden los ratones que comenzaron antes que él. El tiempo total del proceso es, por lo tanto, la suma de todos los tiempos parciales 
+
+¿Qué sucedería si una tienda de comercio online funsionase de forma secuencial?
+
+Ejemplo 2
+Programamos el ejemplo anterior de forma concurrente. En este caso es muy sencillo debido a que no hay recursos compartidos. Para hacerlo, solo es necesario convertir cada objeto ratón (Cambiamos el nombre de la clase a Ratón) en un hilo (thread) y programamos aquello que se desea que ocurra concurrentemente dentro del método run.. Una vez creada la instancias de cada hilo, se invoca al método start de cada una de ellas, lo que provocará la ejecución del contenido del método run en un hilo independiente.
+
+public class Raton extends Thread{
+	private String nombre;
+	private int tiempoAlimentacion;
+	
+	
+	public Raton(String nombre, int tiempoAlimentacion) {
+		super();
+		this.nombre = nombre;
+		this. tiempoAlimentacion = tiempoAlimentacion;
+	}
+	
+	public void comer() {
+		try {
+				System.out.printf("El raton %s ha comenzado a alimentarse%n" , nombre );
+				Thread.sleep(tiempoAlimentacion * 500) ;
+				System.out.printf("E1 raton %s ha terminado de alimentarse%n", nombre);
+				
+				}catch (InterruptedException e) {
+					
+					e.printStackTrace();
+				}
+	}
+	
+	@Override
+	public void run() {
+		this.comer();
+	}
+		
+		public static void main(String[] args) {
+			
+			Raton fievel = new Raton("Fievel",4);
+			Raton jerry = new Raton("Jerry",5);
+			Raton pinky = new Raton("Pinky",3);
+			Raton mickey = new Raton("Mickey", 6);
+			fievel.start();
+			jerry.start();
+			pinky.start();
+			mickey.start();
+		}		
+	}
+	
+
+
+
+
+
+
+
+
+
+
+Todos los ratones han comenzado a alimentarse de inmediato, sin esperar a que termine ninguno de los demás. El tiempo total del proceso será, aproximadamente, el tiempo del proceso más lento. La reducción del tiempo total de ejecución es evidente.
+
+La anotación @Override simplemente se utiliza, para forzar al compilador a comprobar en tiempo de compilación que estás sobrescribiendo correctamente un método, y de este modo evitar errores en tiempo de ejecución, los cuales serían mucho más difíciles de detectar. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+La implementación con la interfaz Runnable sería de la siguiente forma:
+
+public class Raton implements Runnable{
+	private String nombre;
+	private int tiempoAlimentacion;
+		
+	public Raton(String nombre, int tiempoAlimentacion) {
+		super();
+		this.nombre = nombre;
+		this. tiempoAlimentacion = tiempoAlimentacion;
+	}
+	
+	public void comer() {
+		try {
+			System.out.printf("El raton %s ha comenzado a alimentarse%n" , nombre );
+			Thread.sleep(tiempoAlimentacion * 500) ;
+			System.out.printf("E1 raton %s ha terminado de alimentarse%n", nombre);
+			}catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+	}
+	
+	@Override
+	public void run() {
+		this.comer();
+	}
+		
+	public static void main(String[] args) {
+		Raton fievel = new Raton("Fievel",4);
+		Raton jerry = new Raton("Jerry",5);
+		Raton pinky = new Raton("Pinky",3);
+		Raton mickey = new Raton("Mickey", 6);
+		new Thread (fievel).start();
+		new Thread (jerry).start();
+		new Thread (pinky).start();
+		new Thread (mickey).start();
+	}		
+}
+
+
+OBSERVACIONES
+
+La creación de HILOS mediante la implementación de la interface Runnable tiene una ventaja clara sobre la herencia de la clase Thread: al ser Java un lenguaje que no admIte herencia múltiple, heredar de dicha clase impide otro tipo de herencias, limitando las posibilidades de diseño del software.
+
+A través de la implementación mediante la interface Runnable se pueden lanzar muchos hilos de ejecución sobre un único objeto, frente a la herencia de Thread que creará un objeto por cada hilo.
+
+
+
+Ejemplo 3
+Ejemplo de implementación de un hilo con la interface Runnable para crear múltiples hilos a partir de un único objeto. En el hilo , un atributo de instancia llamado “alimentoConsumido se incrementa en 1 durante la ejecución del método comer, invocado en el método run. Se puede observar en el método main como se crea una única instancia de la clase Gato y se crea cuatro hilos que la ejecutan
+
+
+
+public class Gato implements Runnable{
+	private String nombre;
+	private int tiempoAlimentacion;
+	private int alimentoConsumido;
+	
+	public Gato(String nombre, int tiempoAlimentacion) {
+		super();
+		this.nombre = nombre;
+		this. tiempoAlimentacion = tiempoAlimentacion;
+	}
+	
+	public void comer() {
+		try {
+			System.out.printf("El gato %s ha comenzado a alimentarse%n" , nombre );
+			Thread.sleep(tiempoAlimentacion * 500) ;
+			alimentoConsumido++;
+			System.out.printf("E1 gato %s ha terminado de alimentarse%n", nombre);
+			System.out.printf("Alimento consumido %d%n",alimentoConsumido);	
+			}catch (InterruptedException e) {
+					
+				e.printStackTrace();
+			}
+	}
+	
+	@Override
+	public void run() {
+		this.comer();
+	}
+	public static void main(String[] args) {
+			
+		Gato meloso = new Gato("Meloso",4);
+			
+		new Thread (meloso).start();
+		new Thread (meloso).start();
+		new Thread (meloso).start();
+		new Thread (meloso).start();
+	}		
+}
+
+Los objetos Runnable deben «envolverse» en objetos Thread para poder ser arrancados.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cada hilo ha ejecutado el método run sobre los datos del mismo objeto. Es decir, se ha ejecutado simultáneamente cuatro veces un bloque de código de un único objeto, compartiendo sus atributos. De esta forma, en la salida se puede apreciar que el valor del atributo alimentoconsumido se ha incrementado en 1 por cada hilo. Esto se puede observar porque el valor de alimentoConsumido se ha incrementado varias veces durante la ejecución. 
+
+El hecho de que algunos valores intermedios no aparezcan en la  captura de la salida de la ejecución tiene que
+ver con la asincronía y el alto coste de ejecución que tienen las sentencias que escriben por pantalla.
+
+¿Por qué dan valores distintos?
+Los diferentes hilos están trabajando sobre una única copia del objeto en memoria, por lo que las variables (los atributos) son compartidas, pudiendo sufrir errores de concurrencia.
+
+Sin en lugar de y hacemos 1000 iteraciones lo normal es que el resultado sea erroneo.
+
+	public static void main(String[] args) {
+			
+			Gato meloso = new Gato("Meloso",4);
+			for (int  i=0; i<1000; i++) {
+				new Thread (meloso).start();
+			}
+		}	
+
+
+
+
+
+
+
+
+
+
+
+Ejemplo 4
+
+Almacenar en un ArrayList  los estados por los que pasa un hilo que contiene en su interior una llamada al método sleep .
+Reutilizamos la clase gato y modificamos el método main con el siguiente código:
+
+	public static void main(String[] args) {
+			
+			Gato meloso = new Gato("Meloso",4);
+			ArrayList <Thread.State> estadosHilo = new ArrayList();
+			Thread h = new Thread (meloso);
+			estadosHilo.add(h.getState());
+			h.start();
+			while(h.getState() != Thread.State.TERMINATED) {
+				if(!estadosHilo.contains(h.getState() ) ) {
+					estadosHilo.add(h.getState());
+				}
+			}
+			if ( !estadosHilo.contains (h.getState() ) ) {
+				estadosHilo.add(h.getState());
+			}
+			for (Thread.State estado : estadosHilo) {
+				System. out. println (estado) ;
+			}
+		}		
+
+
+
+
+
+
+
+
+
+
+
+
+Todos los hilos pasan por los estados NEW, RUNNABLE y TERMINATED. El resto de los estados están condicionados a circunstancias propias de la ejecución.
+
+PROBLEMAS DE CONCURRENCIA
+
+Estos problemas aparecen cuando los distintos hilos acceden a un recurso compartido y limitado. Cuando nada impide que los hilos accedan al recurso compartido y es donde aparecen este tipo de problemas.
+Los problemas de concurrencia no siempre provocan un error en tiempo de ejecución . Esto significa que en ejecuciones sucesivas del programa multihilo el error se producirá en algunas de ellas y en otras no.
+
+Ejemplo 5
+
+En el siguiente ejemplo se muestra un uso conjunto de las clases Timer y TimerTask. El programa simula controlar un sistema de regadío automático. Este sistema riega por primera vez transcurridos 1000 milisegundos desde el inicio de la ejecución y repite el riego cada 2000 milisegundos.
+
+import  java.util . Timer;
+import java.util. TimerTask;
+
+public class SistemaRiego extends TimerTask {
+	
+	public void run() {
+		System.out . println ( "Regando ....");
+	}
+		public static void main(String [] args) {
+		Timer temporizador = new Timer ();
+		temporizador.schedule (new SistemaRiego() , 1000, 2000) ;
+		}
+}
+
+La tarea del método consiste en programar el evento “Regando” en la cantidad de tiempo dada , para ello es necesario dos parámetros, instancia TimerTask y ek retardo, en este caso de 2000 milisegundos.
+
+Ejemplo 6
+Uso de ScheduleExecutorService como herramienta para la programación de ejecuciones de tareas.
+
+Mediante la clase Executors se obtiene una instancia de ScheduledExecutorService, que es la interface que permite programar tareas recurrentes en hllos independientes. Una vez obtenido el programador de tareas, se le indica qué tarea se quiere ejecutar (objeto sr), cuántas unidades de tiempo se desea esperar hasta que se inicie la primera tarea (1), cuántas unidades de tiempo se desea esperar entre cada repetición de la tarea (2) y en qué unidad están representadas las unidades de tiempo (TimeUnit.SECONDS).
+
+import java.util.concurrent.Executors;
+import java.util. concurrent. ScheduledExecutorService;
+import java.util. concurrent.TimeUnit;
+
+public class SistemaRiego implements Runnable {
+
+	public void run() {
+		System. out.println ( "Regando. " ) ;
+	}
+	public static void main(String[] args) {
+			SistemaRiego sr = new SistemaRiego();
+			ScheduledExecutorService stp = Executors.newSingleThreadScheduledExecutor() ;
+			stp.scheduleAtFixedRate(sr, 1, 2, TimeUnit.SECONDS) ;
+			System.out.println ("Sistema de riego configurado." );
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+Ejemplo 7
+
+Colas 
+Java proporciona componentes que resuelven todo el espectro de necesidades relacionado con las colas para crear entornos seguros de ejecución de soluciones de mensajería, gestión de colas de trabajo y sistemas basados en esquemas productor-consumidor en entornos concurrentes.
+
+
+Ejemplo de cola no concurrente
+
+En este primer ejemplo,una cola recibe escrituras y lecturas de un conjunto de hilos. Esta soIución utiliza una estructura de datos LinkedList como soporte. Al no ser esta estructura segura frente a múltiples hilos, la ejecución produce un error.
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class ColaNoConcurrente implements Runnable {
+	private static Queue<Integer> cola = new LinkedList<Integer> () ;
+	
+	@Override
+	public void run() {
+		cola.add(10);
+		for (Integer i : cola) {
+			System. out.print (i+" : " ) ;
+		}
+		System.out.println("Tamano cola:" + cola.size() ) ;
+	}
+	public static void main(String[] args) {
+		for (int i=0; i<10; i++) {
+			new Thread (new ColaNoConcurrente() ).start () ;
+		}
+	}
+	
+}
+
+Ejemplo de cola concurrentes
+Esta solución utiliza el mismo código cambiando la estructura de datos a ConcurrentLinkedDeque obteniendo una ejecución sin errores.
+
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedDeque;
+
+
+public class ColaConcurrente implements Runnable {
+	private static Queue<Integer> cola = new ConcurrentLinkedDeque<Integer>() ;
+	@Override
+	public void run() {
+		cola.add(10);
+		for (Integer i : cola) {
+			System. out.print (i+" :" ) ;
+		}
+		System.out.println("Tamano cola:" + cola.size() ) ;
+	}
+	public static void main(String[] args) {
+		for (int i=0; i<10; i++) {
+			new Thread (new ColaConcurrente() ).start() ;
+		}
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+Aunque de esta última ejecución no está ordenada debido a la concurrencia de los hilos, sí se puede observar que la ejecución ha generado una cola con 10 elementos correspondientes a los 10 hilos que estaban accediendo a leer y escribir en la estructura de datos
+
+
+
+
+
+
+Ejemplo 8  Sincronizadores
+
+El paquete java.util.concunent proporciona cinco clases específicas para conseguir que la concurrencia entre hilos se desarrolle de manera correcta.
+
+En este ejemplo se muestra el uso de Exchanger. Se crean dos clases que implementan Runnable,TareaA y TareaB. Ambas clases reciben una instancia de Exchanger en el constructor y la utilizan para intercambiar información entre sí. La llamada al método exchange por parte de una de las dos tareas producirá un bloqueo de espera hasta que la otra tarea haga lo propio, intercambiando en ese momento la información entre los dos hilos. Por su parte, la clase lntercambiador, construye tanto el objeto Exchanger como las dos tareas programadas en TareaA y TareaB. 
+
+Es importante darse cuenta  de que las tareas no tienen referencias la una de la otra, sino que tienen acceso al objeto que hace de "intercambiador, de información.
+
+import java.util.concurrent.Exchanger;
+
+public class TareaA implements Runnable {
+	private Exchanger<String> exchanger ;
+	
+	public TareaA(Exchanger<String> exchanger) {
+		super ( ) ;
+		this. exchanger = exchanger;
+	}
+	public void run() {
+		try { 
+			String mensajeRecibido =	exchanger.exchange ( "Mensaje enviado par TareaA" );
+			System.out.println ( "Mensaje recibido en tarea A:  "	+ mensajeRecibido) ; 
+			} catch (InterruptedException e) {
+				e.printStackTrace() ;
+			}
+	}
+}
+
+import java.util.concurrent.Exchanger;
+
+public class TareaB implements Runnable {
+	private Exchanger<String> exchanger ;
+	
+	public TareaB(Exchanger<String> exchanger) {
+		super ( ) ;
+		this. exchanger = exchanger;
+	}
+	public void run() {
+		try { 
+				String mensajeRecibido =	exchanger.exchange ( "Mensaje enviado par TareaB" );
+				System.out.println ( "Mensaje recibido en tarea B:  "	+ mensajeRecibido) ; 
+			} catch (InterruptedException e) {
+				e.printStackTrace() ;
+				}
+	}
+}
+
+import java.util.concurrent.Exchanger;
+
+public class Intercambiador {
+	
+	public static void main(String[] args) {
+		Exchanger<String> exchanger = new Exchanger<String> ( );
+		new Thread (new TareaA (exchanger) ) . start ( ) ;
+		new Thread (new TareaB (exchanger) ) . start ( );
+	}
+}
+
+
+
+
+
+
+
+Ejemplo 9: Estructuras de datos concurrentes
+
+Java tiene interfaces y clases para almacenar información (List, Map, Set, … ) estas implementaciones no están diseñadas para soportar que múltiples hilos lean y escriban simultáneamente en ellas, pudiendo provocar errores .
+
+En este ejemplo , compartimos un objeto ArrayList donde varios hilos leen y escriben provocando errores de concurrencia.
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class LectorEscritorNoSeguro extends Thread {
+	private static List<String> palabras = new ArrayList<String>();
+	
+@Override
+	public void run() {
+		palabras.add (new String ("Nueva palabra" ) ) ;
+		for(String palabra : palabras) {
+			palabras.size();
+		}
+		System.out.println(palabras.size());
+	}
+
+	public static void main(String[] args) {
+		for (int i=0; i<100; i++) {
+			new LectorEscritorNoSeguro().start();
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+En Traza de error de salida, aparecen referencias a excepciones que indican que han ocurrido errores de concurrencia en el acceso a la lista, como java.util.ConcurrentModificationException
+
+La clase Collections de Java proporciona métodos estáticos para convertir estructuras de datos en seguras respecto a hilos (thread-safe), como synchronizedList
+
+
+
+
+
+
+
+
+Un ArrayList, se convierte en thead-safe utilizando la clase CopyOnWriteArraySet en lugar de ArrayList,
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+public class LectorEscritorSeguro extends Thread{
+	private static List<String> palabras = new CopyOnWriteArrayList<String>();
+
+	@Override
+	public void run() {
+		palabras.add (new String ("Nueva palabra" ) ) ;
+		for(String palabra : palabras) {
+			palabras.size();
+		}
+		System.out.println(palabras.size());
+	}
+
+	public static void main(String[] args) {
+		for (int i=0; i<100; i++) {
+			new LectorEscritorSeguro().start();
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+Observamos que deja de producirse los errores de acceso.
+
+Ejemplo 10: Interfaces ExecutorService, Callable y Future
+
+Estas tres interfaces proporcionan mecanismos para ejecutar el código de manera asíncrona.
+
+En este ejemplo se lanza una tarea que se realiza de manera asíncrona y deja en espera el tratamiento de la respuesta.
+
+El proceso completo consiste en construir un objeto que implemente Callable y entregarlo a una instancia de ExecutorService. El resultado se almacena en un objeto Future mediante el método get, pudiendo evaluar si el proceso ha terminado correctamente o ha sido cancelado, mediante los métodos isDone o lsCanceled. Para finalizar, el ExecutorService es apagado utilizando el método shutdown, ya que de lo contrario quedaría a la espera de nuevas tareas.
+
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util. concurrent.Executors;
+import java.util.concurrent.Future;
+
+public class Lector implements Callable <String>{
+	@Override
+	public String call () throws Exception{
+		String textoLeido = "Me gustan las peliculas de accion";
+		Thread.sleep(1000);
+		return textoLeido;
+	}
+	
+	public static void main(String[] args) {
+		try {
+				Lector lector = new Lector();
+				ExecutorService servicioEjecucion =Executors.newSingleThreadExecutor();
+				Future<String> resultado=servicioEjecucion.submit (lector);
+				String texto = resultado.get();
+				if (resultado. isDone () ) {
+					System. out. println (texto);
+					System. out.println ("Proceso finalizado" );
+				}else if(resultado.isCancelled()) {
+					System.out.println("Proceso cancelado");
+				}
+				servicioEjecucion.shutdown();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+}
+
+
+
+
+
+
+
+La principal diferencia entre implementar Callable y Runnable es que la primera opción puede proporcionar un retorno. No obstante, con Runnable existen técnicas para transmitir valores mediante el uso de referencias
+a objetos.
+
+
+
+
+

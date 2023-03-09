@@ -15,6 +15,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.pedropuertas.agenda.db.DbContactos;
 import com.pedropuertas.agenda.entidades.Contactos;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
 public class VerActivity extends AppCompatActivity {
 
     EditText txtNombre, txtTelefono, txtCorreo, txtFecha;
@@ -53,10 +57,16 @@ public class VerActivity extends AppCompatActivity {
         contacto = dbContactos.verContacto(id);
 
         if(contacto != null){
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate fechaNacimiento = LocalDate.parse(contacto.getFecha(), formatter);
+
+            LocalDate ahora = LocalDate.now();
+            int edad = Period.between(fechaNacimiento, ahora).getYears();
+
             txtNombre.setText(contacto.getNombre());
             txtTelefono.setText(contacto.getTelefono());
             txtCorreo.setText(contacto.getCorreo_electornico());
-            txtFecha.setText(contacto.getFecha());
+            txtFecha.setText(contacto.getFecha() + " | Edad: " + edad);
             txtNombre.setInputType(InputType.TYPE_NULL);
             txtTelefono.setInputType(InputType.TYPE_NULL);
             txtCorreo.setInputType(InputType.TYPE_NULL);

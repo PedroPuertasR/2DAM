@@ -19,7 +19,7 @@ public class ClienteFichero {
     public static void main(String[] args) {
 
         ClienteFichero ficheroCliente = new ClienteFichero();
-        ficheroCliente.pide("/home/alumno/Documentos/hola.txt", "localhost", 6000);
+        ficheroCliente.pide("./src/txt/hola.txt", "localhost", 6000);
     }
 
     /*Este método pide la ruta del fichero, el servidor y el puerto de este.
